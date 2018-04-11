@@ -1,0 +1,8 @@
+attributes:
+  - content
+title: GoodJobs
+cluster: true
+polymorphism: true
+inheritance: true
+notation: bachman
+exclude: ApplicationRecord
