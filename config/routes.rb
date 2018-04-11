@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   end
 
   get '*path', to: 'pages#show'
+  root 'pages#show'
 end
