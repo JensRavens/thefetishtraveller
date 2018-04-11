@@ -62,7 +62,7 @@ group :development do
   gem "rubocop"
   gem "web-console"
   gem "annotate"
-  gem "erd"
+  gem "erd", require: false
   gem "rb-fsevent"
   gem "letter_opener"
 end
