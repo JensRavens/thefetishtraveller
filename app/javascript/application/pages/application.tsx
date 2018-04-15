@@ -3,6 +3,7 @@ import {Route} from 'react-router';
 import {BrowserRouter, NavLink} from 'react-router-dom';
 
 import EventPage from './event_page';
+import EventEdit from './event_edit';
 import EventSearch from './event_search';
 import Imprint from './imprint';
 import Container from '../components/container';
@@ -18,6 +19,7 @@ export default class Application extends React.Component {
           <main>
             <Route path="/" exact component={EventSearch}/>
             <Route path="/events/:id" exact component={EventPage}/>
+            <Route path="/events/:id/edit" exact component={EventEdit}/>
             <Route path="/imprint" exact component={Imprint}/>
           </main>
           <Footer/>

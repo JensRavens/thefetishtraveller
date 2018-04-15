@@ -249,8 +249,8 @@ export function dbReducer(state: State, action: DBAction): State {
     case 'UPDATE_RECORD': {
       const key = action.payload.key;
       const updates: {[id: string]: Record} = {};
-      action.payload.ids.forEach(e => updates[e] = {...state.data[key], ...action.payload.data});
-      const dataSet = {...state.data[key], byId: {...state.data[key].byId, updates}};
+      action.payload.ids.forEach(e => updates[e] = {...state.data[key].byId[e], ...action.payload.data});
+      const dataSet = {...state.data[key], byId: {...state.data[key].byId, ...updates}};
       return {...state, data: {...state.data, [key]: dataSet}};
     }
     case 'SETTINGS_UPDATE': {
