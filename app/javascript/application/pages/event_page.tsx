@@ -2,7 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {Event, loadEvent} from '../models/event';
 import {DB} from '../state';
-import Container from './container';
+import Container from '../components/container';
 
 interface Props {
   id: string;
@@ -12,7 +12,6 @@ interface Props {
 class EventPage extends React.Component<Props> {
   componentDidMount() {
     if(!this.props.event) {
-      console.log('loading event');
       loadEvent(this.props.id);
     }
   }
@@ -22,6 +21,7 @@ class EventPage extends React.Component<Props> {
     if(!event) { return null };
     return (
       <Container>
+        <h1>{event.name}</h1>
         <div>Details about {event.name}.</div>
       </Container>
     )

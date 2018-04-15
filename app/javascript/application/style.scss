@@ -1,2 +1,9 @@
+@import './styles/reset';
 @import './styles/variables';
 @import './styles/typography';
+
+@import './pages/application';
+
+@import './components/container';
+@import './components/footer';
+@import './components/header';
