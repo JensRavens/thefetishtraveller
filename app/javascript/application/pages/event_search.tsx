@@ -14,7 +14,7 @@ interface Props {
 
 const mapStateToProps: (state: State) => Props = (state) => {
   return {
-    events: new DB(state).table('events').all,
+    events: new DB(state).table('events').all.sort((a,b) => (a.startAt as any) - (b.startAt as any)),
     likes: new DB(state).table('likes').all
   }
 }
