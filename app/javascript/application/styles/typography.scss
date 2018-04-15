@@ -1,0 +1,42 @@
+body {
+	font-family: $font-text;
+	-webkit-text-size-adjust: 100%;
+	-ms-text-size-adjust: 100%;
+	color: $color-text;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	font-size: $size-text;
+	line-height: 1.5;
+	font-feature-settings: 'kern' 1, 'onum' 0, 'liga' 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
+  font-family: $font-heading;
+  font-size: 2rem;
+}
+
+p {
+	margin: 0 0 1em 0;
+}
+
+a {
+	text-decoration: none;
+	color: $color-tint;
+}
+
+small {
+	font-size: 0.8em;
+}
+
+strong {
+	font-weight: 600;
+}
+
+hr {
+	border: none;
+	border-top: 1px solid $color-border;
+	color: transparent;
+	background-color: transparent;
+	height: 0;
+}
