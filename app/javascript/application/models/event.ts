@@ -1,13 +1,13 @@
 import {store, DB, State} from '../state';
 import {api} from '../api';
+import {Location} from './location';
 
 export interface Event {
   id: string;
   name: string;
   endAt: Date;
   startAt: Date;
-  countryCode: string;
-  city: string;
+  location: Location;
 }
 
 export function refreshEvents() {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_04_15_183229) do
+ActiveRecord::Schema.define(version: 2018_04_15_222056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 2018_04_15_183229) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug"
+    t.uuid "location_id"
+    t.index ["location_id"], name: "index_events_on_location_id"
     t.index ["slug"], name: "index_events_on_slug"
   end
 
@@ -35,6 +37,14 @@ ActiveRecord::Schema.define(version: 2018_04_15_183229) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "locations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.jsonb "properties", default: "{}", null: false
+    t.string "slug"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_locations_on_slug"
+  end
+
   create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "email"
     t.string "first_name"
@@ -45,6 +55,7 @@ ActiveRecord::Schema.define(version: 2018_04_15_183229) do
     t.index ["email"], name: "index_users_on_email"
   end
 
+  add_foreign_key "events", "locations"
   add_foreign_key "likes", "events"
   add_foreign_key "likes", "users"
 end

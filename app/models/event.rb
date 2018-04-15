@@ -4,12 +4,17 @@ class Event < ApplicationRecord
   include DocumentSerializable
 
   has_many :likes, dependent: :destroy
+  belongs_to :location
 
   attribute :name
   attribute :start_at, DateTime
   attribute :end_at, DateTime
-  attribute :city
-  attribute :country_code
+  attribute :organizer_name
+  attribute :official, Axiom::Types::Boolean, default: false
+  attribute :categories, [String], default: []
+  attribute :website
+  attribute :ticket_link
+  attribute :description
 
   scope :published, -> { where('events.publish_at <= NOW()') }
 
