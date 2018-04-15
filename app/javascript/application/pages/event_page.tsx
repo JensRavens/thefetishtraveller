@@ -34,7 +34,7 @@ class EventPage extends React.Component<Props> {
     return (
       <Container>
         <h1>{event.name} <small>{dateRange(event.startAt, event.endAt)}</small></h1>
-        <p>{event.city}, {event.countryCode}</p>
+        <p>{event.location.city}, {event.location.countryCode}</p>
         {liked ? <span onClick={() => this.unlike()}>💔</span> : <span onClick={() => this.like()}>❤️</span> }
       </Container>
     )

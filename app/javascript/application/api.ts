@@ -1,12 +1,20 @@
 import {camelCase, mapKeys} from 'lodash';
 
+export interface APILocation {
+  id: string;
+  name: string;
+  lat: number;
+  lon: number;
+  countryCode: string;
+  city: string;
+}
+
 export interface APIEvent {
   id: string;
   name: string;
   endAt: Date;
   startAt: Date;
-  countryCode: string;
-  city: string;
+  location: APILocation;
 }
 
 export interface APILike {
