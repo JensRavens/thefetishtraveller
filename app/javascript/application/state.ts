@@ -228,7 +228,8 @@ export function dbReducer(state: State, action: DBAction): State {
   switch(action.type) {
     case 'INSERT_RECORD': {
       const key = action.payload.key;
-      const dataSet = {...state.data[key], byId: {...state.data[key].byId, ...byId(action.payload.data)}, ids: [...state.data[key].ids, ...action.payload.ids] };
+      const newIDs = action.payload.ids.filter(id => !state.data[key].ids.includes(id));
+      const dataSet = {...state.data[key], byId: {...state.data[key].byId, ...byId(action.payload.data)}, ids: [...state.data[key].ids, ...newIDs] };
       return {...state, data: {...state.data, [key]: dataSet}};
     }
     case 'DELETE_RECORD': {

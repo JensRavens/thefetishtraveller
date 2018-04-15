@@ -1,3 +1,4 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :name
+  attributes :name
+  attribute :slug, key: :id
 end

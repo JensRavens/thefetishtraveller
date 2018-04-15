@@ -4,6 +4,8 @@ import Application from './components/application';
 import {Provider} from 'react-redux';
 import {store} from './state';
 
+require('./registerServiceworker');
+require('./style');
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(

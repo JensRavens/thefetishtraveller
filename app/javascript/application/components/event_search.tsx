@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {DB, State} from '../state';
 import {Event, refreshEvents} from '../models/event';
 import {EventListing} from './event_listing';
+import Container from './container';
 
 interface Props {
   events: Event[];
@@ -21,7 +22,11 @@ class EventSearch extends React.Component<Props> {
   }
 
   render() {
-    return this.props.events.map(e => <EventListing key={e.id} event={e}/>)
+    return (
+      <Container>
+        {this.props.events.map(e => <EventListing key={e.id} event={e}/>)}
+      </Container>
+    );
   }
 }
 

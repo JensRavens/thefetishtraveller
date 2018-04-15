@@ -29,6 +29,8 @@ gem "friendly_id"
 gem "countries"
 gem "document_serializable"
 gem "sitemap_generator"
+
+# Assets
 gem "webpacker"
 
 # Seed Data

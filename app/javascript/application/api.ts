@@ -13,6 +13,10 @@ export class API {
     return await this.get('/events');
   }
 
+  async getEvent(id: string): Promise<APIEvent> {
+    return await this.get(`/events/${id}`);
+  }
+
   private async get(path: string, params?: {[key: string]: any}): Promise<any> {
     return await this.load('GET', path, params);
   }
@@ -33,6 +37,9 @@ export class API {
       body = JSON.stringify(params);
     }
     const response = await fetch(this.baseUrl + path + pathParams, {headers, method, body });
+    if(response.status !== 200) {
+      throw "API Error"
+    }
     return await response.json();
   }
 }

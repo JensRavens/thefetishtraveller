@@ -1,4 +1,6 @@
 class Event < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   include DocumentSerializable
 
   attribute :name
