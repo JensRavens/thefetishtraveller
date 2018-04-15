@@ -14,10 +14,12 @@ export class EventListing extends React.Component<Props> {
   render() {
     const {event, liked} = this.props;
     return (
-      <Card>
-        <div><Link to={`/events/${event.id}`}>{event.name} <small>{dateRange(event.startAt, event.endAt)}</small></Link>{liked && '❤️'}</div>
-        <div>{event.city}, {event.countryCode}</div>
-      </Card>
+      <Link to={`/events/${event.id}`}>
+        <Card>
+          <div>{event.name} <small>{dateRange(event.startAt, event.endAt)}</small>{liked && '❤️'}</div>
+          <div>{event.city}, {event.countryCode}</div>
+        </Card>
+      </Link>
     )
   }
 }

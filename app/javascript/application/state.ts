@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 declare var devToolsExtension: () => void;
 
 import { createStore, applyMiddleware, compose, GenericStoreEnhancer } from 'redux';
+import persistState from 'redux-localstorage';
 
 type Diff<T extends string, U extends string> = (
   & { [P in T]: P }
@@ -265,6 +266,8 @@ const middleware = [thunk];
 if (typeof devToolsExtension === 'function') {
   enhancers.push(devToolsExtension() as any);
 }
+
+enhancers.push(persistState());
 
 const composedEnhancers = compose(
   applyMiddleware(...middleware),

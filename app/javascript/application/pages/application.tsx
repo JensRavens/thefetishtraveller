@@ -9,8 +9,6 @@ import Container from '../components/container';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
-require('./application.scss');
-
 export default class Application extends React.Component {
   render() {
     return (
@@ -18,7 +16,7 @@ export default class Application extends React.Component {
         <div className="application">
           <Header/>
           <main>
-            <Route path="/events" exact component={EventSearch}/>
+            <Route path="/" exact component={EventSearch}/>
             <Route path="/events/:id" exact component={EventPage}/>
             <Route path="/imprint" exact component={Imprint}/>
           </main>
