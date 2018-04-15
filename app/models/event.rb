@@ -4,6 +4,10 @@ class Event < ApplicationRecord
   include DocumentSerializable
 
   attribute :name
+  attribute :start_at, DateTime
+  attribute :end_at, DateTime
+  attribute :city
+  attribute :country_code
 
   scope :published, -> { where('events.publish_at <= NOW()') }
 

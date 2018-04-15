@@ -4,6 +4,10 @@ import {api} from '../api';
 export interface Event {
   id: string;
   name: string;
+  endAt: Date;
+  startAt: Date;
+  countryCode: string;
+  city: string;
 }
 
 export function refreshEvents() {
