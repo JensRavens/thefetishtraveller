@@ -1,5 +1,6 @@
 import {guid} from './util';
 import {Event} from './models/event';
+import {Like} from './models/like';
 import thunk from 'redux-thunk';
 
 declare var devToolsExtension: () => void;
@@ -189,6 +190,7 @@ export interface State {
   },
   data: {
     events: DataTable<Event>;
+    likes: DataTable<Like>;
   }
 }
 
@@ -199,6 +201,11 @@ export const initialState: State = {
   data: {
     events: {
       type: {} as Event,
+      byId: {},
+      ids: []
+    },
+    likes: {
+      type: {} as Like,
       byId: {},
       ids: []
     }

@@ -3,6 +3,8 @@ class Event < ApplicationRecord
   friendly_id :name, use: :slugged
   include DocumentSerializable
 
+  has_many :likes, dependent: :destroy
+
   attribute :name
   attribute :start_at, DateTime
   attribute :end_at, DateTime
