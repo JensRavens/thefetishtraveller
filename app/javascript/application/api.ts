@@ -1,12 +1,12 @@
-import {camelCase, mapKeys} from 'lodash';
+import {camelCase, snakeCase, mapKeys} from 'lodash';
 
 export interface APILocation {
   id: string;
   name: string;
-  lat: number;
-  lon: number;
+  lat?: number;
+  lon?: number;
   countryCode: string;
-  city: string;
+  city?: string;
 }
 
 export interface APIEvent {
@@ -36,6 +36,10 @@ export class API {
 
   async getEvent(id: string): Promise<APIEvent> {
     return await this.get(`/events/${id}`);
+  }
+
+  async updateEvent(event: {id: string} & Partial<APIEvent>) {
+    return await this.patch(`/events/${event.id}`, event);
   }
 
   async like(eventID: string) {
@@ -77,7 +81,11 @@ export class API {
     return await this.load('DELETE', path, params);
   }
 
-  private async load(method: 'GET' | 'POST' | 'DELETE', path: string, params?: {[key: string]: any}): Promise<{[key: string]: any}> {
+  private async patch(path: string, params?: {[key: string]: any}): Promise<any> {
+    return await this.load('PATCH', path, params);
+  }
+
+  private async load(method: 'GET' | 'POST' | 'DELETE' | 'PATCH', path: string, params?: {[key: string]: any}): Promise<{[key: string]: any}> {
     const headers = {'Accept': 'application/json', 'Content-Type': 'application/json'};
     if(this.sessionID) {
       headers['Authorization'] = `Bearer ${this.sessionID}`;
@@ -89,7 +97,7 @@ export class API {
         pathParams = '?' + Object.keys(params).map(key => [key, params[key]].join('=')).join('&')
       }
     } else {
-      body = JSON.stringify(params);
+      body = JSON.stringify(this.kebabify(params));
     }
     const response = await fetch(this.baseUrl + path + pathParams, {headers, method, body });
     if(response.status !== 200) {
@@ -113,6 +121,21 @@ export class API {
           value = this.camelCasify(value);
         }
         transformed[camelCase(key)] = value;
+      });
+      return transformed;
+    }
+    return subject;
+  }
+
+  private kebabify(subject) {
+    if(subject instanceof Array) {
+      return subject.map(e => this.kebabify(e));
+    }
+    if(subject instanceof Object) {
+      const transformed = {};
+      Object.keys(subject).forEach(key => {
+        let value = subject[key];
+        transformed[snakeCase(key)] = this.kebabify(value);
       });
       return transformed;
     }
