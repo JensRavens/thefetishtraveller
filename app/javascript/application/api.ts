@@ -9,11 +9,17 @@ export interface APIEvent {
   city: string;
 }
 
+export interface APILike {
+  eventId: string;
+}
+
 export class API {
   private baseUrl: string;
+  private sessionID: string | null = null;
 
-  constructor(baseUrl: string) {
+  constructor(baseUrl: string, sessionID?: string) {
     this.baseUrl = baseUrl;
+    this.sessionID = sessionID || window.localStorage.getItem('token');
   }
 
   async getEvents(): Promise<APIEvent[]> {
@@ -24,6 +30,33 @@ export class API {
     return await this.get(`/events/${id}`);
   }
 
+  async like(eventID: string) {
+    await this.loginIfNeeded();
+    await this.post(`/events/${eventID}/likes`);
+  }
+
+  async getLikes(): Promise<APILike[]> {
+    await this.loginIfNeeded();
+    return await this.get('/likes');
+  }
+
+  async unlike(eventID: string) {
+    await this.loginIfNeeded();
+    await this.delete(`/events/${eventID}/likes`);
+  }
+
+  async login() {
+    const session = await this.post('/sessions');
+    this.sessionID = session.id;
+    localStorage.setItem('token', session.id);
+    console.log('Logging in as', session.id);
+  }
+
+  private async loginIfNeeded() {
+    if(this.sessionID) {return;}
+    await this.login();
+  }
+
   private async get(path: string, params?: {[key: string]: any}): Promise<any> {
     return await this.load('GET', path, params);
   }
@@ -32,8 +65,15 @@ export class API {
     return await this.load('POST', path, params);
   }
 
-  private async load(method: 'GET' | 'POST', path: string, params?: {[key: string]: any}): Promise<{[key: string]: any}> {
+  private async delete(path: string, params?: {[key: string]: any}): Promise<any> {
+    return await this.load('DELETE', path, params);
+  }
+
+  private async load(method: 'GET' | 'POST' | 'DELETE', path: string, params?: {[key: string]: any}): Promise<{[key: string]: any}> {
     const headers = {'Accept': 'application/json', 'Content-Type': 'application/json'};
+    if(this.sessionID) {
+      headers['Authorization'] = `Bearer ${this.sessionID}`;
+    }
     let body;
     let pathParams = '';
     if (method === 'GET') {
@@ -73,3 +113,6 @@ export class API {
 }
 
 export const api = new API('/api/v1');
+
+declare const window: any;
+window.api = api;
