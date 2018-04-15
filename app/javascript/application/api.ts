@@ -1,5 +1,12 @@
+import {camelCase, mapKeys} from 'lodash';
+
 export interface APIEvent {
+  id: string;
   name: string;
+  endAt: Date;
+  startAt: Date;
+  countryCode: string;
+  city: string;
 }
 
 export class API {
@@ -40,7 +47,28 @@ export class API {
     if(response.status !== 200) {
       throw "API Error"
     }
-    return await response.json();
+    const data = await response.json();
+    return this.camelCasify(data);
+  }
+
+  private camelCasify(subject) {
+    if(subject instanceof Array) {
+      return subject.map(e => this.camelCasify(e));
+    }
+    if(subject instanceof Object) {
+      const transformed = {};
+      Object.keys(subject).forEach(key => {
+        let value = subject[key];
+        if(typeof value === 'string' && key.endsWith('_at')) {
+          value = new Date(value);
+        } else {
+          value = this.camelCasify(value);
+        }
+        transformed[camelCase(key)] = value;
+      });
+      return transformed;
+    }
+    return subject;
   }
 }
 

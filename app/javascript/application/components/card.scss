@@ -1,0 +1,99 @@
+$card-padding: 24px;
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: $card-padding;
+  margin-bottom: 32px;
+  background-color: #fff;
+  box-shadow: 0 2px 3px rgba(#000, .25);
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding: 0 $card-padding;
+    margin: -$card-padding (-$card-padding) $card-padding;
+    font-size: 20px;
+  }
+
+  &__body {
+    position: relative;
+    flex: 1;
+  }
+
+  &__options {
+    display: flex;
+    > * {
+      margin-left: 14px;
+    }
+  }
+
+  &__footer {
+    display: flex;
+    align-items: center;
+    height: 56px;
+    padding: 0 $card-padding;
+    margin: $card-padding (-$card-padding) (-$card-padding);
+  }
+
+  &__fake-footer {
+    height: 80px;
+    padding: 0 $card-padding;
+    margin: 32px (-$card-padding) (-$card-padding);
+  }
+
+  &--padded {
+    .card__body {
+      margin: 16px;
+    }
+  }
+
+  &__blank-slate {
+    margin: 24px;
+  }
+
+  &--modal {
+    max-width: 981px;
+  }
+
+  &--sheet {
+    max-width: 681px;
+  }
+
+  &--elevated {
+    box-shadow: 0 15px 30px $color-shadow;
+  }
+
+  &--table {
+    .card__body {
+      margin: -24px;
+    }
+
+    .card__fake-footer {
+      height: auto;
+      padding: $card-padding;
+      margin: 0;
+    }
+  }
+
+  $card-padding: 40px;
+  &.card--sheet, &.card--modal {
+    width: 100vw;
+    padding: $card-padding;
+    margin-right: auto;
+    margin-left: auto;
+
+    .card__header {
+      height: 96px;
+      padding: 35px $card-padding;
+      margin: -$card-padding (-$card-padding) 0;
+    }
+
+    .card__fake-footer {
+      padding: 0 $card-padding;
+      margin: 32px (-$card-padding) (-$card-padding);
+    }
+  }
+}

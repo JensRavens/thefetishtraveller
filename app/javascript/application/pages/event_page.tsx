@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Event, loadEvent} from '../models/event';
 import {DB} from '../state';
 import Container from '../components/container';
+import {dateRange} from '../util';
 
 interface Props {
   id: string;
@@ -21,8 +22,8 @@ class EventPage extends React.Component<Props> {
     if(!event) { return null };
     return (
       <Container>
-        <h1>{event.name}</h1>
-        <div>Details about {event.name}.</div>
+        <h1>{event.name} <small>{dateRange(event.startAt, event.endAt)}</small></h1>
+        <p>{event.city}, {event.countryCode}</p>
       </Container>
     )
   }
