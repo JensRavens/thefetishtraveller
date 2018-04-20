@@ -3,6 +3,7 @@ import {Event} from './models/event';
 import {Like} from './models/like';
 import {Location} from './models/location';
 import thunk from 'redux-thunk';
+import {APISession} from './api';
 
 declare var devToolsExtension: () => void;
 
@@ -191,6 +192,7 @@ class Table<T extends Record> {
 
 export interface State {
   settings: {
+    session: APISession
   },
   data: {
     events: DataTable<Event>;
@@ -202,6 +204,7 @@ export interface State {
 
 export const initialState: State = {
   settings: {
+    session: {} as APISession
   },
   data: {
     events: {

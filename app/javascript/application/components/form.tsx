@@ -38,12 +38,14 @@ export default class Form<T> extends React.Component<Props<T>> {
     event.preventDefault();
     this.props.onSubmit && this.props.onSubmit(this.serialize());
   }
-  
+
   private serialize(): Partial<T> {
     const values = {};
     for (let i = 0; i < this.form.elements.length; i++) {
       const element = this.form.elements[i] as HTMLInputElement;
-      values[element.name] = element.value;
+      if(element.name.length > 0) {
+        values[element.name] = element.value;
+      }
     }
     return values;
   }

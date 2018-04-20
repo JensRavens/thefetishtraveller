@@ -1,4 +1,6 @@
 import {camelCase, snakeCase, mapKeys} from 'lodash';
+import {store, DB, State} from './state';
+import {refreshLikes} from './models/like';
 
 export interface APILocation {
   id: string;
@@ -23,13 +25,23 @@ export interface APILike {
   eventId: string;
 }
 
+export interface APISession {
+  id: string;
+  user_id: string;
+  level: 'guest' | 'user';
+}
+
 export class API {
   private baseUrl: string;
   private sessionID: string | null = null;
 
   constructor(baseUrl: string, sessionID?: string) {
     this.baseUrl = baseUrl;
-    this.sessionID = sessionID || window.localStorage.getItem('token');
+    this.sessionID = sessionID || new DB(store.getState() as State).get('session').id;
+    if(this.sessionID) {
+      // refresh the session
+      this.getSession().then(session => this.sessionID = session.id).catch(() => this.sessionID = null);
+    }
   }
 
   async getEvents(): Promise<APIEvent[]> {
@@ -82,16 +94,25 @@ export class API {
     return await this.post('/locations', location);
   }
 
-  async login() {
-    const session = await this.post('/sessions');
+  async createSession() {
+    const session = await this.post('/session');
     this.sessionID = session.id;
-    localStorage.setItem('token', session.id);
-    console.log('Logging in as', session.id);
+    store.dispatch(new DB().set('session', session));
+  }
+
+  async login(email, password) {
+    const session = await this.patch('/session', {email, password});
+    store.dispatch(new DB().set('session', session));
+    refreshLikes();
   }
 
   private async loginIfNeeded() {
     if(this.sessionID) {return;}
-    await this.login();
+    await this.createSession();
+  }
+
+  private async getSession(): Promise<APISession> {
+    return await this.get('/session');
   }
 
   private async get(path: string, params?: {[key: string]: any}): Promise<any> {

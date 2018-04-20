@@ -9,7 +9,7 @@ module API
       end
 
       def index
-        render json: current_user.likes 
+        render json: current_user.likes
       end
 
       def destroy
