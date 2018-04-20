@@ -1,6 +1,7 @@
 import {guid} from './util';
 import {Event} from './models/event';
 import {Like} from './models/like';
+import {Location} from './models/location';
 import thunk from 'redux-thunk';
 
 declare var devToolsExtension: () => void;
@@ -92,6 +93,8 @@ export class DB {
   }
 }
 
+type OptionalID = {id?: string} & {[key: string]: any};
+
 class Table<T extends Record> {
   private data: DataTable<T>;
   private key: string;
@@ -132,8 +135,8 @@ class Table<T extends Record> {
     }
   }
 
-  insert(records: Omit<T, 'id'> | Omit<T, 'id'>[]): InsertAction {
-    const newRecords: Omit<T, 'id'>[] = records instanceof Array ? records : [records];
+  insert(records: OptionalID | OptionalID[]): InsertAction {
+    const newRecords: OptionalID[] = records instanceof Array ? records : [records];
     const insertedRecords: T[] = newRecords.map(e => this.applyId(e));
     return {
       type: 'INSERT_RECORD',
@@ -177,7 +180,7 @@ class Table<T extends Record> {
     return test.map(e => e['id'] || e);
   }
 
-  private applyId(record: Omit<T, 'id'> & {id?: string}): T {
+  private applyId(record: OptionalID): T {
     const copy = Object.assign({} as T, record);
     if(!copy.id) {
       copy.id = guid()
@@ -191,6 +194,7 @@ export interface State {
   },
   data: {
     events: DataTable<Event>;
+    locations: DataTable<Location>;
     likes: DataTable<Like>;
   }
 }
@@ -207,6 +211,11 @@ export const initialState: State = {
     },
     likes: {
       type: {} as Like,
+      byId: {},
+      ids: []
+    },
+    locations: {
+      type: {} as Location,
       byId: {},
       ids: []
     }
@@ -267,7 +276,7 @@ if (typeof devToolsExtension === 'function') {
   enhancers.push(devToolsExtension() as any);
 }
 
-enhancers.push(persistState());
+// enhancers.push(persistState());
 
 const composedEnhancers = compose(
   applyMiddleware(...middleware),

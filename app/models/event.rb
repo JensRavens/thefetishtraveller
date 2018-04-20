@@ -18,6 +18,8 @@ class Event < ApplicationRecord
 
   scope :published, -> { where('events.publish_at <= NOW()') }
 
+  has_and_belongs_to_many :owners, class_name: "User"
+
   def published?
     publish_at&.past?
   end
