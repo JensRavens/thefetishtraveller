@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       end
       resources :locations, only: [:index, :show, :update, :create]
       resources :likes, only: :index
-      resources :sessions, only: [:create]
+      resource :session, only: [:create, :update, :show]
     end
   end
 
