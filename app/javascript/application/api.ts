@@ -1,5 +1,6 @@
 import {camelCase, snakeCase, mapKeys} from 'lodash';
 import {store, DB, State} from './state';
+import {refreshEvents} from './models/event';
 import {refreshLikes} from './models/like';
 
 export interface APILocation {
@@ -18,6 +19,7 @@ export interface APIEvent {
   name: string;
   endAt: Date;
   startAt: Date;
+  ownerIds: string[];
   location: APILocation;
 }
 
@@ -101,9 +103,11 @@ export class API {
   }
 
   async login(email, password) {
+    await this.loginIfNeeded();
     const session = await this.patch('/session', {email, password});
     store.dispatch(new DB().set('session', session));
     refreshLikes();
+    refreshEvents();
   }
 
   private async loginIfNeeded() {

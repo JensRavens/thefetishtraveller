@@ -1,6 +1,8 @@
 module API
   module V1
     class EventsController < APIController
+      before_action :require_login, only: [:update, :create]
+
       def index
         render json: Event.published
       end
@@ -10,7 +12,7 @@ module API
       end
 
       def update
-        event.update!(event_params)
+        authorize!(event).update!(event_params)
         render json: event
       end
 

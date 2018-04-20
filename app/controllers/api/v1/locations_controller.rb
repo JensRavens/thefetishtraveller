@@ -1,6 +1,8 @@
 module API
   module V1
     class LocationsController < APIController
+      before_action :require_login, only: [:update, :create]
+
       def index
         render json: Location.all
       end
@@ -10,7 +12,7 @@ module API
       end
 
       def update
-        location.update!(location_params)
+        authorize!(location).update!(location_params)
         render json: location
       end
 
