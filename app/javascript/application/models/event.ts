@@ -7,6 +7,7 @@ export interface Event {
   name: string;
   endAt: Date;
   startAt: Date;
+  ownerIds: string[];
   location: Location;
 }
 
@@ -18,4 +19,8 @@ export function refreshEvents() {
 export function loadEvent(id: string) {
   const events = (new DB()).table('events');
   api.getEvent(id).then(e => store.dispatch(events.insert(e)));
+}
+
+export function canEdit(object: {ownerIds: string[]}): boolean {
+  return object.ownerIds.length > 0;
 }

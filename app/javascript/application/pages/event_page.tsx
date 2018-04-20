@@ -1,6 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {Event, loadEvent} from '../models/event';
+import {Link} from 'react-router-dom';
+import {Event, loadEvent, canEdit} from '../models/event';
 import {like, unlike, refreshLikes} from '../models/like';
 import {DB} from '../state';
 import Container from '../components/container';
@@ -35,7 +36,8 @@ class EventPage extends React.Component<Props> {
       <Container>
         <h1>{event.name} <small>{dateRange(event.startAt, event.endAt)}</small></h1>
         <p>{event.location.city}, {event.location.countryCode}</p>
-        {liked ? <span onClick={() => this.unlike()}>💔</span> : <span onClick={() => this.like()}>❤️</span> }
+        <div>{liked ? <span onClick={() => this.unlike()}>💔</span> : <span onClick={() => this.like()}>❤️</span> }</div>
+        {canEdit(event) && <div><Link to={`/events/${event.id}/edit`}>edit</Link></div>}
       </Container>
     )
   }
