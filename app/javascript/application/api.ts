@@ -3,10 +3,12 @@ import {camelCase, snakeCase, mapKeys} from 'lodash';
 export interface APILocation {
   id: string;
   name: string;
+  address?: string;
   lat?: number;
   lon?: number;
   countryCode: string;
   city?: string;
+  zip?: string;
 }
 
 export interface APIEvent {
@@ -42,6 +44,11 @@ export class API {
     return await this.patch(`/events/${event.id}`, event);
   }
 
+  async createEvent(event: {id: string} & Partial<APIEvent>) {
+    await this.loginIfNeeded();
+    return await this.post('/events', event);
+  }
+
   async like(eventID: string) {
     await this.loginIfNeeded();
     await this.post(`/events/${eventID}/likes`);
@@ -55,6 +62,24 @@ export class API {
   async unlike(eventID: string) {
     await this.loginIfNeeded();
     await this.delete(`/events/${eventID}/likes`);
+  }
+
+  async getLocations(): Promise<APILocation[]> {
+    return await this.get('/locations');
+  }
+
+  async getLocation(id: string): Promise<APILocation> {
+    return await this.get(`/locations/${id}`);
+  }
+
+  async updateLocation(location: {id: string} & Partial<APILocation>) {
+    await this.loginIfNeeded();
+    return await this.patch(`/locations/${location.id}`, location);
+  }
+
+  async createLocation(location: {id: string} & Partial<APILocation>) {
+    await this.loginIfNeeded();
+    return await this.post('/locations', location);
   }
 
   async login() {

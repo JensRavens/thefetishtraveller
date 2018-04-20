@@ -11,7 +11,7 @@ export default class FormField extends React.Component<Props> {
     return (
       <Context.Consumer>
         {(form) => {
-          return <input type="text" value={form.valueForName(name) || ''} name={name} onChange={() => form.change()}/>
+          return <input type="text" value={form.valueForName(name) || ''} name={name} onChange={() => form.change()} placeholder={name}/>;
         }}
       </Context.Consumer>
     )
