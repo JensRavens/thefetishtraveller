@@ -2,6 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {EventWithLocation, canEdit, joinLocation} from '../models/event';
+import {Like} from '../models/like';
 import {locationDescription} from '../models/location';
 import {DB, DBAction, writeDB, State} from '../state';
 import {APISession} from '../api';
@@ -13,7 +14,7 @@ import {dateRange} from '../util';
 interface Props {
   id: string;
   event?: EventWithLocation;
-  liked: boolean;
+  like?: Like;
   editable: boolean;
   dispatch: (DBAction) => void;
 }
@@ -25,12 +26,12 @@ class EventPage extends React.Component<Props> {
     this.props.dispatch(likes.insert({eventId: this.props.id}));
   }
 
-  unlike() {
-
+  unlike(like: Like) {
+    this.props.dispatch(likes.delete(like));
   }
 
   render() {
-    let {event, liked, editable} = this.props;
+    let {event, like, editable} = this.props;
     if(!event) { return null };
     return (
       <React.Fragment>
@@ -38,7 +39,7 @@ class EventPage extends React.Component<Props> {
           <Container>
             <h1>{event.name} <small>{dateRange(event.startAt, event.endAt)}</small></h1>
             <p>{locationDescription(event.location)}</p>
-            <LikeButton active={liked} onClick={() => liked ? this.unlike() : this.like()}/>
+            <LikeButton active={!!like} onClick={() => !!like ? this.unlike(like) : this.like()}/>
           </Container>
         </Hero>
         <Container>
@@ -54,8 +55,8 @@ const mapStateToProps = (state: State, props) => {
   const db = new DB(state);
   let event: EventWithLocation | null = joinLocation([id], state)[0];
   const editable = canEdit(event, db.get('session'));
-  const liked = db.table('likes').where({eventId: id}).length > 0;
-  return {event, id, liked, editable};
+  const like = db.table('likes').where({eventId: id})[0]
+  return {event, id, like, editable};
 }
 
 export default connect(mapStateToProps)(EventPage)
