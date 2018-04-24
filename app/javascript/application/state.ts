@@ -61,7 +61,7 @@ if (typeof devToolsExtension === 'function') {
   enhancers.push(devToolsExtension() as any);
 }
 
-// enhancers.push(persistState());
+enhancers.push(persistState());
 
 const composedEnhancers = compose(
   applyMiddleware(...middleware),

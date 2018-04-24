@@ -3,15 +3,16 @@ import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import Container from './container';
-import {State} from '../state';
+import {State, DB} from '../state';
 
 interface Props {
   loggedIn: boolean;
+  hasLikes: boolean;
 }
 
 class Header extends React.Component<Props> {
   render() {
-    const {loggedIn} = this.props;
+    const {loggedIn, hasLikes} = this.props;
     return (
       <header className="header">
         <Container>
@@ -21,6 +22,7 @@ class Header extends React.Component<Props> {
             </div>
             <div className="main-menu__category">
               <NavLink to="/events">Events</NavLink>
+              {hasLikes && <NavLink to="/calendar">Your Calendar</NavLink>}
               {loggedIn && <NavLink to="/locations">Locations</NavLink>}
             </div>
           </nav>
@@ -31,7 +33,8 @@ class Header extends React.Component<Props> {
 }
 
 const mapStateToProps: (state: State) => Props = (state) => {
-  return {loggedIn: state.settings.session.level === "user"};
+  const hasLikes = new DB(state).table('likes').all.length > 0;
+  return {loggedIn: state.settings.session.level === "user", hasLikes};
 }
 
 export default connect(mapStateToProps)(Header);

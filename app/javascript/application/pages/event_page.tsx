@@ -7,6 +7,7 @@ import {DB, DBAction, writeDB, State} from '../state';
 import {APISession} from '../api';
 import Container from '../components/container';
 import Hero from '../components/hero';
+import LikeButton from '../components/like-button';
 import {dateRange} from '../util';
 
 interface Props {
@@ -37,10 +38,10 @@ class EventPage extends React.Component<Props> {
           <Container>
             <h1>{event.name} <small>{dateRange(event.startAt, event.endAt)}</small></h1>
             <p>{locationDescription(event.location)}</p>
+            <LikeButton active={liked} onClick={() => liked ? this.unlike() : this.like()}/>
           </Container>
         </Hero>
         <Container>
-          <div>{liked ? <span onClick={() => this.unlike()}>💔</span> : <span onClick={() => this.like()}>❤️</span> }</div>
           {editable && <div><Link to={`/events/${event.id}/edit`}>edit</Link></div>}
         </Container>
       </React.Fragment>

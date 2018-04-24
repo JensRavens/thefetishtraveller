@@ -14,4 +14,10 @@
 .main-menu {
   display: flex;
   justify-content: space-between;
+
+  &__category {
+    > *:not(:last-child) {
+      margin-right: 1rem;
+    }
+  }
 }
