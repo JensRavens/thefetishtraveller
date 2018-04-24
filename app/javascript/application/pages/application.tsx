@@ -2,6 +2,8 @@ import * as React from 'react';
 import {Route} from 'react-router';
 import {BrowserRouter, NavLink} from 'react-router-dom';
 
+import Home from './home';
+import Login from './login';
 import EventPage from './event_page';
 import EventEdit from './event_edit';
 import EventSearch from './event_search';
@@ -20,7 +22,9 @@ export default class Application extends React.Component {
         <div className="application">
           <Header/>
           <main>
-            <Route path="/" exact component={EventSearch}/>
+            <Route path="/" exact component={Home}/>
+            <Route path="/login" exact component={Login}/>
+            <Route path="/events" exact component={EventSearch}/>
             <Route path="/events/:id" exact component={EventPage}/>
             <Route path="/events/:id/edit" exact component={EventEdit}/>
             <Route path="/locations" exact component={LocationSearch}/>

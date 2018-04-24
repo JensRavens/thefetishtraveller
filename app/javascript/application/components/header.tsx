@@ -3,7 +3,6 @@ import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 
 import Container from './container';
-import Login from './login';
 import {State} from '../state';
 
 interface Props {
@@ -17,9 +16,9 @@ class Header extends React.Component<Props> {
       <header className="header">
         <Container>
           <nav className="main-menu">
-            <NavLink to="/">Events</NavLink>
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/events">Events</NavLink>
             {loggedIn && <NavLink to="/locations">Locations</NavLink>}
-            <Login/>
           </nav>
         </Container>
       </header>
