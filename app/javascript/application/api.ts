@@ -1,7 +1,4 @@
 import {camelCase, snakeCase, mapKeys} from 'lodash';
-import {store, DB, State} from './state';
-import {refreshEvents} from './models/event';
-import {refreshLikes} from './models/like';
 
 export interface APILocation {
   id: string;
@@ -19,7 +16,6 @@ export interface APIEvent {
   name: string;
   endAt: Date;
   startAt: Date;
-  ownerIds: string[];
   location: APILocation;
 }
 
@@ -29,21 +25,20 @@ export interface APILike {
 
 export interface APISession {
   id: string;
-  user_id: string;
-  level: 'guest' | 'user';
+  userId: string;
+  level: 'guest' | 'user' | 'admin';
+  likedEventIds: string[];
+  ownedEventIds: string[];
+  ownedLocationIds: string[];
 }
 
 export class API {
   private baseUrl: string;
-  private sessionID: string | null = null;
+  sessionID: string | null = null;
 
   constructor(baseUrl: string, sessionID?: string) {
     this.baseUrl = baseUrl;
-    this.sessionID = sessionID || new DB(store.getState() as State).get('session').id;
-    if(this.sessionID) {
-      // refresh the session
-      this.getSession().then(session => this.sessionID = session.id).catch(() => this.sessionID = null);
-    }
+    this.sessionID = sessionID;
   }
 
   async getEvents(): Promise<APIEvent[]> {
@@ -59,22 +54,18 @@ export class API {
   }
 
   async createEvent(event: {id: string} & Partial<APIEvent>) {
-    await this.loginIfNeeded();
     return await this.post('/events', event);
   }
 
   async like(eventID: string) {
-    await this.loginIfNeeded();
     await this.post(`/events/${eventID}/likes`);
   }
 
   async getLikes(): Promise<APILike[]> {
-    await this.loginIfNeeded();
     return await this.get('/likes');
   }
 
   async unlike(eventID: string) {
-    await this.loginIfNeeded();
     await this.delete(`/events/${eventID}/likes`);
   }
 
@@ -87,35 +78,24 @@ export class API {
   }
 
   async updateLocation(location: {id: string} & Partial<APILocation>) {
-    await this.loginIfNeeded();
     return await this.patch(`/locations/${location.id}`, location);
   }
 
   async createLocation(location: {id: string} & Partial<APILocation>) {
-    await this.loginIfNeeded();
     return await this.post('/locations', location);
   }
 
-  async createSession() {
+  async createSession(): Promise<APISession> {
     const session = await this.post('/session');
     this.sessionID = session.id;
-    store.dispatch(new DB().set('session', session));
+    return session;
   }
 
-  async login(email, password) {
-    await this.loginIfNeeded();
-    const session = await this.patch('/session', {email, password});
-    store.dispatch(new DB().set('session', session));
-    refreshLikes();
-    refreshEvents();
+  async login(email, password): Promise<APISession> {
+    return await this.patch('/session', {email, password});
   }
 
-  private async loginIfNeeded() {
-    if(this.sessionID) {return;}
-    await this.createSession();
-  }
-
-  private async getSession(): Promise<APISession> {
+  async getSession(): Promise<APISession> {
     return await this.get('/session');
   }
 
@@ -192,8 +172,3 @@ export class API {
     return subject;
   }
 }
-
-export const api = new API('/api/v1');
-
-declare const window: any;
-window.api = api;

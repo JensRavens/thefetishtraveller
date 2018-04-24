@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {Event} from '../models/event';
+import {EventWithLocation} from '../models/event';
 import {Link} from 'react-router-dom';
 
 import Card from './card';
 import {dateRange} from '../util';
 
 interface Props {
-  event: Event;
+  event: EventWithLocation;
   liked?: boolean;
 }
 

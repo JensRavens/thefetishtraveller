@@ -1,26 +1,37 @@
 import {store, DB, State} from '../state';
-import {api} from '../api';
 import {Location} from './location';
+import {Syncable} from './syncable';
+import {APISession} from '../api';
 
-export interface Event {
+export interface Event extends Syncable {
   id: string;
   name: string;
   endAt: Date;
   startAt: Date;
-  ownerIds: string[];
+  locationId: string;
+}
+
+export interface EventWithLocation extends Event {
   location: Location;
 }
 
-export function refreshEvents() {
-  const events = (new DB()).table('events');
-  api.getEvents().then(e => store.dispatch(events.insert(e)));
+export function canEdit(event: Event, session?: APISession): boolean {
+  return session && session.ownedEventIds && session.ownedEventIds.includes(event.serverId)
 }
 
-export function loadEvent(id: string) {
-  const events = (new DB()).table('events');
-  api.getEvent(id).then(e => store.dispatch(events.insert(e)));
-}
-
-export function canEdit(object: {ownerIds: string[]}): boolean {
-  return object.ownerIds.length > 0;
+export function joinLocation(rawEvents: string[] | Event[], state: State): EventWithLocation[] {
+  const db = new DB(state);
+  if(rawEvents[0] && typeof(rawEvents[0]) == 'string') {
+    rawEvents =  db.table('events').where(e => (rawEvents as string[]).includes(e.id));
+  }
+  const locations = db.table('locations');
+  const events: EventWithLocation[] = [];
+  (rawEvents as Event[]).forEach(event => {
+    const location = locations.find(event.locationId);
+    console.log(event, location);
+    if (location) {
+      events.push({...event, location});
+    }
+  });
+  return events;
 }

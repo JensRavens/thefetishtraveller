@@ -1,7 +1,8 @@
 import {store, DB, State} from '../state';
-import {api} from '../api';
+import {Syncable} from './syncable';
+import {APISession} from '../api';
 
-export interface Location {
+export interface Location extends Syncable {
   id: string;
   name: string;
   city?: string;
@@ -12,12 +13,6 @@ export interface Location {
   countryCode: string;
 }
 
-export function refreshLocations() {
-  const locations = (new DB()).table('locations');
-  api.getLocations().then(e => store.dispatch(locations.insert(e)));
-}
-
-export function loadLocation(id: string) {
-  const locations = (new DB()).table('locations');
-  api.getLocation(id).then(e => store.dispatch(locations.insert(e)));
+export function canEdit(location: Location, session?: APISession): boolean {
+  return session && session.ownedLocationIds && session.ownedLocationIds.includes(location.serverId)
 }

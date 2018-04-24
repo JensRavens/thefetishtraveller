@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {Event, loadEvent} from '../models/event';
-import {Location, refreshLocations} from '../models/location';
-import {DB, DBAction} from '../state';
-import {api} from '../api';
+import {Event} from '../models/event';
+import {Location} from '../models/location';
+import {DB, DBAction, writeDB} from '../state';
 import Container from '../components/container';
 import Form from '../components/form';
 import FormField from '../components/form_field';
@@ -18,14 +17,9 @@ interface Props {
   locations: Location[];
 }
 
-class EventEdit extends React.Component<Props> {
-  componentDidMount() {
-    if(!this.props.event) {
-      loadEvent(this.props.id);
-    }
-    refreshLocations();
-  }
+const events = writeDB.table('events');
 
+class EventEdit extends React.Component<Props> {
   render() {
     let {event,dispatch, locations} = this.props;
     if(!event) { return null };
@@ -45,12 +39,11 @@ class EventEdit extends React.Component<Props> {
   }
 
   private update(values: Partial<Event>) {
-    this.props.dispatch(new DB().table('events').update(this.props.event.id, values));
+    this.props.dispatch(events.update(this.props.event.id, values));
   }
 
   private submit(values: Partial<Event>) {
-    console.log('submitting', values, {id: this.props.id, ...values});
-    api.updateEvent({id: this.props.id, ...values});
+    this.props.dispatch(events.update(this.props.event.id, {fieldsToSync: Object.keys(values)}));
   }
 }
 
