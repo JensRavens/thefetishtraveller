@@ -28,7 +28,6 @@ export function joinLocation(rawEvents: string[] | Event[], state: State): Event
   const events: EventWithLocation[] = [];
   (rawEvents as Event[]).forEach(event => {
     const location = locations.find(event.locationId);
-    console.log(event, location);
     if (location) {
       events.push({...event, location});
     }
