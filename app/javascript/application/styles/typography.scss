@@ -8,6 +8,7 @@ body {
 	font-size: $size-text;
 	line-height: 1.5;
 	font-feature-settings: 'kern' 1, 'onum' 0, 'liga' 1;
+	background-color: $color-background;
 }
 
 h1, h2, h3, h4, h5, h6 {
