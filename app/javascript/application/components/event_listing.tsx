@@ -17,8 +17,9 @@ export class EventListing extends React.Component<Props> {
     return (
       <Link to={`/events/${event.id}`}>
         <Card>
-          <div>{event.name} <small>{dateRange(event.startAt, event.endAt)}</small>{liked && '❤️'}</div>
+          <div>{event.name}</div>
           <div><small>{locationDescription(event.location)}</small></div>
+          <div><small>{dateRange(event.startAt, event.endAt)}</small></div>
         </Card>
       </Link>
     )
