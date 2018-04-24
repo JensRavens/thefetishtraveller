@@ -8,7 +8,6 @@ export default class Header extends React.Component {
     return (
       <footer className="footer">
         <Container>
-          <NavLink to="/">Home</NavLink>
           <NavLink to="/imprint">Imprint</NavLink>
         </Container>
       </footer>
