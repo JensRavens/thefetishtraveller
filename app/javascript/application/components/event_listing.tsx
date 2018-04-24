@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {EventWithLocation} from '../models/event';
+import {locationDescription} from '../models/location';
 import {Link} from 'react-router-dom';
 
 import Card from './card';
@@ -17,7 +18,7 @@ export class EventListing extends React.Component<Props> {
       <Link to={`/events/${event.id}`}>
         <Card>
           <div>{event.name} <small>{dateRange(event.startAt, event.endAt)}</small>{liked && '❤️'}</div>
-          <div>{event.location.city}, {event.location.countryCode}</div>
+          <div><small>{locationDescription(event.location)}</small></div>
         </Card>
       </Link>
     )

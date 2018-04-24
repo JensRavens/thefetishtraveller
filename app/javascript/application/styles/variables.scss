@@ -4,7 +4,7 @@ $color-text-muted: #9195A3;
 $color-text-label:#9D9D9D;
 
 $color-warning: #ff5167;
-$color-background: #F4F7F9;
+$color-background: #F9FAFB;
 $color-tint: #62c5e8;
 $color-border: #e5e5e5;
 $color-footer: $color-text;
@@ -21,3 +21,7 @@ $font-text: $font-heading;
 $tablet:     740px;
 $desktop:    1000px;
 $widescreen: 1180px;
+
+// z values
+
+$z-nav: 900;

@@ -16,9 +16,13 @@ class Header extends React.Component<Props> {
       <header className="header">
         <Container>
           <nav className="main-menu">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/events">Events</NavLink>
-            {loggedIn && <NavLink to="/locations">Locations</NavLink>}
+            <div className="main-menu__category">
+              <NavLink to="/">The Fetish Traveller</NavLink>
+            </div>
+            <div className="main-menu__category">
+              <NavLink to="/events">Events</NavLink>
+              {loggedIn && <NavLink to="/locations">Locations</NavLink>}
+            </div>
           </nav>
         </Container>
       </header>

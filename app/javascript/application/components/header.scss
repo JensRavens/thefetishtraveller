@@ -1,7 +1,17 @@
 .header {
-  box-shadow: 0 1px 3px $color-shadow;
-  position: sticky;
+  position: relative;
   top: 0;
-  padding: 1rem 0;
-  background: $color-background;
+  height: 60px;
+  padding-top: 1rem;
+  z-index: $z-nav;
+  color: white;
+
+  &--detached {
+    background-color: $color-background;
+  }
+}
+
+.main-menu {
+  display: flex;
+  justify-content: space-between;
 }
