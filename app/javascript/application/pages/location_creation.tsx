@@ -1,9 +1,8 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {Event, loadEvent} from '../models/event';
+import {Event} from '../models/event';
 import {Location} from '../models/location';
-import {DB, DBAction, State} from '../state';
-import {api} from '../api';
+import {DB, DBAction, State, writeDB} from '../state';
 import Container from '../components/container';
 import Form from '../components/form';
 import FormField from '../components/form_field';
@@ -14,6 +13,8 @@ interface Props {
   dispatch: (DBAction) => void;
 }
 
+const locations = writeDB.table('locations');
+
 class LocationCreation extends React.Component<Props> {
   id: string;
 
@@ -23,7 +24,7 @@ class LocationCreation extends React.Component<Props> {
     let location = db.table("locations").find(this.id);
     if(!this.id) {
       this.id = guid();
-      location = {id: this.id} as Location;
+      location = {id: this.id, draft: true} as Location;
       db.table('locations').insert(location)
     }
     return (
@@ -42,12 +43,11 @@ class LocationCreation extends React.Component<Props> {
   }
 
   private update(values: Partial<Location>) {
-    this.props.dispatch(new DB().table('locations').update(this.id, values));
+    this.props.dispatch(locations.update(this.id, values));
   }
 
   private submit(values: Partial<Location>) {
-    console.log('submitting', values, {id: this.id, ...values});
-    api.createLocation({id: this.id, ...values});
+    this.props.dispatch(locations.update(this.id, {draft: false}));
   }
 }
 

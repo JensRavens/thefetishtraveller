@@ -2,7 +2,8 @@ import * as React from 'react';
 import {NavLink} from 'react-router-dom';
 import {connect} from 'react-redux';
 
-import {APISession, api} from '../api';
+import {APISession} from '../api';
+import {syncer} from '../api-syncer';
 import {State} from '../state';
 
 import Container from './container';
@@ -35,7 +36,7 @@ class Login extends React.Component<Props, LoginState> {
   }
 
   private submit(model: LoginState){
-    api.login(model.email, model.password);
+    syncer.login(model.email, model.password);
   }
 
   private get loggedIn(): boolean {

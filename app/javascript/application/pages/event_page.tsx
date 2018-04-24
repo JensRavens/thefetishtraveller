@@ -1,52 +1,52 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {Event, loadEvent, canEdit} from '../models/event';
-import {like, unlike, refreshLikes} from '../models/like';
-import {DB} from '../state';
+import {EventWithLocation, canEdit, joinLocation} from '../models/event';
+import {DB, DBAction, writeDB, State} from '../state';
+import {APISession} from '../api';
 import Container from '../components/container';
 import {dateRange} from '../util';
 
 interface Props {
   id: string;
-  event?: Event;
+  event?: EventWithLocation;
   liked: boolean;
+  editable: boolean;
+  dispatch: (DBAction) => void;
 }
 
-class EventPage extends React.Component<Props> {
-  componentDidMount() {
-    if(!this.props.event) {
-      loadEvent(this.props.id);
-    }
-    refreshLikes();
-  }
+const likes = writeDB.table('likes');
 
+class EventPage extends React.Component<Props> {
   like() {
-    like(this.props.event!);
+    this.props.dispatch(likes.insert({eventId: this.props.id}));
   }
 
   unlike() {
-    unlike(this.props.event!);
+
   }
 
   render() {
-    let {event, liked} = this.props;
+    let {event, liked, editable} = this.props;
     if(!event) { return null };
     return (
       <Container>
         <h1>{event.name} <small>{dateRange(event.startAt, event.endAt)}</small></h1>
         <p>{event.location.city}, {event.location.countryCode}</p>
         <div>{liked ? <span onClick={() => this.unlike()}>💔</span> : <span onClick={() => this.like()}>❤️</span> }</div>
-        {canEdit(event) && <div><Link to={`/events/${event.id}/edit`}>edit</Link></div>}
+        {editable && <div><Link to={`/events/${event.id}/edit`}>edit</Link></div>}
       </Container>
     )
   }
 }
 
-const mapStateToProps = (state, props) => {
-  const id = props.match.params.id;
+const mapStateToProps = (state: State, props) => {
+  const id: string = props.match.params.id;
   const db = new DB(state);
-  return {event: db.table('events').find(id), id, liked: db.table('likes').where({eventId: id}).length > 0};
+  let event: EventWithLocation | null = joinLocation([id], state)[0];
+  const editable = canEdit(event, db.get('session'));
+  const liked = db.table('likes').where({eventId: id}).length > 0;
+  return {event, id, liked, editable};
 }
 
 export default connect(mapStateToProps)(EventPage)

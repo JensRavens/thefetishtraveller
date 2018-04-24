@@ -2,7 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 
 import {DB, State} from '../state';
-import {Location, refreshLocations} from '../models/location';
+import {Location} from '../models/location';
 import {LocationListing} from '../components/location_listing';
 import Container from '../components/container';
 
@@ -17,10 +17,6 @@ const mapStateToProps: (state: State) => Props = (state) => {
 }
 
 class LocationSearch extends React.Component<Props> {
-  componentDidMount() {
-    refreshLocations();
-  }
-
   render() {
     const {locations} = this.props;
     return (

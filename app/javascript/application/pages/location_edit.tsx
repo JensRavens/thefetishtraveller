@@ -1,8 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {Location, loadLocation} from '../models/location';
-import {DB, DBAction} from '../state';
-import {api} from '../api';
+import {Location} from '../models/location';
+import {DB, DBAction, writeDB} from '../state';
 import Container from '../components/container';
 import Form from '../components/form';
 import FormField from '../components/form_field';
@@ -14,13 +13,9 @@ interface Props {
   dispatch: (DBAction) => void;
 }
 
-class LocationEdit extends React.Component<Props> {
-  componentDidMount() {
-    if(!this.props.location) {
-      loadLocation(this.props.id);
-    }
-  }
+const locations = writeDB.table('locations');
 
+class LocationEdit extends React.Component<Props> {
   render() {
     let {location,dispatch} = this.props;
     if(!location) { return null };
@@ -37,12 +32,11 @@ class LocationEdit extends React.Component<Props> {
   }
 
   private update(values: Partial<Location>) {
-    this.props.dispatch(new DB().table('locations').update(this.props.location.id, values));
+    this.props.dispatch(locations.update(this.props.location.id, values));
   }
 
   private submit(values: Partial<Location>) {
-    console.log('submitting', values, {id: this.props.id, ...values});
-    api.updateLocation({id: this.props.id, ...values});
+    this.props.dispatch(locations.update(this.props.location.id, {fieldsToSync: Object.keys(values)}));
   }
 }
 
