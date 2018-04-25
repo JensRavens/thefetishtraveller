@@ -7,6 +7,7 @@ import {Like, isLiked} from '../models/like';
 import {EventListing} from '../components/event_listing';
 import Container from '../components/container';
 import Hero from '../components/hero';
+import Listing from '../components/listing';
 
 interface Props {
   events: EventWithLocation[];
@@ -30,11 +31,9 @@ class EventSearch extends React.Component<Props> {
             <h1>Events</h1>
           </Container>
         </Hero>
-        <Container>
-          <div className="listing">
-            {events.map(e => <EventListing key={e.id} event={e} liked={isLiked(e, likes)}/>)}
-          </div>
-        </Container>
+        <Listing>
+          {events.map(e => <EventListing key={e.id} event={e} liked={isLiked(e, likes)}/>)}
+        </Listing>
       </React.Fragment>
     );
   }

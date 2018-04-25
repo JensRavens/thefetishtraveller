@@ -1,21 +1,24 @@
 // colors
-$color-text: #505050;
-$color-text-muted: #9195A3;
-$color-text-label:#9D9D9D;
+$color-text: #272D3B;
+$color-text-muted: #A8AAAD;
+$color-text-label:#A8AAAD;
+$color-text-muted-dark-background: #686D72;
 
 $color-warning: #ff5167;
-$color-background: #F9FAFB;
-$color-tint: #62c5e8;
+$color-background: #ffffff;
+$color-background-dark: #191D24;
+$color-tint: #D0021B;
 $color-border: #e5e5e5;
-$color-footer: $color-text;
+$color-footer: #1D2024;
 $color-shadow: rgba($color-text, 0.3);
 
 // sizes
-$size-text: 18px;
+$size-text: 14px;
 
 // font
-$font-heading: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-$font-text: $font-heading;
+$font-heading: 'Uni Sans', 'Open Sans', sans-serif;
+$font-heading-alternate: 'Bebas Neue', 'Open Sans', sans-serif;
+$font-text: 'Open Sans', sans-serif;
 
 // breakpoints
 $tablet:     740px;

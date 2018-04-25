@@ -10,10 +10,11 @@ export default class Hero extends React.Component<Props> {
 
   render() {
     const {backgroundImage, children, style} = this.props;
-    const css = {};
-    if(backgroundImage) { css['backgroundImage'] = `url(${backgroundImage})`; }
     return (
-      <div className={`hero hero--${style}`} style={css}>{children}</div>
+      <div className={`hero hero--${style}`}>
+        {backgroundImage && <div className="hero__background" style={{backgroundImage: `url(${backgroundImage})`}}/>}
+        <div className="hero__content">{children}</div>
+      </div>
     )
   }
 }

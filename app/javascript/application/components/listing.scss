@@ -4,10 +4,9 @@
     flex-wrap: wrap;
     align-items: stretch;
 
-    > * {
-      display: block;
-      flex: 0 0 calc(33.333333% - 2rem);
-      margin-right: 1rem;
+    &__entry {
+      flex: 0 0 33.333333%;
+      border: 1px solid white;
     }
   }
 }

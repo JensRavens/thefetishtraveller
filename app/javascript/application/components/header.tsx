@@ -17,13 +17,15 @@ class Header extends React.Component<Props> {
       <header className="header">
         <Container>
           <nav className="main-menu">
-            <div className="main-menu__category">
-              <NavLink to="/">The Fetish Traveller</NavLink>
+            <div className="main-menu__category logo">
+              <NavLink to="/">The <em>Fetish</em> Traveller</NavLink>
             </div>
             <div className="main-menu__category">
               <NavLink to="/events">Events</NavLink>
-              {hasLikes && <NavLink to="/calendar">Your Calendar</NavLink>}
               {loggedIn && <NavLink to="/locations">Locations</NavLink>}
+            </div>
+            <div className="main-menu__category">
+              {hasLikes && <NavLink to="/calendar">Your Calendar</NavLink>}
             </div>
           </nav>
         </Container>

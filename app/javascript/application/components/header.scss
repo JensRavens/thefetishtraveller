@@ -14,8 +14,22 @@
 .main-menu {
   display: flex;
   justify-content: space-between;
+  font-size: 17px;
+  font-weight: 600;
+  align-items: baseline;
 
   &__category {
+    flex: 1 0 0;
+    text-align: center;
+
+    &:first-child {
+      text-align: left;
+    }
+
+    &:last-child {
+      text-align: right;
+    }
+
     > *:not(:last-child) {
       margin-right: 1rem;
     }
