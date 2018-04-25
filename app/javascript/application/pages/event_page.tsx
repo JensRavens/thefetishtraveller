@@ -35,7 +35,7 @@ class EventPage extends React.Component<Props> {
     if(!event) { return null };
     return (
       <React.Fragment>
-        <Hero>
+        <Hero backgroundImage={event.hero && event.hero.full}>
           <Container>
             <h1>{event.name}</h1>
           </Container>
