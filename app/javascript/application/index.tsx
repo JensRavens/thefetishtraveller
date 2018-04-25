@@ -11,6 +11,7 @@ require('./style');
 syncer.refresh();
 
 document.addEventListener('DOMContentLoaded', () => {
+  document.documentElement.className += (("ontouchstart" in document.documentElement) ? ' touch' : ' no-touch');
   ReactDOM.render(
     <Provider store={store}>
       <Application/>

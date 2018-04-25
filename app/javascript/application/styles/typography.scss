@@ -25,18 +25,26 @@ p + h2, p + h3, p + h4 {
 
 h1 {
 	font-family: $font-heading;
-	font-size: 90px;
+	font-size: 42px;
 	line-height: 1;
 	text-align: center;
+
+	@media(min-width: $tablet) {
+		font-size: 90px;
+	}
 }
 
 h2 {
 	font-family: $font-heading;
-	font-size: 72px;
+	font-size: 36px;
 	padding-bottom: 20px;
 	line-height: 1;
 	text-align: center;
 	position: relative;
+
+	@media(min-width: $tablet) {
+		font-size: 72px;
+	}
 
 	&::after {
 		display: block;
