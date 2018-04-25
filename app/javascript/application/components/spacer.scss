@@ -1,3 +1,7 @@
 .spacer {
-  height: 150px;
+  height: 80px;
+
+  @media(min-width: $tablet) {
+		height: 150px;
+	}
 }

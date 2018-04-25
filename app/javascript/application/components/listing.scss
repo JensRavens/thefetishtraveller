@@ -1,12 +1,24 @@
 .listing {
+  background-color: $color-background-dark;
+
+  &__entry {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+
+    + .listing__entry {
+      border-top-width: 0;
+    }
+  }
+
   @media(min-width: $tablet) {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
+    border: 1px solid white;
 
     &__entry {
       flex: 0 0 33.333333%;
-      border: 1px solid white;
+      border: 1px solid white !important;
     }
   }
 }
