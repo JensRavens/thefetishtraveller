@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 interface Props<T extends Object> {
-  model?: T;
+  model: T;
   onChange?: (T)=>void;
   onSubmit?: (T)=>void;
 }
@@ -41,8 +41,9 @@ export default class Form<T> extends React.Component<Props<T>> {
 
   private serialize(): Partial<T> {
     const values = {};
-    for (let i = 0; i < this.form.elements.length; i++) {
-      const element = this.form.elements[i] as HTMLInputElement;
+    const form = this.form!
+    for (let i = 0; i < form.elements.length; i++) {
+      const element = form.elements[i] as HTMLInputElement;
       if(element.name.length > 0) {
         values[element.name] = element.value;
       }

@@ -205,7 +205,7 @@ function except(object: {[key: string]: any}, keys: string[]) {
 
 export function reducer<Setting, Data, Types extends TypeLookup, S extends State<Data, Setting, Types>>(initialState: S): (state: S, action: DBAction) => S {
   return (state, action) => {
-    if(!state) { return initialState };
+    if(!state) { state = initialState };
     switch(action.type) {
       case 'INSERT_RECORD': {
         const key = action.payload.key;
@@ -231,5 +231,6 @@ export function reducer<Setting, Data, Types extends TypeLookup, S extends State
         return {...(state as any), settings: {...(state.settings as any), [key]: action.payload.setting}};
       }
     }
+    return state;
   }
 }

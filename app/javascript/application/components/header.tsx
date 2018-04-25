@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 
 import Container from './container';
 import {State, DB} from '../state';
+import {isLoggedIn} from '../models/session';
 
 interface Props {
   loggedIn: boolean;
@@ -64,7 +65,8 @@ class Header extends React.Component<Props, MenuState> {
 
 const mapStateToProps: (state: State) => Props = (state) => {
   const hasLikes = new DB(state).table('likes').all.length > 0;
-  return {loggedIn: state.settings.session.level === "user", hasLikes};
+  const loggedIn = isLoggedIn(state.settings.session);
+  return {loggedIn, hasLikes};
 }
 
 export default connect(mapStateToProps)(Header);
