@@ -8,9 +8,9 @@ class ApplicationSerializer < ActiveModel::Serializer
       return nil unless attachment.attached?
       {
         full: url_for(attachment),
-        big: url_for(attachment.variant(resize_to_fit: [1024, 1024])),
-        medium: url_for(attachment.variant(resize_to_fit: [512, 512])),
-        small: url_for(attachment.variant(resize_to_fit: [256, 256]))
+        big: url_for(attachment.variant(resize: '1024x1024>')),
+        medium: url_for(attachment.variant(resize: '512x512>')),
+        small: url_for(attachment.variant(resize: '256x256>'))
       }
     end
   end
