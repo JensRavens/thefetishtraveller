@@ -1,4 +1,5 @@
 import {camelCase, snakeCase, mapKeys} from 'lodash';
+import {Image} from './models/image';
 
 export interface APILocation {
   id: string;
@@ -17,6 +18,8 @@ export interface APIEvent {
   endAt: Date;
   startAt: Date;
   location: APILocation;
+  hero?: Image;
+  logo?: Image;
 }
 
 export interface APILike {

@@ -1,4 +1,4 @@
-class SessionSerializer < ActiveModel::Serializer
+class SessionSerializer < ApplicationSerializer
   attributes :id, :user_id, :level, :liked_event_ids, :owned_event_ids
 
   def level

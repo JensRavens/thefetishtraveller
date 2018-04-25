@@ -29,6 +29,7 @@ gem "friendly_id"
 gem "countries"
 gem "document_serializable"
 gem "sitemap_generator"
+gem "image_processing"
 
 # Assets
 gem "webpacker"
