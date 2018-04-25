@@ -39,11 +39,11 @@ class EventEdit extends React.Component<Props> {
   }
 
   private update(values: Partial<Event>) {
-    this.props.dispatch(events.update(this.props.event.id, values));
+    this.props.dispatch(events.update(this.props.id, values));
   }
 
   private submit(values: Partial<Event>) {
-    this.props.dispatch(events.update(this.props.event.id, {fieldsToSync: Object.keys(values)}));
+    this.props.dispatch(events.update(this.props.id, {fieldsToSync: Object.keys(values)}));
   }
 }
 

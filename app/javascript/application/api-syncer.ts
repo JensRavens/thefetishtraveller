@@ -8,14 +8,32 @@ import {isLoggedIn} from './models/session';
 export class APISyncer {
   api: API;
   constructor(){
-    const sessionId = new DB(store.getState() as State).get('session').id;
+    const state = store.getState() as State | null;
+    const session = state ? new DB(state).get('session') : null;
+    const sessionId = session ? session.id : undefined;
     this.api = new API('/api/v1', sessionId);
     if(sessionId) { this.refreshSession() }
+    this.subscribe();
+  }
 
+  refresh() {
+    this.refreshEvents();
+    this.refreshLocations();
+  }
+
+  async login(email: string, password: string) {
+    if(!this.api.sessionID) { await this.api.createSession() }
+    const session = await this.api.login(email, password);
+    store.dispatch(writeDB.set('session', session));
+  }
+
+  private subscribe() {
     store.subscribe(() => {
       const state = store.getState() as State;
       const db = new DB(state);
       const session = db.get('session');
+
+      localStorage && localStorage.setItem('state', JSON.stringify(state));
 
       if(!isLoggedIn(session)) {
         return;
@@ -32,17 +50,6 @@ export class APISyncer {
     });
   }
 
-  refresh() {
-    this.refreshEvents();
-    this.refreshLocations();
-  }
-
-  async login(email: string, password: string) {
-    if(!this.api.sessionID) { await this.api.createSession() }
-    const session = await this.api.login(email, password);
-    store.dispatch(writeDB.set('session', session));
-  }
-
   private async refreshSession() {
     const session = await this.api.getSession();
     store.dispatch(writeDB.set('session', session));
@@ -53,14 +60,16 @@ export class APISyncer {
     return events.map(e => ({...e, serverId: e.id, draft: false, synced: true}));
   }
 
-  private refreshEvents() {
+  private async refreshEvents() {
     const events = writeDB.table('events');
-    this.api.getEvents().then(e => store.dispatch(events.insert(this.annotate(e))));
+    const apiEvents = await this.api.getEvents();
+    store.dispatch(events.insert(this.annotate(apiEvents)));
   }
 
-  private refreshLocations() {
+  private async refreshLocations() {
     const locations = writeDB.table('locations');
-    this.api.getLocations().then(e => store.dispatch(locations.insert(this.annotate(e))));
+    const apiLocations = await this.api.getLocations();
+    store.dispatch(locations.insert(this.annotate(apiLocations)))
   }
 
   private updateEvents(events: Event[]) {

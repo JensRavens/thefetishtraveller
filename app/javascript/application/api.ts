@@ -37,7 +37,7 @@ export interface APISession {
 
 export class API {
   private baseUrl: string;
-  sessionID: string | null = null;
+  sessionID?: string;
 
   constructor(baseUrl: string, sessionID?: string) {
     this.baseUrl = baseUrl;

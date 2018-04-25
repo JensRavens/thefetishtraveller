@@ -19,7 +19,7 @@ export interface EventWithLocation extends Event {
 }
 
 export function canEdit(event: Event, session?: APISession): boolean {
-  return session && session.ownedEventIds && session.ownedEventIds.includes(event.serverId)
+  return !!session && !!session.ownedEventIds && !!event.serverId && session.ownedEventIds.includes(event.serverId)
 }
 
 export function joinLocation(rawEvents: string[] | Event[], state: State): EventWithLocation[] {

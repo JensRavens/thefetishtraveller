@@ -21,7 +21,7 @@ class LocationCreation extends React.Component<Props> {
   render() {
     const {dispatch, state} = this.props;
     const db = new DB(state);
-    let location = db.table("locations").find(this.id);
+    let location = db.table("locations").find(this.id)!;
     if(!this.id) {
       this.id = guid();
       location = {id: this.id, draft: true} as Location;

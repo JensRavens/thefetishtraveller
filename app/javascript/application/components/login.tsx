@@ -5,13 +5,14 @@ import {connect} from 'react-redux';
 import {APISession} from '../api';
 import {syncer} from '../api-syncer';
 import {State} from '../state';
+import {isLoggedIn} from '../models/session';
 
 import Container from './container';
 import Form from './form';
 import FormField from './form_field';
 
 interface Props {
-  session: APISession;
+  session?: APISession;
 }
 
 interface LoginState {
@@ -23,7 +24,7 @@ class Login extends React.Component<Props, LoginState> {
   state = {};
 
   render() {
-    if (this.loggedIn) { return null };
+    if (isLoggedIn(this.props.session)) { return null };
     return (
       <div>
         <Form model={this.state} onSubmit={this.submit.bind(this)} onChange={model => this.setState(model)}>
@@ -36,12 +37,8 @@ class Login extends React.Component<Props, LoginState> {
   }
 
   private submit(model: LoginState){
+    if(!model.email || !model.password) { return; }
     syncer.login(model.email, model.password);
-  }
-
-  private get loggedIn(): boolean {
-    const {session} = this.props;
-    return session.level && session.level !== 'guest';
   }
 }
 

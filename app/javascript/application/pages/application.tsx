@@ -1,6 +1,9 @@
 import * as React from 'react';
+import {connect} from 'react-redux';
 import {Route} from 'react-router';
 import {BrowserRouter, NavLink} from 'react-router-dom';
+
+import {State} from '../state';
 
 import Home from './home';
 import Login from './login';
@@ -16,8 +19,13 @@ import Container from '../components/container';
 import Header from '../components/header';
 import Footer from '../components/footer';
 
-export default class Application extends React.Component {
+interface Props {
+  stateLoaded: boolean;
+}
+
+class Application extends React.Component<Props> {
   render() {
+    if(!this.props.stateLoaded) { return null; }
     return (
       <BrowserRouter>
         <div className="application">
@@ -40,3 +48,6 @@ export default class Application extends React.Component {
     );
   }
 }
+
+const mapStateToProps: (State) => Props = (state) => ({stateLoaded: !!state});
+export default connect(mapStateToProps)(Application);

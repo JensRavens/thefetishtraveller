@@ -22,7 +22,7 @@ class LocationEdit extends React.Component<Props> {
     return (
       <Container>
         <h1>{location.name}</h1>
-        <Form model={location} onChange={(model) => this.update(model)} onSubmit={(model) => this.submit(model)}>
+        <Form model={location} onChange={(model) => this.update(location!, model)} onSubmit={(model) => this.submit(location!, model)}>
           <FormField name="name"/>
           <FormField name="city"/>
           <input type="submit"/>
@@ -31,12 +31,12 @@ class LocationEdit extends React.Component<Props> {
     )
   }
 
-  private update(values: Partial<Location>) {
-    this.props.dispatch(locations.update(this.props.location.id, values));
+  private update(location: Location, values: Partial<Location>) {
+    this.props.dispatch(locations.update(location.id, values));
   }
 
-  private submit(values: Partial<Location>) {
-    this.props.dispatch(locations.update(this.props.location.id, {fieldsToSync: Object.keys(values)}));
+  private submit(location: Location, values: Partial<Location>) {
+    this.props.dispatch(locations.update(location.id, {fieldsToSync: Object.keys(values)}));
   }
 }
 
