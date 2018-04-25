@@ -33,9 +33,10 @@ class EventPage extends React.Component<Props> {
   render() {
     let {event, like, editable} = this.props;
     if(!event) { return null };
+    const backgroundImage = event.hero && event.hero.big;
     return (
       <React.Fragment>
-        <Hero backgroundImage={event.hero && event.hero.full}>
+        <Hero backgroundImage={backgroundImage} style={backgroundImage ? 'expanded' : 'normal'}>
           <Container>
             <h1>{event.name}</h1>
           </Container>
