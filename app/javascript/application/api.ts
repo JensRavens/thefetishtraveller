@@ -20,6 +20,7 @@ export interface APIEvent {
   location: APILocation;
   hero?: Image;
   logo?: Image;
+  categories?: string[];
 }
 
 export interface APILike {

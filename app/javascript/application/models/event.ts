@@ -12,6 +12,7 @@ export interface Event extends Syncable {
   locationId: string;
   hero?: Image;
   logo?: Image;
+  categories?: string[];
 }
 
 export interface EventWithLocation extends Event {

@@ -14,12 +14,13 @@ export class EventListing extends React.Component<Props> {
   render() {
     const {event, liked} = this.props;
     const backgroundImage = event.hero && event.hero.medium && `url(${event.hero.medium})`;
+    const category = (event.categories || []).join(', ');
     return (
       <Link to={`/events/${event.id}`} className="event-listing" style={{backgroundImage}}>
         <div className="event-listing__background"/>
         <div className="event-listing__content">
           {liked && <div className="event-listing__marker">On Your Calendar</div>}
-          <div className="event-listing__category">General</div>
+          <div className="event-listing__category">{category}</div>
           <div className="event-listing__name">{event.name}</div>
           <div className="event-listing__description"></div>
           <div className="event-listing__details">
