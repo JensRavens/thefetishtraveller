@@ -13,8 +13,9 @@ interface Props {
 export class EventListing extends React.Component<Props> {
   render() {
     const {event, liked} = this.props;
+    const backgroundImage = event.hero && event.hero.medium && `url(${event.hero.medium})`;
     return (
-      <Link to={`/events/${event.id}`} className="event-listing">
+      <Link to={`/events/${event.id}`} className="event-listing" style={{backgroundImage}}>
         <div className="event-listing__background"/>
         <div className="event-listing__content">
           {liked && <div className="event-listing__marker">On Your Calendar</div>}

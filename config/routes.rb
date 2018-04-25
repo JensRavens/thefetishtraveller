@@ -9,7 +9,8 @@ Rails.application.routes.draw do
       resource :session, only: [:create, :update, :show]
     end
   end
-
-  get '*path', to: 'pages#show'
+  get '*path', to: 'pages#show', constraints: lambda { |req|
+    req.path.exclude? 'rails/'
+  }
   root 'pages#show'
 end

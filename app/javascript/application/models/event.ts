@@ -2,6 +2,7 @@ import {store, DB, State} from '../state';
 import {Location} from './location';
 import {Syncable} from './syncable';
 import {APISession} from '../api';
+import {Image} from './image';
 
 export interface Event extends Syncable {
   id: string;
@@ -9,6 +10,8 @@ export interface Event extends Syncable {
   endAt: Date;
   startAt: Date;
   locationId: string;
+  hero?: Image;
+  logo?: Image;
 }
 
 export interface EventWithLocation extends Event {
