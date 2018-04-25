@@ -8,6 +8,7 @@ import {Like, isLiked} from '../models/like';
 import {EventListing} from '../components/event_listing';
 import Container from '../components/container';
 import Hero from '../components/hero';
+import Listing from '../components/listing';
 
 const backgroundImage = require('../assets/background.jpg');
 
@@ -18,7 +19,7 @@ interface Props {
 
 const mapStateToProps: (state: State) => Props = (state) => {
   return {
-    events: joinLocation(new DB(state).table('events').all.sort((a,b) => (a.startAt as any) - (b.startAt as any)), state),
+    events: joinLocation(new DB(state).table('events').all.sort((a,b) => (a.startAt as any) - (b.startAt as any)), state).slice(0, 3),
     likes: new DB(state).table('likes').all
   }
 }
@@ -30,15 +31,14 @@ class Home extends React.Component<Props> {
       <React.Fragment>
         <Hero backgroundImage={backgroundImage} style="expanded">
           <Container>
-            <h1>Find the best events worldwide</h1>
+            <h1>Find the best events <em>worldwide</em></h1>
           </Container>
         </Hero>
-        <Container>
-          <h2>Next up</h2>
-          <div className="listing">
-            {events.map(e => <EventListing key={e.id} event={e} liked={isLiked(e, likes)}/>)}
-          </div>
-        </Container>
+        <div className="spacer"/>
+        <h2>Next up</h2>
+        <Listing>
+          {events.map(e => <EventListing key={e.id} event={e} liked={isLiked(e, likes)}/>)}
+        </Listing>
       </React.Fragment>
     );
   }

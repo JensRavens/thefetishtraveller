@@ -1,0 +1,38 @@
+.event-listing {
+  display: flex;
+  height: 322px;
+  background-color: $color-background-dark;
+  padding: 50px 40px;
+  color: white;
+  flex-direction: column;
+  position: relative;
+
+  &__category {
+    font-weight: bold;
+    color: $color-tint;
+    margin-bottom: 1em;
+  }
+
+  &__name {
+    font-family: $font-heading-alternate;
+    font-weight: bold;
+    font-size: 40px;
+  }
+
+  &__description {
+    flex: 1;
+  }
+
+  &__details {
+    font-style: italic;
+  }
+
+  &__marker {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: $color-text-muted-dark-background;
+    font-weight: bold;
+    font-size: 12px;
+  }
+}

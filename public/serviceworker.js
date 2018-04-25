@@ -16,9 +16,6 @@ function onActivate(event) {
 
 function onFetch(event) {
   const url = event.request.url;
-  if(url.includes('packs/') || url.includes('manifest.json')) {
-    event.waitUntil(addToCache([event.request.url]));
-  }
   event.respondWith(
     caches.match(event.request).then(function(response) {
       return response || fetch(event.request);

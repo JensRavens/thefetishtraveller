@@ -13,16 +13,65 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
 	font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
-  font-family: $font-heading;
-  font-size: 2rem;
 
 	&:not(:last-child) {
-		margin-bottom: 1rem;
+		margin-bottom: 1em;
 	}
+}
+
+p + h2, p + h3, p + h4 {
+	margin-top: 2em;
+}
+
+h1 {
+	font-family: $font-heading;
+	font-size: 90px;
+	line-height: 1;
+	text-align: center;
+}
+
+h2 {
+	font-family: $font-heading;
+	font-size: 72px;
+	padding-bottom: 20px;
+	line-height: 1;
+	text-align: center;
+	position: relative;
+
+	&::after {
+		display: block;
+		position: absolute;
+		content: '';
+		width: 72px;
+		height: 6px;
+		background-color: $color-tint;
+		bottom: 0;
+		left: 50%;
+		margin-left: -36px;
+	}
+}
+
+h3 {
+	font-family: $font-heading-alternate;
+	font-weight: bold;
+	font-size: 30px;
+	line-height: 1;
+}
+
+h4 {
+	font-size: 19px;
+	color: $color-text-label;
+	text-align: center;
+	font-weight: 600;
 }
 
 p {
 	margin: 0 0 1em 0;
+	line-height: 1.9;
+
+	&:last-child {
+		margin-bottom: 0;
+	}
 }
 
 a {
@@ -38,10 +87,19 @@ strong {
 	font-weight: 600;
 }
 
+em {
+	font-style: normal;
+	color: $color-tint;
+}
+
 hr {
 	border: none;
 	border-top: 1px solid $color-border;
 	color: transparent;
 	background-color: transparent;
 	height: 0;
+}
+
+.text-center {
+	text-align: center;
 }

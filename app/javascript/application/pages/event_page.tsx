@@ -37,12 +37,13 @@ class EventPage extends React.Component<Props> {
       <React.Fragment>
         <Hero>
           <Container>
-            <h1>{event.name} <small>{dateRange(event.startAt, event.endAt)}</small></h1>
-            <p>{locationDescription(event.location)}</p>
-            <LikeButton active={!!like} onClick={() => !!like ? this.unlike(like) : this.like()}/>
+            <h1>{event.name}</h1>
           </Container>
         </Hero>
+        <div className="spacer"/>
         <Container>
+          <h4>{dateRange(event.startAt, event.endAt)} - {locationDescription(event.location)}</h4>
+          <div className="text-center"><LikeButton active={!!like} onClick={() => !!like ? this.unlike(like) : this.like()}/></div>
           {editable && <div><Link to={`/events/${event.id}/edit`}>edit</Link></div>}
         </Container>
       </React.Fragment>
