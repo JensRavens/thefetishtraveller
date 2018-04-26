@@ -38,16 +38,16 @@ class EventPage extends React.Component<Props> {
   render() {
     let {event, like, editable, otherEvents} = this.props;
     if(!event) { return null };
-    const backgroundImage = event.hero && event.hero.big;
+    const hero = event.hero && event.hero.big;
     const coordinates = extractCoordinates(event.location);
     return (
       <React.Fragment>
         <div className="spacer spacer--for-navbar"/>
         <Meta title={event.name}/>
         <Container variant="small">
-          <h2>{event.name}</h2>
-          {event.abstract && <h4>{event.abstract}</h4>}
-          <h3>{dateRange(event.startAt, event.endAt)}</h3>
+          <h2>{event.name}<br/><small>{dateRange(event.startAt, event.endAt)}</small></h2>
+          {event.abstract && [<h4>{event.abstract}</h4>,<div className="spacer--small"/>]}
+          {hero && <p><img src={hero}/></p>}
           {event.description && <p>{event.description}</p>}
           <h3>{locationDescription(event.location)}</h3>
           {coordinates && <Map center={coordinates}/>}
