@@ -59,7 +59,11 @@ h2 {
 	}
 
 	+ h4 {
-		margin-top: -42px;
+		margin-top: -16px;
+	
+		@media(min-width: $tablet) {
+			margin-top: -42px;
+		}
 	}
 }
 
