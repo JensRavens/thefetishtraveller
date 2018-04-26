@@ -10,6 +10,7 @@ import Container from '../components/container';
 import Hero from '../components/hero';
 import Listing from '../components/listing';
 import {Signup} from '../components/signup';
+import {scoped} from '../i18n';
 
 const backgroundImage = require('../assets/background.jpg');
 
@@ -26,6 +27,8 @@ const mapStateToProps: (state: State) => Props = (state) => {
   }
 }
 
+const t = scoped('home');
+
 class Home extends React.Component<Props> {
   render() {
     const {events, likes} = this.props;
@@ -33,11 +36,11 @@ class Home extends React.Component<Props> {
       <React.Fragment>
         <Hero backgroundImage={backgroundImage} style="expanded">
           <Container>
-            <h1>Find the best events <em>worldwide</em></h1>
+            <h1>{t('.claim')}</h1>
           </Container>
         </Hero>
         <div className="spacer"/>
-        <h2>Next up</h2>
+        <h2>{t('.next_up')}</h2>
         <Listing singleLine={true}>
           {events.map(e => <EventListing key={e.id} event={e} liked={isLiked(e, likes)}/>)}
         </Listing>

@@ -1,6 +1,7 @@
 import {store, DB, State} from '../state';
 import {Syncable} from './syncable';
 import {APISession} from '../api';
+import {t} from '../i18n';
 
 export interface Location extends Syncable {
   id: string;
@@ -13,16 +14,7 @@ export interface Location extends Syncable {
   countryCode: string;
 }
 
-export const countries = {
-  de: 'Germany',
-  at: 'Austria',
-  nl: 'Netherlands',
-  fi: 'Finland',
-  il: 'Israel',
-  it: 'Italy',
-  be: 'Belgium',
-  us: 'USA'
-}
+export const countries: {[code: string]: string} = t('location.countries') as any;
 
 export function canEdit(location: Location, session?: APISession): boolean {
   return !!session && !!session.ownedLocationIds && !!location.serverId && session.ownedLocationIds.includes(location.serverId)
