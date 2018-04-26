@@ -54,8 +54,11 @@ class EventPage extends React.Component<Props> {
         </Container>
         {otherEvents.length && (
           <React.Fragment>
-            <div className="spacer"/>
-            <h2>Other Events in {event.location.name}</h2>
+            <Container variant="small">
+              <div className="spacer"/>
+              <h2>Other Events in {event.location.name}</h2>
+              <div/>
+            </Container>
             <Listing>{otherEvents.map(e => <EventListing event={e} />)}</Listing>
           </React.Fragment>
         )}
