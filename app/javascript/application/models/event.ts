@@ -38,3 +38,11 @@ export function joinLocation(rawEvents: string[] | Event[], state: State): Event
   });
   return events;
 }
+
+export function isCurrent(event: Event): boolean {
+  return event.endAt > new Date();
+}
+
+export function chronological(a: Event, b: Event): number {
+  return (a.startAt as any) - (b.startAt as any);
+}

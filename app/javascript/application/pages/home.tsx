@@ -2,7 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 
 import {DB, State} from '../state';
-import {EventWithLocation, joinLocation} from '../models/event';
+import {EventWithLocation, joinLocation, chronological, isCurrent} from '../models/event';
 import {Like, isLiked} from '../models/like';
 
 import {EventListing} from '../components/event_listing';
@@ -18,8 +18,9 @@ interface Props {
 }
 
 const mapStateToProps: (state: State) => Props = (state) => {
+  const events = joinLocation(new DB(state).table('events').where(isCurrent).sort(chronological), state);
   return {
-    events: joinLocation(new DB(state).table('events').all.sort((a,b) => (a.startAt as any) - (b.startAt as any)), state).slice(0, 3),
+    events: events.slice(0, 3),
     likes: new DB(state).table('likes').all
   }
 }
