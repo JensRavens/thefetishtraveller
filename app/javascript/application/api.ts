@@ -20,6 +20,9 @@ export interface APIEvent {
   location: APILocation;
   abstract?: string;
   description?: string;
+  website?: string;
+  ticketLink?: string;
+  organizerName?: string;
   hero?: Image;
   logo?: Image;
   categories?: string[];

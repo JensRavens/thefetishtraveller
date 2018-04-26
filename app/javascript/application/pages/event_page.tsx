@@ -26,6 +26,14 @@ interface Props {
 
 const likes = writeDB.table('likes');
 
+function format(text: string): any {
+  return text.split("\n").map(e => <p>{e}</p>);
+}
+
+function link(url?: string) {
+  return url ? <a href={url} target="_blank">{url.replace(/https?\:\/\/(www\.)?/, '').split('/')[0]}</a> : null;
+}
+
 class EventPage extends React.Component<Props> {
   like() {
     this.props.dispatch(likes.insert({eventId: this.props.id}));
@@ -40,15 +48,32 @@ class EventPage extends React.Component<Props> {
     if(!event) { return null };
     const hero = event.hero && event.hero.big;
     const coordinates = extractCoordinates(event.location);
+    const meta = [
+      ['Date', dateRange(event.startAt, event.endAt)],
+      ['Location', locationDescription(event.location)],
+      ['Website', link(event.website)],
+      ['Organizer', event.organizerName],
+      ['Tickets', link(event.ticketLink)]
+    ].filter(e => e[1]);
     return (
       <React.Fragment>
         <div className="spacer spacer--for-navbar"/>
         <Meta title={event.name}/>
         <Container variant="small">
-          <h2>{event.name}<br/><small>{dateRange(event.startAt, event.endAt)}</small></h2>
+          <h2>{event.name}</h2>
           {event.abstract && [<h4>{event.abstract}</h4>,<div className="spacer--small"/>]}
           {hero && <p><img src={hero}/></p>}
-          {event.description && <p>{event.description}</p>}
+          <div className={`meta-box meta-box--${hero && 'floating'}`}>
+            {
+              meta.map(e => (
+                <p key={e[0] as string}>
+                  <strong>{e[0]}</strong><br/>
+                  {e[1]}
+                </p>
+              ))
+            }
+          </div>
+          {event.description && format(event.description)}
           <h3>{locationDescription(event.location)}</h3>
           {coordinates && <Map center={coordinates}/>}
         </Container>
@@ -59,7 +84,7 @@ class EventPage extends React.Component<Props> {
               <h2>Other Events in {event.location.name}</h2>
               <div/>
             </Container>
-            <Listing>{otherEvents.map(e => <EventListing event={e} />)}</Listing>
+            <Listing>{otherEvents.map(e => <EventListing key={e.id} event={e} />)}</Listing>
           </React.Fragment>
         )}
       </React.Fragment>

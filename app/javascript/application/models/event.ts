@@ -15,6 +15,9 @@ export interface Event extends Syncable {
   locationId: string;
   abstract?: string;
   description?: string;
+  website?: string;
+  ticketLink?: string;
+  organizerName?: string;
   hero?: Image;
   logo?: Image;
   categories?: string[];

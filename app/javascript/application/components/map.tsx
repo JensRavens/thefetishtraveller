@@ -16,7 +16,6 @@ export class Map extends React.Component<Props> {
   private marker: any;
 
   componentDidMount() {
-    console.log(this.props);
     this.map = new google.maps.Map(this.container, {center: this.center, zoom: this.props.zoom});
     this.marker = new google.maps.Marker({map: this.map});
     window.map = this.map;
@@ -26,7 +25,6 @@ export class Map extends React.Component<Props> {
     const {zoom, center} = this.props;
     const coordinate = {lat: center.lat, lng: center.lon};
     const {map, marker} = this;
-    // map.setCenter(coordinate);
     return (
       <div className="map" ref={(el) => this.container = el}/>
     )
