@@ -1,0 +1,37 @@
+event:
+  all: all
+  date: date
+  location: location
+  website: website
+  organizer: organizer
+  other_events_in: 'Other Events in :location:'
+  search_place_holder: Search for name, country, city or category...
+  category: 
+    fetish: Fetish
+    csd: Pride Parade
+    election: Election
+location:
+  countries:
+    de: Germany
+    at: Austria
+    nl: Netherlands
+    fi: Finland
+    il: Israel
+    it: Italy
+    be: Belgium
+    us: USA
+menu:
+  events: Events
+  your_calendar: Your Calendar
+  home: Home
+  imprint: Imprint
+newsletter:
+  subscribe: subscribe
+  cto: Subscribe now to our newsletter
+home:
+  claim: The Best Events Worldwide
+  next_up: next up
+footer:
+  about_us: about us
+  about_us_text: ' '
+  quick_navigation: Quick Navigation

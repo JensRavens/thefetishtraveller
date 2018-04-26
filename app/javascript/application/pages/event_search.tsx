@@ -2,6 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 
 import {DB, State} from '../state';
+import {scoped} from '../i18n';
 import {EventWithLocation, joinLocation, chronological, months, inMonth, matchesTerm} from '../models/event';
 import {Like, isLiked} from '../models/like';
 import {EventListing} from '../components/event_listing';
@@ -29,6 +30,8 @@ const mapStateToProps: (state: State) => Props = (state) => {
   }
 }
 
+const t = scoped('event');
+
 class EventSearch extends React.Component<Props, SearchState> {
   state: SearchState = {}
 
@@ -47,15 +50,15 @@ class EventSearch extends React.Component<Props, SearchState> {
       <React.Fragment>
         <Hero>
           <Container>
-            <h1>Events</h1>
+            <h1>{t('menu.events')}</h1>
             <div className="hero__addon">
               <Form model={this.state} onChange={(value) => this.setState(value)}>
-                <TextInput name="term" type="search" placeholder="Search for name, country, type..."/>
+                <TextInput name="term" type="search" placeholder={t('.search_place_holder')}/>
               </Form>
             </div>
           </Container>
         </Hero>
-        <FilterBar options={['all'].concat(options.map(e => e.name))} selectedOption={currentMonth || 'all'} onChange={option => this.setState({currentMonth: option})}/>
+        <FilterBar options={[t('.all')].concat(options.map(e => e.name))} selectedOption={currentMonth || 'all'} onChange={option => this.setState({currentMonth: option})}/>
         <Listing>
           {events.map(e => <EventListing key={e.id} event={e} liked={isLiked(e, likes)}/>)}
         </Listing>

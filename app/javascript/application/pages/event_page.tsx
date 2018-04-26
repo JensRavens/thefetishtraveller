@@ -14,6 +14,7 @@ import {Meta} from '../components/meta';
 import {EventListing} from '../components/event_listing';
 import {Map} from '../components/map';
 import {dateRange} from '../util';
+import {scoped} from '../i18n';
 
 interface Props {
   id: string;
@@ -34,6 +35,8 @@ function link(url?: string) {
   return url ? <a href={url} target="_blank">{url.replace(/https?\:\/\/(www\.)?/, '').split('/')[0]}</a> : null;
 }
 
+const t = scoped('event');
+
 class EventPage extends React.Component<Props> {
   like() {
     this.props.dispatch(likes.insert({eventId: this.props.id}));
@@ -49,11 +52,11 @@ class EventPage extends React.Component<Props> {
     const hero = event.hero && event.hero.big;
     const coordinates = extractCoordinates(event.location);
     const meta = [
-      ['Date', dateRange(event.startAt, event.endAt)],
-      ['Location', locationDescription(event.location)],
-      ['Website', link(event.website)],
-      ['Organizer', event.organizerName],
-      ['Tickets', link(event.ticketLink)]
+      [t('.date'), dateRange(event.startAt, event.endAt)],
+      [t('.location'), locationDescription(event.location)],
+      [t('.website'), link(event.website)],
+      [t('.organizer'), event.organizerName],
+      [t('.tickets'), link(event.ticketLink)]
     ].filter(e => e[1]);
     return (
       <React.Fragment>
@@ -61,7 +64,10 @@ class EventPage extends React.Component<Props> {
         <Meta title={event.name}/>
         <Container variant="small">
           <h2>{event.name}</h2>
-          {event.abstract && [<h4>{event.abstract}</h4>,<div className="spacer--small"/>]}
+          {event.abstract && (<React.Fragment>
+            <h4>{event.abstract}</h4>
+            <div className="spacer--small"/>
+          </React.Fragment>)}
           {hero && <p><img src={hero}/></p>}
           <div className={`meta-box meta-box--${hero && 'floating'}`}>
             {
@@ -81,7 +87,7 @@ class EventPage extends React.Component<Props> {
           <React.Fragment>
             <Container variant="small">
               <div className="spacer"/>
-              <h2>Other Events in {event.location.name}</h2>
+              <h2>{t('.other_events_in', {location: event.location.name})}</h2>
               <div/>
             </Container>
             <Listing>{otherEvents.map(e => <EventListing key={e.id} event={e} />)}</Listing>

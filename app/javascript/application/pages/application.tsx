@@ -18,12 +18,17 @@ import Imprint from './imprint';
 import Container from '../components/container';
 import Header from '../components/header';
 import Footer from '../components/footer';
+import {I18n} from '../i18n';
 
 interface Props {
   stateLoaded: boolean;
 }
 
 class Application extends React.Component<Props> {
+  componentDidMount() {
+    I18n.onUpdate(() => this.forceUpdate());
+  }
+
   render() {
     if(!this.props.stateLoaded) { return null; }
     return (

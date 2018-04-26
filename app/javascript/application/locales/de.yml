@@ -1,0 +1,37 @@
+event:
+  all: Alle
+  date: Datum
+  location: Ort
+  website: Webseite
+  organizer: Veranstaler
+  other_events_in: 'Andere Veranstaltungen in :location:'
+  search_place_holder: Suche nach Name, Land oder Kategorie...
+  category: 
+    fetish: Fetisch
+    csd: CSD
+    election: Wahl
+location:
+  countries:
+    de: Deutschland
+    at: Österreich
+    nl: Niederlande
+    fi: Finnland
+    il: Israel
+    it: Italien
+    be: Belgien
+    us: USA
+menu:
+  events: Veranstaltungen
+  your_calendar: Dein Kalender
+  home: Startseite
+  imprint: Impressum
+newsletter:
+  subscribe: Anmelden
+  cto: Jetzt für den Newsletter anmelden
+home:
+  claim: Die besten Veranstaltungen weltweit
+  next_up: demnächst
+footer:
+  about_us: Über uns
+  about_us_text: ' '
+  quick_navigation: Schnellnavigation

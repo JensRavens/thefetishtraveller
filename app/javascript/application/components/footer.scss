@@ -28,6 +28,24 @@
     align-items: flex-end;
   }
 
+  &__locales {
+    a:not(:last-child) {
+      margin-right: 1ex;
+      &::after {
+        content: '/';
+        margin-left: 1ex;
+        color: white;
+      }
+    }
+
+    a {
+      cursor: pointer;
+      &:hover, &.active {
+        color: $color-tint;
+      }
+    }
+  }
+
   @media(min-width: $tablet) {
     padding: 53px 0 59px;
 
