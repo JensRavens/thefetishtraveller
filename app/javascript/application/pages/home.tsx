@@ -37,7 +37,7 @@ class Home extends React.Component<Props> {
         </Hero>
         <div className="spacer"/>
         <h2>Next up</h2>
-        <Listing>
+        <Listing singleLine={true}>
           {events.map(e => <EventListing key={e.id} event={e} liked={isLiked(e, likes)}/>)}
         </Listing>
       </React.Fragment>
