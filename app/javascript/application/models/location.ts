@@ -20,7 +20,8 @@ export const countries = {
   fi: 'Finland',
   il: 'Israel',
   it: 'Italy',
-  be: 'Belgium'
+  be: 'Belgium',
+  us: 'USA'
 }
 
 export function canEdit(location: Location, session?: APISession): boolean {
