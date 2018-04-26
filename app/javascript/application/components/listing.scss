@@ -10,15 +10,39 @@
     }
   }
 
-  @media(min-width: $tablet) {
+  @media(min-width: $phablet) {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
     border: 1px solid white;
 
     &__entry {
-      flex: 0 0 33.333333%;
+      flex: 0 0 50%;
       border: 1px solid white !important;
+    }
+  }
+
+  @media(min-width: $desktop) {
+    &__entry {
+      flex: 0 0 33.33333%;
+    }
+  }
+
+  @media(min-width: $widescreen) {
+    &__entry {
+      flex: 0 0 25%;
+    }
+  }
+
+  @media(min-width: $widescreen-large) {
+    &__entry {
+      flex: 0 0 20%;
+    }
+  }
+
+  @media(min-width: $widescreen-xlarge) {
+    &__entry {
+      flex: 0 0 16.666666%;
     }
   }
 }
