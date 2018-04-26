@@ -1,19 +1,20 @@
 import * as React from 'react';
 
 interface Props<T extends Object> {
-  model: T;
+  model?: T;
   onChange?: (T)=>void;
   onSubmit?: (T)=>void;
 }
 
-const R = React as any;
+interface FormState<T> {
+  model: Partial<T>;
+}
 
-export const Context = R.createContext('form');
+export const Context = (React as any).createContext('form');
 
-declare const window: any;
-
-export default class Form<T> extends React.Component<Props<T>> {
+export default class Form<T> extends React.Component<Props<T>, FormState<T>> {
   form: HTMLFormElement | null = null;
+  state = {model: {}};
 
   render() {
     const {model, onChange, onSubmit} = this.props;
@@ -26,17 +27,23 @@ export default class Form<T> extends React.Component<Props<T>> {
     )
   }
 
-  valueForName(name: string): any {
-    return this.props.model[name];
+  valueForName<Key extends keyof T>(name: Key): T[Key] | undefined {
+    return this.model[name];
   }
 
   change() {
-    this.props.onChange && this.props.onChange(this.serialize());
+    const model = this.serialize();
+    this.setState({model})
+    this.props.onChange && this.props.onChange(model);
+  }
+
+  private get model(): Partial<T> {
+    return this.props.model || this.state.model;
   }
 
   private submit(event: Event) {
     event.preventDefault();
-    this.props.onSubmit && this.props.onSubmit(this.serialize());
+    this.props.onSubmit && this.props.onSubmit(this.model);
   }
 
   private serialize(): Partial<T> {

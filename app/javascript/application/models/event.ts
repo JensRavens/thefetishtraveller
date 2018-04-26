@@ -2,7 +2,7 @@ import * as moment from 'moment';
 import {uniqBy} from 'lodash';
 
 import {store, DB, State} from '../state';
-import {Location} from './location';
+import {Location, countries} from './location';
 import {Syncable} from './syncable';
 import {APISession} from '../api';
 import {Image} from './image';
@@ -60,4 +60,13 @@ export function months(events: Event[]): {year: number, month: number, name: str
 export function inMonth(event: Event, month: {year: number, month: number}) {
   const time = moment(event.startAt);
   return time.month() == month.month && time.year() == month.year;
+}
+
+export function matchesTerm(event: Partial<EventWithLocation>, term: string): boolean {
+  let normalizedEvent = (event.name || '').toLocaleLowerCase();
+  if(event.location) {
+    normalizedEvent += (event.location.name + (event.location.city || '') + countries[event.location.countryCode] + (event.categories || []).join()).toLocaleLowerCase();
+  }
+  const normalizedTerm = term.toLocaleLowerCase();
+  return normalizedEvent.includes(normalizedTerm);
 }

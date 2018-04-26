@@ -27,4 +27,17 @@
     flex: 1 0 0;
     z-index: 10;
   }
+
+  &__addon {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  h1 + &__addon {
+    margin-top: -20px;
+
+    @media(min-width: $tablet) {
+      margin-top: -60px;
+    }
+  }
 }
