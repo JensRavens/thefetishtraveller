@@ -14,7 +14,13 @@ export interface Location extends Syncable {
 }
 
 export const countries = {
-  de: 'Germany'
+  de: 'Germany',
+  at: 'Austria',
+  nl: 'Netherlands',
+  fi: 'Finland',
+  il: 'Israel',
+  it: 'Italy',
+  be: 'Belgium'
 }
 
 export function canEdit(location: Location, session?: APISession): boolean {
