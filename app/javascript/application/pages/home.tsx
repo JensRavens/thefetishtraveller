@@ -9,6 +9,7 @@ import {EventListing} from '../components/event_listing';
 import Container from '../components/container';
 import Hero from '../components/hero';
 import Listing from '../components/listing';
+import {Signup} from '../components/signup';
 
 const backgroundImage = require('../assets/background.jpg');
 
@@ -40,6 +41,7 @@ class Home extends React.Component<Props> {
         <Listing singleLine={true}>
           {events.map(e => <EventListing key={e.id} event={e} liked={isLiked(e, likes)}/>)}
         </Listing>
+        <Signup/>
       </React.Fragment>
     );
   }
