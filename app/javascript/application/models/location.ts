@@ -14,7 +14,9 @@ export interface Location extends Syncable {
   countryCode: string;
 }
 
-export const countries: {[code: string]: string} = t('location.countries') as any;
+export function countryName(code: string): string {
+  return (t('location.countries') as any)[code];
+}
 
 export function canEdit(location: Location, session?: APISession): boolean {
   return !!session && !!session.ownedLocationIds && !!location.serverId && session.ownedLocationIds.includes(location.serverId)
@@ -23,7 +25,7 @@ export function canEdit(location: Location, session?: APISession): boolean {
 export function locationDescription(location: Location): string {
   const line = [location.name];
   if(location.city && location.name != location.city) { line.push(location.city); }
-  line.push(countries[location.countryCode] || location.countryCode);
+  line.push(countryName(location.countryCode));
   return line.join(', ')
 }
 
