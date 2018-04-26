@@ -4,3 +4,9 @@ div, main, section, body, header, footer, html {
   padding: 0;
   box-sizing: border-box;
 }
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
