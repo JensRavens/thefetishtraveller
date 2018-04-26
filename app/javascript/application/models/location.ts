@@ -34,3 +34,8 @@ export function locationDescription(location: Location): string {
   line.push(countries[location.countryCode] || location.countryCode);
   return line.join(', ')
 }
+
+export function extractCoordinates(location: Location): {lat: number, lon: number} | undefined {
+  if(!location.lat || !location.lon) { return; }
+  return { lat: location.lat, lon: location.lon };
+}

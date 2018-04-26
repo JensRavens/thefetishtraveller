@@ -1,7 +1,13 @@
 .spacer {
-  height: 80px;
+  margin-bottom: 80px;
 
   @media(min-width: $tablet) {
-		height: 150px;
-	}
+		margin-bottom: 150px;
+  }
+  
+  &--for-navbar {
+    height: calc(60px + 1rem);
+    margin-top: -60px;
+    background-color: $color-background-dark;
+  }
 }

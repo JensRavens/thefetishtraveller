@@ -1,0 +1,39 @@
+import * as React from 'react';
+
+declare const google: any;
+declare const window: any;
+
+interface Props {
+  zoom?: number;
+  center: {lat: number, lon: number}
+}
+
+export class Map extends React.Component<Props> {
+  static defaultProps = { zoom: 12 };
+
+  private container: HTMLDivElement | null;
+  private map: any;
+  private marker: any;
+
+  componentDidMount() {
+    console.log(this.props);
+    this.map = new google.maps.Map(this.container, {center: this.center, zoom: this.props.zoom});
+    this.marker = new google.maps.Marker({map: this.map});
+    window.map = this.map;
+  }
+
+  render() {
+    const {zoom, center} = this.props;
+    const coordinate = {lat: center.lat, lng: center.lon};
+    const {map, marker} = this;
+    // map.setCenter(coordinate);
+    return (
+      <div className="map" ref={(el) => this.container = el}/>
+    )
+  }
+
+  private get center() {
+    const center = this.props.center;
+    return {lat: center.lat, lng: center.lon};
+  }
+}

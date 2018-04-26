@@ -18,6 +18,8 @@ export interface APIEvent {
   endAt: Date;
   startAt: Date;
   location: APILocation;
+  abstract?: string;
+  description?: string;
   hero?: Image;
   logo?: Image;
   categories?: string[];

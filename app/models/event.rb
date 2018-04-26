@@ -14,6 +14,7 @@ class Event < ApplicationRecord
   attribute :categories, [String], default: []
   attribute :website
   attribute :ticket_link
+  attribute :abstract
   attribute :description
 
   scope :published, -> { where('events.publish_at <= NOW()') }

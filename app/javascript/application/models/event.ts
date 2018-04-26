@@ -13,6 +13,8 @@ export interface Event extends Syncable {
   endAt: Date;
   startAt: Date;
   locationId: string;
+  abstract?: string;
+  description?: string;
   hero?: Image;
   logo?: Image;
   categories?: string[];

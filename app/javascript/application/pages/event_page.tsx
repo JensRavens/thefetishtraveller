@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {EventWithLocation, canEdit, joinLocation} from '../models/event';
 import {Like} from '../models/like';
-import {locationDescription} from '../models/location';
+import {locationDescription, extractCoordinates} from '../models/location';
 import {DB, DBAction, writeDB, State} from '../state';
 import {APISession} from '../api';
 import Container from '../components/container';
@@ -12,6 +12,7 @@ import LikeButton from '../components/like-button';
 import Listing from '../components/listing';
 import {Meta} from '../components/meta';
 import {EventListing} from '../components/event_listing';
+import {Map} from '../components/map';
 import {dateRange} from '../util';
 
 interface Props {
@@ -38,20 +39,18 @@ class EventPage extends React.Component<Props> {
     let {event, like, editable, otherEvents} = this.props;
     if(!event) { return null };
     const backgroundImage = event.hero && event.hero.big;
+    const coordinates = extractCoordinates(event.location);
     return (
       <React.Fragment>
+        <div className="spacer spacer--for-navbar"/>
         <Meta title={event.name}/>
-        <Hero backgroundImage={backgroundImage} style={backgroundImage ? 'expanded' : 'normal'}>
-          <Container>
-            <h1>{event.name}</h1>
-          </Container>
-        </Hero>
-        <div className="spacer"/>
-        <Container>
-          <h4>{dateRange(event.startAt, event.endAt)} - {locationDescription(event.location)}</h4>
-          <div className="text-center"><LikeButton active={!!like} onClick={() => !!like ? this.unlike(like) : this.like()}/></div>
-          {editable && <div><Link to={`/events/${event.id}/edit`}>edit</Link></div>}
-          <h2>Location</h2>
+        <Container variant="small">
+          <h2>{event.name}</h2>
+          {event.abstract && <h4>{event.abstract}</h4>}
+          <h3>{dateRange(event.startAt, event.endAt)}</h3>
+          {event.description && <p>{event.description}</p>}
+          <h3>{locationDescription(event.location)}</h3>
+          {coordinates && <Map center={coordinates}/>}
         </Container>
         {otherEvents.length && (
           <React.Fragment>
