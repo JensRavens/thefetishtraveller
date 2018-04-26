@@ -1,3 +1,6 @@
+import * as moment from 'moment';
+import {uniqBy} from 'lodash';
+
 import {store, DB, State} from '../state';
 import {Location} from './location';
 import {Syncable} from './syncable';
@@ -45,4 +48,16 @@ export function isCurrent(event: Event): boolean {
 
 export function chronological(a: Event, b: Event): number {
   return (a.startAt as any) - (b.startAt as any);
+}
+
+export function months(events: Event[]): {year: number, month: number, name: string}[] {
+  return uniqBy(events.map(e => {
+    const time = moment(e.startAt);
+    return {year: time.year(), month: time.month(), name: time.format('MMM YYYY')};
+  }), 'name');
+}
+
+export function inMonth(event: Event, month: {year: number, month: number}) {
+  const time = moment(event.startAt);
+  return time.month() == month.month && time.year() == month.year;
 }
