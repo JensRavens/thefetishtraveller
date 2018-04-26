@@ -13,6 +13,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
 	font-feature-settings: 'dlig' 1, 'liga' 1, 'lnum' 1, 'kern' 1;
+	clear: both;
 
 	&:not(:last-child) {
 		margin-bottom: 1em;
