@@ -10,6 +10,7 @@ import Container from '../components/container';
 import Hero from '../components/hero';
 import LikeButton from '../components/like-button';
 import Listing from '../components/listing';
+import {Meta} from '../components/meta';
 import {EventListing} from '../components/event_listing';
 import {dateRange} from '../util';
 
@@ -39,6 +40,7 @@ class EventPage extends React.Component<Props> {
     const backgroundImage = event.hero && event.hero.big;
     return (
       <React.Fragment>
+        <Meta title={event.name}/>
         <Hero backgroundImage={backgroundImage} style={backgroundImage ? 'expanded' : 'normal'}>
           <Container>
             <h1>{event.name}</h1>
