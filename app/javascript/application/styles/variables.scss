@@ -21,9 +21,12 @@ $font-heading-alternate: 'Bebas Neue', 'Open Sans', sans-serif;
 $font-text: 'Open Sans', sans-serif;
 
 // breakpoints
+$phablet: 600px;
 $tablet:     740px;
 $desktop:    1000px;
-$widescreen: 1180px;
+$widescreen: 1440px;
+$widescreen-large: 1800px;
+$widescreen-xlarge: 2200px;
 
 // z values
 

@@ -20,7 +20,7 @@ interface Props {
 const mapStateToProps: (state: State) => Props = (state) => {
   const events = joinLocation(new DB(state).table('events').where(isCurrent).sort(chronological), state);
   return {
-    events: events.slice(0, 3),
+    events: events.slice(0, 6),
     likes: new DB(state).table('likes').all
   }
 }
