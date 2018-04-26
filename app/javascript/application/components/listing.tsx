@@ -3,10 +3,15 @@ import {NavLink} from 'react-router-dom';
 
 import Container from './container';
 
-export default class Listing extends React.Component {
+interface Props {
+  singleLine?: boolean;
+}
+
+export default class Listing extends React.Component<Props> {
   render() {
+    const {singleLine} = this.props;
     return (
-      <div className="listing">
+      <div className={`listing listing--${singleLine ? 'single-line' : 'multi-line'}`}>
         {React.Children.map(this.props.children, (child) => <div className="listing__entry">{child}</div>)}
       </div>
     )
