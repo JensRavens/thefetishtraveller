@@ -1,9 +1,16 @@
 import * as React from 'react';
 
-export default class Container extends React.Component {
+interface Props {
+  variant?: 'default' | 'small';
+}
+
+export default class Container extends React.Component<Props> {
+  static defaultProps = { variant: 'default' };
+  
   render() {
+    const {variant} = this.props;
     return (
-      <div className="container">{this.props.children}</div>
+      <div className={`container container--${variant}`}>{this.props.children}</div>
     )
   }
 }

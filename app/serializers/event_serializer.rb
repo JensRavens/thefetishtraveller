@@ -1,5 +1,5 @@
 class EventSerializer < ApplicationSerializer
-  attributes :name, :start_at, :end_at, :organizer_name, :official, :categories, :website, :ticket_link, :description, :owner_ids, :location_id
+  attributes :name, :start_at, :end_at, :organizer_name, :official, :categories, :website, :ticket_link, :description, :owner_ids, :location_id, :abstract
   attribute :slug, key: :id
 
   image_attribue :hero

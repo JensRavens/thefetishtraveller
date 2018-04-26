@@ -34,30 +34,28 @@ class Header extends React.Component<Props, MenuState> {
     )
     return (
       <header className="header">
-        <Container>
-          <nav className={`main-menu ${expanded && 'main-menu--expanded'}`}>
-            <div className="main-menu__category logo">
-              <NavLink to="/">The <em>Fetish</em> Traveller</NavLink>
-            </div>
-            <nav className="main-menu__mobile">
-              <div className="main-menu__category">
-                <NavLink to="/events">Events</NavLink>
-                {loggedIn && <NavLink to="/locations">Locations</NavLink>}
-              </div>
-              <div className="main-menu__category">
-                {hasLikes && <NavLink to="/calendar">Your Calendar</NavLink>}
-              </div>
-            </nav>
-            <div className="main-menu__switch" onClick={() => this.setState({expanded: !expanded})}/>
-            <div className="main-menu__category main-menu__category--additional">
+        <nav className={`main-menu ${expanded && 'main-menu--expanded'}`}>
+          <div className="main-menu__category logo">
+            <NavLink to="/">The <em>Fetish</em> Traveller</NavLink>
+          </div>
+          <nav className="main-menu__mobile">
+            <div className="main-menu__category">
               <NavLink to="/events">Events</NavLink>
               {loggedIn && <NavLink to="/locations">Locations</NavLink>}
             </div>
-            <div className="main-menu__category main-menu__category--additional">
+            <div className="main-menu__category">
               {hasLikes && <NavLink to="/calendar">Your Calendar</NavLink>}
             </div>
           </nav>
-        </Container>
+          <div className="main-menu__switch" onClick={() => this.setState({expanded: !expanded})}/>
+          <div className="main-menu__category main-menu__category--additional">
+            <NavLink to="/events">Events</NavLink>
+            {loggedIn && <NavLink to="/locations">Locations</NavLink>}
+          </div>
+          <div className="main-menu__category main-menu__category--additional">
+            {hasLikes && <NavLink to="/calendar">Your Calendar</NavLink>}
+          </div>
+        </nav>
       </header>
     )
   }
