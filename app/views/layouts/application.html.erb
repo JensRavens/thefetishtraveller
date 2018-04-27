@@ -8,6 +8,16 @@
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="shortcut icon" href="https://nerdgeschoss.de/wp-content/themes/codedesign/image/favicon.png">
     <%= stylesheet_pack_tag 'application' %>
+    <% if Rails.env.production? %>
+      <script type='text/javascript'>
+      (function (d, t) {
+        var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+        bh.type = 'text/javascript';
+        bh.src = 'https://www.bugherd.com/sidebarv2.js?apikey=vrgkr4uxi3g4bhan3vxheq';
+        s.parentNode.insertBefore(bh, s);
+        })(document, 'script');
+      </script>
+    <% end %>
   </head>
   <body>
     <%= yield %>
