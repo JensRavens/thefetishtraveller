@@ -20,6 +20,7 @@ location:
     it: Italy
     be: Belgium
     us: USA
+    pl: Poland
 menu:
   events: Events
   your_calendar: Your Calendar
