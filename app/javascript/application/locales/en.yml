@@ -10,6 +10,7 @@ event:
     fetish: Fetish
     csd: Pride Parade
     election: Election
+    festival: Festival
 location:
   countries:
     de: Germany
@@ -21,6 +22,8 @@ location:
     be: Belgium
     us: USA
     pl: Poland
+    es: Spain
+    fr: France
 menu:
   events: Events
   your_calendar: Your Calendar
