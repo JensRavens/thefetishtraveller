@@ -11,6 +11,7 @@ event:
     csd: Pride Parade
     election: Election
     festival: Festival
+    party: Party
 location:
   countries:
     de: Germany
