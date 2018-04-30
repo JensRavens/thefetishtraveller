@@ -26,10 +26,11 @@ export interface Event extends Syncable {
 
 export interface EventWithLocation extends Event {
   location: Location;
+  locationSlug?: string;
 }
 
 export function canEdit(event: Event, session?: APISession): boolean {
-  return !!session && !!session.ownedEventIds && !!event.serverId && session.ownedEventIds.includes(event.serverId)
+  return !!session && (session.level == "admin" || !!session.ownedEventIds && !!event.serverId && session.ownedEventIds.includes(event.serverId))
 }
 
 export function joinLocation(rawEvents: string[] | Event[], state: State): EventWithLocation[] {

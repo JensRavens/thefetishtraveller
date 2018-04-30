@@ -29,8 +29,8 @@ module API
       end
 
       def event_params
-        p = params.permit(:name, :organizer_name, :website, :location_id).to_h
-        p[:location_id] = Location.friendly.find(p[:location_id]).id if p[:location_id].present?
+        p = params.permit(:slug, :name, :organizer_name, :abstract, :description, :website, :location_id, :location_slug).to_h
+        p[:location_id] = Location.friendly.find(p.delete(:location_slug)).id if p[:location_slug].present?
         p
       end
     end

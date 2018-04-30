@@ -8,4 +8,8 @@
     content: attr(data-placeholder);
     color: $color-text-label;
   }
+
+  &:focus::before {
+    content: '';
+  }
 }

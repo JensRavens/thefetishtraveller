@@ -23,6 +23,7 @@ class User < ApplicationRecord
   end
 
   def level
+    return "admin" if admin?
     guest? ? "guest" : "user"
   end
 end
