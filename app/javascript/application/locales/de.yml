@@ -10,6 +10,7 @@ event:
     fetish: Fetisch
     csd: CSD
     election: Wahl
+    festival: Festival
 location:
   countries:
     de: Deutschland
@@ -21,6 +22,8 @@ location:
     it: Italien
     be: Belgien
     us: USA
+    es: Spanien
+    fr: Frankreich
 menu:
   events: Veranstaltungen
   your_calendar: Dein Kalender
