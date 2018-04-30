@@ -42,7 +42,7 @@ gem "faker"
 # Services
 gem "newrelic_rpm"
 gem "airbrake"
-gem "aws-sdk-s3", require: false
+gem "aws-sdk-s3"
 
 group :development, :test do
   gem "rspec-rails"
