@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import {DB, State} from '../state';
 import {scoped} from '../i18n';
@@ -56,11 +57,21 @@ class EventSearch extends React.Component<Props, SearchState> {
                 <TextInput name="term" type="search" placeholder={t('.search_place_holder')}/>
               </Form>
             </div>
+            <Link to="/events/submit" className="hero__cta">{t('.submit_here')}</Link>
           </Container>
         </Hero>
         <FilterBar options={[t('.all')].concat(options.map(e => e.name))} selectedOption={currentMonth || 'all'} onChange={option => this.setState({currentMonth: option})}/>
         <Listing>
           {events.map(e => <EventListing key={e.id} event={e} liked={isLiked(e, likes)}/>)}
+          <Link to="/events/submit" className="event-listing">
+            <div className="event-listing__background"/>
+            <div className="event-listing__content">
+              <div className="event-listing__category"></div>
+              <div className="event-listing__name">{t('.event_missing')}</div>
+              <div className="event-listing__description">{t('.submit_here')}</div>
+              <div className="event-listing__details"></div>
+            </div>
+          </Link>
         </Listing>
       </React.Fragment>
     );

@@ -25,7 +25,8 @@ export default class Header extends React.Component {
           <nav className="footer__category">
             <div className="footer__headline">{t('.quick_navigation')}</div>
             <NavLink to="/">{t('menu.home')}</NavLink><br/>
-            <NavLink to="/imprint">{t('menu.imprint')}</NavLink>
+            <NavLink to="/imprint">{t('menu.imprint')}</NavLink><br/>
+            <NavLink to="/events/submit">{t('menu.submit')}</NavLink>
             <div className="footer__locales">
               {['en', 'de'].map(e => <a className={I18n.locale == e ? 'active' : ''} key={e} onClick={() => I18n.locale = e}>{e}</a>)}
             </div>

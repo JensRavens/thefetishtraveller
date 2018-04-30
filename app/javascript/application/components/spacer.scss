@@ -11,6 +11,10 @@
     background-color: $color-background-dark;
   }
 
+  &--no-margin {
+    margin-bottom: 0;
+  }
+
   &--small {
     margin-bottom: 60px;
   }
