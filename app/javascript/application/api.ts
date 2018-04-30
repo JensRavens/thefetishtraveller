@@ -19,7 +19,7 @@ export interface APIEvent {
   name: string;
   endAt: Date;
   startAt: Date;
-  location: APILocation;
+  locationSlug: string;
   abstract?: string;
   description?: string;
   website?: string;

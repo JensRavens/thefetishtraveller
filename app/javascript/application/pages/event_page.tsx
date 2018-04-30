@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {EventWithLocation, canEdit, joinLocation} from '../models/event';
+import {Event, EventWithLocation, canEdit, joinLocation} from '../models/event';
 import {Like} from '../models/like';
 import {locationDescription, extractCoordinates} from '../models/location';
 import {DB, DBAction, writeDB, State} from '../state';
@@ -13,8 +13,10 @@ import Listing from '../components/listing';
 import {Meta} from '../components/meta';
 import {EventListing} from '../components/event_listing';
 import {Map} from '../components/map';
+import Editable from '../components/editable';
 import {dateRange} from '../util';
 import {scoped} from '../i18n';
+import {syncer} from '../api-syncer';
 
 interface Props {
   event?: EventWithLocation;
@@ -24,10 +26,15 @@ interface Props {
   otherEvents: EventWithLocation[];
 }
 
+interface EventState {
+  changes: Partial<Event>;
+  editing: boolean;
+}
+
 const likes = writeDB.table('likes');
 
 function format(text: string): any {
-  return text.split("\n").map(e => <p>{e}</p>);
+  return text.split("\n").map((e, i) => <p key={i}>{e}</p>);
 }
 
 function link(url?: string) {
@@ -36,27 +43,40 @@ function link(url?: string) {
 
 const t = scoped('event');
 
-class EventPage extends React.Component<Props> {
+class EventPage extends React.Component<Props, EventState> {
+  state = {changes: {}, editing: false};
+
+  constructor(props){
+    super(props);
+    this.onChange = this.onChange.bind(this);
+  }
+
   render() {
     let {event, like, editable, otherEvents} = this.props;
     if(!event) { return null };
     const hero = event.hero && event.hero.big;
     const coordinates = extractCoordinates(event.location);
+    const hasChanges = Object.keys(this.state.changes).length > 0;
+    const onChange = this.onChange;
+    const editing = this.state.editing;
     const meta = [
-      [t('.date'), dateRange(event.startAt, event.endAt)],
-      [t('.location'), locationDescription(event.location)],
-      [t('.website'), link(event.website)],
-      [t('.organizer'), event.organizerName],
-      [t('.tickets'), link(event.ticketLink)]
+      [t('.date'), true, dateRange(event.startAt, event.endAt)],
+      [t('.location'), true, <Editable placeholder={t('.location')} editable={editing} value={locationDescription(event.location)} editValue={event.location.slug} onChange={onChange('locationSlug')}/>],
+      [t('.website'), event.website || editing, <Editable placeholder={t('.website')} editable={editing} value={link(event.website)} editValue={event.website} onChange={onChange('website')}/>],
+      [t('.organizer'), event.organizerName || editing, <Editable placeholder={t('.organizer')} editable={editing} value={event.organizerName} onChange={onChange('organizerName')}/>],
+      [t('.tickets'), event.ticketLink || editing, <Editable placeholder={t('.tickets')} editable={editing} value={link(event.ticketLink)} onChange={onChange('ticketLink')}/>],
+      [t('.slug'), editing, <Editable placeholder={t('.slug')} editable={editing} value={event.slug} onChange={onChange('slug')}/>],
     ].filter(e => e[1]);
     return (
       <React.Fragment>
         <div className="spacer spacer--for-navbar"/>
         <Meta title={event.name}/>
         <Container variant="small">
-          <h2>{event.name}</h2>
-          {event.abstract && (<React.Fragment>
-            <h4>{event.abstract}</h4>
+          {editable && !editing && <div className="button" onClick={() => this.setState({editing: true})}>{t('edit')}</div>}
+          {editing && <div className="button" onClick={() => this.submit()}>{t('save')}</div>}
+          <h2><Editable placeholder="Name" editable={editing} value={event.name} onChange={onChange('name')}/></h2>
+          {(event.abstract || editing) && (<React.Fragment>
+            <h4><Editable placeholder={t('.abstract')} editable={editing} value={event.abstract} onChange={onChange('abstract')}/></h4>
             <div className="spacer--small"/>
           </React.Fragment>)}
           {hero && <p><img src={hero}/></p>}
@@ -65,7 +85,7 @@ class EventPage extends React.Component<Props> {
               meta.map(e => (
                 <p key={e[0] as string}>
                   <strong>{e[0]}</strong><br/>
-                  {e[1]}
+                  {e[2]}
                 </p>
               ))
             }
@@ -86,6 +106,32 @@ class EventPage extends React.Component<Props> {
         )}
       </React.Fragment>
     )
+  }
+
+  private onChange<T extends keyof EventWithLocation>(field: T) {
+    return (value: string) => this.update({[field]: value});
+  }
+
+  private update(values: Partial<Event>) {
+    const changes = {...values};
+    const event = this.props.event!;
+    Object.keys(changes).forEach(key => {
+      if(changes[key] == event[key]) {
+        delete(changes[key]);
+      }
+    });
+    this.setState({changes});
+  }
+
+  private submit() {
+    const {changes} = this.state;
+    if(Object.keys(changes).length === 0) { 
+      this.setState({editing: false});
+      return;
+    }
+    syncer.updateEvent(this.props.event!.id, changes).then(() => {
+      this.setState({changes: {}, editing: false});
+    });
   }
 }
 

@@ -2,6 +2,7 @@ import * as React from 'react';
 
 interface Props {
   value?: any | null;
+  editValue?: string;
   onChange?: (string) => void;  
   editable?: boolean;
   placeholder?: string;
@@ -21,10 +22,10 @@ export default class Editable extends React.Component<Props, State> {
   }
 
   render() {
-    const {value, onChange, editable, placeholder} = this.props;
+    const {value, editValue, onChange, editable, placeholder} = this.props;
     if(!editable) { return value; }
     return (
-      <span className="editable" data-placeholder={placeholder} contentEditable onInput={this.onInput} onFocus={() => this.setState({editing: true})} onBlur={() => this.setState({editing: false})} dangerouslySetInnerHTML={{__html: (value || '').toString()}}></span>
+      <span className="editable" data-placeholder={placeholder} contentEditable onInput={this.onInput} onFocus={() => this.setState({editing: true})} onBlur={() => this.setState({editing: false})} dangerouslySetInnerHTML={{__html: ((editable && editValue) || value || '').toString()}}></span>
     )
   }
 
