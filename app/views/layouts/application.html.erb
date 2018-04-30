@@ -17,7 +17,7 @@
     <link rel="manifest" href="/manifest.json" />
     <% if @event %>
       <%- 
-        url = [ENV['HOST'], 'events', @event.slug].join('/') 
+        url = ['https://', ENV['HOST'], 'events', @event.slug].join('/') 
         title = [@event.name, 'The Fetish Traveller'].join(' | ')
       %>
       <title><%= title %></title>
@@ -28,7 +28,7 @@
       <meta property="og:description" content="<%= @event.abstract %>"/>
       <meta property="og:url" content="<%= url %>"/>
       <% if @event.hero.attached? %>
-        <meta property="og:image" content="<%= ENV['HOST'].to_s + url_for(@event.hero.variant(resize: '512x512>')) %>"/>
+        <meta property="og:image" content="https://<%= ENV['HOST'].to_s + url_for(@event.hero.variant(resize: '512x512>')) %>"/>
       <% end %>
       <link rel="canonical" href="<%= url %>"/>
     <% else %>
