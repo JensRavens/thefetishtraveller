@@ -15,7 +15,21 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="/manifest.json" />
-    <title>The Fetish Traveller</title>
+    <% if @event %>
+      <%- url = [ENV['HOST'], 'events', @event.slug].join('/') %>
+      <title><%= @event.name %> | The Fetish Traveller</title>
+      <meta name="description" content="<%= @event.abstract %>"/>
+      <meta property="og:type" content="website"/>
+      <meta property="og:title" content="<%= @event.name %>"/>
+      <meta property="og:description" content="<%= @event.abstract %>"/>
+      <meta property="og:url" content="<%= url %>"/>
+      <% if @event.hero.attached? %>
+        <meta property="og:image" content="<%= url_for(@event.hero.variant(resize: '512x512>')) %>"/>
+      <% end %>
+      <link rel="canonical" href="<%= url %>"/>
+    <% else %>
+      <title>The Fetish Traveller</title>
+    <% end %>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
     <link rel="shortcut icon" href="https://nerdgeschoss.de/wp-content/themes/codedesign/image/favicon.png">
     <%= stylesheet_pack_tag 'application' %>
