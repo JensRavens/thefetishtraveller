@@ -18,6 +18,10 @@ class User < ApplicationRecord
     email.blank?
   end
 
+  def admin?
+    roles.include? "admin"
+  end
+
   def level
     guest? ? "guest" : "user"
   end

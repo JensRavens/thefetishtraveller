@@ -5,6 +5,7 @@ import {t} from '../i18n';
 
 export interface Location extends Syncable {
   id: string;
+  slug: string;
   name: string;
   city?: string;
   address?: string;

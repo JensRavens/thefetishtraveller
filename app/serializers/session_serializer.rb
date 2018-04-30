@@ -6,14 +6,14 @@ class SessionSerializer < ApplicationSerializer
   end
 
   def liked_event_ids
-    object.user.events.map(&:to_param)
+    object.user.event_ids
   end
 
   def owned_event_ids
-    object.user.owned_events.map(&:to_param)
+    object.user.owned_event_ids
   end
 
   def owned_location_ids
-    object.user.owned_locations.map(&:to_param)
+    object.user.owned_location_ids
   end
 end

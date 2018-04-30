@@ -5,6 +5,7 @@ import {DB, State} from '../state';
 import {Location} from '../models/location';
 import {LocationListing} from '../components/location_listing';
 import Container from '../components/container';
+import Hero from '../components/hero';
 
 interface Props {
   locations: Location[];
@@ -20,10 +21,14 @@ class LocationSearch extends React.Component<Props> {
   render() {
     const {locations} = this.props;
     return (
-      <Container>
-        <h1>Locations</h1>
-        {locations.map(e => <LocationListing key={e.id} location={e} />)}
-      </Container>
+      <React.Fragment>
+        <Hero>
+          <h1>Locations</h1>
+        </Hero>
+        <Container>
+          {locations.map(e => <LocationListing key={e.id} location={e} />)}
+        </Container>
+      </React.Fragment>
     );
   }
 }

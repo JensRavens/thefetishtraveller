@@ -21,7 +21,7 @@ module API
       end
 
       def authorize!(resource)
-        if resource.owner_ids.include? current_user&.id
+        if current_user&.admin? || resource.owner_ids.include?(current_user&.id)
           resource
         else
           raise NotAuthorized
