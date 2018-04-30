@@ -17,7 +17,6 @@ import {dateRange} from '../util';
 import {scoped} from '../i18n';
 
 interface Props {
-  id: string;
   event?: EventWithLocation;
   like?: Like;
   editable: boolean;
@@ -38,14 +37,6 @@ function link(url?: string) {
 const t = scoped('event');
 
 class EventPage extends React.Component<Props> {
-  like() {
-    this.props.dispatch(likes.insert({eventId: this.props.id}));
-  }
-
-  unlike(like: Like) {
-    this.props.dispatch(likes.delete(like));
-  }
-
   render() {
     let {event, like, editable, otherEvents} = this.props;
     if(!event) { return null };
@@ -99,13 +90,14 @@ class EventPage extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: State, props) => {
-  const id: string = props.match.params.id;
+  const slug: string = props.match.params.id;
   const db = new DB(state);
-  let event: EventWithLocation | null = joinLocation([id], state)[0];
-  let otherEvents: EventWithLocation[] = joinLocation(db.table('events').where({locationId: event.locationId}).filter(e => e.id != id), state);
+  const events = db.table('events');
+  let event: EventWithLocation | null = joinLocation([events.where({slug})[0]], state)[0];
+  let otherEvents: EventWithLocation[] = joinLocation(events.where({locationId: event.locationId}).filter(e => e.id != event!.id), state);
   const editable = canEdit(event, db.get('session'));
-  const like = db.table('likes').where({eventId: id})[0]
-  return {event, id, like, editable, otherEvents};
+  const like = db.table('likes').where({eventId: event.id})[0]
+  return {event, like, editable, otherEvents};
 }
 
 export default connect(mapStateToProps)(EventPage)
