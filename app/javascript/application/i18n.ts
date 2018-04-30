@@ -43,7 +43,7 @@ export class Translator {
    */
   get locale(): Locale {
     return (
-      this._locale || ['en', 'de'].filter(e => navigator.language.startsWith(e))[0] || 'en'
+      this._locale || localStorage.getItem('locale') || ['en', 'de'].filter(e => !!e && navigator.language.startsWith(e))[0] || 'en'
     );
   }
 
@@ -53,6 +53,7 @@ export class Translator {
    */
   set locale(locale: Locale) {
     this.setLocale(locale);
+    localStorage.setItem('locale', locale);
   }
 
   /**
