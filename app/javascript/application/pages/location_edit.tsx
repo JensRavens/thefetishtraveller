@@ -11,7 +11,6 @@ import {dateRange} from '../util';
 import {syncer} from '../api-syncer';
 
 interface Props {
-  id: string;
   location?: Location;
   dispatch: (DBAction) => void;
 }
@@ -79,14 +78,14 @@ class LocationEdit extends React.Component<Props, State> {
   }
 
   private submit() {
-    syncer.updateLocation(this.props.id, this.state.changes).then(() => this.setState({changes: {}}));
+    syncer.updateLocation(this.props.location!.id, this.state.changes).then(() => this.setState({changes: {}}));
   }
 }
 
 const mapStateToProps = (state, props) => {
-  const id = props.match.params.id;
+  const slug = props.match.params.id;
   const db = new DB(state);
-  return {location: db.table('locations').where({slug: id})[0], id};
+  return {location: db.table('locations').where({slug})[0]};
 }
 
 export default connect(mapStateToProps)(LocationEdit)
