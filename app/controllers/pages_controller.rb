@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def show
-    segments = params[:path].to_s.split('/')
-    @event = Event.published.find_by(slug: segments.second) if segments.size > 1 && segments.first == 'events'
+    @path_segments = params[:path].to_s.split('/').last(2)
+    @event = Event.published.find_by(slug: @path_segments.second) if @path_segments.size > 1 && @path_segments.first == 'events'
   end
 end
