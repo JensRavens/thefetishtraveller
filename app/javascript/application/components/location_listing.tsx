@@ -13,7 +13,7 @@ export class LocationListing extends React.Component<Props> {
   render() {
     const {location} = this.props;
     return (
-      <Link to={`/locations/${location.id}/edit`}>
+      <Link to={`/locations/${location.slug}`}>
         <Card>
           <div>{location.name}</div>
           <div>{location.city}, {location.countryCode}</div>

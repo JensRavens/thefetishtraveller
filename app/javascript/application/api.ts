@@ -3,6 +3,7 @@ import {Image} from './models/image';
 
 export interface APILocation {
   id: string;
+  slug: string;
   name: string;
   address?: string;
   lat?: number;
@@ -14,6 +15,7 @@ export interface APILocation {
 
 export interface APIEvent {
   id: string;
+  slug: string;
   name: string;
   endAt: Date;
   startAt: Date;
@@ -86,7 +88,7 @@ export class API {
     return await this.get(`/locations/${id}`);
   }
 
-  async updateLocation(location: {id: string} & Partial<APILocation>) {
+  async updateLocation(location: {id: string} & Partial<APILocation>): Promise<APILocation> {
     return await this.patch(`/locations/${location.id}`, location);
   }
 

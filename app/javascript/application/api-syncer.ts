@@ -27,6 +27,11 @@ export class APISyncer {
     store.dispatch(writeDB.set('session', session));
   }
 
+  async updateLocation(id: string, changes: Partial<APILocation>) {
+    const location = await this.api.updateLocation({...changes, id});
+    store.dispatch(writeDB.table('locations').update(id, location));
+  }
+
   private subscribe() {
     store.subscribe(() => {
       const state = store.getState() as State;
@@ -63,13 +68,19 @@ export class APISyncer {
   private async refreshEvents() {
     const events = writeDB.table('events');
     const apiEvents = await this.api.getEvents();
+    const syncedIds = apiEvents.map(e => e.id);
+    const removedEvents = store.getState().data.events.ids.filter(id => !syncedIds.includes(id));
     store.dispatch(events.insert(this.annotate(apiEvents)));
+    store.dispatch(events.delete(removedEvents));
   }
 
   private async refreshLocations() {
     const locations = writeDB.table('locations');
     const apiLocations = await this.api.getLocations();
-    store.dispatch(locations.insert(this.annotate(apiLocations)))
+    const syncedIds = apiLocations.map(e => e.id);
+    const removedLocations = store.getState().data.locations.ids.filter(id => !syncedIds.includes(id));
+    store.dispatch(locations.insert(this.annotate(apiLocations)));
+    store.dispatch(locations.delete(removedLocations));
   }
 
   private updateEvents(events: Event[]) {

@@ -9,6 +9,7 @@ import {Image} from './image';
 
 export interface Event extends Syncable {
   id: string;
+  slug: string;
   name: string;
   endAt: Date;
   startAt: Date;

@@ -47,7 +47,7 @@ class Application extends React.Component<Props> {
               <Route path="/calendar" exact component={Calendar}/>
               <Route path="/locations" exact component={LocationSearch}/>
               <Route path="/locations/new" exact component={LocationCreation}/>
-              <Route path="/locations/:id/edit" exact component={LocationEdit}/>
+              <Route path="/locations/:id" exact component={LocationEdit}/>
               <Route path="/imprint" exact component={Imprint}/>
             </Switch>
           </main>

@@ -1,0 +1,11 @@
+.editable {
+  display: inline-block;
+  outline: none;
+  cursor: text;
+
+  &:empty::before {
+    display: inline-block;
+    content: attr(data-placeholder);
+    color: $color-text-label;
+  }
+}

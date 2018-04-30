@@ -27,7 +27,7 @@ module API
       end
 
       def location_params
-        params.permit(:name, :city, :address, :lat, :lon, :zip, :country_code)
+        params.permit(:name, :city, :address, :lat, :lon, :zip, :country_code, :slug)
       end
     end
   end
