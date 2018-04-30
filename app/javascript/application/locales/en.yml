@@ -4,6 +4,9 @@ event:
   location: location
   website: website
   organizer: organizer
+  abstract: Abstract
+  tickets: Tickets
+  slug: Slug
   other_events_in: 'Other Events in :location:'
   search_place_holder: Search for name, country, city or category...
   submit_here: Submit your event here!
@@ -43,3 +46,5 @@ footer:
   about_us: about us
   about_us_text: ' '
   quick_navigation: Quick Navigation
+edit: Edit
+save: Save

@@ -4,10 +4,13 @@ event:
   location: Ort
   website: Webseite
   organizer: Veranstaler
+  abstract: Kurzbeschreibung
   other_events_in: 'Andere Veranstaltungen in :location:'
   search_place_holder: Suche nach Name, Land oder Kategorie...
   submit_here: Jetzt Veranstaltung eintragen!
   event_missing: Dein Lieblingsevent fehlt noch?
+  tickets: Tickets
+  slug: Slug
   category: 
     fetish: Fetisch
     csd: CSD
@@ -43,3 +46,5 @@ footer:
   about_us: Über uns
   about_us_text: ' '
   quick_navigation: Schnellnavigation
+edit: Editieren
+save: Speichern
