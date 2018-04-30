@@ -11,6 +11,7 @@ event:
     csd: CSD
     election: Wahl
     festival: Festival
+    party: Party
 location:
   countries:
     de: Deutschland
