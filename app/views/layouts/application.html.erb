@@ -15,20 +15,20 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="/manifest.json" />
-    <!-- 
-      params: <%= @path_segments.inspect %>
-      -->
     <% if @event %>
-      <%- url = [ENV['HOST'], 'events', @event.slug].join('/') %>
-      <title><%= @event.name %> | The Fetish Traveller</title>
+      <%- 
+        url = [ENV['HOST'], 'events', @event.slug].join('/') 
+        title = [@event.name, 'The Fetish Traveller'].join(' | ')
+      %>
+      <title><%= title %></title>
       <meta name="description" content="<%= @event.abstract %>"/>
       <meta property="og:type" content="website"/>
       <meta property="og:site_name" content="The Fetish Traveller"/>
-      <meta property="og:title" content="<%= @event.name %>"/>
+      <meta property="og:title" content="<%= title %>"/>
       <meta property="og:description" content="<%= @event.abstract %>"/>
       <meta property="og:url" content="<%= url %>"/>
       <% if @event.hero.attached? %>
-        <meta property="og:image" content="<%= url_for(@event.hero.variant(resize: '512x512>')) %>"/>
+        <meta property="og:image" content="<%= ENV['HOST'].to_s + url_for(@event.hero.variant(resize: '512x512>')) %>"/>
       <% end %>
       <link rel="canonical" href="<%= url %>"/>
     <% else %>
