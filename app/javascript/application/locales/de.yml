@@ -6,6 +6,8 @@ event:
   organizer: Veranstaler
   other_events_in: 'Andere Veranstaltungen in :location:'
   search_place_holder: Suche nach Name, Land oder Kategorie...
+  submit_here: Jetzt Veranstaltung eintragen!
+  event_missing: Dein Lieblingsevent fehlt noch?
   category: 
     fetish: Fetisch
     csd: CSD
@@ -30,6 +32,7 @@ menu:
   your_calendar: Dein Kalender
   home: Startseite
   imprint: Impressum
+  submit: Veranstaltung eintragen
 newsletter:
   subscribe: Anmelden
   cto: Jetzt für den Newsletter anmelden

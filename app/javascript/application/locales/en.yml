@@ -6,6 +6,8 @@ event:
   organizer: organizer
   other_events_in: 'Other Events in :location:'
   search_place_holder: Search for name, country, city or category...
+  submit_here: Submit your event here!
+  event_missing: Your favorite event is missing?
   category: 
     fetish: Fetish
     csd: Pride Parade
@@ -30,6 +32,7 @@ menu:
   your_calendar: Your Calendar
   home: Home
   imprint: Imprint
+  submit: Submit Events
 newsletter:
   subscribe: subscribe
   cto: Subscribe now to our newsletter
