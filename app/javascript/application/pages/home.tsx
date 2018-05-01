@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 import {DB, State} from '../state';
 import {EventWithLocation, joinLocation, chronological, isCurrent} from '../models/event';
@@ -36,7 +37,14 @@ class Home extends React.Component<Props> {
       <React.Fragment>
         <Hero backgroundImage={backgroundImage} style="expanded">
           <Container>
-            <h1>{t('.claim')}</h1>
+            <h1 className="with-dash">{t('.claim')}</h1>
+            <div className="hero__addon">
+              <h5>{t('.intro')}</h5>
+              <div className="spacer spacer--tiny"/>
+              <p className="text-center">
+                <Link to="/events" className="button">{t('.explore_events_now')}</Link>
+              </p>
+            </div>
           </Container>
         </Hero>
         <div className="spacer"/>
@@ -44,6 +52,9 @@ class Home extends React.Component<Props> {
         <Listing singleLine={true}>
           {events.map(e => <EventListing key={e.id} event={e} liked={isLiked(e, likes)}/>)}
         </Listing>
+        <div className="button-line button-line--dark">
+          <Link to="/events" className="button">{t('.find_more_events')}</Link>
+        </div>
         <Signup/>
       </React.Fragment>
     );
