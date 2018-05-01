@@ -14,6 +14,7 @@
     <% end %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#D0021B">
     <link rel="manifest" href="/manifest.json" />
     <% if @event %>
       <%- 
@@ -38,10 +39,10 @@
       <meta property="og:site_name" content="The Fetish Traveller"/>
       <meta property="og:title" content="The Fetish Traveller"/>
       <meta property="og:description" content="Find the best fetish events worldwide."/>
-      <meta property="og:image" content="https://nerdgeschoss.de/wp-content/themes/codedesign/image/favicon.png"/>
+      <meta property="og:image" content="https://<%= ENV['HOST'] %>/favicon_full.png"/>
     <% end %>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
-    <link rel="shortcut icon" href="https://nerdgeschoss.de/wp-content/themes/codedesign/image/favicon.png">
+    <link rel="shortcut icon" href="/favicon.png">
     <%= stylesheet_pack_tag 'application' %>
     <% if Rails.env.production? %>
       <script type='text/javascript'>
