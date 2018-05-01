@@ -24,6 +24,7 @@ class Header extends React.Component<Props, MenuState> {
   render() {
     const {loggedIn, hasLikes} = this.props;
     const {expanded} = this.state;
+    const closeMenu = () => this.setState({expanded: false});
     return (
       <header className="header">
         <nav className={`main-menu ${expanded && 'main-menu--expanded'}`}>
@@ -32,14 +33,14 @@ class Header extends React.Component<Props, MenuState> {
           </div>
           <nav className="main-menu__mobile">
             <div className="main-menu__category">
-              <NavLink to="/events">{t('.events')}</NavLink>
-              {loggedIn && <NavLink to="/locations">Locations</NavLink>}
+              <NavLink onClick={closeMenu}  to="/events">{t('.events')}</NavLink>
+              {loggedIn && <NavLink onClick={closeMenu}  to="/locations">Locations</NavLink>}
             </div>
             <div className="main-menu__category">
-              {hasLikes && <NavLink to="/calendar">{t('.your_calendar')}</NavLink>}
+              {hasLikes && <NavLink onClick={closeMenu}  to="/calendar">{t('.your_calendar')}</NavLink>}
             </div>
           </nav>
-          <div className="main-menu__switch" onClick={() => this.setState({expanded: !expanded})}/>
+          <div className="main-menu__switch" onClick={() => this.setState({expanded: !expanded})}><div className="main-menu__switch-icon"/></div>
           <div className="main-menu__category main-menu__category--additional">
             <NavLink to="/events">{t('.events')}</NavLink>
             {loggedIn && <NavLink to="/locations">Locations</NavLink>}
