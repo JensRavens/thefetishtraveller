@@ -5,6 +5,8 @@ import {Provider} from 'react-redux';
 import {store} from './state';
 import {syncer} from './api-syncer';
 
+import './registerServiceworker';
+
 require('./style');
 
 document.addEventListener('DOMContentLoaded', () => {

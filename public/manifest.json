@@ -1,5 +1,20 @@
 {
   "name": "The Fetish Traveller",
   "short_name": "TFT",
-  "start_url": "/"
+  "start_url": "/",
+  "background_color": "#191D24",
+  "theme_color": "#D0021B",
+  "display": "minimal-ui",
+  "icons": [
+    {
+      "src": "/favicon.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon_full.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
 }
