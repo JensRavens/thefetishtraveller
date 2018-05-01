@@ -16,6 +16,7 @@
     "redux": "^3.7.2",
     "redux-localstorage": "^0.4.1",
     "redux-thunk": "^2.2.0",
+    "resolve-url-loader": "^2.3.0",
     "ts-loader": "3.5.0",
     "typescript": "^2.8.1",
     "yaml-loader": "^0.5.0"

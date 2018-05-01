@@ -1,3 +1,15 @@
+@font-face {
+	font-family: 'Bebas Neue';
+	font-weight: bold;
+	src: url('../assets/bebas_neue_bold.otf') format('opentype');
+}
+
+@font-face {
+	font-family: 'Uni Sans';
+	font-weight: bold;
+	src: url('../assets/uni_sans_heavy.otf') format('opentype');
+}
+
 body {
 	font-family: $font-text;
 	-webkit-text-size-adjust: 100%;
