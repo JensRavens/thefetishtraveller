@@ -18,4 +18,5 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(document.createElement('div')),
   )
   syncer.refresh();
+  (window as any).prerenderReady = true;
 })
