@@ -21,6 +21,7 @@ import Header from '../components/header';
 import Footer from '../components/footer';
 import {I18n} from '../i18n';
 import ScrollToTop from '../components/scroll_to_top';
+import ErrorCatcher from '../components/error_catcher';
 
 interface Props {
   stateLoaded: boolean;
@@ -35,27 +36,31 @@ class Application extends React.Component<Props> {
     if(!this.props.stateLoaded) { return null; }
     return (
       <BrowserRouter>
-        <div className="application">
-          <Header/>
-          <main>
-            <ScrollToTop>
-              <Switch>
-                <Route path="/" exact component={Home}/>
-                <Route path="/login" exact component={Login}/>
-                <Route path="/events" exact component={EventSearch}/>
-                <Route path="/events/submit" exact component={EventSubmit}/>
-                <Route path="/events/:id" exact component={EventPage}/>
-                <Route path="/events/:id/edit" exact component={EventEdit}/>
-                <Route path="/calendar" exact component={Calendar}/>
-                <Route path="/locations" exact component={LocationSearch}/>
-                <Route path="/locations/new" exact component={LocationCreation}/>
-                <Route path="/locations/:id" exact component={LocationEdit}/>
-                <Route path="/imprint" exact component={Imprint}/>
-              </Switch>
-            </ScrollToTop>
-          </main>
-          <Footer/>
-        </div>
+        <ErrorCatcher>
+          <div className="application">
+            <Header/>
+            <main>
+              <ScrollToTop>
+                <ErrorCatcher>
+                  <Switch>
+                    <Route path="/" exact component={Home}/>
+                    <Route path="/login" exact component={Login}/>
+                    <Route path="/events" exact component={EventSearch}/>
+                    <Route path="/events/submit" exact component={EventSubmit}/>
+                    <Route path="/events/:id" exact component={EventPage}/>
+                    <Route path="/events/:id/edit" exact component={EventEdit}/>
+                    <Route path="/calendar" exact component={Calendar}/>
+                    <Route path="/locations" exact component={LocationSearch}/>
+                    <Route path="/locations/new" exact component={LocationCreation}/>
+                    <Route path="/locations/:id" exact component={LocationEdit}/>
+                    <Route path="/imprint" exact component={Imprint}/>
+                  </Switch>
+                </ErrorCatcher>
+              </ScrollToTop>
+            </main>
+            <Footer/>
+          </div>
+        </ErrorCatcher>
       </BrowserRouter>
     );
   }
