@@ -18,7 +18,7 @@ interface State {
 class ErrorCatcher extends React.Component<Props, State> {
   state = { hasError: false };
 
-  private airbrake? = !process.env.AIRBRAKE_PROJECT_ID ? new AirbrakeClient({
+  private airbrake? = process.env.AIRBRAKE_PROJECT_ID ? new AirbrakeClient({
     projectId: process.env.AIRBRAKE_PROJECT_ID,
     projectKey: process.env.AIRBRAKE_API_KEY
   }) : undefined;
