@@ -2,6 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
+    <script> window.prerenderReady = false; </script>
     <% if Rails.env.production? %>
       <script async src="https://www.googletagmanager.com/gtag/js?id=UA-118384836-1"></script>
       <script>
@@ -21,8 +22,8 @@
     <meta name="theme-color" content="#D0021B">
     <link rel="manifest" href="/manifest.json" />
     <% if @event %>
-      <%- 
-        url = ['https://', ENV['HOST'], 'events', @event.slug].join('/') 
+      <%-
+        url = ['https://', ENV['HOST'], 'events', @event.slug].join('/')
         title = [@event.name, 'The Fetish Traveller'].join(' | ')
       %>
       <title><%= title %></title>
