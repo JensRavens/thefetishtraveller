@@ -43,6 +43,7 @@ gem "faker"
 gem "newrelic_rpm"
 gem "airbrake"
 gem "aws-sdk-s3"
+gem "prerender_rails"
 
 group :development, :test do
   gem "rspec-rails"
