@@ -30,5 +30,6 @@ module Thefetishtraveller
     config.action_mailer.default_url_options = { host: ENV["HOST"] } if ENV["HOST"].present?
     config.active_job.queue_adapter = :sidekiq
     config.active_storage.variant_processor = :vips
+    config.middleware.use Rack::Prerender, prerender_token: ENV["PRERENDER_TOKEN"] if ENV["PRERENDER_TOKEN"].present?
   end
 end
