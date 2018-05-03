@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 import {DB, State} from '../state';
 import {scoped} from '../i18n';
-import {EventWithLocation, joinLocation, chronological, months, inMonth, matchesTerm} from '../models/event';
+import {EventWithLocation, joinLocation, chronological, months, inMonth, matchesTerm, isRoot, joinSubevents} from '../models/event';
 import {Like, isLiked} from '../models/like';
 import {EventListing} from '../components/event_listing';
 import Container from '../components/container';
@@ -26,7 +26,7 @@ interface SearchState {
 
 const mapStateToProps: (state: State) => Props = (state) => {
   return {
-    events: joinLocation(new DB(state).table('events').all.sort(chronological), state),
+    events: joinLocation(joinSubevents(new DB(state).table('events').all.sort(chronological), state), state),
     likes: new DB(state).table('likes').all
   }
 }
@@ -44,8 +44,10 @@ class EventSearch extends React.Component<Props, SearchState> {
     if(selectedMonth) {
       events = events.filter(e => inMonth(e, selectedMonth));
     }
-    if(term) {
+    if(term && term.length) {
       events = events.filter(e => matchesTerm(e, term));
+    } else {
+      events = events.filter(isRoot);
     }
     return (
       <React.Fragment>

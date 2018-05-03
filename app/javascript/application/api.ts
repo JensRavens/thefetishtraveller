@@ -15,6 +15,8 @@ export interface APILocation {
 
 export interface APIEvent {
   id: string;
+  eventId?: string;
+  series?: string;
   slug: string;
   name: string;
   endAt: Date;

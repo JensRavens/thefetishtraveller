@@ -16,8 +16,12 @@ class Event < ApplicationRecord
   attribute :ticket_link
   attribute :abstract
   attribute :description
+  attribute :series
 
   scope :published, -> { where('events.publish_at <= NOW()') }
+
+  has_many :events, dependent: :destroy
+  belongs_to :event, required: false
 
   has_and_belongs_to_many :owners, class_name: "User"
 
