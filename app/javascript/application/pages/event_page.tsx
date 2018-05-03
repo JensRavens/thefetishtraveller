@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import {Event, EventWithLocation, canEdit, joinLocation} from '../models/event';
 import {Like} from '../models/like';
@@ -17,6 +18,7 @@ import Editable from '../components/editable';
 import {dateRange} from '../util';
 import {scoped} from '../i18n';
 import {syncer} from '../api-syncer';
+import {guid} from '../util';
 
 interface Props {
   event?: EventWithLocation;
@@ -24,6 +26,8 @@ interface Props {
   editable: boolean;
   dispatch: (DBAction) => void;
   otherEvents: EventWithLocation[];
+  newEvent: boolean;
+  history: any;
 }
 
 interface EventState {
@@ -44,24 +48,26 @@ function link(url?: string) {
 const t = scoped('event');
 
 class EventPage extends React.Component<Props, EventState> {
-  state = {changes: {}, editing: false};
-
   constructor(props){
     super(props);
+    this.state = {changes: {}, editing: props.newEvent};
     this.onChange = this.onChange.bind(this);
   }
 
   render() {
     let {event, like, editable, otherEvents} = this.props;
     if(!event) { return null };
+    event = Object.assign({}, event, this.state.changes);
     const hero = event.hero && event.hero.big;
     const coordinates = extractCoordinates(event.location);
     const hasChanges = Object.keys(this.state.changes).length > 0;
     const onChange = this.onChange;
     const editing = this.state.editing;
+    (window as any).event = event;
+    console.log(event);
     const meta = [
-      [t('.date'), true, dateRange(event.startAt, event.endAt)],
-      [t('.location'), true, <Editable placeholder={t('.location')} editable={editing} value={locationDescription(event.location)} editValue={event.location.slug} onChange={onChange('locationSlug')}/>],
+      [t('.date'), true, editing ? [<Editable key="startat" placeholder={t('.startAt')} value={event.startAt && event.startAt.toISOString()} onBlur={onChange('startAt', 'date')}/>,<Editable key="endat" placeholder={t('.endAt')} value={event.endAt && event.endAt.toISOString()} onBlur={onChange('endAt', 'date')}/>] : dateRange(event.startAt, event.endAt)],
+      [t('.location'), true, <Editable placeholder={t('.location')} editable={editing} value={locationDescription(event.location)} editValue={event.locationSlug || event.location.slug} onChange={onChange('locationSlug')}/>],
       [t('.website'), event.website || editing, <Editable placeholder={t('.website')} editable={editing} value={link(event.website)} editValue={event.website} onChange={onChange('website')}/>],
       [t('.organizer'), event.organizerName || editing, <Editable placeholder={t('.organizer')} editable={editing} value={event.organizerName} onChange={onChange('organizerName')}/>],
       [t('.tickets'), event.ticketLink || editing, <Editable placeholder={t('.tickets')} editable={editing} value={link(event.ticketLink)} onChange={onChange('ticketLink')}/>],
@@ -108,12 +114,20 @@ class EventPage extends React.Component<Props, EventState> {
     )
   }
 
-  private onChange<T extends keyof EventWithLocation>(field: T) {
-    return (value: string) => this.update({[field]: value});
+  private onChange<T extends keyof EventWithLocation>(field: T, type: string = 'string') {
+    return (value: string) => {
+      console.log('changing', field, 'to', value);
+      let convertedValue: any = value;
+      if(type === 'date') {
+        const timestamp = Date.parse(convertedValue);
+        convertedValue = isNaN(timestamp) ? null : new Date(timestamp);
+      }
+      this.update({[field]: convertedValue});
+    }
   }
 
   private update(values: Partial<Event>) {
-    const changes = {...values};
+    const changes = {...this.state.changes, ...values};
     const event = this.props.event!;
     Object.keys(changes).forEach(key => {
       if(changes[key] == event[key]) {
@@ -129,9 +143,34 @@ class EventPage extends React.Component<Props, EventState> {
       this.setState({editing: false});
       return;
     }
-    syncer.updateEvent(this.props.event!.id, changes).then(() => {
-      this.setState({changes: {}, editing: false});
-    });
+    console.log('submitting', this.props.newEvent, changes);
+    if(this.props.newEvent) {
+      syncer.createEvent(this.props.event!.id, changes).then((event) => {
+        this.props.history.push(`/events/${event.slug}`);
+      });
+    } else {
+      syncer.updateEvent(this.props.event!.id, changes).then(() => {
+        this.setState({changes: {}, editing: false});
+      });
+    }
+  }
+}
+
+function buildEvent(): EventWithLocation {
+  return {
+    id: guid(),
+    slug: '',
+    name: 'New Event',
+    startAt: new Date(),
+    endAt: new Date(),
+    locationId: '',
+    locationSlug: 'change this',
+    location: {
+      id: '',
+      slug: '',
+      name: 'Change this',
+      countryCode: 'de'
+    }
   }
 }
 
@@ -139,11 +178,12 @@ const mapStateToProps = (state: State, props) => {
   const slug: string = props.match.params.id;
   const db = new DB(state);
   const events = db.table('events');
-  let event: EventWithLocation | null = joinLocation([events.where({slug})[0]], state)[0];
-  let otherEvents: EventWithLocation[] = joinLocation(events.where({locationId: event.locationId}).filter(e => e.id != event!.id), state);
-  const editable = canEdit(event, db.get('session'));
-  const like = db.table('likes').where({eventId: event.id})[0]
-  return {event, like, editable, otherEvents};
+  const newEvent = slug === 'new';
+  let event: EventWithLocation | undefined = newEvent ? buildEvent() : joinLocation([events.where({slug})[0]], state)[0];
+  let otherEvents: EventWithLocation[] = event && !newEvent ? joinLocation(events.where({locationId: event.locationId}).filter(e => e.id != event!.id), state) : [];
+  const editable = canEdit(event, db.get('session')) || newEvent;
+  const like = db.table('likes').where({eventId: event.id})[0];
+  return {event, like, editable, otherEvents, newEvent};
 }
 
-export default connect(mapStateToProps)(EventPage)
+export default connect(mapStateToProps)(withRouter(EventPage))

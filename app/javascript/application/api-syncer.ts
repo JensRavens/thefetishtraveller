@@ -37,6 +37,12 @@ export class APISyncer {
     store.dispatch(writeDB.table('events').update(id, event));
   }
 
+  async createEvent(id: string, changes: Partial<APIEvent>): Promise<Event> {
+    const event = await this.api.createEvent({...changes, id});
+    store.dispatch(writeDB.table('events').insert(event));
+    return event;
+  }
+
   private subscribe() {
     store.subscribe(() => {
       const state = store.getState() as State;
