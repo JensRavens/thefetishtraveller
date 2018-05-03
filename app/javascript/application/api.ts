@@ -176,7 +176,7 @@ export class API {
       const transformed = {};
       Object.keys(subject).forEach(key => {
         let value = subject[key];
-        transformed[snakeCase(key)] = this.kebabify(value);
+        transformed[snakeCase(key)] = value instanceof Date ? value.toISOString() : this.kebabify(value);
       });
       return transformed;
     }

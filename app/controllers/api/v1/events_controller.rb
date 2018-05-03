@@ -19,7 +19,7 @@ module API
       end
 
       def create
-        render json: current_user.owned_locations.create!(event_params.merge(id: params[:id]))
+        render json: current_user.owned_events.create!(event_params.merge(id: params[:id]))
       end
 
       private
@@ -29,7 +29,7 @@ module API
       end
 
       def event_params
-        p = params.permit(:slug, :name, :organizer_name, :abstract, :description, :website, :location_id, :location_slug).to_h
+        p = params.permit(:slug, :name, :start_at, :end_at, :organizer_name, :abstract, :description, :website, :location_id, :location_slug).to_h
         p[:location_id] = Location.friendly.find(p.delete(:location_slug)).id if p[:location_slug].present?
         p
       end
