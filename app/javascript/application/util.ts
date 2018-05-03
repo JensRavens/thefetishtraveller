@@ -7,16 +7,25 @@ export function guid(): string {
   return [s4() + s4(), s4(), s4(), s4(), s4() + s4() + s4()].join('-');
 }
 
+function format(date: Date): string {
+  if(typeof date == 'string') { return '' }
+  const offset = date.getHours() + (date.getTimezoneOffset() / 60);
+  if(offset == 0) {
+    return moment(date).format('ll');
+  }
+  return moment(date).format('lll');
+}
+
 export function dateRange(date: Date, date2: Date) {
   if(!date2) {
     if(!date) {
       return '';
     }
-    return moment(date).calendar();
+    return format(date);
   }
   if(moment(date).isSame(date2, 'day')) {
-    return moment(date).calendar();
+    return format(date);
   } else {
-    return `${moment(date).calendar()} - ${moment(date2).calendar()}`;
+    return `${format(date)} - ${format(date2)}`;
   }
 }

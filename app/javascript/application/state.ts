@@ -50,8 +50,26 @@ const defaultState: State = {
   }
 }
 
+function hydrate(tree: any): any {
+  if(tree instanceof Array) {
+    return tree.map(hydrate);
+  }
+  if(tree && typeof tree === 'object') {
+    const newObject = {};
+    Object.keys(tree).forEach(key => {
+      if(key.endsWith('At') && typeof tree[key] === 'string' && tree[key].length > 0){
+        newObject[key] = new Date(Date.parse(tree[key]));
+      } else {
+        newObject[key] = hydrate(tree[key]);
+      }
+    });
+    return newObject;
+  }
+  return tree;
+}
+
 const stateString = localStorage && localStorage.getItem('state')
-const persistedState: State | undefined = stateString && JSON.parse(stateString)
+const persistedState: State | undefined = stateString && hydrate(JSON.parse(stateString))
 
 export const initialState: State = persistedState || defaultState;
 
