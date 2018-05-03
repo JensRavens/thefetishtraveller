@@ -1,14 +1,17 @@
 import * as React from 'react';
 
-import Container from '../components/container';
+import Hero from '../components/hero';
 import Login from '../components/login';
+import Container from '../components/container';
 
 export default class LoginPage extends React.Component {
   render() {
     return (
-      <Container>
-        <Login/>
-      </Container>
+      <Hero>
+        <Container>
+          <Login/>
+        </Container>
+      </Hero>
     );
   }
 }
