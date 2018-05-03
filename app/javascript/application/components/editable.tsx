@@ -25,16 +25,31 @@ export default class Editable extends React.Component<Props, State> {
   }
 
   render() {
-    const {value, editValue, onChange, editable, placeholder} = this.props;
+    const {value, onChange, editable, placeholder} = this.props;
     if(!editable) { return value; }
+    const __html = this.editValue;
     return (
-      <span ref={el => this.element = el} className="editable" data-placeholder={placeholder} contentEditable onInput={this.onInput} onFocus={() => this.setState({editing: true})} onBlur={this.onBlur} dangerouslySetInnerHTML={{__html: ((editable && editValue) || value || '').toString()}}></span>
+      <span 
+        ref={el => this.element = el} 
+        className="editable" 
+        data-placeholder={placeholder} 
+        contentEditable 
+        onInput={this.onInput} 
+        onFocus={() => this.setState({editing: true})} 
+        onBlur={this.onBlur} 
+        dangerouslySetInnerHTML={{__html}}
+      />
     )
+  }
+
+  get editValue(): string {
+    const {editValue, value} = this.props;
+    return (editValue || value || '').toString();
   }
 
   componentDidUpdate() {
     if(!this.state.editing) {
-      this.element && (this.element.innerText = this.props.value);
+      this.element && (this.element.innerText = this.editValue);
     }
   }
 

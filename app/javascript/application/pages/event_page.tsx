@@ -77,7 +77,12 @@ class EventPage extends React.Component<Props, EventState> {
         <Meta title={event.name}/>
         <Container variant="small">
           {editable && !editing && <div className="button" onClick={() => this.setState({editing: true})}>{t('edit')}</div>}
-          {editing && <div className="button" onClick={() => this.submit()}>{t('save')}</div>}
+          {editing && (
+            <React.Fragment>
+              <div className="button" onClick={() => this.submit()}>{t('save')}</div>
+              <p>{JSON.stringify(this.state.changes)}</p>
+            </React.Fragment>
+          )}
           <h2><Editable placeholder="Name" editable={editing} value={event.name} onChange={onChange('name')}/></h2>
           {(event.abstract || editing) && (<React.Fragment>
             <h4><Editable placeholder={t('.abstract')} editable={editing} value={event.abstract} onChange={onChange('abstract')}/></h4>
@@ -98,7 +103,7 @@ class EventPage extends React.Component<Props, EventState> {
           <h3>{locationDescription(event.location)}</h3>
           {coordinates && <Map center={coordinates}/>}
         </Container>
-        {otherEvents.length && (
+        {!!otherEvents.length ? (
           <React.Fragment>
             <Container variant="small">
               <div className="spacer"/>
@@ -107,14 +112,13 @@ class EventPage extends React.Component<Props, EventState> {
             </Container>
             <Listing>{otherEvents.map(e => <EventListing key={e.id} event={e} />)}</Listing>
           </React.Fragment>
-        )}
+        ) : <div className="spacer spacer--small" />}
       </React.Fragment>
     )
   }
 
   private onChange<T extends keyof EventWithLocation>(field: T, type: string = 'string') {
     return (value: string) => {
-      console.log('changing', field, 'to', value);
       let convertedValue: any = value;
       if(type === 'date') {
         const timestamp = Date.parse(convertedValue);
@@ -141,7 +145,6 @@ class EventPage extends React.Component<Props, EventState> {
       this.setState({editing: false});
       return;
     }
-    console.log('submitting', this.props.newEvent, changes);
     if(this.props.newEvent) {
       syncer.createEvent(this.props.event!.id, changes).then((event) => {
         this.props.history.push(`/events/${event.slug}`);
