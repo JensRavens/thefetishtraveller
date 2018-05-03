@@ -63,8 +63,6 @@ class EventPage extends React.Component<Props, EventState> {
     const hasChanges = Object.keys(this.state.changes).length > 0;
     const onChange = this.onChange;
     const editing = this.state.editing;
-    (window as any).event = event;
-    console.log(event);
     const meta = [
       [t('.date'), true, editing ? [<Editable key="startat" placeholder={t('.startAt')} value={event.startAt && event.startAt.toISOString()} onBlur={onChange('startAt', 'date')}/>,<Editable key="endat" placeholder={t('.endAt')} value={event.endAt && event.endAt.toISOString()} onBlur={onChange('endAt', 'date')}/>] : dateRange(event.startAt, event.endAt)],
       [t('.location'), true, <Editable placeholder={t('.location')} editable={editing} value={locationDescription(event.location)} editValue={event.locationSlug || event.location.slug} onChange={onChange('locationSlug')}/>],
