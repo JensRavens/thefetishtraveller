@@ -10,6 +10,8 @@ import {Image} from './image';
 export interface Event extends Syncable {
   id: string;
   slug: string;
+  eventId?: string;
+  series?: string;
   name: string;
   endAt: Date;
   startAt: Date;
@@ -22,6 +24,7 @@ export interface Event extends Syncable {
   hero?: Image;
   logo?: Image;
   categories?: string[];
+  events?:Event[];
 }
 
 export interface EventWithLocation extends Event {
@@ -49,8 +52,24 @@ export function joinLocation(rawEvents: string[] | Event[], state: State): Event
   return events;
 }
 
+export function joinSubevents(rawEvents: string[] | Event[], state: State): Event[] {
+  if(rawEvents[0] && typeof(rawEvents[0]) == 'string'){
+    rawEvents = (rawEvents as string[]).map(e => state.data.events.byId[e])
+  }
+  const allEvents = new DB(state).table('events').all;
+  const events: Event[] = [];
+  (rawEvents as Event[]).forEach(event => {
+    events.push({...event, events: events.filter(e => e.eventId == event.id)});
+  });
+  return events;
+}
+
 export function isCurrent(event: Event): boolean {
   return event.endAt > new Date();
+}
+
+export function isRoot(event: Event): boolean {
+  return !event.eventId;
 }
 
 export function chronological(a: Event, b: Event): number {

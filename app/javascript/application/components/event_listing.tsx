@@ -28,6 +28,12 @@ export class EventListing extends React.Component<Props> {
           <div className="event-listing__description"></div>
           <div className="event-listing__details">
             {locationDescription(event.location)} <br/> {dateRange(event.startAt, event.endAt)}
+            {event.events && !!event.events.length && (
+              <React.Fragment>
+                <br/>
+                {event.events.length} subevents
+              </React.Fragment>
+            )}
           </div>
         </div>
       </Link>
