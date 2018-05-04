@@ -180,10 +180,11 @@ const mapStateToProps = (state: State, props) => {
   const db = new DB(state);
   const events = db.table('events');
   const newEvent = slug === 'new';
-  let event: EventWithLocation | undefined = newEvent ? buildEvent() : joinLocation([events.where({slug})[0]], state)[0];
+  let rawEvent = events.where({slug})[0];
+  let event: EventWithLocation | undefined = newEvent ? buildEvent() : joinLocation(rawEvent ? [rawEvent] : [], state)[0];
   let otherEvents: EventWithLocation[] = event && !newEvent ? joinLocation(events.where({locationId: event.locationId}).filter(e => e.id != event!.id), state) : [];
   const editable = canEdit(event, db.get('session')) || newEvent;
-  const like = db.table('likes').where({eventId: event.id})[0];
+  const like = rawEvent && db.table('likes').where({eventId: event.id})[0];
   return {event, like, editable, otherEvents, newEvent};
 }
 
