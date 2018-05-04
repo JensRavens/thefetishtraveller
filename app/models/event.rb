@@ -35,4 +35,16 @@ class Event < ApplicationRecord
   def publish!
     update! publish_at: DateTime.now
   end
+
+  def to_ics
+    event = Icalendar::Event.new
+    event.dtstart = Icalendar::Values::Date.new start_at
+    event.dtstart.ical_params = { "VALUE" => "DATE" }
+    event.summary = name
+    event.description = abstract if abstract.present?
+    event.url = website if website.present?
+    event.geo = [location.lat, location.lon] if location&.lat && location&.lon
+    event.location = location&.description
+    event
+  end
 end
