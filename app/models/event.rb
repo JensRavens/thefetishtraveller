@@ -40,9 +40,11 @@ class Event < ApplicationRecord
     event = Icalendar::Event.new
     event.dtstart = Icalendar::Values::Date.new start_at
     event.dtstart.ical_params = { "VALUE" => "DATE" }
+    event.dtend = Icalendar::Values::Date.new end_at
+    event.dtend.ical_params = { "VALUE" => "DATE" }
     event.summary = name
     event.description = abstract if abstract.present?
-    event.url = website if website.present?
+    event.url = "https://#{ENV.fetch('HOST') { 'thefetishtraveller.com' }}/events/#{slug}"
     event.geo = [location.lat, location.lon] if location&.lat && location&.lon
     event.location = location&.description
     event
