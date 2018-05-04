@@ -26,10 +26,11 @@ gem "kaminari"
 gem "groupdate"
 gem "bcrypt"
 gem "friendly_id"
-gem "countries"
+gem "countries", require: "countries/global"
 gem "document_serializable"
 gem "sitemap_generator"
 gem "image_processing"
+gem "icalendar", "~> 2.4"
 
 # Assets
 gem "webpacker"

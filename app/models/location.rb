@@ -15,4 +15,12 @@ class Location < ApplicationRecord
   has_and_belongs_to_many :owners, class_name: "User"
 
   validates :name, presence: true
+
+  def country
+    Country[country_code]
+  end
+
+  def description
+    [name, city, country.name].compact.uniq.join(', ')
+  end
 end

@@ -9,6 +9,11 @@ Rails.application.routes.draw do
       resource :session, only: [:create, :update, :show]
     end
   end
+
+  namespace :feed do
+    resources :events, only: [:index]
+  end
+
   get 'sitemaps/*path', to: 'pages#sitemap'
   get '*path', to: 'pages#show', constraints: lambda { |req|
     req.path.exclude? 'rails/'
