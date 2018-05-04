@@ -30,6 +30,7 @@ location:
     us: USA
     es: Spanien
     fr: Frankreich
+    ch: Schweiz
 menu:
   events: Veranstaltungen
   your_calendar: Dein Kalender
