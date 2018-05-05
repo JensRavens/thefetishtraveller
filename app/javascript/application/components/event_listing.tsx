@@ -1,4 +1,6 @@
 import * as React from 'react';
+import {flatten, uniq} from 'lodash';
+
 import {EventWithLocation} from '../models/event';
 import {locationDescription} from '../models/location';
 import {Link} from 'react-router-dom';
@@ -17,7 +19,9 @@ export class EventListing extends React.Component<Props> {
   render() {
     const {event, liked} = this.props;
     const backgroundImage = event.hero && event.hero.medium && `url(${event.hero.medium})`;
-    const category = (event.categories || []).map(e => t('.category.' + e)).join(', ');
+    const subcategories: string[] = flatten((event.events || []).map(e => e.categories || []));
+    const categories = (event.categories || []).concat(subcategories)
+    const category = uniq(categories).map(e => t('.category.' + e)).join(', ');
     return (
       <Link to={`/events/${event.slug}`} className="event-listing" style={{backgroundImage}}>
         <div className="event-listing__background"/>
