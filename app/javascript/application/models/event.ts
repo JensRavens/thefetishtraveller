@@ -23,6 +23,7 @@ export interface Event extends Syncable {
   organizerName?: string;
   hero?: Image;
   logo?: Image;
+  flyer?: Image;
   categories?: string[];
   events?:Event[];
 }

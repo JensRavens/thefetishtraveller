@@ -60,6 +60,7 @@ class EventPage extends React.Component<Props, EventState> {
     if(!event) { return null };
     event = Object.assign({}, event, this.state.changes);
     const hero = event.hero && event.hero.big;
+    const flyer = event.flyer && event.flyer.big;
     const coordinates = extractCoordinates(event.location);
     const hasChanges = Object.keys(this.state.changes).length > 0;
     const onChange = this.onChange;
@@ -100,6 +101,7 @@ class EventPage extends React.Component<Props, EventState> {
               ))
             }
           </div>
+          {flyer && <div className="flyer"><img src={flyer}/></div>}
           {event.description && format(event.description)}
           <h3>{locationDescription(event.location)}</h3>
           {coordinates && <Map center={coordinates}/>}

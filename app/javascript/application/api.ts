@@ -29,6 +29,7 @@ export interface APIEvent {
   organizerName?: string;
   hero?: Image;
   logo?: Image;
+  flyer?: Image;
   categories?: string[];
 }
 
