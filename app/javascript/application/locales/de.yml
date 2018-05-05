@@ -11,6 +11,7 @@ event:
   event_missing: Dein Lieblingsevent fehlt noch?
   tickets: Tickets
   slug: Slug
+  happening_here: Veranstaltungen
   category: 
     fetish: Fetisch
     csd: CSD

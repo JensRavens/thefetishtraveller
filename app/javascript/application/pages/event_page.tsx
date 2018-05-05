@@ -26,6 +26,7 @@ interface Props {
   editable: boolean;
   dispatch: (DBAction) => void;
   otherEvents: EventWithLocation[];
+  subevents: EventWithLocation[];
   newEvent: boolean;
   history: any;
 }
@@ -55,7 +56,7 @@ class EventPage extends React.Component<Props, EventState> {
   }
 
   render() {
-    let {event, like, editable, otherEvents} = this.props;
+    let {event, like, editable, otherEvents, subevents} = this.props;
     if(!event) { return null };
     event = Object.assign({}, event, this.state.changes);
     const hero = event.hero && event.hero.big;
@@ -103,6 +104,16 @@ class EventPage extends React.Component<Props, EventState> {
           <h3>{locationDescription(event.location)}</h3>
           {coordinates && <Map center={coordinates}/>}
         </Container>
+        {!!subevents.length && (
+          <React.Fragment>
+            <Container variant="small">
+              <div className="spacer"/>
+              <h2>{t('.happening_here', {location: event.location.name})}</h2>
+              <div/>
+            </Container>
+            <Listing>{subevents.map(e => <EventListing key={e.id} event={e} />)}</Listing>
+          </React.Fragment>
+        ) }
         {!!otherEvents.length ? (
           <React.Fragment>
             <Container variant="small">
@@ -182,10 +193,11 @@ const mapStateToProps = (state: State, props) => {
   const newEvent = slug === 'new';
   let rawEvent = events.where({slug})[0];
   let event: EventWithLocation | undefined = newEvent ? buildEvent() : joinLocation(rawEvent ? [rawEvent] : [], state)[0];
+  let subevents: EventWithLocation[] = event && !newEvent ? joinLocation(events.where({eventId: event.id}).filter(e => e.id != event!.id), state) : [];
   let otherEvents: EventWithLocation[] = event && !newEvent ? joinLocation(events.where({locationId: event.locationId}).filter(e => e.id != event!.id), state) : [];
   const editable = canEdit(event, db.get('session')) || newEvent;
   const like = rawEvent && db.table('likes').where({eventId: event.id})[0];
-  return {event, like, editable, otherEvents, newEvent};
+  return {event, like, editable, otherEvents, newEvent, subevents};
 }
 
 export default connect(mapStateToProps)(withRouter(EventPage))

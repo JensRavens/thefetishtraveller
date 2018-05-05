@@ -11,6 +11,7 @@ event:
   search_place_holder: Search for name, country, city or category...
   submit_here: Submit your event here!
   event_missing: Your favorite event is missing?
+  happening_here: Events
   category: 
     fetish: Fetish
     csd: Pride Parade
