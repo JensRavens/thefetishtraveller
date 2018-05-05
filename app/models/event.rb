@@ -27,6 +27,7 @@ class Event < ApplicationRecord
 
   has_one_attached :hero
   has_one_attached :logo
+  has_one_attached :flyer
 
   def published?
     publish_at&.past?

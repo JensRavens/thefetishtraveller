@@ -4,4 +4,5 @@ class EventSerializer < ApplicationSerializer
 
   image_attribue :hero
   image_attribue :logo
+  image_attribue :flyer
 end
