@@ -30,6 +30,10 @@ export function locationDescription(location: Location): string {
   return line.join(', ')
 }
 
+export function isVenue(location: Location): boolean {
+  return location.name !== location.city;
+}
+
 export function extractCoordinates(location: Location): {lat: number, lon: number} | undefined {
   if(!location.lat || !location.lon) { return; }
   return { lat: location.lat, lon: location.lon };

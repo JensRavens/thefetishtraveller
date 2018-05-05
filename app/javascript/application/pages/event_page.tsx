@@ -4,7 +4,7 @@ import {withRouter} from 'react-router';
 import {Link} from 'react-router-dom';
 import {Event, EventWithLocation, canEdit, joinLocation} from '../models/event';
 import {Like} from '../models/like';
-import {locationDescription, extractCoordinates} from '../models/location';
+import {locationDescription, extractCoordinates, isVenue} from '../models/location';
 import {DB, DBAction, writeDB, State} from '../state';
 import {APISession} from '../api';
 import Container from '../components/container';
@@ -104,7 +104,7 @@ class EventPage extends React.Component<Props, EventState> {
           {flyer && <div className="flyer"><img src={flyer}/></div>}
           {event.description && format(event.description)}
           <h3>{locationDescription(event.location)}</h3>
-          {coordinates && <Map center={coordinates}/>}
+          {coordinates && <Map center={coordinates} markerTitle={isVenue(event.location) ? event.location.name : undefined} zoom={isVenue(event.location) ? 16 : undefined}/>}
         </Container>
         {!!subevents.length && (
           <React.Fragment>

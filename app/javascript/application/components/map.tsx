@@ -5,6 +5,7 @@ declare const window: any;
 
 interface Props {
   zoom?: number;
+  markerTitle?: string;
   center: {lat: number, lon: number}
 }
 
@@ -17,7 +18,9 @@ export class Map extends React.Component<Props> {
 
   componentDidMount() {
     this.map = new google.maps.Map(this.container, {center: this.center, zoom: this.props.zoom});
-    this.marker = new google.maps.Marker({map: this.map});
+    if(this.props.markerTitle) {
+      this.marker = new google.maps.Marker({map: this.map, position: this.center, title: this.props.markerTitle});
+    }
     window.map = this.map;
   }
 
