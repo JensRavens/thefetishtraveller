@@ -21,7 +21,6 @@ import Footer from '../components/footer';
 import {I18n} from '../i18n';
 import ScrollToTop from '../components/scroll_to_top';
 import ErrorCatcher from '../components/error_catcher';
-import {Analytics} from '../components/analytics';
 
 interface Props {
   stateLoaded: boolean;
@@ -42,7 +41,6 @@ class Application extends React.Component<Props> {
             <main>
               <ScrollToTop>
                 <ErrorCatcher>
-                  <Analytics/>
                   <Switch>
                     <Route path="/" exact component={Home}/>
                     <Route path="/login" exact component={Login}/>
