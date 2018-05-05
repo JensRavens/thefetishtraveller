@@ -3,7 +3,7 @@ import {Helmet} from 'react-helmet';
 import {compact} from 'lodash';
 
 interface Props {
-  title?: string;
+  title?: string | null;
 }
 
 export class Meta extends React.Component<Props> {
@@ -11,7 +11,7 @@ export class Meta extends React.Component<Props> {
     const {title} = this.props;
     return (
       <Helmet>
-        {this.props.title && <title>{title} | The Fetish Traveller</title>}
+        {title !== undefined && <title>{title ? title + ' | ' : '' }The Fetish Traveller</title>}
       </Helmet>
     )
   }

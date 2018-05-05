@@ -7,6 +7,7 @@ import {scoped} from '../i18n';
 import {EventWithLocation, joinLocation, chronological, months, inMonth, matchesTerm, isRoot, joinSubevents} from '../models/event';
 import {Like, isLiked} from '../models/like';
 import {EventListing} from '../components/event_listing';
+import {Meta} from '../components/meta';
 import Container from '../components/container';
 import Hero from '../components/hero';
 import Listing from '../components/listing';
@@ -51,6 +52,7 @@ class EventSearch extends React.Component<Props, SearchState> {
     }
     return (
       <React.Fragment>
+        <Meta title={t('menu.events')}/>
         <Hero>
           <Container>
             <h1>{t('menu.events')}</h1>

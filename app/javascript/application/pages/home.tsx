@@ -11,6 +11,7 @@ import Container from '../components/container';
 import Hero from '../components/hero';
 import Listing from '../components/listing';
 import {Signup} from '../components/signup';
+import {Meta} from '../components/meta';
 import {scoped} from '../i18n';
 
 const backgroundImage = require('../assets/background.jpg');
@@ -35,6 +36,7 @@ class Home extends React.Component<Props> {
     const {events, likes} = this.props;
     return (
       <React.Fragment>
+        <Meta title={null}/>
         <Hero backgroundImage={backgroundImage} style="expanded">
           <Container>
             <h1 className="with-dash">{t('.claim')}</h1>
