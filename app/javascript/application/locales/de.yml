@@ -32,6 +32,9 @@ location:
     es: Spanien
     fr: Frankreich
     ch: Schweiz
+    gb: Vereinigtes Königreich
+    ru: Russland
+    se: Schweden
 menu:
   events: Veranstaltungen
   your_calendar: Dein Kalender
