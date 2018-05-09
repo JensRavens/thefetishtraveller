@@ -69,6 +69,7 @@ export class APISyncer {
   private async refreshSession() {
     const session = await this.api.getSession();
     store.dispatch(writeDB.set('session', session));
+    this.refreshLikes();
   }
 
   private annotate(list: APIEvent | APIEvent[] | APILocation | APILocation[]): any {
@@ -83,6 +84,15 @@ export class APISyncer {
     const removedEvents = store.getState().data.events.ids.filter(id => !syncedIds.includes(id));
     store.dispatch(events.insert(this.annotate(apiEvents)));
     store.dispatch(events.delete(removedEvents));
+  }
+
+  private async refreshLikes() {
+    const likes = writeDB.table('likes');
+    const apiLikes = await this.api.getLikes();
+    const syncedIds = apiLikes.map(e => e.id);
+    const removedLikes = store.getState().data.likes.ids.filter(id => !syncedIds.includes(id));
+    store.dispatch(likes.insert(apiLikes));
+    store.dispatch(likes.delete(removedLikes));
   }
 
   private async refreshLocations() {

@@ -10,7 +10,7 @@ import Login from './login';
 import EventPage from './event_page';
 import {EventSubmit} from './event_submit';
 import EventSearch from './event_search';
-import Calendar from './calendar';
+import TravelPlans from './travel_plans';
 import LocationSearch from './location_search';
 import LocationCreation from './location_creation';
 import LocationEdit from './location_edit';
@@ -47,7 +47,7 @@ class Application extends React.Component<Props> {
                     <Route path="/events" exact component={EventSearch}/>
                     <Route path="/events/submit" exact component={EventSubmit}/>
                     <Route path="/events/:id" exact component={EventPage}/>
-                    <Route path="/calendar" exact component={Calendar}/>
+                    <Route path="/calendar" exact component={TravelPlans}/>
                     <Route path="/locations" exact component={LocationSearch}/>
                     <Route path="/locations/new" exact component={LocationCreation}/>
                     <Route path="/locations/:id" exact component={LocationEdit}/>

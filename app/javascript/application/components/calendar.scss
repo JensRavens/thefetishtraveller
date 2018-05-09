@@ -1,0 +1,152 @@
+.calendar {
+  background-color: $color-background-dark;
+  color: white;
+  position: relative;
+
+  &__section {
+    position: relative;
+  }
+
+  &__month {
+    text-align: center;
+    margin-bottom: 2em;
+  }
+
+  &__date {
+    font-family: $font-heading;
+    color: $color-tint;
+    font-size: 26px;
+    line-height: 1;
+  }
+
+  &__year {
+    font-family: $font-heading-alternate;
+    font-size: 22px;
+    line-height: 1;
+  }
+
+  &__event {
+    position: relative;
+    margin-bottom: 2em;
+    border: 1px solid $color-tint;
+
+    h2 {
+      text-align: left;
+      &::after {
+        left: 0;
+        margin-left: 0;
+      }
+    }
+
+    &__image {
+      
+    }
+
+    &__details {
+      position: relative;
+      z-index: 10;
+      padding: 1em;
+    }
+  }
+
+  @media(min-width: $desktop) {
+    &__event {
+      height: 370px;
+
+      h2 {
+        font-size: 52px;
+        margin-left: -200px;
+        margin-bottom: 20px;
+        &::after {
+          left: 200px;
+        }
+      }
+
+      &__image {
+        position: absolute;
+        display: block;
+        height: 100%;
+        width: 50%;
+        left: -50px;
+        top: -20px;
+        object-fit: cover;
+      }
+
+      &__details {
+        padding-top: 5em;
+        margin-left: 50%;
+        margin-right: -10%;
+      }
+    }
+  }
+
+  @media(min-width: $widescreen) {
+    .container {
+      left: 100px;
+      position: relative;
+    }
+
+    &__line {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50px;
+      width: 1px;
+      background-color: $color-border;
+      z-index: 1;
+
+      &::before {
+        display: block;
+        content: '';
+        width: 11px;
+        height: 11px;
+        border-radius: 100%;
+        background-color: $color-border;
+        position: absolute;
+        left: -5px;
+      }
+    }
+
+    &__month {
+      position: absolute;
+      left: 50px;
+      text-align: left;
+      top: 170px;
+      padding-left: 2em;
+
+      &::before {
+        position: absolute;
+        display: block;
+        content: '';
+        width: 31px;
+        height: 31px;
+        left: -15px;
+        top: 10px;
+        background-color: rgba($color-tint, 0.3);
+        border-radius: 100%;
+        z-index: 2;
+      }
+
+      &::after {
+        position: absolute;
+        display: block;
+        content: '';
+        width: 11px;
+        height: 11px;
+        left: -5px;
+        background-color: $color-tint;
+        top: 20px;
+        border-radius: 100%;
+        z-index: 3;
+      }
+    }
+
+    &__event {
+      &__image {
+        width: 60%;
+        left: -120px;
+        top: -30px;
+      }
+    }
+  }
+}
