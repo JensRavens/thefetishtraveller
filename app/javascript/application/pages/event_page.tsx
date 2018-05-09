@@ -101,8 +101,8 @@ class EventPage extends React.Component<Props, EventState> {
               ))
             }
           </div>
-          {flyer && <div className="flyer"><img src={flyer}/></div>}
           {event.description && format(event.description)}
+          {flyer && <div className="flyer"><img src={flyer}/></div>}
           <h3>{locationDescription(event.location)}</h3>
           {coordinates && <Map center={coordinates} markerTitle={isVenue(event.location) ? event.location.name : undefined} zoom={isVenue(event.location) ? 16 : undefined}/>}
         </Container>
