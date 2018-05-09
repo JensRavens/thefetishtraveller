@@ -34,6 +34,7 @@ export interface APIEvent {
 }
 
 export interface APILike {
+  id: string;
   eventId: string;
 }
 

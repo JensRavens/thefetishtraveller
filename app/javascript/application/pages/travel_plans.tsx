@@ -7,7 +7,7 @@ import {Like, isLiked} from '../models/like';
 import {EventListing} from '../components/event_listing';
 import Container from '../components/container';
 import Hero from '../components/hero';
-import Listing from '../components/listing';
+import {Calendar} from '../components/calendar';
 
 interface Props {
   events: EventWithLocation[];
@@ -20,7 +20,7 @@ const mapStateToProps: (state: State) => Props = (state) => {
   }
 }
 
-class Calendar extends React.Component<Props> {
+class TravelPlans extends React.Component<Props> {
   render() {
     const {events} = this.props;
     return (
@@ -30,12 +30,10 @@ class Calendar extends React.Component<Props> {
             <h1>Your Calendar</h1>
           </Container>
         </Hero>
-        <Listing>
-          {events.map(e => <EventListing key={e.id} event={e}/>)}
-        </Listing>
+        <Calendar events={events}/>
       </React.Fragment>
     );
   }
 }
 
-export default connect(mapStateToProps)(Calendar)
+export default connect(mapStateToProps)(TravelPlans)

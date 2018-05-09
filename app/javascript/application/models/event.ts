@@ -6,6 +6,8 @@ import {Location, countryName} from './location';
 import {Syncable} from './syncable';
 import {APISession} from '../api';
 import {Image} from './image';
+import {dateRange} from '../util';
+import { format } from 'util';
 
 export interface Event extends Syncable {
   id: string;
@@ -87,6 +89,28 @@ export function months(events: Event[]): {year: number, month: number, name: str
 export function inMonth(event: Event, month: {year: number, month: number}) {
   const time = moment(event.startAt);
   return time.month() == month.month && time.year() == month.year;
+}
+
+export function formatDate(event: Event): string {
+  return dateRange(event.startAt, event.endAt);
+}
+
+export function byMonth<T extends Event>(events: T[]): {date: Date, events: T[]}[] {
+  const buckets: {[date: string]: T[]} = {};
+  events.forEach(event => {
+    const date = moment(event.startAt);
+    const dateString = [date.year(), date.month()].join('-');
+    buckets[dateString] = buckets[dateString] || [];
+    buckets[dateString].push(event);
+  });
+  const result: {date: Date, events: T[]}[] = [];
+  Object.keys(buckets).forEach(key => {
+    result.push({
+      date: moment(key + '-01').toDate(),
+      events: buckets[key]
+    })
+  });
+  return result;
 }
 
 export function matchesTerm(event: Partial<EventWithLocation>, term: string): boolean {
