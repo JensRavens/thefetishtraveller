@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 import {DB, State} from '../state';
 import {scoped} from '../i18n';
-import {EventWithLocation, joinLocation, chronological, months, inMonth, matchesTerm, isRoot, joinSubevents} from '../models/event';
+import {EventWithLocation, joinLocation, chronological, months, inMonth, matchesTerm, isRoot, joinSubevents, isCurrent} from '../models/event';
 import {Like, isLiked} from '../models/like';
 import {EventListing} from '../components/event_listing';
 import {Meta} from '../components/meta';
@@ -40,7 +40,7 @@ class EventSearch extends React.Component<Props, SearchState> {
   render() {
     let {events, likes} = this.props;
     const {currentMonth, term} = this.state;
-    const options = months(events);
+    const options = months(events.filter(isCurrent));
     const selectedMonth = options.filter(e => e.name == currentMonth)[0];
     if(selectedMonth) {
       events = events.filter(e => inMonth(e, selectedMonth));
@@ -48,7 +48,7 @@ class EventSearch extends React.Component<Props, SearchState> {
     if(term && term.length) {
       events = events.filter(e => matchesTerm(e, term));
     } else {
-      events = events.filter(isRoot);
+      events = events.filter(isRoot).filter(isCurrent);
     }
     return (
       <React.Fragment>
