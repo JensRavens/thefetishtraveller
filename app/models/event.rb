@@ -6,18 +6,6 @@ class Event < ApplicationRecord
   has_many :likes, dependent: :destroy
   belongs_to :location
 
-  attribute :name
-  attribute :start_at, DateTime
-  attribute :end_at, DateTime
-  attribute :organizer_name
-  attribute :official, Axiom::Types::Boolean, default: false
-  attribute :categories, [String], default: []
-  attribute :website
-  attribute :ticket_link
-  attribute :abstract
-  attribute :description
-  attribute :series
-
   scope :published, -> { where('events.publish_at <= NOW()') }
 
   has_many :events, dependent: :destroy
