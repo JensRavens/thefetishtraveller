@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_05_03_180410) do
+ActiveRecord::Schema.define(version: 2018_07_04_144706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -46,6 +46,17 @@ ActiveRecord::Schema.define(version: 2018_05_03_180410) do
     t.string "slug"
     t.uuid "location_id"
     t.uuid "event_id"
+    t.string "name", null: false
+    t.datetime "start_at", null: false
+    t.datetime "end_at", null: false
+    t.string "website"
+    t.boolean "official", default: false, null: false
+    t.text "abstract"
+    t.text "description"
+    t.string "ticket_link"
+    t.string "organizer_name"
+    t.text "categories", default: [], null: false, array: true
+    t.string "series"
     t.index ["event_id"], name: "index_events_on_event_id"
     t.index ["location_id"], name: "index_events_on_location_id"
     t.index ["slug"], name: "index_events_on_slug"
@@ -70,6 +81,13 @@ ActiveRecord::Schema.define(version: 2018_05_03_180410) do
     t.string "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.string "country_code", null: false
+    t.string "address"
+    t.string "zip"
+    t.string "city"
+    t.decimal "lat"
+    t.decimal "lon"
     t.index ["slug"], name: "index_locations_on_slug"
   end
 
