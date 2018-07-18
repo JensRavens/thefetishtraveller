@@ -1,15 +1,11 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
-import {Link} from 'react-router-dom';
 import {Event, EventWithLocation, canEdit, joinLocation} from '../models/event';
 import {Like} from '../models/like';
 import {locationDescription, extractCoordinates, isVenue} from '../models/location';
-import {DB, DBAction, writeDB, State} from '../state';
-import {APISession} from '../api';
+import {DB, writeDB, State} from '../state';
 import Container from '../components/container';
-import Hero from '../components/hero';
-import LikeButton from '../components/like-button';
 import Listing from '../components/listing';
 import {Meta} from '../components/meta';
 import {EventListing} from '../components/event_listing';
@@ -19,6 +15,7 @@ import {dateRange} from '../util';
 import {scoped} from '../i18n';
 import {syncer} from '../api-syncer';
 import {guid} from '../util';
+import { JsonLd } from '../components/JsonLd';
 
 interface Props {
   event?: EventWithLocation;
@@ -35,8 +32,6 @@ interface EventState {
   changes: Partial<Event>;
   editing: boolean;
 }
-
-const likes = writeDB.table('likes');
 
 function format(text: string): any {
   return text.split("\n").map((e, i) => <p key={i}>{e}</p>);
@@ -62,7 +57,6 @@ class EventPage extends React.Component<Props, EventState> {
     const hero = event.hero && event.hero.big;
     const flyer = event.flyer && event.flyer.big;
     const coordinates = extractCoordinates(event.location);
-    const hasChanges = Object.keys(this.state.changes).length > 0;
     const onChange = this.onChange;
     const editing = this.state.editing;
     const meta = [
@@ -73,10 +67,31 @@ class EventPage extends React.Component<Props, EventState> {
       [t('.tickets'), event.ticketLink || editing, <Editable placeholder={t('.tickets')} editable={editing} value={link(event.ticketLink)} onChange={onChange('ticketLink')}/>],
       [t('.slug'), editing, <Editable placeholder={t('.slug')} editable={editing} value={event.slug} onChange={onChange('slug')}/>],
     ].filter(e => e[1]);
+    const images = [event.hero && event.hero.big, event.flyer && event.flyer.big].filter(Boolean)
     return (
       <React.Fragment>
+        <JsonLd data={{
+          "@context": "http://schema.org",
+          "@type": "Event",
+          name: event.name,
+          startDate: event.startAt.toISOString(),
+          location: {
+            "@type": "Place",
+            name: event.location.name,
+            address: {
+              "@type": "PostalAddress",
+              streetAddress: event.location.address,
+              postalCode: event.location.zip,
+              addressCountry: event.location.countryCode,
+              addressLocality: event.location.city
+            }
+          },
+          image: images,
+          description: event.abstract,
+          endDate: event.endAt.toISOString()
+        }}/>
         <div className="spacer spacer--for-navbar"/>
-        <Meta title={event.name}/>
+        <Meta title={event.name} description={event.abstract || null}/>
         <Container variant="small">
           {editable && !editing && <div className="button" onClick={() => this.setState({editing: true})}>{t('edit')}</div>}
           {editing && (
