@@ -14,9 +14,14 @@ module API
       end
 
       def update
-        email = params.require(:email)
-        password = params.require(:password)
-        user = User.find_by(email: email)&.authenticate(password)
+        user = nil
+        if params[:email].present?
+          email = params.require(:email)
+          password = params.require(:password)
+          user = User.find_by(email: email)&.authenticate(password)
+        elsif params[:facebook_token].present?
+          user = User.authenticate_facebook(params[:facebook_token])
+        end
         if user
           current_user.migrate_to(user)
           current_session.update! user: user

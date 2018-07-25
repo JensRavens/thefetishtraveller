@@ -90,7 +90,7 @@ export const store = createStore<State>(
 );
 
 export {DB, DBAction}
-export const writeDB = new MutableDB(initialState);
+export const writeDB = new MutableDB(initialState, {store});
 
 declare const window: any;
 window.store = store;

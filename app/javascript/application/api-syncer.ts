@@ -27,6 +27,12 @@ export class APISyncer {
     writeDB.set('session', session);
   }
 
+  async facebookLogin(token: string) {
+    if(!this.api.sessionID) { await this.api.createSession() }
+    const session = await this.api.facebookLogin(token);
+    writeDB.set('session', session);
+  }
+
   async updateLocation(id: string, changes: Partial<APILocation>) {
     const location = await this.api.updateLocation({...changes, id});
     writeDB.table('locations').update(id, location);
@@ -121,3 +127,22 @@ export const syncer = new APISyncer();
 
 declare const window: any;
 window.api = syncer.api;
+
+window.fbAsyncInit = () => {
+  console.log('init!');
+  window.FB.init({
+    appId: '323489808193714',
+    cookie: true,
+    xfbml: true,
+    version: 'v3.0'
+  });
+
+  window.FB.Event.subscribe('auth.statusChange', response => {
+    if(response.authResponse) {
+      console.log('logged in', response);
+    } else {
+      console.log('logged out');
+      writeDB.set('session', undefined);
+    }
+  });
+}

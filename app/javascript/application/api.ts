@@ -110,6 +110,10 @@ export class API {
     return await this.patch('/session', {email, password});
   }
 
+  async facebookLogin(facebookToken: string): Promise<APISession> {
+    return await this.patch('/session', {facebookToken});
+  }
+
   async getSession(): Promise<APISession> {
     return await this.get('/session');
   }

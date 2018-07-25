@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_04_144706) do
+ActiveRecord::Schema.define(version: 2018_07_25_072332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -112,7 +112,9 @@ ActiveRecord::Schema.define(version: 2018_07_04_144706) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "roles", default: [], null: false, array: true
+    t.string "facebook_id"
     t.index ["email"], name: "index_users_on_email"
+    t.index ["facebook_id"], name: "index_users_on_facebook_id"
   end
 
   add_foreign_key "events", "events"
