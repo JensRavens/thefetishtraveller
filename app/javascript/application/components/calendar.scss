@@ -38,10 +38,6 @@
       }
     }
 
-    &__image {
-      
-    }
-
     &__details {
       position: relative;
       z-index: 10;
@@ -52,6 +48,7 @@
   @media(min-width: $desktop) {
     &__event {
       height: 370px;
+      margin-bottom: 6em;
 
       h2 {
         font-size: 52px;
@@ -81,6 +78,10 @@
   }
 
   @media(min-width: $widescreen) {
+    &__event {
+      margin-bottom: 8em;
+    }
+
     .container {
       left: 100px;
       position: relative;
