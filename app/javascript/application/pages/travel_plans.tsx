@@ -8,6 +8,7 @@ import {EventListing} from '../components/event_listing';
 import Container from '../components/container';
 import Hero from '../components/hero';
 import {Calendar} from '../components/calendar';
+import { scoped } from '../i18n';
 
 interface Props {
   events: EventWithLocation[];
@@ -20,6 +21,8 @@ const mapStateToProps: (state: State) => Props = (state) => {
   }
 }
 
+const t = scoped('calendar');
+
 class TravelPlans extends React.Component<Props> {
   render() {
     const {events} = this.props;
@@ -27,7 +30,7 @@ class TravelPlans extends React.Component<Props> {
       <React.Fragment>
         <Hero>
           <Container>
-            <h1>Your Calendar</h1>
+            <h1>{t('.heading')}</h1>
           </Container>
         </Hero>
         <Calendar events={events}/>

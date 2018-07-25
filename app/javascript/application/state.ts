@@ -86,7 +86,9 @@ const composedEnhancers = compose(
 );
 
 export const store = createStore<State>(
-  reducer(initialState)
+  reducer(initialState),
+  initialState,
+  composedEnhancers as any
 );
 
 export {DB, DBAction}

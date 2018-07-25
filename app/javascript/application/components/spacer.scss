@@ -1,10 +1,10 @@
 .spacer {
-  margin-bottom: 80px;
+  height: 80px;
 
   @media(min-width: $tablet) {
-		margin-bottom: 150px;
+		height: 150px;
   }
-  
+
   &--for-navbar {
     height: 60px;
     margin-top: -60px;
@@ -12,14 +12,14 @@
   }
 
   &--no-margin {
-    margin-bottom: 0;
+    height: 0;
   }
 
   &--small {
-    margin-bottom: 60px;
+    height: 60px;
   }
 
   &--tiny {
-    margin-bottom: 30px;
+    height: 30px;
   }
 }
