@@ -35,8 +35,8 @@ class TravelPlans extends React.Component<Props> {
           <Container>
             <h1>{t('.heading')}</h1>
             {events.length &&
-              <div className="hero__addon">
-                <a href={`webcal://${location.host}/feed/events?user_id=${userId}`}>subscribe</a>
+              <div className="hero__addon text-center">
+                <a className="button" href={`webcal://${location.host}/feed/events?user_id=${userId}`}>{t('.subscribe')}</a>
               </div>}
           </Container>
         </Hero>
