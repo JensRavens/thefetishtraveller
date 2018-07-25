@@ -127,6 +127,7 @@ export const syncer = new APISyncer();
 
 declare const window: any;
 window.api = syncer.api;
+window.syncer = syncer;
 
 window.fbAsyncInit = () => {
   console.log('init!');
@@ -139,9 +140,8 @@ window.fbAsyncInit = () => {
 
   window.FB.Event.subscribe('auth.statusChange', response => {
     if(response.authResponse) {
-      console.log('logged in', response);
+      syncer.facebookLogin(response.authResponse.accessToken);
     } else {
-      console.log('logged out');
       writeDB.set('session', undefined);
     }
   });

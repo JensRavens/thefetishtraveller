@@ -31,6 +31,7 @@ gem "document_serializable"
 gem "sitemap_generator"
 gem "image_processing"
 gem "icalendar", "~> 2.4"
+gem "httparty"
 
 # Assets
 gem "webpacker"

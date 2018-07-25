@@ -2,7 +2,6 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 
 import {APISession} from '../api';
-import {syncer} from '../api-syncer';
 import {State} from '../state';
 import {isLoggedIn} from '../models/session';
 
@@ -15,7 +14,7 @@ class FacebookLogin extends React.Component<Props> {
   render() {
     if (isLoggedIn(this.props.session)) { return null };
     return (
-      <div className="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true"></div>
+      <div className="fb-login-button" data-max-rows="1" data-size="medium" data-button-type="continue_with" data-show-faces="false" data-auto-logout-link="true" data-use-continue-as="true" data-scope="public_profile,email"></div>
     )
   }
 
