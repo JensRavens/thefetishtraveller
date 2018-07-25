@@ -24,6 +24,12 @@
   align-items: center;
   padding: 0 8px;
 
+  &__spacer {
+    height: 60px;
+    margin-top: -60px;
+    background-color: $color-background-dark;
+  }
+
   &--expanded {
     .main-menu__mobile {
       transform: none;
@@ -89,7 +95,7 @@
   }
 
   &__switch-icon {
-    top: calc(50% - 2px); 
+    top: calc(50% - 2px);
   }
 
   &__category--additional {
