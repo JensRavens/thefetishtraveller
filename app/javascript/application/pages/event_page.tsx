@@ -2,7 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router';
 import {Event, EventWithLocation, canEdit, joinLocation} from '../models/event';
-import {Like} from '../models/like';
+import {Like, isLiked} from '../models/like';
 import {locationDescription, extractCoordinates, isVenue} from '../models/location';
 import {DB, writeDB, State} from '../state';
 import Container from '../components/container';
@@ -21,7 +21,7 @@ import LikeButton from '../components/like-button';
 
 interface Props {
   event?: EventWithLocation;
-  like?: Like;
+  liked: boolean;
   loggedIn: boolean;
   editable: boolean;
   dispatch: (DBAction) => void;
@@ -54,7 +54,7 @@ class EventPage extends React.Component<Props, EventState> {
   }
 
   render() {
-    let {event, like, editable, otherEvents, subevents, loggedIn} = this.props;
+    let {event, liked, editable, otherEvents, subevents, loggedIn} = this.props;
     if(!event) { return null };
     event = Object.assign({}, event, this.state.changes);
     const hero = event.hero && event.hero.big;
@@ -93,7 +93,8 @@ class EventPage extends React.Component<Props, EventState> {
           description: event.abstract,
           endDate: event.endAt.toISOString()
         }}/>
-        <div className="spacer spacer--for-navbar"/>
+        <div className="main-menu__spacer"/>
+        <div className="spacer"/>
         <Meta title={event.name} description={event.abstract || null}/>
         <Container variant="small">
           {editable && !editing && <div className="button" onClick={() => this.setState({editing: true})}>{t('edit')}</div>}
@@ -118,7 +119,7 @@ class EventPage extends React.Component<Props, EventState> {
                 </p>
               ))
             }
-            {loggedIn && <LikeButton active={!!like} onClick={this.toggleLike}/> }
+            {loggedIn && <LikeButton active={!!liked} onClick={this.toggleLike}/> }
           </div>
           {event.description && format(event.description)}
           {flyer && <div className="flyer"><img src={flyer}/></div>}
@@ -152,11 +153,10 @@ class EventPage extends React.Component<Props, EventState> {
   toggleLike = () => {
     const likes = writeDB.table('likes');
     const eventId= this.props.event!.id;
-    console.log('toggle like', eventId, this.props.like)
-    if(this.props.like) {
-      likes.delete(likes.where({eventId}));
+    if(this.props.liked) {
+      likes.update(likes.where({eventId}), {state: 'deleted'});
     } else {
-      likes.insert({eventId});
+      likes.insert({eventId, state: 'pending'});
     }
   }
 
@@ -230,8 +230,8 @@ const mapStateToProps = (state: State, props) => {
   let subevents: EventWithLocation[] = event && !newEvent ? joinLocation(events.where({eventId: event.id}).filter(e => e.id != event!.id), state) : [];
   let otherEvents: EventWithLocation[] = event && !newEvent ? joinLocation(events.where({locationId: event.locationId}).filter(e => e.id != event!.id), state) : [];
   const editable = canEdit(event, session) || newEvent;
-  const like = rawEvent && db.table('likes').where({eventId: event.id})[0];
-  return {event, like, editable, otherEvents, newEvent, subevents, loggedIn};
+  const liked = rawEvent && isLiked(rawEvent, db.table('likes').all);
+  return {event, liked, editable, otherEvents, newEvent, subevents, loggedIn};
 }
 
 export default connect(mapStateToProps)(withRouter(EventPage))

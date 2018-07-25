@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as moment from 'moment';
+import {Link} from 'react-router-dom';
 
 import {EventWithLocation, byMonth, formatDate} from '../models/event';
 
@@ -30,14 +31,16 @@ export class Calendar extends React.Component<Props> {
               <Container variant="small">
                 {
                   month.events.map(event => (
-                    <div key={event.id} className="calendar__event">
-                      {event.hero && <img className="calendar__event__image" src={event.hero.big}/>}
-                      <div className="calendar__event__details">
-                        <h2>{event.name}</h2>
-                        <div className="calendar__event__date">{formatDate(event)}</div>
-                        {event.abstract && <p>{event.abstract}</p> }
+                    <Link to={`/events/${event.slug}`} key={event.id}>
+                      <div className="calendar__event">
+                        {event.hero && <img className="calendar__event__image" src={event.hero.big}/>}
+                        <div className="calendar__event__details">
+                          <h2>{event.name}</h2>
+                          <div className="calendar__event__date">{formatDate(event)}</div>
+                          {event.abstract && <p>{event.abstract}</p> }
+                        </div>
                       </div>
-                    </div>
+                    </Link>
                   ))
                 }
               </Container>

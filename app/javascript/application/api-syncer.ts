@@ -4,6 +4,7 @@ import {Event} from './models/event';
 import {Location} from './models/location';
 import {needsSync, calculateChangeset} from './models/syncable';
 import {isLoggedIn} from './models/session';
+import { Like } from './models/like';
 
 export class APISyncer {
   api: API;
@@ -69,6 +70,15 @@ export class APISyncer {
       if(changedLocations.length) {
         this.updateLocations(changedLocations);
       }
+      const addedLikes = db.table('likes').where({state: 'pending'});
+      if(addedLikes.length) {
+        this.addLikes(addedLikes);
+      }
+
+      const removedLikes = db.table('likes').where({state: 'deleted'});
+      if(removedLikes.length) {
+        this.removeLikes(removedLikes);
+      }
     });
   }
 
@@ -120,6 +130,16 @@ export class APISyncer {
     locations.forEach(location => {
       this.api.updateEvent(calculateChangeset(location) as any);
     });
+  }
+
+  private async removeLikes(likes: Like[]) {
+    await Promise.all(likes.map(e => this.api.unlike(e.eventId)));
+    writeDB.table('likes').delete(likes);
+  }
+
+  private async addLikes(likes: Like[]) {
+    await Promise.all(likes.map(e => this.api.like(e.eventId)));
+    writeDB.table('likes').update(likes, {state: undefined});
   }
 }
 

@@ -56,7 +56,7 @@ class Header extends React.Component<Props, MenuState> {
 }
 
 const mapStateToProps: (state: State) => Props = (state) => {
-  const hasLikes = new DB(state).table('likes').all.length > 0;
+  const hasLikes = new DB(state).table('likes').all.filter(e => e.state !== 'deleted').length > 0;
   const loggedIn = isLoggedIn(state.settings.session);
   return {loggedIn, hasLikes};
 }
