@@ -16,10 +16,13 @@ import {scoped} from '../i18n';
 import {syncer} from '../api-syncer';
 import {guid} from '../util';
 import { JsonLd } from '../components/JsonLd';
+import { isLoggedIn } from '../models/session';
+import LikeButton from '../components/like-button';
 
 interface Props {
   event?: EventWithLocation;
   like?: Like;
+  loggedIn: boolean;
   editable: boolean;
   dispatch: (DBAction) => void;
   otherEvents: EventWithLocation[];
@@ -51,7 +54,7 @@ class EventPage extends React.Component<Props, EventState> {
   }
 
   render() {
-    let {event, like, editable, otherEvents, subevents} = this.props;
+    let {event, like, editable, otherEvents, subevents, loggedIn} = this.props;
     if(!event) { return null };
     event = Object.assign({}, event, this.state.changes);
     const hero = event.hero && event.hero.big;
@@ -115,6 +118,7 @@ class EventPage extends React.Component<Props, EventState> {
                 </p>
               ))
             }
+            {loggedIn && <LikeButton active={!!like} onClick={this.toggleLike}/> }
           </div>
           {event.description && format(event.description)}
           {flyer && <div className="flyer"><img src={flyer}/></div>}
@@ -145,6 +149,17 @@ class EventPage extends React.Component<Props, EventState> {
     )
   }
 
+  toggleLike = () => {
+    const likes = writeDB.table('likes');
+    const eventId= this.props.event!.id;
+    console.log('toggle like', eventId, this.props.like)
+    if(this.props.like) {
+      likes.delete(likes.where({eventId}));
+    } else {
+      likes.insert({eventId});
+    }
+  }
+
   private onChange<T extends keyof EventWithLocation>(field: T, type: string = 'string') {
     return (value: string) => {
       let convertedValue: any = value;
@@ -169,7 +184,7 @@ class EventPage extends React.Component<Props, EventState> {
 
   private submit() {
     const {changes} = this.state;
-    if(Object.keys(changes).length === 0) { 
+    if(Object.keys(changes).length === 0) {
       this.setState({editing: false});
       return;
     }
@@ -209,12 +224,14 @@ const mapStateToProps = (state: State, props) => {
   const events = db.table('events');
   const newEvent = slug === 'new';
   let rawEvent = events.where({slug})[0];
+  const session = db.get('session');
+  const loggedIn = isLoggedIn(session);
   let event: EventWithLocation | undefined = newEvent ? buildEvent() : joinLocation(rawEvent ? [rawEvent] : [], state)[0];
   let subevents: EventWithLocation[] = event && !newEvent ? joinLocation(events.where({eventId: event.id}).filter(e => e.id != event!.id), state) : [];
   let otherEvents: EventWithLocation[] = event && !newEvent ? joinLocation(events.where({locationId: event.locationId}).filter(e => e.id != event!.id), state) : [];
-  const editable = canEdit(event, db.get('session')) || newEvent;
+  const editable = canEdit(event, session) || newEvent;
   const like = rawEvent && db.table('likes').where({eventId: event.id})[0];
-  return {event, like, editable, otherEvents, newEvent, subevents};
+  return {event, like, editable, otherEvents, newEvent, subevents, loggedIn};
 }
 
 export default connect(mapStateToProps)(withRouter(EventPage))

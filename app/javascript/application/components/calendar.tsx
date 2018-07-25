@@ -16,6 +16,7 @@ export class Calendar extends React.Component<Props> {
     console.log(months);
     return (
       <div className="calendar">
+        <div className="spacer"/>
         <div className="calendar__line"/>
         {
           months.map(month => (
@@ -43,6 +44,7 @@ export class Calendar extends React.Component<Props> {
             </section>
           ))
         }
+        <div className="spacer"/>
       </div>
     )
   }

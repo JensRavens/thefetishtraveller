@@ -43,7 +43,7 @@ class Header extends React.Component<Props, MenuState> {
           <div className="main-menu__switch" onClick={() => this.setState({expanded: !expanded})}><div className="main-menu__switch-icon"/></div>
           <div className="main-menu__category main-menu__category--additional">
             <NavLink to="/events">{t('.events')}</NavLink>
-            {loggedIn && <NavLink to="/locations">Locations</NavLink>}
+            {/* {loggedIn && <NavLink to="/locations">Locations</NavLink>} */}
           </div>
           <div className="main-menu__category main-menu__category--additional">
             {/* {<NavLink to="/login">{loggedIn ? t('.logout') : t('.login')}</NavLink>} */}

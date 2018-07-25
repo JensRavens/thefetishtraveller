@@ -42,7 +42,7 @@ class User < ApplicationRecord
   end
 
   def guest?
-    email.blank?
+    email.blank? && facebook_id.blank?
   end
 
   def admin?

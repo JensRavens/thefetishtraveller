@@ -128,6 +128,7 @@ export const syncer = new APISyncer();
 declare const window: any;
 window.api = syncer.api;
 window.syncer = syncer;
+window.db = writeDB;
 
 window.fbAsyncInit = () => {
   console.log('init!');
