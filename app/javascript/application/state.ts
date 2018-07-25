@@ -8,6 +8,7 @@ import {DataTable, reducer, DB, DBAction, MutableDB} from 'redux-database';
 declare var devToolsExtension: () => void;
 
 import { createStore, applyMiddleware, compose, GenericStoreEnhancer } from 'redux';
+import { TravelPlan } from './models/travel_plan';
 
 export interface State {
   settings: {
@@ -17,36 +18,32 @@ export interface State {
     events: DataTable<Event>;
     locations: DataTable<Location>;
     likes: DataTable<Like>;
+    travelPlans: DataTable<TravelPlan>;
   },
   types: {
     events: Event,
     locations: Location,
-    likes: Like
+    likes: Like,
+    travelPlans: TravelPlan;
   }
 }
 
+const emptyTable = { byId: {}, ids: [] };
 
 const defaultState: State = {
   settings: {
   },
   data: {
-    events: {
-      byId: {},
-      ids: []
-    },
-    likes: {
-      byId: {},
-      ids: []
-    },
-    locations: {
-      byId: {},
-      ids: []
-    }
+    events: emptyTable,
+    likes: emptyTable,
+    locations: emptyTable,
+    travelPlans: emptyTable
   },
   types: {
     events: {} as Event,
     locations: {} as Location,
-    likes: {} as Like
+    likes: {} as Like,
+    travelPlans: {} as TravelPlan
   }
 }
 
@@ -70,6 +67,14 @@ function hydrate(tree: any): any {
 
 const stateString = localStorage && localStorage.getItem('state')
 const persistedState: State | undefined = stateString && hydrate(JSON.parse(stateString))
+
+if(persistedState) {
+  for (const key of Object.keys(defaultState.data)) {
+    if(!persistedState.data[key]) {
+      persistedState.data[key] = emptyTable;
+    }
+  }
+}
 
 export const initialState: State = persistedState || defaultState;
 

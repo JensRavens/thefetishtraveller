@@ -53,4 +53,8 @@ class User < ApplicationRecord
     return "admin" if admin?
     guest? ? "guest" : "user"
   end
+
+  def name
+    [first_name, last_name].presence.join(" ").presence
+  end
 end

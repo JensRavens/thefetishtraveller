@@ -1,9 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {Route, Switch} from 'react-router';
-import {BrowserRouter, NavLink} from 'react-router-dom';
-
-import {State} from '../state';
+import {BrowserRouter} from 'react-router-dom';
 
 import Home from './home';
 import Login from './login';
@@ -11,11 +9,11 @@ import EventPage from './event_page';
 import {EventSubmit} from './event_submit';
 import EventSearch from './event_search';
 import TravelPlans from './travel_plans';
+import TravelPlanPage from './travel_plan_page';
 import LocationSearch from './location_search';
 import LocationCreation from './location_creation';
 import LocationEdit from './location_edit';
 import Imprint from './imprint';
-import Container from '../components/container';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import {I18n} from '../i18n';
@@ -48,6 +46,7 @@ class Application extends React.Component<Props> {
                     <Route path="/events/submit" exact component={EventSubmit}/>
                     <Route path="/events/:id" exact component={EventPage}/>
                     <Route path="/calendar" exact component={TravelPlans}/>
+                    <Route path="/travel-plans/:id" exact component={TravelPlanPage}/>
                     <Route path="/locations" exact component={LocationSearch}/>
                     <Route path="/locations/new" exact component={LocationCreation}/>
                     <Route path="/locations/:id" exact component={LocationEdit}/>

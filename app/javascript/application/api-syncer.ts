@@ -12,7 +12,7 @@ export class APISyncer {
     const state = store.getState() as State | null;
     const session = state ? new DB(state).get('session') : null;
     const sessionId = session ? session.id : undefined;
-    this.api = new API('/api/v1', sessionId);
+    this.api = new API(location.protocol + '//' + location.host + '/api/v1', sessionId);
     if(sessionId) { this.refreshSession() }
     this.subscribe();
   }
@@ -51,6 +51,11 @@ export class APISyncer {
     const event = await this.api.createEvent({...changes, id});
     writeDB.table('events').insert(event);
     return event;
+  }
+
+  async loadTravelPlan(id: string) {
+    const travelPlan = await this.api.getTravelPlan(id);
+    writeDB.table('travelPlans').insert(travelPlan);
   }
 
   private subscribe() {
