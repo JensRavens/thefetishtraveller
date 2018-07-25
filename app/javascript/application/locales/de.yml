@@ -58,3 +58,11 @@ footer:
   quick_navigation: Schnellnavigation
 edit: Editieren
 save: Speichern
+login:
+  claim: Deine persönliche Reiseplattform
+  intro: Logge dich ein, um Favoriten zu speichern, Reisepläne zu verwalten oder Veranstaltungen ein zu reichen.
+  why: Warum sollte ich mich einloggen?
+  why_explanation: Wenn du dich einloggst, kannst du Veranstaltungen auf deine Favoritenliste setzen, Reisepläne verwalten oder Veranstaltunen einreichen und bearbeiten. Wir benötigen den Login, um deine Daten über mehrere Geräte hinweg zu synchronisieren. Facebook wird nur für den Login genutzt - wir posten niemals etwas auf deine Timeline, ohne dich vorher zu fragen!
+  how: Wie kann ich mich registrieren?
+  how_explanation: Derzeit bietet diese Seite nur Login über Facebook an. Du musst dich dazu nicht extra registrieren, klicke einfach auf den Login Button und schon kannst du deine Reisepläne verwalten.
+

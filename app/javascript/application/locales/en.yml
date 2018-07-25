@@ -61,3 +61,7 @@ save: Save
 login:
   claim: Personalize your Travel Experience
   intro: Login to save your favorites list, travel plans or submit events.
+  why: Why Should I Login?
+  why_explanation: If you log in, you can save events to a favorite list and make travel plans. A log in is needed to sync your travel plans across devices. Facebook is used for authentication purposes only - we will never post anything to your timeline without your permission.
+  how: How can I Login?
+  how_explanation: Currently this site only supports login via facebook. There is no need for account creation, just click on the login button to start making travel plans.
