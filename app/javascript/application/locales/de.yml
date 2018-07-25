@@ -12,7 +12,7 @@ event:
   tickets: Tickets
   slug: Slug
   happening_here: Veranstaltungen
-  category: 
+  category:
     fetish: Fetisch
     csd: CSD
     election: Wahl
@@ -41,6 +41,8 @@ menu:
   home: Startseite
   imprint: Impressum
   submit: Veranstaltung eintragen
+  login: Login
+  logout: Logout
 newsletter:
   subscribe: Anmelden
   cto: Jetzt für den Newsletter anmelden

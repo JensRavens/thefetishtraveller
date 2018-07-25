@@ -12,7 +12,7 @@ event:
   submit_here: Submit your event here!
   event_missing: Your favorite event is missing?
   happening_here: Events
-  category: 
+  category:
     fetish: Fetish
     csd: Pride Parade
     election: Election
@@ -41,6 +41,8 @@ menu:
   home: Home
   imprint: Imprint
   submit: Submit Events
+  login: Login
+  logout: Logout
 newsletter:
   subscribe: subscribe
   cto: Subscribe now to our newsletter
@@ -56,3 +58,6 @@ footer:
   quick_navigation: Quick Navigation
 edit: Edit
 save: Save
+login:
+  claim: Personalize your Travel Experience
+  intro: Login to save your favorites list, travel plans or submit events.
