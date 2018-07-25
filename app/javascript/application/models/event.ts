@@ -99,7 +99,7 @@ export function byMonth<T extends Event>(events: T[]): {date: Date, events: T[]}
   const buckets: {[date: string]: T[]} = {};
   events.forEach(event => {
     const date = moment(event.startAt);
-    const dateString = [date.year(), date.month()].join('-');
+    const dateString = [date.year(), date.month() + 1].join('-');
     buckets[dateString] = buckets[dateString] || [];
     buckets[dateString].push(event);
   });
