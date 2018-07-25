@@ -23,7 +23,10 @@ export class APISyncer {
   }
 
   async login(email: string, password: string) {
-    if(!this.api.sessionID) { await this.api.createSession() }
+    if(!this.api.sessionID) {
+      const session = await this.api.createSession();
+      writeDB.set('session', session);
+    }
     const session = await this.api.login(email, password);
     writeDB.set('session', session);
   }
@@ -83,9 +86,15 @@ export class APISyncer {
   }
 
   private async refreshSession() {
-    const session = await this.api.getSession();
-    writeDB.set('session', session);
-    this.refreshLikes();
+    try {
+      const session = await this.api.getSession();
+      writeDB.set('session', session);
+      this.refreshLikes();
+    } catch (error) {
+      console.warn('session was deleted on server. logging out now.');
+      writeDB.set('session', undefined);
+      this.api.sessionID = undefined;
+    }
   }
 
   private annotate(list: APIEvent | APIEvent[] | APILocation | APILocation[]): any {

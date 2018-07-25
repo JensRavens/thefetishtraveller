@@ -113,6 +113,23 @@ export function byMonth<T extends Event>(events: T[]): {date: Date, events: T[]}
   return result;
 }
 
+export function byMainEvent<T extends Event>(events: T[]): {event: T, events: T[]}[] {
+  const buckets: {[eventId: string]: T[]} = {};
+  events.forEach(event => {
+    const id = event.eventId || event.id;
+    buckets[id] = buckets[id] || [];
+    buckets[id].push(event);
+  });
+  const result: {event: T, events: T[]}[] = [];
+  Object.keys(buckets).forEach(key => {
+    result.push({
+      event: buckets[key].filter(e => !e.eventId)[0],
+      events: buckets[key].filter(e => e.eventId)
+    })
+  });
+  return result;
+}
+
 export function matchesTerm(event: Partial<EventWithLocation>, term: string): boolean {
   let normalizedEvent = (event.name || '').toLocaleLowerCase();
   if(event.location) {

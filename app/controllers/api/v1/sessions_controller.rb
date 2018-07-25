@@ -5,7 +5,7 @@ module API
 
       def create
         user = User.create!
-        session = user.sessions.create!
+        session = user.sessions.create! user_agent: request.user_agent
         render json: session
       end
 
