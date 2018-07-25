@@ -3,7 +3,7 @@ import {Like} from './models/like';
 import {Location} from './models/location';
 import thunk from 'redux-thunk';
 import {APISession} from './api';
-import {DataTable, reducer, DB, DBAction} from './db';
+import {DataTable, reducer, DB, DBAction} from 'redux-database';
 
 declare var devToolsExtension: () => void;
 
