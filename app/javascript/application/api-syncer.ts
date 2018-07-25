@@ -24,22 +24,22 @@ export class APISyncer {
   async login(email: string, password: string) {
     if(!this.api.sessionID) { await this.api.createSession() }
     const session = await this.api.login(email, password);
-    store.dispatch(writeDB.set('session', session));
+    writeDB.set('session', session);
   }
 
   async updateLocation(id: string, changes: Partial<APILocation>) {
     const location = await this.api.updateLocation({...changes, id});
-    store.dispatch(writeDB.table('locations').update(id, location));
+    writeDB.table('locations').update(id, location);
   }
 
   async updateEvent(id: string, changes: Partial<APIEvent>) {
     const event = await this.api.updateEvent({...changes, id});
-    store.dispatch(writeDB.table('events').update(id, event));
+    writeDB.table('events').update(id, event);
   }
 
   async createEvent(id: string, changes: Partial<APIEvent>): Promise<Event> {
     const event = await this.api.createEvent({...changes, id});
-    store.dispatch(writeDB.table('events').insert(event));
+    writeDB.table('events').insert(event);
     return event;
   }
 
@@ -68,7 +68,7 @@ export class APISyncer {
 
   private async refreshSession() {
     const session = await this.api.getSession();
-    store.dispatch(writeDB.set('session', session));
+    writeDB.set('session', session);
     this.refreshLikes();
   }
 
@@ -82,8 +82,8 @@ export class APISyncer {
     const apiEvents = await this.api.getEvents();
     const syncedIds = apiEvents.map(e => e.id);
     const removedEvents = store.getState().data.events.ids.filter(id => !syncedIds.includes(id));
-    store.dispatch(events.insert(this.annotate(apiEvents)));
-    store.dispatch(events.delete(removedEvents));
+    events.insert(this.annotate(apiEvents));
+    events.delete(removedEvents);
   }
 
   private async refreshLikes() {
@@ -91,8 +91,8 @@ export class APISyncer {
     const apiLikes = await this.api.getLikes();
     const syncedIds = apiLikes.map(e => e.id);
     const removedLikes = store.getState().data.likes.ids.filter(id => !syncedIds.includes(id));
-    store.dispatch(likes.insert(apiLikes));
-    store.dispatch(likes.delete(removedLikes));
+    likes.insert(apiLikes);
+    likes.delete(removedLikes);
   }
 
   private async refreshLocations() {
@@ -100,8 +100,8 @@ export class APISyncer {
     const apiLocations = await this.api.getLocations();
     const syncedIds = apiLocations.map(e => e.id);
     const removedLocations = store.getState().data.locations.ids.filter(id => !syncedIds.includes(id));
-    store.dispatch(locations.insert(this.annotate(apiLocations)));
-    store.dispatch(locations.delete(removedLocations));
+    locations.insert(this.annotate(apiLocations));
+    locations.delete(removedLocations);
   }
 
   private updateEvents(events: Event[]) {

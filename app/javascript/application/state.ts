@@ -3,7 +3,7 @@ import {Like} from './models/like';
 import {Location} from './models/location';
 import thunk from 'redux-thunk';
 import {APISession} from './api';
-import {DataTable, reducer, DB, DBAction} from 'redux-database';
+import {DataTable, reducer, DB, DBAction, MutableDB} from 'redux-database';
 
 declare var devToolsExtension: () => void;
 
@@ -90,7 +90,7 @@ export const store = createStore<State>(
 );
 
 export {DB, DBAction}
-export const writeDB = new DB(initialState);
+export const writeDB = new MutableDB(initialState);
 
 declare const window: any;
 window.store = store;
