@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       resources :events, only: [:index, :show, :update, :create] do
         resource :likes, only: [:create, :destroy]
       end
+      resources :travel_plans, only: :show
       resources :locations, only: [:index, :show, :update, :create]
       resources :likes, only: :index
       resource :session, only: [:create, :update, :show]

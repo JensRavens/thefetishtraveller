@@ -1,5 +1,6 @@
 import {camelCase, snakeCase, mapKeys} from 'lodash';
 import {Image} from './models/image';
+import { TravelPlan } from './models/travel_plan';
 
 export interface APILocation {
   id: string;
@@ -100,6 +101,10 @@ export class API {
     return await this.post('/locations', location);
   }
 
+  async getTravelPlan(id: string): Promise<TravelPlan> {
+    return await this.get(`/travel_plans/${id}`);
+  }
+
   async createSession(): Promise<APISession> {
     const session = await this.post('/session');
     this.sessionID = session.id;
@@ -148,6 +153,7 @@ export class API {
     } else {
       body = JSON.stringify(this.kebabify(params));
     }
+    console.log({url: this.baseUrl, path, pathParams});
     const response = await fetch(this.baseUrl + path + pathParams, {headers, method, body });
     if(response.status !== 200) {
       throw "API Error"
