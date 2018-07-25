@@ -11,13 +11,16 @@ import {Calendar} from '../components/calendar';
 import { scoped } from '../i18n';
 
 interface Props {
+  userId: string;
   events: EventWithLocation[];
 }
 
 const mapStateToProps: (state: State) => Props = (state) => {
-  const eventIds = new DB(state).table('likes').all.map(e => e.eventId);
+  const db = new DB(state)
+  const eventIds = db.table('likes').all.map(e => e.eventId);
   return {
-    events: joinLocation(new DB(state).table('events').where(e => eventIds.includes(e.id)).sort((a,b) => (a.startAt as any) - (b.startAt as any)), state),
+    events: joinLocation(db.table('events').where(e => eventIds.includes(e.id)).sort((a,b) => (a.startAt as any) - (b.startAt as any)), state),
+    userId: db.get('session')!.userId
   }
 }
 
@@ -25,12 +28,16 @@ const t = scoped('calendar');
 
 class TravelPlans extends React.Component<Props> {
   render() {
-    const {events} = this.props;
+    const {events, userId} = this.props;
     return (
       <React.Fragment>
         <Hero>
           <Container>
             <h1>{t('.heading')}</h1>
+            {events.length &&
+              <div className="hero__addon">
+                <a href={`webcal://${location.host}/feed/events?user_id=${userId}`}>subscribe</a>
+              </div>}
           </Container>
         </Hero>
         <Calendar events={events}/>

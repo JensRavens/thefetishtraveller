@@ -55,7 +55,7 @@ class Event < ApplicationRecord
     event = Icalendar::Event.new
     event.dtstart = Icalendar::Values::Date.new start_at
     event.dtstart.ical_params = { "VALUE" => "DATE" }
-    event.dtend = Icalendar::Values::Date.new end_at
+    event.dtend = Icalendar::Values::Date.new end_at + 1.day
     event.dtend.ical_params = { "VALUE" => "DATE" }
     event.summary = name
     event.description = abstract if abstract.present?

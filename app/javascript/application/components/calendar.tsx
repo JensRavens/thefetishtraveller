@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as moment from 'moment';
 import {Link} from 'react-router-dom';
 
-import {EventWithLocation, byMonth, formatDate} from '../models/event';
+import {EventWithLocation, byMonth, byMainEvent, formatDate} from '../models/event';
 
 import Container from './container';
 
@@ -14,7 +14,6 @@ export class Calendar extends React.Component<Props> {
   render() {
     const {events} = this.props;
     const months = byMonth(events);
-    console.log(months);
     return (
       <div className="calendar">
         <div className="spacer"/>
@@ -30,14 +29,14 @@ export class Calendar extends React.Component<Props> {
               </div>
               <Container variant="small">
                 {
-                  month.events.map(event => (
-                    <Link to={`/events/${event.slug}`} key={event.id}>
+                  byMainEvent(month.events).map(group => (
+                    <Link to={`/events/${group.event.slug}`} key={group.event.id}>
                       <div className="calendar__event">
-                        {event.hero && <img className="calendar__event__image" src={event.hero.big}/>}
+                        {group.event.hero && <img className="calendar__event__image" src={group.event.hero.big}/>}
                         <div className="calendar__event__details">
-                          <h2>{event.name}</h2>
-                          <div className="calendar__event__date">{formatDate(event)}</div>
-                          {event.abstract && <p>{event.abstract}</p> }
+                          <h2>{group.event.name}</h2>
+                          <div className="calendar__event__date">{formatDate(group.event)}</div>
+                          {group.events.map(e => <p>{e.name}: {formatDate(e)}</p>)}
                         </div>
                       </div>
                     </Link>
