@@ -46,8 +46,8 @@ class Header extends React.Component<Props, MenuState> {
             {/* {loggedIn && <NavLink to="/locations">Locations</NavLink>} */}
           </div>
           <div className="main-menu__category main-menu__category--additional">
-            {/* {<NavLink to="/login">{loggedIn ? t('.logout') : t('.login')}</NavLink>} */}
             {hasLikes && <NavLink to="/calendar">{t('.your_calendar')}</NavLink>}
+            {<NavLink to="/login">{loggedIn ? t('.logout') : t('.login')}</NavLink>}
           </div>
         </nav>
       </header>

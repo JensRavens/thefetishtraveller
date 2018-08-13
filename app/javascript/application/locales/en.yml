@@ -35,6 +35,8 @@ location:
     gb: United Kingdom
     ru: Russia
     se: Sweden
+    pt: Portugal
+    au: Australia
 menu:
   events: Events
   your_calendar: Your Calendar
