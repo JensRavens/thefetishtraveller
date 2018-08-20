@@ -18,6 +18,9 @@ event:
     election: Election
     festival: Festival
     party: Party
+    culture: Culture
+    bluf: BLUF
+    social: Social
 location:
   countries:
     de: Germany
