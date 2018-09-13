@@ -6,15 +6,20 @@ interface Props {
 }
 
 export default class Hero extends React.Component<Props> {
-  static defaultProps = { style: 'normal' }
+  static defaultProps = { style: 'normal' };
 
   render() {
-    const {backgroundImage, children, style} = this.props;
+    const { backgroundImage, children, style } = this.props;
     return (
       <div className={`hero hero--${style}`}>
-        {backgroundImage && <div className="hero__background" style={{backgroundImage: `url(${backgroundImage})`}}/>}
+        {backgroundImage && (
+          <div
+            className="hero__background"
+            style={{ backgroundImage: `url(${backgroundImage})` }}
+          />
+        )}
         <div className="hero__content">{children}</div>
       </div>
-    )
+    );
   }
 }

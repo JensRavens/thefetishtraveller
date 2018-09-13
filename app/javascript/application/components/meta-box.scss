@@ -5,15 +5,15 @@
   color: white;
   position: relative;
   margin-bottom: 20px;
-  
-  @media(min-width: $tablet) {
+
+  @media (min-width: $tablet) {
     width: 320px;
     float: left;
     margin: 0 20px 20px 0;
   }
 
   &--floating {
-    @media(min-width: $desktop) {
+    @media (min-width: $desktop) {
       float: right;
       margin: -60px -20px 20px 20px;
     }

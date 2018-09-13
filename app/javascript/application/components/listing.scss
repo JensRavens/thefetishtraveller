@@ -10,7 +10,7 @@
     }
   }
 
-  @media(min-width: $phablet) {
+  @media (min-width: $phablet) {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
@@ -22,25 +22,25 @@
     }
   }
 
-  @media(min-width: $desktop) {
+  @media (min-width: $desktop) {
     &__entry {
       flex: 0 0 33.33333%;
     }
   }
 
-  @media(min-width: $widescreen) {
+  @media (min-width: $widescreen) {
     &__entry {
       flex: 0 0 25%;
     }
   }
 
-  @media(min-width: $widescreen-large) {
+  @media (min-width: $widescreen-large) {
     &__entry {
       flex: 0 0 20%;
     }
   }
 
-  @media(min-width: $widescreen-xlarge) {
+  @media (min-width: $widescreen-xlarge) {
     &__entry {
       flex: 0 0 16.666666%;
     }
@@ -48,7 +48,7 @@
 
   &--single-line {
     .listing__entry {
-      @media(min-width: $phablet) {
+      @media (min-width: $phablet) {
         @for $i from 3 through 6 {
           &:nth-child(#{$i}) {
             display: none;
@@ -56,25 +56,25 @@
         }
       }
 
-      @media(min-width: $desktop) {
+      @media (min-width: $desktop) {
         &:nth-child(3) {
           display: block;
         }
       }
 
-      @media(min-width: $widescreen) {
+      @media (min-width: $widescreen) {
         &:nth-child(4) {
           display: block;
         }
       }
 
-      @media(min-width: $widescreen-large) {
+      @media (min-width: $widescreen-large) {
         &:nth-child(5) {
           display: block;
         }
       }
 
-      @media(min-width: $widescreen-xlarge) {
+      @media (min-width: $widescreen-xlarge) {
         &:nth-child(6) {
           display: block;
         }

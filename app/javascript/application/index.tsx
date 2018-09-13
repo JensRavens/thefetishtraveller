@@ -1,22 +1,23 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import Application from './pages/application';
-import {Provider} from 'react-redux';
-import {store} from './state';
-import {syncer} from './api-syncer';
+import { Provider } from 'react-redux';
+import { store } from './state';
+import { syncer } from './api-syncer';
 
 import './registerServiceworker';
 
 require('./style');
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.documentElement.className += (("ontouchstart" in document.documentElement) ? ' touch' : ' no-touch');
+  document.documentElement.className +=
+    'ontouchstart' in document.documentElement ? ' touch' : ' no-touch';
   ReactDOM.render(
     <Provider store={store}>
-      <Application/>
+      <Application />
     </Provider>,
-    document.body.appendChild(document.createElement('div')),
-  )
+    document.body.appendChild(document.createElement('div'))
+  );
   syncer.refresh();
   (window as any).prerenderReady = true;
-})
+});

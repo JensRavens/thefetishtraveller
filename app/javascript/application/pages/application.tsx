@@ -1,12 +1,12 @@
 import * as React from 'react';
-import {connect} from 'react-redux';
-import {Route, Switch} from 'react-router';
-import {BrowserRouter} from 'react-router-dom';
+import { connect } from 'react-redux';
+import { Route, Switch } from 'react-router';
+import { BrowserRouter } from 'react-router-dom';
 
 import Home from './home';
 import Login from './login';
 import EventPage from './event_page';
-import {EventSubmit} from './event_submit';
+import { EventSubmit } from './event_submit';
 import EventSearch from './event_search';
 import TravelPlans from './travel_plans';
 import TravelPlanPage from './travel_plan_page';
@@ -16,7 +16,7 @@ import LocationEdit from './location_edit';
 import Imprint from './imprint';
 import Header from '../components/header';
 import Footer from '../components/footer';
-import {I18n} from '../i18n';
+import { I18n } from '../i18n';
 import ScrollToTop from '../components/scroll_to_top';
 import ErrorCatcher from '../components/error_catcher';
 
@@ -30,32 +30,50 @@ class Application extends React.Component<Props> {
   }
 
   render() {
-    if(!this.props.stateLoaded) { return null; }
+    if (!this.props.stateLoaded) {
+      return null;
+    }
     return (
       <BrowserRouter>
         <ErrorCatcher>
           <div className="application">
-            <Header/>
+            <Header />
             <main>
               <ScrollToTop>
                 <ErrorCatcher>
                   <Switch>
-                    <Route path="/" exact component={Home}/>
-                    <Route path="/login" exact component={Login}/>
-                    <Route path="/events" exact component={EventSearch}/>
-                    <Route path="/events/submit" exact component={EventSubmit}/>
-                    <Route path="/events/:id" exact component={EventPage}/>
-                    <Route path="/calendar" exact component={TravelPlans}/>
-                    <Route path="/travel-plans/:id" exact component={TravelPlanPage}/>
-                    <Route path="/locations" exact component={LocationSearch}/>
-                    <Route path="/locations/new" exact component={LocationCreation}/>
-                    <Route path="/locations/:id" exact component={LocationEdit}/>
-                    <Route path="/imprint" exact component={Imprint}/>
+                    <Route path="/" exact component={Home} />
+                    <Route path="/login" exact component={Login} />
+                    <Route path="/events" exact component={EventSearch} />
+                    <Route
+                      path="/events/submit"
+                      exact
+                      component={EventSubmit}
+                    />
+                    <Route path="/events/:id" exact component={EventPage} />
+                    <Route path="/calendar" exact component={TravelPlans} />
+                    <Route
+                      path="/travel-plans/:id"
+                      exact
+                      component={TravelPlanPage}
+                    />
+                    <Route path="/locations" exact component={LocationSearch} />
+                    <Route
+                      path="/locations/new"
+                      exact
+                      component={LocationCreation}
+                    />
+                    <Route
+                      path="/locations/:id"
+                      exact
+                      component={LocationEdit}
+                    />
+                    <Route path="/imprint" exact component={Imprint} />
                   </Switch>
                 </ErrorCatcher>
               </ScrollToTop>
             </main>
-            <Footer/>
+            <Footer />
           </div>
         </ErrorCatcher>
       </BrowserRouter>
@@ -63,5 +81,5 @@ class Application extends React.Component<Props> {
   }
 }
 
-const mapStateToProps: (State) => Props = (state) => ({stateLoaded: !!state});
+const mapStateToProps: (State) => Props = state => ({ stateLoaded: !!state });
 export default connect(mapStateToProps)(Application);

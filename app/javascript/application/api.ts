@@ -1,5 +1,5 @@
-import {camelCase, snakeCase, mapKeys} from 'lodash';
-import {Image} from './models/image';
+import { camelCase, snakeCase, mapKeys } from 'lodash';
+import { Image } from './models/image';
 import { TravelPlan } from './models/travel_plan';
 
 export interface APILocation {
@@ -65,11 +65,11 @@ export class API {
     return await this.get(`/events/${id}`);
   }
 
-  async updateEvent(event: {id: string} & Partial<APIEvent>) {
+  async updateEvent(event: { id: string } & Partial<APIEvent>) {
     return await this.patch(`/events/${event.id}`, event);
   }
 
-  async createEvent(event: {id: string} & Partial<APIEvent>) {
+  async createEvent(event: { id: string } & Partial<APIEvent>) {
     return await this.post('/events', event);
   }
 
@@ -93,11 +93,13 @@ export class API {
     return await this.get(`/locations/${id}`);
   }
 
-  async updateLocation(location: {id: string} & Partial<APILocation>): Promise<APILocation> {
+  async updateLocation(
+    location: { id: string } & Partial<APILocation>
+  ): Promise<APILocation> {
     return await this.patch(`/locations/${location.id}`, location);
   }
 
-  async createLocation(location: {id: string} & Partial<APILocation>) {
+  async createLocation(location: { id: string } & Partial<APILocation>) {
     return await this.post('/locations', location);
   }
 
@@ -112,65 +114,92 @@ export class API {
   }
 
   async login(email, password): Promise<APISession> {
-    return await this.patch('/session', {email, password});
+    return await this.patch('/session', { email, password });
   }
 
   async facebookLogin(facebookToken: string): Promise<APISession> {
-    return await this.patch('/session', {facebookToken});
+    return await this.patch('/session', { facebookToken });
   }
 
   async getSession(): Promise<APISession> {
     return await this.get('/session');
   }
 
-  private async get(path: string, params?: {[key: string]: any}): Promise<any> {
+  private async get(
+    path: string,
+    params?: { [key: string]: any }
+  ): Promise<any> {
     return await this.load('GET', path, params);
   }
 
-  private async post(path: string, params?: {[key: string]: any}): Promise<any> {
+  private async post(
+    path: string,
+    params?: { [key: string]: any }
+  ): Promise<any> {
     return await this.load('POST', path, params);
   }
 
-  private async delete(path: string, params?: {[key: string]: any}): Promise<any> {
+  private async delete(
+    path: string,
+    params?: { [key: string]: any }
+  ): Promise<any> {
     return await this.load('DELETE', path, params);
   }
 
-  private async patch(path: string, params?: {[key: string]: any}): Promise<any> {
+  private async patch(
+    path: string,
+    params?: { [key: string]: any }
+  ): Promise<any> {
     return await this.load('PATCH', path, params);
   }
 
-  private async load(method: 'GET' | 'POST' | 'DELETE' | 'PATCH', path: string, params?: {[key: string]: any}): Promise<{[key: string]: any}> {
-    const headers = {'Accept': 'application/json', 'Content-Type': 'application/json'};
-    if(this.sessionID) {
+  private async load(
+    method: 'GET' | 'POST' | 'DELETE' | 'PATCH',
+    path: string,
+    params?: { [key: string]: any }
+  ): Promise<{ [key: string]: any }> {
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    };
+    if (this.sessionID) {
       headers['Authorization'] = `Bearer ${this.sessionID}`;
     }
     let body;
     let pathParams = '';
     if (method === 'GET') {
       if (params) {
-        pathParams = '?' + Object.keys(params).map(key => [key, params[key]].join('=')).join('&')
+        pathParams =
+          '?' +
+          Object.keys(params)
+            .map(key => [key, params[key]].join('='))
+            .join('&');
       }
     } else {
       body = JSON.stringify(this.kebabify(params));
     }
-    console.log({url: this.baseUrl, path, pathParams});
-    const response = await fetch(this.baseUrl + path + pathParams, {headers, method, body });
-    if(response.status !== 200) {
-      throw "API Error"
+    console.log({ url: this.baseUrl, path, pathParams });
+    const response = await fetch(this.baseUrl + path + pathParams, {
+      headers,
+      method,
+      body,
+    });
+    if (response.status !== 200) {
+      throw 'API Error';
     }
     const data = await response.json();
     return this.camelCasify(data);
   }
 
   private camelCasify(subject) {
-    if(subject instanceof Array) {
+    if (subject instanceof Array) {
       return subject.map(e => this.camelCasify(e));
     }
-    if(subject instanceof Object) {
+    if (subject instanceof Object) {
       const transformed = {};
       Object.keys(subject).forEach(key => {
         let value = subject[key];
-        if(typeof value === 'string' && key.endsWith('_at')) {
+        if (typeof value === 'string' && key.endsWith('_at')) {
           value = new Date(value);
         } else {
           value = this.camelCasify(value);
@@ -183,14 +212,15 @@ export class API {
   }
 
   private kebabify(subject) {
-    if(subject instanceof Array) {
+    if (subject instanceof Array) {
       return subject.map(e => this.kebabify(e));
     }
-    if(subject instanceof Object) {
+    if (subject instanceof Object) {
       const transformed = {};
       Object.keys(subject).forEach(key => {
         let value = subject[key];
-        transformed[snakeCase(key)] = value instanceof Date ? value.toISOString() : this.kebabify(value);
+        transformed[snakeCase(key)] =
+          value instanceof Date ? value.toISOString() : this.kebabify(value);
       });
       return transformed;
     }

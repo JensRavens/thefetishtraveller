@@ -3,7 +3,7 @@ import * as React from 'react';
 interface Props {
   value?: any | null;
   editValue?: string;
-  onChange?: (string) => void;  
+  onChange?: (string) => void;
   onBlur?: (string) => void;
   editable?: boolean;
   placeholder?: string;
@@ -14,8 +14,8 @@ interface State {
 }
 
 export default class Editable extends React.Component<Props, State> {
-  static defaultProps = {editable: true};
-  state = {editing: false};
+  static defaultProps = { editable: true };
+  state = { editing: false };
   element: HTMLElement | null;
 
   constructor(props) {
@@ -25,30 +25,32 @@ export default class Editable extends React.Component<Props, State> {
   }
 
   render() {
-    const {value, onChange, editable, placeholder} = this.props;
-    if(!editable) { return value; }
+    const { value, onChange, editable, placeholder } = this.props;
+    if (!editable) {
+      return value;
+    }
     const __html = this.editValue;
     return (
-      <span 
-        ref={el => this.element = el} 
-        className="editable" 
-        data-placeholder={placeholder} 
-        contentEditable 
-        onInput={this.onInput} 
-        onFocus={() => this.setState({editing: true})} 
-        onBlur={this.onBlur} 
-        dangerouslySetInnerHTML={{__html}}
+      <span
+        ref={el => (this.element = el)}
+        className="editable"
+        data-placeholder={placeholder}
+        contentEditable
+        onInput={this.onInput}
+        onFocus={() => this.setState({ editing: true })}
+        onBlur={this.onBlur}
+        dangerouslySetInnerHTML={{ __html }}
       />
-    )
+    );
   }
 
   get editValue(): string {
-    const {editValue, value} = this.props;
+    const { editValue, value } = this.props;
     return (editValue || value || '').toString();
   }
 
   componentDidUpdate() {
-    if(!this.state.editing) {
+    if (!this.state.editing) {
       this.element && (this.element.innerText = this.editValue);
     }
   }
@@ -58,17 +60,21 @@ export default class Editable extends React.Component<Props, State> {
   }
 
   private onInput(event: React.FormEvent<HTMLSpanElement>) {
-    this.setState({editing: true});
+    this.setState({ editing: true });
     const onChange = this.props.onChange;
-    if(!onChange) { return; }
+    if (!onChange) {
+      return;
+    }
     const text = (event.target as HTMLSpanElement).innerText;
     onChange(text);
   }
 
   private onBlur(event: React.FormEvent<HTMLSpanElement>) {
-    this.setState({editing: false});
+    this.setState({ editing: false });
     const onBlur = this.props.onBlur;
-    if(!onBlur) { return; }
+    if (!onBlur) {
+      return;
+    }
     const text = (event.target as HTMLSpanElement).innerText;
     onBlur(text);
   }

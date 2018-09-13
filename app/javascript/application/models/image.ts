@@ -1,6 +1,6 @@
 export interface Image {
-  full: string,
-  big: string,
-  medium: string,
-  small: string
+  full: string;
+  big: string;
+  medium: string;
+  small: string;
 }

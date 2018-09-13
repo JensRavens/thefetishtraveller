@@ -45,7 +45,7 @@
     }
   }
 
-  @media(min-width: $desktop) {
+  @media (min-width: $desktop) {
     &__event {
       height: 370px;
       margin-bottom: 6em;
@@ -77,7 +77,7 @@
     }
   }
 
-  @media(min-width: $widescreen) {
+  @media (min-width: $widescreen) {
     &__event {
       margin-bottom: 8em;
     }

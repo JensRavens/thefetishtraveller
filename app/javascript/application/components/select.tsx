@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Form, {Context} from './form';
+import Form, { Context } from './form';
 
 interface Props {
   name: string;
@@ -8,15 +8,19 @@ interface Props {
 
 export default class Select extends React.Component<Props> {
   render() {
-    const {name, options} = this.props;
+    const { name, options } = this.props;
     return (
       <Context.Consumer>
-        {(form) => (
+        {form => (
           <select name={name} onChange={() => form.change()}>
-            {options.map(key => <option key={key[0]} value={key[0]}>{key[1]}</option>)}
+            {options.map(key => (
+              <option key={key[0]} value={key[0]}>
+                {key[1]}
+              </option>
+            ))}
           </select>
         )}
       </Context.Consumer>
-    )
+    );
   }
 }

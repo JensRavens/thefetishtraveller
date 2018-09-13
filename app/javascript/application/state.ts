@@ -1,60 +1,68 @@
-import {Event} from './models/event';
-import {Like} from './models/like';
-import {Location} from './models/location';
+import { Event } from './models/event';
+import { Like } from './models/like';
+import { Location } from './models/location';
 import thunk from 'redux-thunk';
-import {APISession} from './api';
-import {DataTable, reducer, DB, DBAction, MutableDB} from 'redux-database';
+import { APISession } from './api';
+import { DataTable, reducer, DB, DBAction, MutableDB } from 'redux-database';
 
 declare var devToolsExtension: () => void;
 
-import { createStore, applyMiddleware, compose, GenericStoreEnhancer } from 'redux';
+import {
+  createStore,
+  applyMiddleware,
+  compose,
+  GenericStoreEnhancer,
+} from 'redux';
 import { TravelPlan } from './models/travel_plan';
 
 export interface State {
   settings: {
-    session?: APISession,
-  },
+    session?: APISession;
+  };
   data: {
     events: DataTable<Event>;
     locations: DataTable<Location>;
     likes: DataTable<Like>;
     travelPlans: DataTable<TravelPlan>;
-  },
+  };
   types: {
-    events: Event,
-    locations: Location,
-    likes: Like,
+    events: Event;
+    locations: Location;
+    likes: Like;
     travelPlans: TravelPlan;
-  }
+  };
 }
 
 const emptyTable = { byId: {}, ids: [] };
 
 const defaultState: State = {
-  settings: {
-  },
+  settings: {},
   data: {
     events: emptyTable,
     likes: emptyTable,
     locations: emptyTable,
-    travelPlans: emptyTable
+    travelPlans: emptyTable,
   },
   types: {
     events: {} as Event,
     locations: {} as Location,
     likes: {} as Like,
-    travelPlans: {} as TravelPlan
-  }
-}
+    travelPlans: {} as TravelPlan,
+  },
+};
 
 function hydrate(tree: any): any {
-  if(tree instanceof Array) {
+  if (tree instanceof Array) {
     return tree.map(hydrate);
   }
-  if(tree && typeof tree === 'object') {
+  if (tree && typeof tree === 'object') {
     const newObject = {};
     Object.keys(tree).forEach(key => {
-      if(key.endsWith('At') && typeof tree[key] === 'string' && tree[key].length > 0){
+      if (
+        key.endsWith('At') &&
+        typeof tree[key] === 'string' &&
+        tree[key].length > 0
+      ) {
         newObject[key] = new Date(Date.parse(tree[key]));
       } else {
         newObject[key] = hydrate(tree[key]);
@@ -65,12 +73,13 @@ function hydrate(tree: any): any {
   return tree;
 }
 
-const stateString = localStorage && localStorage.getItem('state')
-const persistedState: State | undefined = stateString && hydrate(JSON.parse(stateString))
+const stateString = localStorage && localStorage.getItem('state');
+const persistedState: State | undefined =
+  stateString && hydrate(JSON.parse(stateString));
 
-if(persistedState) {
+if (persistedState) {
   for (const key of Object.keys(defaultState.data)) {
-    if(!persistedState.data[key]) {
+    if (!persistedState.data[key]) {
       persistedState.data[key] = emptyTable;
     }
   }
@@ -96,8 +105,8 @@ export const store = createStore<State>(
   composedEnhancers as any
 );
 
-export {DB, DBAction}
-export const writeDB = new MutableDB(initialState, {store});
+export { DB, DBAction };
+export const writeDB = new MutableDB(initialState, { store });
 
 declare const window: any;
 window.store = store;

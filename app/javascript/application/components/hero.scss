@@ -48,7 +48,7 @@
     font-family: $font-heading-alternate;
     font-weight: bold;
 
-    @media(min-width: $tablet) {
+    @media (min-width: $tablet) {
       position: absolute;
       right: 2rem;
       top: 2rem;
@@ -59,7 +59,7 @@
   h1 + &__addon {
     margin-top: -20px;
 
-    @media(min-width: $tablet) {
+    @media (min-width: $tablet) {
       margin-top: -60px;
     }
   }

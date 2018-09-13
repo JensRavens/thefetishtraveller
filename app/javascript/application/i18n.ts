@@ -18,7 +18,7 @@ export class Translator {
   private updateListeners: ((locale: Locale) => void)[] = [];
   private translations: TranslationEntry = {
     de: require('./locales/de.yml'),
-    en: require('./locales/en.yml')
+    en: require('./locales/en.yml'),
   };
 
   constructor() {
@@ -43,7 +43,10 @@ export class Translator {
    */
   get locale(): Locale {
     return (
-      this._locale || localStorage.getItem('locale') || ['en', 'de'].filter(e => !!e && navigator.language.startsWith(e))[0] || 'en'
+      this._locale ||
+      localStorage.getItem('locale') ||
+      ['en', 'de'].filter(e => !!e && navigator.language.startsWith(e))[0] ||
+      'en'
     );
   }
 
@@ -57,7 +60,7 @@ export class Translator {
   }
 
   /**
-   * Set a new locale and get notified about the download progress. Try to use 
+   * Set a new locale and get notified about the download progress. Try to use
    * `I18n.locale=` whenever possible instead.
    */
   async setLocale(locale: Locale) {
@@ -133,7 +136,7 @@ export class Translator {
     value: Date | string,
     options: { relative?: boolean; prefix?: boolean; format?: string } = {
       prefix: true,
-      format: 'short'
+      format: 'short',
     }
   ): string {
     const time = moment(value);

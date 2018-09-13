@@ -16,20 +16,20 @@ export default class LoginPage extends React.Component {
             <h1 className="with-dash">{t('.claim')}</h1>
             <div className="hero__addon">
               <h5>{t('.intro')}</h5>
-              <div className="spacer spacer--tiny"/>
+              <div className="spacer spacer--tiny" />
               <p className="text-center">
-                <FacebookLogin/>
+                <FacebookLogin />
               </p>
             </div>
           </Container>
         </Hero>
-        <Container variant='small'>
-          <div className="spacer"/>
+        <Container variant="small">
+          <div className="spacer" />
           <h3>{t('.why')}</h3>
           <p>{t('.why_explanation')}</p>
           <h3>{t('.how')}</h3>
           <p>{t('.how_explanation')}</p>
-          <div className="spacer"/>
+          <div className="spacer" />
         </Container>
       </React.Fragment>
     );
