@@ -5,11 +5,16 @@ export interface Syncable {
 }
 
 export function needsSync(record: Syncable): boolean {
-  return !record.draft && !!record.fieldsToSync && record.fieldsToSync.length > 0
+  return (
+    !record.draft && !!record.fieldsToSync && record.fieldsToSync.length > 0
+  );
 }
 
-export function calculateChangeset(record: Syncable): Partial<Syncable & {id: string}> {
-  const update = {id: record.serverId}
-  record.fieldsToSync && record.fieldsToSync.forEach(field => update[field] = record[field]);
+export function calculateChangeset(
+  record: Syncable
+): Partial<Syncable & { id: string }> {
+  const update = { id: record.serverId };
+  record.fieldsToSync &&
+    record.fieldsToSync.forEach(field => (update[field] = record[field]));
   return update;
 }

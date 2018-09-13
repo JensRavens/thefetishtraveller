@@ -59,10 +59,10 @@
     }
   }
 
-  @media(min-width: $phablet) {
+  @media (min-width: $phablet) {
     &__content {
       height: 322px;
       padding: 50px 40px;
     }
-	}
+  }
 }

@@ -2,8 +2,8 @@ import * as React from 'react';
 
 interface Props<T extends Object> {
   model?: T;
-  onChange?: (T)=>void;
-  onSubmit?: (T)=>void;
+  onChange?: (T) => void;
+  onSubmit?: (T) => void;
 }
 
 interface FormState<T> {
@@ -14,17 +14,18 @@ export const Context = (React as any).createContext('form');
 
 export default class Form<T> extends React.Component<Props<T>, FormState<T>> {
   form: HTMLFormElement | null = null;
-  state = {model: {}};
+  state = { model: {} };
 
   render() {
-    const {model, onChange, onSubmit} = this.props;
+    const { model, onChange, onSubmit } = this.props;
     return (
-      <form onSubmit={(event: any) => this.submit(event)} ref={el => this.form = el}>
-        <Context.Provider value={this}>
-          {this.props.children}
-        </Context.Provider>
+      <form
+        onSubmit={(event: any) => this.submit(event)}
+        ref={el => (this.form = el)}
+      >
+        <Context.Provider value={this}>{this.props.children}</Context.Provider>
       </form>
-    )
+    );
   }
 
   valueForName<Key extends keyof T>(name: Key): T[Key] | undefined {
@@ -33,7 +34,7 @@ export default class Form<T> extends React.Component<Props<T>, FormState<T>> {
 
   change() {
     const model = this.serialize();
-    this.setState({model})
+    this.setState({ model });
     this.props.onChange && this.props.onChange(model);
   }
 
@@ -48,10 +49,10 @@ export default class Form<T> extends React.Component<Props<T>, FormState<T>> {
 
   private serialize(): Partial<T> {
     const values = {};
-    const form = this.form!
+    const form = this.form!;
     for (let i = 0; i < form.elements.length; i++) {
       const element = form.elements[i] as HTMLInputElement;
-      if(element.name.length > 0) {
+      if (element.name.length > 0) {
         values[element.name] = element.value;
       }
     }

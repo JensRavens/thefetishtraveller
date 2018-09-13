@@ -7,7 +7,8 @@
     max-width: 630px;
   }
 
-  &__email, &__button {
+  &__email,
+  &__button {
     appearance: none;
     border-radius: 0;
     border: none;
@@ -36,7 +37,7 @@
     text-transform: uppercase;
   }
 
-  @media(min-width: $tablet) {
+  @media (min-width: $tablet) {
     &__container {
       display: flex;
     }

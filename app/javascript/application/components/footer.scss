@@ -40,13 +40,14 @@
 
     a {
       cursor: pointer;
-      &:hover, &.active {
+      &:hover,
+      &.active {
         color: $color-tint;
       }
     }
   }
 
-  @media(min-width: $tablet) {
+  @media (min-width: $tablet) {
     padding: 53px 0 59px;
 
     > .container {

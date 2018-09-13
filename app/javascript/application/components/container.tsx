@@ -6,11 +6,13 @@ interface Props {
 
 export default class Container extends React.Component<Props> {
   static defaultProps = { variant: 'default' };
-  
+
   render() {
-    const {variant} = this.props;
+    const { variant } = this.props;
     return (
-      <div className={`container container--${variant}`}>{this.props.children}</div>
-    )
+      <div className={`container container--${variant}`}>
+        {this.props.children}
+      </div>
+    );
   }
 }

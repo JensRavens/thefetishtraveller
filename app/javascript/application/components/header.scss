@@ -83,7 +83,9 @@
     }
   }
 
-  &__switch::before, &__switch::after, &__switch-icon {
+  &__switch::before,
+  &__switch::after,
+  &__switch-icon {
     content: '';
     display: block;
     position: absolute;
@@ -102,7 +104,7 @@
     display: none;
   }
 
-  @media(min-width: $tablet) {
+  @media (min-width: $tablet) {
     align-items: baseline;
     padding: 0 75px;
 

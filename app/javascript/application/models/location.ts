@@ -1,7 +1,7 @@
-import {store, DB, State} from '../state';
-import {Syncable} from './syncable';
-import {APISession} from '../api';
-import {t} from '../i18n';
+import { store, DB, State } from '../state';
+import { Syncable } from './syncable';
+import { APISession } from '../api';
+import { t } from '../i18n';
 
 export interface Location extends Syncable {
   id: string;
@@ -10,7 +10,7 @@ export interface Location extends Syncable {
   city?: string;
   address?: string;
   lat?: number;
-  lon?: number
+  lon?: number;
   zip?: string;
   countryCode: string;
 }
@@ -20,21 +20,32 @@ export function countryName(code: string): string {
 }
 
 export function canEdit(location: Location, session?: APISession): boolean {
-  return !!session && !!session.ownedLocationIds && !!location.serverId && session.ownedLocationIds.includes(location.serverId)
+  return (
+    !!session &&
+    !!session.ownedLocationIds &&
+    !!location.serverId &&
+    session.ownedLocationIds.includes(location.serverId)
+  );
 }
 
 export function locationDescription(location: Location): string {
   const line = [location.name];
-  if(location.city && location.name != location.city) { line.push(location.city); }
+  if (location.city && location.name != location.city) {
+    line.push(location.city);
+  }
   line.push(countryName(location.countryCode));
-  return line.join(', ')
+  return line.join(', ');
 }
 
 export function isVenue(location: Location): boolean {
   return location.name !== location.city;
 }
 
-export function extractCoordinates(location: Location): {lat: number, lon: number} | undefined {
-  if(!location.lat || !location.lon) { return; }
+export function extractCoordinates(
+  location: Location
+): { lat: number; lon: number } | undefined {
+  if (!location.lat || !location.lon) {
+    return;
+  }
   return { lat: location.lat, lon: location.lon };
 }

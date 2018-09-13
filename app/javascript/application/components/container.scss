@@ -2,14 +2,14 @@
   max-width: 1024px;
   margin: 0 8px;
 
-  @media(min-width: 1024px + 16px) {
+  @media (min-width: 1024px + 16px) {
     margin: 0 auto;
   }
 
   &--small {
     max-width: 800px;
 
-    @media(min-width: 800px + 16px) {
+    @media (min-width: 800px + 16px) {
       margin: 0 auto;
     }
   }

@@ -6,7 +6,7 @@ $card-padding: 24px;
   padding: $card-padding;
   margin-bottom: 32px;
   background-color: #fff;
-  box-shadow: 0 2px 3px rgba(#000, .25);
+  box-shadow: 0 2px 3px rgba(#000, 0.25);
 
   &__header {
     display: flex;
@@ -79,7 +79,8 @@ $card-padding: 24px;
   }
 
   $card-padding: 40px;
-  &.card--sheet, &.card--modal {
+  &.card--sheet,
+  &.card--modal {
     width: 100vw;
     padding: $card-padding;
     margin-right: auto;
@@ -97,7 +98,6 @@ $card-padding: 24px;
     }
   }
 }
-
 
 a > .card {
   height: calc(100% - 1rem);
