@@ -16,9 +16,7 @@
     "redux": "^3.7.2",
     "redux-database": "^0.0.5",
     "redux-localstorage": "^0.4.1",
-    "redux-thunk": "^2.2.0"
-  },
-  "devDependencies": {
+    "redux-thunk": "^2.2.0",
     "@rails/webpacker": "3.4",
     "@types/react": "^16.3.10",
     "@types/react-dom": "^16.0.5",

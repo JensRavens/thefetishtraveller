@@ -12,3 +12,7 @@ development:
 test:
   <<: *default
   database: thefetishtraveller_test
+
+production:
+  <<: *default
+  database: thefetishtraveller_production
