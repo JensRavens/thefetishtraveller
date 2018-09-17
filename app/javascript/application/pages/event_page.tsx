@@ -41,8 +41,14 @@ interface Props {
 }
 
 interface EventState {
-  changes: Partial<Event>;
+  changes: Partial<EventWithChanges>;
   editing: boolean;
+}
+
+interface EventWithChanges extends Partial<EventWithLocation> {
+  heroFile: File;
+  headerFile: File;
+  flyerFile: File;
 }
 
 function format(text: string): any {
@@ -207,6 +213,33 @@ class EventPage extends React.Component<Props, EventState> {
                 {t('save')}
               </div>
               <p>{JSON.stringify(this.state.changes)}</p>
+              <label htmlFor="heroFile">Hero</label>
+              <input
+                id="heroFile"
+                type="file"
+                onChange={e =>
+                  e.target.files && onChange('heroFile')(e.target.files[0])
+                }
+              />
+              <br />
+              <label htmlFor="headerFile">Header</label>
+              <input
+                id="headerFile"
+                type="file"
+                onChange={e =>
+                  e.target.files && onChange('headerFile')(e.target.files[0])
+                }
+              />
+              <br />
+              <label htmlFor="flyerFile">Flyer</label>
+              <input
+                id="flyerFile"
+                type="file"
+                onChange={e =>
+                  e.target.files && onChange('flyerFile')(e.target.files[0])
+                }
+              />
+              <br />
             </React.Fragment>
           )}
           <h2>
@@ -310,11 +343,11 @@ class EventPage extends React.Component<Props, EventState> {
     }
   };
 
-  private onChange<T extends keyof EventWithLocation>(
+  private onChange<T extends keyof EventWithChanges>(
     field: T,
     type: string = 'string'
   ) {
-    return (value: string) => {
+    return (value: string | File) => {
       let convertedValue: any = value;
       if (type === 'date') {
         const timestamp = Date.parse(convertedValue);
@@ -324,11 +357,11 @@ class EventPage extends React.Component<Props, EventState> {
     };
   }
 
-  private update(values: Partial<Event>) {
+  private update(values: Partial<EventWithChanges>) {
     const changes = { ...this.state.changes, ...values };
     const event = this.props.event!;
     Object.keys(changes).forEach(key => {
-      if (changes[key] == event[key]) {
+      if (changes[key] === event[key]) {
         delete changes[key];
       }
     });
