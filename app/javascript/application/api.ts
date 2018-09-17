@@ -1,4 +1,4 @@
-import { camelCase, snakeCase, mapKeys } from 'lodash';
+import { camelCase, snakeCase, mapKeys, some, values } from 'lodash';
 import { Image } from './models/image';
 import { TravelPlan } from './models/travel_plan';
 
@@ -158,10 +158,16 @@ export class API {
     path: string,
     params?: { [key: string]: any }
   ): Promise<{ [key: string]: any }> {
+    let containsFormData = false;
+    if (params && some(values(params), e => e instanceof Blob)) {
+      containsFormData = true;
+    }
     const headers = {
       Accept: 'application/json',
-      'Content-Type': 'application/json',
     };
+    if (!containsFormData) {
+      headers['Content-Type'] = 'application/json';
+    }
     if (this.sessionID) {
       headers['Authorization'] = `Bearer ${this.sessionID}`;
     }
@@ -176,9 +182,17 @@ export class API {
             .join('&');
       }
     } else {
-      body = JSON.stringify(this.kebabify(params));
+      if (params && containsFormData) {
+        const form = new FormData();
+        const convertedParams = this.kebabify(params);
+        Object.keys(convertedParams).forEach(key => {
+          form.append(key, convertedParams[key]);
+        });
+        body = form;
+      } else {
+        body = JSON.stringify(this.kebabify(params));
+      }
     }
-    console.log({ url: this.baseUrl, path, pathParams });
     const response = await fetch(this.baseUrl + path + pathParams, {
       headers,
       method,
@@ -218,12 +232,21 @@ export class API {
     if (subject instanceof Object) {
       const transformed = {};
       Object.keys(subject).forEach(key => {
-        let value = subject[key];
-        transformed[snakeCase(key)] =
-          value instanceof Date ? value.toISOString() : this.kebabify(value);
+        const value = subject[key];
+        transformed[snakeCase(key).replace('_file', '')] = this.convert(value);
       });
       return transformed;
     }
     return subject;
+  }
+
+  private convert(value: string | Date | File): string | Blob {
+    if (value instanceof Date) {
+      return value.toISOString();
+    }
+    if (value instanceof File) {
+      return value;
+    }
+    return this.kebabify(value);
   }
 }
