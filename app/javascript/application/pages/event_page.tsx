@@ -79,7 +79,8 @@ class EventPage extends React.Component<Props, EventState> {
       return null;
     }
     event = Object.assign({}, event, this.state.changes);
-    const hero = event.hero && event.hero.big;
+    const hero =
+      (event.header && event.header.big) || (event.hero && event.hero.big);
     const flyer = event.flyer && event.flyer.big;
     const coordinates = extractCoordinates(event.location);
     const onChange = this.onChange;
@@ -159,6 +160,7 @@ class EventPage extends React.Component<Props, EventState> {
       ],
     ].filter(e => e[1]);
     const images = [
+      event.header && event.header.big,
       event.hero && event.hero.big,
       event.flyer && event.flyer.big,
     ].filter(Boolean);
@@ -181,7 +183,7 @@ class EventPage extends React.Component<Props, EventState> {
                 addressLocality: event.location.city,
               },
             },
-            image: images,
+            image: images[0],
             description: event.abstract,
             endDate: event.endAt.toISOString(),
           }}
