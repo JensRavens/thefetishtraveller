@@ -24,6 +24,7 @@ export interface Event extends Syncable {
   ticketLink?: string;
   organizerName?: string;
   hero?: Image;
+  header?: Image;
   logo?: Image;
   flyer?: Image;
   categories?: string[];

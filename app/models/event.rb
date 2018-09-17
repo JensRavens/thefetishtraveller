@@ -40,6 +40,7 @@ class Event < ApplicationRecord
   has_and_belongs_to_many :owners, class_name: "User"
 
   has_one_attached :hero
+  has_one_attached :header
   has_one_attached :logo
   has_one_attached :flyer
 
