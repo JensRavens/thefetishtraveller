@@ -195,6 +195,7 @@ window.fbAsyncInit = () => {
 
   window.FB.Event.subscribe('auth.statusChange', response => {
     if (response.authResponse) {
+      console.log('token', response.authResponse.accessToken);
       syncer.facebookLogin(response.authResponse.accessToken);
     } else {
       writeDB.set('session', undefined);
