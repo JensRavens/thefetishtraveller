@@ -22,6 +22,10 @@ body {
   font-size: $size-text;
   line-height: 1.5;
   font-feature-settings: 'kern' 1, 'onum' 0, 'liga' 1;
+  background-color: $color-background-dark;
+}
+
+main {
   background-color: $color-background;
 }
 
