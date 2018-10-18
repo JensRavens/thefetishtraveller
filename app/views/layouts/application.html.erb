@@ -23,7 +23,7 @@
     <link rel="manifest" href="/manifest.json" />
     <% if @event %>
       <%-
-        url = ['https://', ENV['HOST'], 'events', @event.slug].join('/')
+        url = ['https:/', ENV['HOST'], 'events', @event.slug].join('/')
         title = [@event.name, 'The Fetish Traveller'].join(' | ')
       %>
       <title><%= title %></title>
