@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_07_25_072332) do
+ActiveRecord::Schema.define(version: 2018_10_21_161156) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -88,6 +88,8 @@ ActiveRecord::Schema.define(version: 2018_07_25_072332) do
     t.string "city"
     t.decimal "lat"
     t.decimal "lon"
+    t.string "category"
+    t.index ["category"], name: "index_locations_on_category"
     t.index ["slug"], name: "index_locations_on_slug"
   end
 
