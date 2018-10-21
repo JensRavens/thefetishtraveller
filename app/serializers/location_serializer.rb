@@ -14,10 +14,11 @@
 #  city         :string
 #  lat          :decimal(, )
 #  lon          :decimal(, )
+#  category     :string
 #
 
 class LocationSerializer < ApplicationSerializer
-  attributes :id, :slug, :name, :city, :zip, :address, :country_code, :lat, :lon
+  attributes :id, :slug, :name, :city, :zip, :address, :country_code, :lat, :lon, :category
 
   def lat
     object.lat&.to_f

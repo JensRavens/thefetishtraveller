@@ -14,6 +14,7 @@
 #  city         :string
 #  lat          :decimal(, )
 #  lon          :decimal(, )
+#  category     :string
 #
 
 require 'rails_helper'
