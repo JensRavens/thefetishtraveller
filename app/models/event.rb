@@ -33,6 +33,7 @@ class Event < ApplicationRecord
   belongs_to :location
 
   scope :published, -> { where('events.publish_at <= NOW()') }
+  scope :with_attachments, -> { with_attached_hero.with_attached_header.with_attached_logo.with_attached_flyer }
 
   has_many :events, dependent: :destroy
   belongs_to :event, required: false
