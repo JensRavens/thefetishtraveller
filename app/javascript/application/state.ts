@@ -2,10 +2,14 @@ import { Event } from './models/event';
 import { Like } from './models/like';
 import { Location } from './models/location';
 import thunk from 'redux-thunk';
+import EJSON from 'ejson';
+import { keyBy } from 'lodash';
 import { APISession } from './api';
 import { DataTable, reducer, DB, DBAction, MutableDB } from 'redux-database';
 
 declare var devToolsExtension: () => void;
+
+const localStorageVersion = 'v2';
 
 import {
   createStore,
@@ -51,41 +55,33 @@ const defaultState: State = {
   },
 };
 
-function hydrate(tree: any): any {
-  if (tree instanceof Array) {
-    return tree.map(hydrate);
+const loadedSettingsString = localStorage.getItem(
+  `settings-${localStorageVersion}`
+);
+const loadedSettings =
+  (loadedSettingsString && EJSON.parse(loadedSettingsString)) || undefined;
+export const initialState: State = {
+  ...defaultState,
+  settings: { ...defaultState.settings, ...loadedSettings },
+};
+
+try {
+  let storedData = localStorage.getItem(`locations-${localStorageVersion}`);
+  if (storedData) {
+    const storedLocations = EJSON.parse(storedData) as Location[];
+    initialState.data.locations.byId = keyBy(storedLocations, 'id');
+    initialState.data.locations.ids = storedLocations.map(e => e.id);
   }
-  if (tree && typeof tree === 'object') {
-    const newObject = {};
-    Object.keys(tree).forEach(key => {
-      if (
-        key.endsWith('At') &&
-        typeof tree[key] === 'string' &&
-        tree[key].length > 0
-      ) {
-        newObject[key] = new Date(Date.parse(tree[key]));
-      } else {
-        newObject[key] = hydrate(tree[key]);
-      }
-    });
-    return newObject;
+  storedData = localStorage.getItem(`events-${localStorageVersion}`);
+  if (storedData) {
+    const storedEvents = EJSON.parse(storedData) as Event[];
+    initialState.data.events.byId = keyBy(storedEvents, 'id');
+    initialState.data.events.ids = storedEvents.map(e => e.id);
   }
-  return tree;
+} catch (error) {
+  // tslint:disable-next-line
+  console.error(error);
 }
-
-const stateString = localStorage && localStorage.getItem('state');
-const persistedState: State | undefined =
-  stateString && hydrate(JSON.parse(stateString));
-
-if (persistedState) {
-  for (const key of Object.keys(defaultState.data)) {
-    if (!persistedState.data[key]) {
-      persistedState.data[key] = emptyTable;
-    }
-  }
-}
-
-export const initialState: State = persistedState || defaultState;
 
 const enhancers: GenericStoreEnhancer[] = [];
 const middleware = [thunk];
@@ -108,5 +104,14 @@ export const store = createStore<State>(
 export { DB, DBAction };
 export const writeDB = new MutableDB(initialState, { store });
 
-declare const window: any;
-window.store = store;
+(window as any).store = store;
+(window as any).writeDB = writeDB;
+
+store.subscribe(() => {
+  const locations = EJSON.stringify(writeDB.table('locations').all);
+  localStorage.setItem(`locations-${localStorageVersion}`, locations);
+  const events = EJSON.stringify(writeDB.table('events').all);
+  localStorage.setItem(`events-${localStorageVersion}`, events);
+  const settings = EJSON.stringify(store.getState().settings);
+  localStorage.setItem(`settings-${localStorageVersion}`, settings);
+});

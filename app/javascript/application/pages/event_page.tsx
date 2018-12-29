@@ -1,13 +1,9 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import {
-  Event,
-  EventWithLocation,
-  canEdit,
-  joinLocation,
-} from '../models/event';
-import { Like, isLiked } from '../models/like';
+import marked from 'marked';
+import { withRouter, RouteComponentProps } from 'react-router';
+import { EventWithLocation, canEdit, joinLocation } from '../models/event';
+import { isLiked } from '../models/like';
 import {
   locationDescription,
   extractCoordinates,
@@ -19,7 +15,6 @@ import Listing from '../components/listing';
 import { Meta } from '../components/meta';
 import { EventListing } from '../components/event_listing';
 import { Map } from '../components/map';
-import Editable from '../components/editable';
 import { dateRange } from '../util';
 import { scoped } from '../i18n';
 import { syncer } from '../api-syncer';
@@ -27,21 +22,23 @@ import { guid } from '../util';
 import { JsonLd } from '../components/JsonLd';
 import { isLoggedIn } from '../models/session';
 import LikeButton from '../components/like-button';
+import { EventForm } from './event_form';
+
+marked.setOptions({ sanitize: true, breaks: true, smartypants: true });
 
 interface Props {
   event?: EventWithLocation;
   liked: boolean;
   loggedIn: boolean;
   editable: boolean;
-  dispatch: (DBAction) => void;
   otherEvents: EventWithLocation[];
   subevents: EventWithLocation[];
+  changes?: Partial<EventWithChanges>;
   newEvent: boolean;
   history: any;
 }
 
 interface EventState {
-  changes: Partial<EventWithChanges>;
   editing: boolean;
 }
 
@@ -51,8 +48,8 @@ interface EventWithChanges extends Partial<EventWithLocation> {
   flyerFile: File;
 }
 
-function format(text: string): any {
-  return text.split('\n').map((e, i) => <p key={i}>{e}</p>);
+function format(text: string): React.ReactNode {
+  return <div dangerouslySetInnerHTML={{ __html: text ? marked(text) : '' }} />;
 }
 
 function link(url?: string) {
@@ -66,13 +63,8 @@ function link(url?: string) {
 const t = scoped('event');
 
 class EventPage extends React.Component<Props, EventState> {
-  constructor(props) {
-    super(props);
-    this.state = { changes: {}, editing: props.newEvent };
-    this.onChange = this.onChange.bind(this);
-  }
-
-  render() {
+  public state: EventState = { editing: false };
+  public render() {
     let {
       event,
       liked,
@@ -80,96 +72,25 @@ class EventPage extends React.Component<Props, EventState> {
       otherEvents,
       subevents,
       loggedIn,
+      changes,
     } = this.props;
     if (!event) {
       return null;
     }
-    event = Object.assign({}, event, this.state.changes);
+    event = { ...event, ...changes };
     const hero =
       (event.header && event.header.big) || (event.hero && event.hero.big);
     const flyer = event.flyer && event.flyer.big;
     const coordinates = extractCoordinates(event.location);
-    const onChange = this.onChange;
     const editing = this.state.editing;
     const meta = [
-      [
-        t('.date'),
-        true,
-        editing
-          ? [
-              <Editable
-                key="startat"
-                placeholder={t('.startAt')}
-                value={event.startAt && event.startAt.toISOString()}
-                onBlur={onChange('startAt', 'date')}
-              />,
-              <Editable
-                key="endat"
-                placeholder={t('.endAt')}
-                value={event.endAt && event.endAt.toISOString()}
-                onBlur={onChange('endAt', 'date')}
-              />,
-            ]
-          : dateRange(event.startAt, event.endAt),
-      ],
-      [
-        t('.location'),
-        true,
-        <Editable
-          placeholder={t('.location')}
-          editable={editing}
-          value={locationDescription(event.location)}
-          editValue={event.locationSlug || event.location.slug}
-          onChange={onChange('locationSlug')}
-        />,
-      ],
-      [
-        t('.website'),
-        event.website || editing,
-        <Editable
-          placeholder={t('.website')}
-          editable={editing}
-          value={link(event.website)}
-          editValue={event.website}
-          onChange={onChange('website')}
-        />,
-      ],
-      [
-        t('.organizer'),
-        event.organizerName || editing,
-        <Editable
-          placeholder={t('.organizer')}
-          editable={editing}
-          value={event.organizerName}
-          onChange={onChange('organizerName')}
-        />,
-      ],
-      [
-        t('.tickets'),
-        event.ticketLink || editing,
-        <Editable
-          placeholder={t('.tickets')}
-          editable={editing}
-          value={link(event.ticketLink)}
-          onChange={onChange('ticketLink')}
-        />,
-      ],
-      [
-        t('.slug'),
-        editing,
-        <Editable
-          placeholder={t('.slug')}
-          editable={editing}
-          value={event.slug}
-          onChange={onChange('slug')}
-        />,
-      ],
-    ].filter(e => e[1]);
-    const images = [
-      event.header && event.header.big,
-      event.hero && event.hero.big,
-      event.flyer && event.flyer.big,
-    ].filter(Boolean);
+      [t('.date'), dateRange(event.startAt, event.endAt)],
+      [t('.location'), locationDescription(event.location)],
+      [t('.website'), link(event.website)],
+      [t('.organizer'), event.organizerName],
+      [t('.tickets'), link(event.ticketLink)],
+    ];
+    const previewImage = hero || flyer;
     return (
       <React.Fragment>
         <JsonLd
@@ -189,7 +110,7 @@ class EventPage extends React.Component<Props, EventState> {
                 addressLocality: event.location.city,
               },
             },
-            image: images[0],
+            image: previewImage,
             description: event.abstract,
             endDate: event.endAt.toISOString(),
           }}
@@ -209,57 +130,20 @@ class EventPage extends React.Component<Props, EventState> {
             )}
           {editing && (
             <React.Fragment>
-              <div className="button" onClick={() => this.submit()}>
+              <EventForm event={event} />
+              <div className="button" onClick={this.submit}>
                 {t('save')}
               </div>
-              <p>{JSON.stringify(this.state.changes)}</p>
-              <label htmlFor="heroFile">Hero</label>
-              <input
-                id="heroFile"
-                type="file"
-                onChange={e =>
-                  e.target.files && onChange('heroFile')(e.target.files[0])
-                }
-              />
-              <br />
-              <label htmlFor="headerFile">Header</label>
-              <input
-                id="headerFile"
-                type="file"
-                onChange={e =>
-                  e.target.files && onChange('headerFile')(e.target.files[0])
-                }
-              />
-              <br />
-              <label htmlFor="flyerFile">Flyer</label>
-              <input
-                id="flyerFile"
-                type="file"
-                onChange={e =>
-                  e.target.files && onChange('flyerFile')(e.target.files[0])
-                }
-              />
+              <div className="button" onClick={this.cancelEditing}>
+                {t('cancel')}
+              </div>
               <br />
             </React.Fragment>
           )}
-          <h2>
-            <Editable
-              placeholder="Name"
-              editable={editing}
-              value={event.name}
-              onChange={onChange('name')}
-            />
-          </h2>
-          {(event.abstract || editing) && (
+          <h2>{event.name}</h2>
+          {event.abstract && (
             <React.Fragment>
-              <h4>
-                <Editable
-                  placeholder={t('.abstract')}
-                  editable={editing}
-                  value={event.abstract}
-                  onChange={onChange('abstract')}
-                />
-              </h4>
+              <h4>{event.abstract}</h4>
               <div className="spacer--small" />
             </React.Fragment>
           )}
@@ -273,7 +157,7 @@ class EventPage extends React.Component<Props, EventState> {
               <p key={e[0] as string}>
                 <strong>{e[0]}</strong>
                 <br />
-                {e[2]}
+                {e[1]}
               </p>
             ))}
             {loggedIn && (
@@ -368,7 +252,7 @@ class EventPage extends React.Component<Props, EventState> {
     this.setState({ changes });
   }
 
-  private submit() {
+  private submit = () => {
     const { changes } = this.state;
     if (Object.keys(changes).length === 0) {
       this.setState({ editing: false });
@@ -383,7 +267,15 @@ class EventPage extends React.Component<Props, EventState> {
         this.setState({ changes: {}, editing: false });
       });
     }
-  }
+  };
+
+  private cancelEditing = () => {
+    writeDB
+      .context('local')
+      .table('events')
+      .revert(this.props.event!);
+    this.setState({ editing: false });
+  };
 }
 
 function buildEvent(): EventWithLocation {
@@ -404,36 +296,50 @@ function buildEvent(): EventWithLocation {
   };
 }
 
-const mapStateToProps = (state: State, props) => {
+const mapStateToProps = (
+  state: State,
+  props: RouteComponentProps<{ id: string }>
+) => {
   const slug: string = props.match.params.id;
   const db = new DB(state);
-  const events = db.table('events');
+  const events = db.context('local').table('events');
   const newEvent = slug === 'new';
-  let rawEvent = events.where({ slug })[0];
+  const rawEvent = events.where({ slug })[0];
   const session = db.get('session');
   const loggedIn = isLoggedIn(session);
-  let event: EventWithLocation | undefined = newEvent
+  const event: EventWithLocation | undefined = newEvent
     ? buildEvent()
     : joinLocation(rawEvent ? [rawEvent] : [], state)[0];
-  let subevents: EventWithLocation[] =
+  const subevents: EventWithLocation[] =
     event && !newEvent
       ? joinLocation(
-          events.where({ eventId: event.id }).filter(e => e.id != event!.id),
+          events.where({ eventId: event.id }).filter(e => e.id !== event!.id),
           state
         )
       : [];
-  let otherEvents: EventWithLocation[] =
+  const otherEvents: EventWithLocation[] =
     event && !newEvent
       ? joinLocation(
           events
             .where({ locationId: event.locationId })
-            .filter(e => e.id != event!.id),
+            .filter(e => e.id !== event!.id),
           state
         )
       : [];
   const editable = canEdit(event, session) || newEvent;
   const liked = rawEvent && isLiked(rawEvent, db.table('likes').all);
-  return { event, liked, editable, otherEvents, newEvent, subevents, loggedIn };
+  const changeSet = event && events.changesFor(event.id);
+  const changes = changeSet && changeSet.changes;
+  return {
+    event,
+    liked,
+    editable,
+    otherEvents,
+    newEvent,
+    subevents,
+    loggedIn,
+    changes,
+  };
 };
 
 export default connect(mapStateToProps)(withRouter(EventPage));

@@ -3,7 +3,7 @@ import { Consumer } from './form';
 
 interface Props {
   name: string;
-  type?: 'text' | 'search';
+  type?: 'text' | 'search' | 'multiline';
   placeholder?: string;
 }
 
@@ -14,13 +14,26 @@ export default class TextInput extends React.Component<Props> {
       <div className={`text-input text-input--${type || 'text'}`}>
         <Consumer>
           {context => (
-            <input
-              value={context.model[name]}
-              onChange={event =>
-                context.notify(name, event.currentTarget.value)
-              }
-              placeholder={placeholder}
-            />
+            <>
+              {type === 'multiline' && (
+                <textarea
+                  value={context.model[name]}
+                  onChange={event =>
+                    context.notify(name, event.currentTarget.value)
+                  }
+                  placeholder={placeholder}
+                />
+              )}
+              {type !== 'multiline' && (
+                <input
+                  value={context.model[name]}
+                  onChange={event =>
+                    context.notify(name, event.currentTarget.value)
+                  }
+                  placeholder={placeholder}
+                />
+              )}
+            </>
           )}
         </Consumer>
       </div>
