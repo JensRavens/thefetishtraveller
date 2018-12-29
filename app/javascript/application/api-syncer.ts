@@ -71,8 +71,6 @@ export class APISyncer {
       const db = new DB(state);
       const session = db.get('session');
 
-      localStorage && localStorage.setItem('state', JSON.stringify(state));
-
       if (!isLoggedIn(session)) {
         return;
       }
