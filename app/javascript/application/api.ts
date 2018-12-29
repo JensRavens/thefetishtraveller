@@ -1,4 +1,4 @@
-import { camelCase, snakeCase, mapKeys, some, values } from 'lodash';
+import { camelCase, snakeCase, some, values } from 'lodash';
 import { Image } from './models/image';
 import { TravelPlan } from './models/travel_plan';
 
@@ -29,6 +29,7 @@ export interface APIEvent {
   ticketLink?: string;
   organizerName?: string;
   hero?: Image;
+  header?: Image;
   logo?: Image;
   flyer?: Image;
   categories?: string[];
@@ -49,79 +50,79 @@ export interface APISession {
 }
 
 export class API {
+  public sessionID?: string;
   private baseUrl: string;
-  sessionID?: string;
 
   constructor(baseUrl: string, sessionID?: string) {
     this.baseUrl = baseUrl;
     this.sessionID = sessionID;
   }
 
-  async getEvents(): Promise<APIEvent[]> {
+  public async getEvents(): Promise<APIEvent[]> {
     return await this.get('/events');
   }
 
-  async getEvent(id: string): Promise<APIEvent> {
+  public async getEvent(id: string): Promise<APIEvent> {
     return await this.get(`/events/${id}`);
   }
 
-  async updateEvent(event: { id: string } & Partial<APIEvent>) {
-    return await this.patch(`/events/${event.id}`, event);
+  public async updateEvent(id: string, event: Partial<APIEvent>) {
+    return await this.patch(`/events/${id}`, event);
   }
 
-  async createEvent(event: { id: string } & Partial<APIEvent>) {
+  public async createEvent(event: { id: string } & Partial<APIEvent>) {
     return await this.post('/events', event);
   }
 
-  async like(eventID: string) {
+  public async like(eventID: string) {
     await this.post(`/events/${eventID}/likes`);
   }
 
-  async getLikes(): Promise<APILike[]> {
+  public async getLikes(): Promise<APILike[]> {
     return await this.get('/likes');
   }
 
-  async unlike(eventID: string) {
+  public async unlike(eventID: string) {
     await this.delete(`/events/${eventID}/likes`);
   }
 
-  async getLocations(): Promise<APILocation[]> {
+  public async getLocations(): Promise<APILocation[]> {
     return await this.get('/locations');
   }
 
-  async getLocation(id: string): Promise<APILocation> {
+  public async getLocation(id: string): Promise<APILocation> {
     return await this.get(`/locations/${id}`);
   }
 
-  async updateLocation(
+  public async updateLocation(
     location: { id: string } & Partial<APILocation>
   ): Promise<APILocation> {
     return await this.patch(`/locations/${location.id}`, location);
   }
 
-  async createLocation(location: { id: string } & Partial<APILocation>) {
+  public async createLocation(location: { id: string } & Partial<APILocation>) {
     return await this.post('/locations', location);
   }
 
-  async getTravelPlan(id: string): Promise<TravelPlan> {
+  public async getTravelPlan(id: string): Promise<TravelPlan> {
     return await this.get(`/travel_plans/${id}`);
   }
 
-  async createSession(): Promise<APISession> {
+  public async createSession(): Promise<APISession> {
     const session = await this.post('/session');
     this.sessionID = session.id;
     return session;
   }
 
-  async login(email, password): Promise<APISession> {
+  public async login(email: string, password: string): Promise<APISession> {
     return await this.patch('/session', { email, password });
   }
 
-  async facebookLogin(facebookToken: string): Promise<APISession> {
+  public async facebookLogin(facebookToken: string): Promise<APISession> {
     return await this.patch('/session', { facebookToken });
   }
 
-  async getSession(): Promise<APISession> {
+  public async getSession(): Promise<APISession> {
     return await this.get('/session');
   }
 

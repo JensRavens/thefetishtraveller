@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { Route, Switch } from 'react-router';
-import { BrowserRouter } from 'react-router-dom';
+import { Route, Switch, Router } from 'react-router';
 
 import Home from './home';
 import Login from './login';
@@ -16,7 +15,7 @@ import Footer from '../components/footer';
 import { I18n } from '../i18n';
 import ScrollToTop from '../components/scroll_to_top';
 import ErrorCatcher from '../components/error_catcher';
-import { State } from '../state';
+import { State, history } from '../state';
 
 interface Props {
   stateLoaded: boolean;
@@ -32,7 +31,7 @@ class Application extends React.Component<Props> {
       return null;
     }
     return (
-      <BrowserRouter>
+      <Router history={history}>
         <ErrorCatcher>
           <div className="application">
             <Header />
@@ -63,7 +62,7 @@ class Application extends React.Component<Props> {
             <Footer />
           </div>
         </ErrorCatcher>
-      </BrowserRouter>
+      </Router>
     );
   }
 }
