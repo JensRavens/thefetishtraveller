@@ -37,6 +37,7 @@ export class EventForm extends React.Component<Props> {
   }
 
   private onChange = async (event: EventWithLocation) => {
+    const eventBeforeChange = this.props.event;
     const hero =
       event.hero instanceof File ? await readImageUrl(event.hero) : event.hero;
     const header =
@@ -47,24 +48,30 @@ export class EventForm extends React.Component<Props> {
       event.flyer instanceof File
         ? await readImageUrl(event.flyer)
         : event.flyer;
+    const eventChanges = {
+      ...pick(
+        event,
+        'name',
+        'abstract',
+        'description',
+        'website',
+        'ticketLink',
+        'organizerName',
+        'startAt',
+        'endAt'
+      ),
+      hero,
+      header,
+      flyer,
+    };
+    Object.keys(eventChanges).forEach(key => {
+      if (eventBeforeChange[key] === eventChanges[key]) {
+        delete eventChanges[key];
+      }
+    });
     writeDB
       .context('local')
       .table('events')
-      .update(this.props.event.id, {
-        ...pick(
-          event,
-          'name',
-          'abstract',
-          'description',
-          'website',
-          'ticketLink',
-          'organizerName',
-          'startAt',
-          'endAt'
-        ),
-        hero,
-        header,
-        flyer,
-      });
+      .update(this.props.event.id, eventChanges);
   };
 }

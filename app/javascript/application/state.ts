@@ -18,6 +18,7 @@ import {
   GenericStoreEnhancer,
 } from 'redux';
 import { TravelPlan } from './models/travel_plan';
+import { createBrowserHistory } from 'history';
 
 export interface State {
   settings: {
@@ -115,3 +116,5 @@ store.subscribe(() => {
   const settings = EJSON.stringify(store.getState().settings);
   localStorage.setItem(`settings-${localStorageVersion}`, settings);
 });
+
+export const history = createBrowserHistory();

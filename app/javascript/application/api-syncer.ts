@@ -7,7 +7,7 @@ import { isLoggedIn } from './models/session';
 import { Like } from './models/like';
 
 export class APISyncer {
-  api: API;
+  public api: API;
   constructor() {
     const state = store.getState() as State | null;
     const session = state ? new DB(state).get('session') : null;
@@ -49,8 +49,18 @@ export class APISyncer {
     writeDB.table('locations').update(id, location);
   }
 
-  async updateEvent(id: string, changes: Partial<APIEvent>) {
-    const event = await this.api.updateEvent({ ...changes, id });
+  public async updateEvent(id: string, changes: Partial<APIEvent>) {
+    const changesToSubmit = { ...changes };
+    if (changesToSubmit.hero) {
+      (changesToSubmit.hero as any) = changesToSubmit.hero.file;
+    }
+    if (changesToSubmit.header) {
+      (changesToSubmit.header as any) = changesToSubmit.header.file;
+    }
+    if (changesToSubmit.flyer) {
+      (changesToSubmit.flyer as any) = changesToSubmit.flyer.file;
+    }
+    const event = await this.api.updateEvent(id, changesToSubmit);
     writeDB.table('events').update(id, event);
   }
 

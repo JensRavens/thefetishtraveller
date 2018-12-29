@@ -2,14 +2,19 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import marked from 'marked';
 import { withRouter, RouteComponentProps } from 'react-router';
-import { EventWithLocation, canEdit, joinLocation } from '../models/event';
+import {
+  Event,
+  EventWithLocation,
+  canEdit,
+  joinLocation,
+} from '../models/event';
 import { isLiked } from '../models/like';
 import {
   locationDescription,
   extractCoordinates,
   isVenue,
 } from '../models/location';
-import { DB, writeDB, State } from '../state';
+import { DB, writeDB, State, history } from '../state';
 import Container from '../components/container';
 import Listing from '../components/listing';
 import { Meta } from '../components/meta';
@@ -33,19 +38,12 @@ interface Props {
   editable: boolean;
   otherEvents: EventWithLocation[];
   subevents: EventWithLocation[];
-  changes?: Partial<EventWithChanges>;
   newEvent: boolean;
-  history: any;
+  changes?: Partial<Event>;
 }
 
 interface EventState {
   editing: boolean;
-}
-
-interface EventWithChanges extends Partial<EventWithLocation> {
-  heroFile: File;
-  headerFile: File;
-  flyerFile: File;
 }
 
 function format(text: string): React.ReactNode {
@@ -65,19 +63,17 @@ const t = scoped('event');
 class EventPage extends React.Component<Props, EventState> {
   public state: EventState = { editing: false };
   public render() {
-    let {
+    const {
       event,
       liked,
       editable,
       otherEvents,
       subevents,
       loggedIn,
-      changes,
     } = this.props;
     if (!event) {
       return null;
     }
-    event = { ...event, ...changes };
     const hero =
       (event.header && event.header.big) || (event.hero && event.hero.big);
     const flyer = event.flyer && event.flyer.big;
@@ -137,9 +133,9 @@ class EventPage extends React.Component<Props, EventState> {
               <div className="button" onClick={this.cancelEditing}>
                 {t('cancel')}
               </div>
-              <br />
             </React.Fragment>
           )}
+          {editable && <div className="spacer spacer--small" />}
           <h2>{event.name}</h2>
           {event.abstract && (
             <React.Fragment>
@@ -217,7 +213,7 @@ class EventPage extends React.Component<Props, EventState> {
     );
   }
 
-  toggleLike = () => {
+  private toggleLike = () => {
     const likes = writeDB.table('likes');
     const eventId = this.props.event!.id;
     if (this.props.liked) {
@@ -227,53 +223,24 @@ class EventPage extends React.Component<Props, EventState> {
     }
   };
 
-  private onChange<T extends keyof EventWithChanges>(
-    field: T,
-    type: string = 'string'
-  ) {
-    return (value: string | File) => {
-      let convertedValue: any = value;
-      if (type === 'date') {
-        const timestamp = Date.parse(convertedValue);
-        convertedValue = isNaN(timestamp) ? null : new Date(timestamp);
-      }
-      this.update({ [field]: convertedValue });
-    };
-  }
+  private submit = async () => {
+    const { changes } = this.props;
 
-  private update(values: Partial<EventWithChanges>) {
-    const changes = { ...this.state.changes, ...values };
-    const event = this.props.event!;
-    Object.keys(changes).forEach(key => {
-      if (changes[key] === event[key]) {
-        delete changes[key];
+    if (changes && Object.keys(changes).length > 0) {
+      if (this.props.newEvent) {
+        syncer.createEvent(this.props.event!.id, changes).then(event => {
+          history.replace(`/events/${event.slug}`);
+        });
+      } else {
+        await syncer.updateEvent(this.props.event!.id, changes);
       }
-    });
-    this.setState({ changes });
-  }
+    }
 
-  private submit = () => {
-    const { changes } = this.state;
-    if (Object.keys(changes).length === 0) {
-      this.setState({ editing: false });
-      return;
-    }
-    if (this.props.newEvent) {
-      syncer.createEvent(this.props.event!.id, changes).then(event => {
-        this.props.history.push(`/events/${event.slug}`);
-      });
-    } else {
-      syncer.updateEvent(this.props.event!.id, changes).then(() => {
-        this.setState({ changes: {}, editing: false });
-      });
-    }
+    this.setState({ editing: false });
   };
 
   private cancelEditing = () => {
-    writeDB
-      .context('local')
-      .table('events')
-      .revert(this.props.event!);
+    writeDB.context('local').revert();
     this.setState({ editing: false });
   };
 }
@@ -296,10 +263,10 @@ function buildEvent(): EventWithLocation {
   };
 }
 
-const mapStateToProps = (
+function mapStateToProps(
   state: State,
   props: RouteComponentProps<{ id: string }>
-) => {
+): Props {
   const slug: string = props.match.params.id;
   const db = new DB(state);
   const events = db.context('local').table('events');
@@ -340,6 +307,6 @@ const mapStateToProps = (
     loggedIn,
     changes,
   };
-};
+}
 
 export default connect(mapStateToProps)(withRouter(EventPage));
