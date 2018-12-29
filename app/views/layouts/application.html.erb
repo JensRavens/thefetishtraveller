@@ -50,16 +50,6 @@
     <link rel="shortcut icon" href="/favicon.png">
     <link rel="apple-touch-icon" href="https://<%= ENV['HOST'] %>/favicon_full.png"/>
     <%= stylesheet_pack_tag 'application' %>
-    <% if Rails.env.production? %>
-      <script type='text/javascript'>
-      (function (d, t) {
-        var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
-        bh.type = 'text/javascript';
-        bh.src = 'https://www.bugherd.com/sidebarv2.js?apikey=vrgkr4uxi3g4bhan3vxheq';
-        s.parentNode.insertBefore(bh, s);
-        })(document, 'script');
-      </script>
-    <% end %>
   </head>
   <body>
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-M8FM65F" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
