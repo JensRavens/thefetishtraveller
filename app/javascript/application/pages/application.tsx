@@ -10,26 +10,24 @@ import { EventSubmit } from './event_submit';
 import EventSearch from './event_search';
 import TravelPlans from './travel_plans';
 import TravelPlanPage from './travel_plan_page';
-import LocationSearch from './location_search';
-import LocationCreation from './location_creation';
-import LocationEdit from './location_edit';
 import Imprint from './imprint';
 import Header from '../components/header';
 import Footer from '../components/footer';
 import { I18n } from '../i18n';
 import ScrollToTop from '../components/scroll_to_top';
 import ErrorCatcher from '../components/error_catcher';
+import { State } from '../state';
 
 interface Props {
   stateLoaded: boolean;
 }
 
 class Application extends React.Component<Props> {
-  componentDidMount() {
+  public componentDidMount() {
     I18n.onUpdate(() => this.forceUpdate());
   }
 
-  render() {
+  public render() {
     if (!this.props.stateLoaded) {
       return null;
     }
@@ -57,17 +55,6 @@ class Application extends React.Component<Props> {
                       exact
                       component={TravelPlanPage}
                     />
-                    <Route path="/locations" exact component={LocationSearch} />
-                    <Route
-                      path="/locations/new"
-                      exact
-                      component={LocationCreation}
-                    />
-                    <Route
-                      path="/locations/:id"
-                      exact
-                      component={LocationEdit}
-                    />
                     <Route path="/imprint" exact component={Imprint} />
                   </Switch>
                 </ErrorCatcher>
@@ -81,5 +68,5 @@ class Application extends React.Component<Props> {
   }
 }
 
-const mapStateToProps: (State) => Props = state => ({ stateLoaded: !!state });
+const mapStateToProps = (state: State) => ({ stateLoaded: !!state });
 export default connect(mapStateToProps)(Application);
