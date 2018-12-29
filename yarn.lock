@@ -5773,10 +5773,10 @@ reduce-function-call@^1.0.1, reduce-function-call@^1.0.2:
   dependencies:
     balanced-match "^0.4.2"
 
-redux-database@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/redux-database/-/redux-database-0.0.5.tgz#134692655cbea0bf0889e02f96c3bf1ccdb7f94b"
-  integrity sha512-ZlGqdy7tskQAx9p58MCDZ+5zaFgM6kvvqmDe+VFI40HrhV70C7RMN0EbAoMAH9zSa1oWwg71VlzY4UsugnOBcg==
+redux-database@0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/redux-database/-/redux-database-0.0.11.tgz#d2ca78bb969409eeaa4dc454f3cf8ce7d17c9d91"
+  integrity sha512-tcpfcE/fjRVFxwGh6HOlJwjV6m79QJTQAk4KP7k4OPszJFoV6I4mJ02ZmVbo1EHT8qnosW0lgt8JYt1MSM/N4A==
 
 redux-localstorage@^0.4.1:
   version "0.4.1"

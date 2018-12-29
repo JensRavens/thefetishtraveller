@@ -1,6 +1,5 @@
 import * as React from 'react';
-import Form, { Context } from './form';
-import FormField from './form_field';
+import { Consumer } from './form';
 
 interface Props {
   name: string;
@@ -9,11 +8,21 @@ interface Props {
 }
 
 export default class TextInput extends React.Component<Props> {
-  render() {
-    const { type } = this.props;
+  public render() {
+    const { type, name, placeholder } = this.props;
     return (
       <div className={`text-input text-input--${type || 'text'}`}>
-        <FormField {...this.props} />
+        <Consumer>
+          {context => (
+            <input
+              value={context.model[name]}
+              onChange={event =>
+                context.notify(name, event.currentTarget.value)
+              }
+              placeholder={placeholder}
+            />
+          )}
+        </Consumer>
       </div>
     );
   }

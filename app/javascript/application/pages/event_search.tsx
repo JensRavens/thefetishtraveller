@@ -22,7 +22,7 @@ import Container from '../components/container';
 import Hero from '../components/hero';
 import Listing from '../components/listing';
 import FilterBar from '../components/filter-bar';
-import Form from '../components/form';
+import { Form } from '../components/form';
 import TextInput from '../components/text-input';
 
 interface Props {
@@ -73,7 +73,7 @@ class EventSearch extends React.Component<Props, SearchState> {
           <Container>
             <h1>{t('menu.events')}</h1>
             <div className="hero__addon">
-              <Form model={this.state} onChange={value => this.setState(value)}>
+              <Form model={this.state} onInput={value => this.setState(value)}>
                 <TextInput
                   name="term"
                   type="search"
