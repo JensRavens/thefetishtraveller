@@ -1,7 +1,6 @@
 import * as React from 'react';
 
 declare const google: any;
-declare const window: any;
 
 interface Props {
   zoom?: number;
@@ -10,31 +9,31 @@ interface Props {
 }
 
 export class Map extends React.Component<Props> {
-  static defaultProps = { zoom: 12 };
+  public static defaultProps = { zoom: 12 };
 
-  private container: HTMLDivElement | null;
+  private container: HTMLDivElement | null = null;
   private map: any;
-  private marker: any;
 
-  componentDidMount() {
+  public componentDidMount() {
+    if (!(window as any).google) {
+      // offline case
+      return;
+    }
     this.map = new google.maps.Map(this.container, {
       center: this.center,
       zoom: this.props.zoom,
     });
     if (this.props.markerTitle) {
-      this.marker = new google.maps.Marker({
+      // tslint:disable-next-line
+      new google.maps.Marker({
         map: this.map,
         position: this.center,
         title: this.props.markerTitle,
       });
     }
-    window.map = this.map;
   }
 
-  render() {
-    const { zoom, center } = this.props;
-    const coordinate = { lat: center.lat, lng: center.lon };
-    const { map, marker } = this;
+  public render() {
     return <div className="map" ref={el => (this.container = el)} />;
   }
 
