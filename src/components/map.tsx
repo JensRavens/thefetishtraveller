@@ -11,7 +11,7 @@ interface Props {
 export class Map extends React.Component<Props> {
   public static defaultProps = { zoom: 12 };
 
-  private container: HTMLDivElement | null = null;
+  private container = React.createRef<HTMLDivElement>();
   private map: any;
 
   public componentDidMount() {
@@ -19,7 +19,7 @@ export class Map extends React.Component<Props> {
       // offline case
       return;
     }
-    this.map = new google.maps.Map(this.container, {
+    this.map = new google.maps.Map(this.container.current, {
       center: this.center,
       zoom: this.props.zoom,
     });
@@ -34,7 +34,7 @@ export class Map extends React.Component<Props> {
   }
 
   public render() {
-    return <div className="map" ref={el => (this.container = el)} />;
+    return <div className="map" ref={this.container} />;
   }
 
   private get center() {

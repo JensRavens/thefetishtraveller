@@ -3,6 +3,12 @@
   margin: 0 8px;
   margin: 0 unquote('max(env(safe-area-inset-right), 8px)');
 
+  &:after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+
   @media (min-width: 1024px + 16px) {
     margin: 0 auto;
   }
