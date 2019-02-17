@@ -1,0 +1,25 @@
+<% if @event %>
+  <%-
+    url = ['https:/', ENV['HOST'], 'events', @event.slug].join('/')
+    title = [@event.name, 'The Fetish Traveller'].join(' | ')
+  %>
+  <title><%= title %></title>
+  <meta name="description" content="<%= @event.abstract %>" data-react-helmet="true"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="The Fetish Traveller"/>
+  <meta property="og:title" content="<%= title %>"/>
+  <meta property="og:description" content="<%= @event.abstract %>"/>
+  <meta property="og:url" content="<%= url %>"/>
+  <% if @event.hero.attached? %>
+    <meta property="og:image" content="https://<%= ENV['HOST'].to_s + url_for(@event.hero.variant(resize: '512x512>')) %>"/>
+  <% end %>
+  <link rel="canonical" href="<%= url %>"/>
+<% else %>
+  <title>The Fetish Traveller</title>
+  <meta name="description" content="Find the best fetish events worldwide."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="The Fetish Traveller"/>
+  <meta property="og:title" content="The Fetish Traveller"/>
+  <meta property="og:description" content="Find the best fetish events worldwide."/>
+  <meta property="og:image" content="https://<%= ENV['HOST'] %>/favicon_full.png"/>
+<% end %>

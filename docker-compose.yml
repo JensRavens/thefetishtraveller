@@ -2,18 +2,12 @@ version: '2'
 
 services:
   postgres:
-    image: "postgres:10"
+    image: 'postgres:10'
     ports:
-      - "5432:5432"
+      - '5432:5432'
     volumes:
       - ./tmp/volumes/postgres:/var/lib/postgresql/data
-  elasticsearch:
-    image: "elasticsearch:5.3"
-    volumes:
-      - ./tmp/volumes/elasticsearch:/usr/share/elasticsearch/data
-    ports:
-      - "9200:9200"
   redis:
     image: redis
     ports:
-      - "6379:6379"
+      - '6379:6379'
