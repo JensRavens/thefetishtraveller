@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+# make sure it is loaded
+ActiveStorage::RepresentationsController
+
 module ActiveStorage
   class RepresentationsController < BaseController
     include ActiveStorage::SetBlob
