@@ -264,6 +264,7 @@ function buildEvent(): EventWithLocation {
       slug: '',
       name: 'Change this',
       countryCode: 'de',
+      category: 'city',
     },
   };
 }
