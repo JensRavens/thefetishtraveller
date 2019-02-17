@@ -61,6 +61,8 @@ en:
     country: Country
     locations_in: 'Locations in :name:'
     events_in: 'Events in :name:'
+  locationSearch:
+    search_place_holder: Search for name, country, ...
   menu:
     events: Events
     your_calendar: Your Calendar

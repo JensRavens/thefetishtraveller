@@ -60,6 +60,8 @@ de:
     city: Stadt
     country: Land
     locations_in: 'Adressen in :name:'
+  locationSearch:
+    search_place_holder: Suche nach Name, Land, ...
   menu:
     events: Veranstaltungen
     your_calendar: Dein Kalender
