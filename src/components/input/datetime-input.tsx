@@ -1,8 +1,10 @@
 import React from 'react';
-import { Consumer } from './form';
+import { Consumer } from '../form';
+import { guid } from '../../util';
 
 interface Props {
   name: string;
+  label?: string;
 }
 
 function localTimeString(date: Date): string {
@@ -20,10 +22,17 @@ function localTimeString(date: Date): string {
 }
 
 export class DateTimeInput extends React.Component<Props> {
+  private id = guid();
   public render() {
-    const { name } = this.props;
+    const { name, label } = this.props;
+    const id = this.id;
     return (
       <div className="datetime-input">
+        {label && (
+          <label className="image-input__label" htmlFor={id}>
+            {label}
+          </label>
+        )}
         <Consumer>
           {context => {
             const date: Date | undefined = context!.model[name];
@@ -31,6 +40,7 @@ export class DateTimeInput extends React.Component<Props> {
             return (
               <>
                 <input
+                  id={id}
                   type="datetime-local"
                   value={dateString}
                   onChange={event =>

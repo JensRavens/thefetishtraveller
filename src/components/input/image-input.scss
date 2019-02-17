@@ -1,0 +1,25 @@
+.image-input {
+  position: relative;
+  margin-bottom: 1em;
+
+  > input {
+    font-size: inherit;
+    appearance: none;
+    border: 1px solid $color-border;
+    border-radius: 0;
+    padding: 1em 0 1em 1em;
+    display: block;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+      border-color: $color-tint;
+    }
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 0.5ex;
+    color: $color-text-label;
+  }
+}
