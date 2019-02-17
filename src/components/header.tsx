@@ -49,6 +49,11 @@ class Header extends React.Component<Props, MenuState> {
                   {t('.your_calendar')}
                 </NavLink>
               )}
+              {
+                <NavLink to="/login">
+                  {loggedIn ? t('.logout') : t('.login')}
+                </NavLink>
+              }
             </div>
           </nav>
           <div
