@@ -28,6 +28,7 @@ import { JsonLd } from '../components/JsonLd';
 import { isLoggedIn } from '../models/session';
 import LikeButton from '../components/like-button';
 import { EventForm } from './event_form';
+import { Link } from 'react-router-dom';
 
 marked.setOptions({ sanitize: true, breaks: true, smartypants: true });
 
@@ -165,7 +166,12 @@ class EventPage extends React.Component<Props, EventState> {
               <img src={flyer} />
             </div>
           )}
-          <h3>{locationDescription(event.location)}</h3>
+          <div className="spacer spacer--small" />
+          <h3>
+            <Link to={`/locations/${event.location.slug}`}>
+              {locationDescription(event.location)}
+            </Link>
+          </h3>
           {coordinates && (
             <Map
               center={coordinates}

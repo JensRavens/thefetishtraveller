@@ -50,9 +50,20 @@ de:
       se: Schweden
       pt: Portugal
       au: Australien
+    category:
+      bar: Bar
+      shop: Shop
+      country: Land
+      venue: Veranstaltungsort
+      region: Region
+      city: Stadt
+    city: Stadt
+    country: Land
+    locations_in: 'Adressen in :name:'
   menu:
     events: Veranstaltungen
     your_calendar: Dein Kalender
+    locations: Orte
     home: Startseite
     imprint: Impressum
     submit: Veranstaltung eintragen

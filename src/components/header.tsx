@@ -37,11 +37,9 @@ class Header extends React.Component<Props, MenuState> {
               <NavLink onClick={closeMenu} to="/events">
                 {t('.events')}
               </NavLink>
-              {loggedIn && (
-                <NavLink onClick={closeMenu} to="/locations">
-                  Locations
-                </NavLink>
-              )}
+              <NavLink onClick={closeMenu} to="/locations">
+                {t('.locations')}
+              </NavLink>
             </div>
             <div className="main-menu__category">
               {hasLikes && (
@@ -64,7 +62,7 @@ class Header extends React.Component<Props, MenuState> {
           </div>
           <div className="main-menu__category main-menu__category--additional">
             <NavLink to="/events">{t('.events')}</NavLink>
-            {/* {loggedIn && <NavLink to="/locations">Locations</NavLink>} */}
+            <NavLink to="/locations">{t('.locations')}</NavLink>
           </div>
           <div className="main-menu__category main-menu__category--additional">
             {hasLikes && (

@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Router } from 'react-router';
-import { hot } from 'react-hot-loader';
 
 import Home from './home';
 import Login from './login';
@@ -10,6 +9,8 @@ import { EventSubmit } from './event_submit';
 import EventSearch from './event_search';
 import TravelPlans from './travel_plans';
 import TravelPlanPage from './travel_plan_page';
+import LocationSearch from './location_search';
+import LocationPage from './location_page';
 import Imprint from './imprint';
 import Header from '../components/header';
 import Footer from '../components/footer';
@@ -50,6 +51,12 @@ class Application extends React.Component<Props> {
                     />
                     <Route path="/events/:id" exact component={EventPage} />
                     <Route path="/calendar" exact component={TravelPlans} />
+                    <Route path="/locations" exact component={LocationSearch} />
+                    <Route
+                      path="/locations/:id"
+                      exact
+                      component={LocationPage}
+                    />
                     <Route
                       path="/travel-plans/:id"
                       exact
@@ -69,4 +76,4 @@ class Application extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: State) => ({ stateLoaded: !!state });
-export default hot(module)(connect(mapStateToProps)(Application));
+export default connect(mapStateToProps)(Application);
