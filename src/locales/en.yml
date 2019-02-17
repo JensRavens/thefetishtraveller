@@ -50,12 +50,24 @@ en:
       se: Sweden
       pt: Portugal
       au: Australia
+    category:
+      bar: Bar
+      shop: Shop
+      country: Country
+      venue: Venue
+      region: Region
+      city: City
+    city: City
+    country: Country
+    locations_in: 'Locations in :name:'
+    events_in: 'Events in :name:'
   menu:
     events: Events
     your_calendar: Your Calendar
     home: Home
     imprint: Imprint
     submit: Submit Events
+    locations: Locations
     login: Login
     logout: Logout
   newsletter:

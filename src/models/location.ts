@@ -6,12 +6,15 @@ export interface Location extends Syncable {
   id: string;
   slug: string;
   name: string;
+  abstract?: string;
+  description?: string;
   city?: string;
   address?: string;
   lat?: number;
   lon?: number;
   zip?: string;
   countryCode: string;
+  category: 'city' | 'bar' | 'region' | 'shop' | 'hotel' | 'venue';
 }
 
 export function countryName(code: string): string {
@@ -47,4 +50,17 @@ export function extractCoordinates(
     return;
   }
   return { lat: location.lat, lon: location.lon };
+}
+
+export function matchesTerm(
+  location: Partial<Location>,
+  term: string
+): boolean {
+  const locationName =
+    (location.name || '').toLocaleLowerCase() +
+    (location.address || '').toLocaleLowerCase() +
+    (location.countryCode &&
+      countryName(location.countryCode).toLocaleLowerCase());
+  const normalizedTerm = term.toLocaleLowerCase();
+  return locationName.includes(normalizedTerm);
 }

@@ -2,13 +2,22 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { DB, State } from '../state';
-import { Location } from '../models/location';
+import { Location, matchesTerm } from '../models/location';
 import { LocationListing } from '../components/location_listing';
-import Container from '../components/container';
 import Hero from '../components/hero';
+import Listing from '../components/listing';
+import { Form } from '../components/form';
+import { TextInput } from '../components/input/text-input';
+import { scoped } from '@nerdgeschoss/i18n';
+
+const t = scoped('locationSearch');
 
 interface Props {
   locations: Location[];
+}
+
+interface ComponentState {
+  searchTerm?: string;
 }
 
 const mapStateToProps: (state: State) => Props = state => {
@@ -17,19 +26,37 @@ const mapStateToProps: (state: State) => Props = state => {
   };
 };
 
-class LocationSearch extends React.Component<Props> {
+class LocationSearch extends React.Component<Props, ComponentState> {
+  public state: ComponentState = {};
+
   public render() {
-    const { locations } = this.props;
+    const { searchTerm } = this.state;
+    let { locations } = this.props;
+    if (searchTerm) {
+      locations = locations.filter(e => matchesTerm(e, searchTerm));
+    } else {
+      locations = locations.filter(e => e.category === 'city');
+    }
+    locations.sort((a, b) => a.name.localeCompare(b.name));
     return (
       <React.Fragment>
         <Hero>
           <h1>Locations</h1>
+          <div className="hero__addon">
+            <Form model={this.state} onInput={value => this.setState(value)}>
+              <TextInput
+                name="searchTerm"
+                type="search"
+                placeholder={t('.search_place_holder')}
+              />
+            </Form>
+          </div>
         </Hero>
-        <Container>
+        <Listing>
           {locations.map(e => (
             <LocationListing key={e.id} location={e} />
           ))}
-        </Container>
+        </Listing>
       </React.Fragment>
     );
   }

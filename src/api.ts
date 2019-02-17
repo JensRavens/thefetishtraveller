@@ -12,6 +12,7 @@ export interface APILocation {
   countryCode: string;
   city?: string;
   zip?: string;
+  category: any;
 }
 
 export interface APIEvent {
