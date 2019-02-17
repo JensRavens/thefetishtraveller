@@ -1,8 +1,8 @@
 source "https://rubygems.org"
-ruby "2.5.1"
+ruby "2.6.1"
 
 # Core
-gem "rails", "5.2.0"
+gem "rails", "5.2.2"
 gem "puma"
 
 # Database
@@ -34,7 +34,7 @@ gem "icalendar", "~> 2.4"
 gem "httparty"
 
 # Assets
-gem "webpacker"
+gem "webpacker", require: false
 
 # Seed Data
 gem "database_cleaner"
@@ -43,9 +43,8 @@ gem "faker"
 
 # Services
 gem "newrelic_rpm"
-gem "airbrake"
+gem "airbrake", "7.2.1"
 gem "aws-sdk-s3"
-gem "prerender_rails"
 
 group :development, :test do
   gem "rspec-rails"

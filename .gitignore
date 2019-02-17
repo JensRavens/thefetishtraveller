@@ -27,3 +27,10 @@ yarn-debug.log*
 .yarn-integrity
 /public/assets
 .DS_Store
+
+# Build files in public
+/public/*.css
+/public/*.js
+/public/index.html
+/public/*.woff2
+/public/*.jpg
