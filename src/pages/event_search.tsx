@@ -23,7 +23,7 @@ import Hero from '../components/hero';
 import Listing from '../components/listing';
 import FilterBar from '../components/filter-bar';
 import { Form } from '../components/form';
-import TextInput from '../components/text-input';
+import { TextInput } from '../components/input/text-input';
 
 interface Props {
   events: EventWithLocation[];

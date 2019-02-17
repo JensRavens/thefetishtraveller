@@ -85,7 +85,7 @@ class EventPage extends React.Component<Props, EventState> {
       [t('.website'), link(event.website)],
       [t('.organizer'), event.organizerName],
       [t('.tickets'), link(event.ticketLink)],
-    ];
+    ].filter(e => e[1]);
     const previewImage = hero || flyer;
     return (
       <React.Fragment>

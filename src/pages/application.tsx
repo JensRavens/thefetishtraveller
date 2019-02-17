@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Switch, Router } from 'react-router';
+import { hot } from 'react-hot-loader';
 
 import Home from './home';
 import Login from './login';
@@ -68,4 +69,4 @@ class Application extends React.Component<Props> {
 }
 
 const mapStateToProps = (state: State) => ({ stateLoaded: !!state });
-export default connect(mapStateToProps)(Application);
+export default hot(module)(connect(mapStateToProps)(Application));

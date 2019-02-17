@@ -3,11 +3,12 @@ import { pick } from 'lodash';
 
 import { EventWithLocation } from '../models/event';
 import { Form } from '../components/form';
-import TextInput from '../components/text-input';
+import { TextInput } from '../components/input/text-input';
 import { writeDB } from '../state';
-import { ImageInput } from '../components/image-input';
+import { ImageInput } from '../components/input/image-input';
 import { readImageUrl } from '../models/image';
-import { DateTimeInput } from '../components/datetime-input';
+import { DateTimeInput } from '../components/input/datetime-input';
+import { t } from '@nerdgeschoss/i18n';
 
 interface Props {
   event: EventWithLocation;
@@ -18,17 +19,25 @@ export class EventForm extends React.Component<Props> {
     const { event } = this.props;
     return (
       <Form model={event} onInput={this.onChange}>
-        <TextInput name="name" />
-        <TextInput name="website" />
-        <TextInput name="ticketLink" />
-        <TextInput name="organizerName" />
-        <TextInput name="abstract" type="multiline" />
-        <TextInput name="description" type="multiline" />
-        <DateTimeInput name="startAt" />
-        <DateTimeInput name="endAt" />
-        <ImageInput name="hero" />
-        <ImageInput name="header" />
-        <ImageInput name="flyer" />
+        <TextInput name="name" label={t('event.name')} />
+        <TextInput name="website" label={t('event.website')} />
+        <TextInput name="ticketLink" label={t('event.ticketLink')} />
+        <TextInput name="organizerName" label={t('event.organizerName')} />
+        <TextInput
+          name="abstract"
+          type="multiline"
+          label={t('event.abstract')}
+        />
+        <TextInput
+          name="description"
+          type="multiline"
+          label={t('event.description')}
+        />
+        <DateTimeInput name="startAt" label={t('event.startAt')} />
+        <DateTimeInput name="endAt" label={t('event.endAt')} />
+        <ImageInput name="hero" label={t('event.hero')} />
+        <ImageInput name="header" label={t('event.header')} />
+        <ImageInput name="flyer" label={t('event.flyer')} />
       </Form>
     );
   }

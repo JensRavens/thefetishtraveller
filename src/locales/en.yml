@@ -3,7 +3,7 @@ en:
     all: all
     date: date
     location: location
-    website: website
+    website: Website
     organizer: organizer
     abstract: Abstract
     tickets: Tickets
@@ -13,6 +13,15 @@ en:
     submit_here: Submit your event here!
     event_missing: Your favorite event is missing?
     happening_here: Events
+    name: Name
+    ticketLink: Ticket Link
+    organizerName: Organizer Name
+    description: Description
+    startAt: Start
+    endAt: End
+    hero: Header Image
+    header: Header Image (alternate)
+    flyer: Flyer Image
     category:
       fetish: Fetish
       csd: Pride Parade

@@ -13,6 +13,15 @@ de:
     tickets: Tickets
     slug: Slug
     happening_here: Veranstaltungen
+    name: Name
+    ticketLink: Ticket Link
+    organizerName: Veranstalter
+    description: Beschreibung
+    hero: Headerbild
+    header: Headerbild (alternativ)
+    flyer: Flyer
+    startAt: Beginn
+    endAt: Ende
     category:
       fetish: Fetisch
       csd: CSD
