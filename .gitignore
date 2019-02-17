@@ -34,3 +34,4 @@ yarn-debug.log*
 /public/index.html
 /public/*.woff2
 /public/*.jpg
+/coverage

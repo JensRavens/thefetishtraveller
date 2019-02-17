@@ -7,7 +7,8 @@
     "lint": "yarn lint:types && yarn lint:style && yarn lint:format",
     "lint:types": "tsc --noEmit",
     "lint:style": "tslint -c tslint.json -p . 'src/**/*.{ts,tsx}'",
-    "lint:format": "prettier --list-different \"src/**/*.{tsx,ts,scss,json}\""
+    "lint:format": "prettier --list-different \"src/**/*.{tsx,ts,scss,json}\"",
+    "test": "jest"
   },
   "dependencies": {
     "@nerdgeschoss/config": "0.0.4",
