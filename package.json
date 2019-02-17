@@ -3,11 +3,11 @@
   "scripts": {
     "start": "webpack-dev-server",
     "build": "NODE_ENV=production webpack",
-    "format": "prettier --write \"app/javascript/**/*.{tsx,ts,scss,json}\"",
+    "format": "prettier --write \"src/**/*.{tsx,ts,scss,json}\"",
     "lint": "yarn lint:types && yarn lint:style && yarn lint:format",
     "lint:types": "tsc --noEmit",
-    "lint:style": "tslint -c tslint.json -p . 'app/javascript/**/*.{ts,tsx}'",
-    "lint:format": "prettier --list-different \"app/javascript/**/*.{tsx,ts,scss,json}\""
+    "lint:style": "tslint -c tslint.json -p . 'src/**/*.{ts,tsx}'",
+    "lint:format": "prettier --list-different \"src/**/*.{tsx,ts,scss,json}\""
   },
   "dependencies": {
     "@nerdgeschoss/config": "0.0.4",
