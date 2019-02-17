@@ -166,26 +166,29 @@ class EventPage extends React.Component<Props, EventState> {
               <img src={flyer} />
             </div>
           )}
+        </Container>
+        <Container>
           <div className="spacer spacer--small" />
           <h3>
             <Link to={`/locations/${event.location.slug}`}>
               {locationDescription(event.location)}
             </Link>
           </h3>
-          {coordinates && (
-            <Map
-              center={coordinates}
-              markerTitle={
-                isVenue(event.location) ? event.location.name : undefined
-              }
-              zoom={isVenue(event.location) ? 16 : undefined}
-            />
-          )}
+          <div />
         </Container>
+        {coordinates && (
+          <Map
+            center={coordinates}
+            markerTitle={
+              isVenue(event.location) ? event.location.name : undefined
+            }
+            zoom={isVenue(event.location) ? 16 : undefined}
+          />
+        )}
         {!!subevents.length && (
           <React.Fragment>
             <Container variant="small">
-              <div className="spacer" />
+              <div className="spacer spacer--small" />
               <h2>{t('.happening_here', { location: event.location.name })}</h2>
               <div />
             </Container>
@@ -199,7 +202,7 @@ class EventPage extends React.Component<Props, EventState> {
         {!!otherEvents.length ? (
           <React.Fragment>
             <Container variant="small">
-              <div className="spacer" />
+              <div className="spacer spacer--small" />
               <h2>
                 {t('.other_events_in', { location: event.location.name })}
               </h2>

@@ -64,13 +64,16 @@ class LocationPage extends React.Component<Props> {
             ))}
           </div>
           {location.description && format(location.description)}
-          {coordinates && (
+        </Container>
+        {coordinates && (
+          <>
+            <div className="spacer--small" />
             <Map
               center={coordinates}
               zoom={isVenue(location) ? 16 : undefined}
             />
-          )}
-        </Container>
+          </>
+        )}
         {!!relatedLocations.length && (
           <>
             <Container variant="small">
