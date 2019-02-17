@@ -43,6 +43,12 @@ export class APISyncer {
     writeDB.set('session', session);
   }
 
+  public async resumeSession(sessionId: string) {
+    this.api.sessionID = sessionId;
+    const session = await this.api.getSession();
+    writeDB.set('session', session);
+  }
+
   public async updateLocation(id: string, changes: Partial<APILocation>) {
     const location = await this.api.updateLocation({ ...changes, id });
     writeDB.table('locations').update(id, location);
