@@ -1,6 +1,6 @@
 namespace :assets do
   task :precompile do
-    system('yarn build')
+    sh 'yarn build'
   end
 
   task :clean do
