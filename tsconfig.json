@@ -1,3 +1,4 @@
 {
-  "extends": "./node_modules/@nerdgeschoss/config/tsconfig.json"
+  "extends": "./node_modules/@nerdgeschoss/config/tsconfig.json",
+  "exclude": ["node_modules", "vendor"]
 }
