@@ -31,6 +31,8 @@ de:
       culture: Kultur
       bluf: BLUF
       social: Social
+    subscribe: 'Du kannst auch :link: den Kalendar abonieren.'
+    subscribeHere: hier
   location:
     countries:
       de: Deutschland

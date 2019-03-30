@@ -81,6 +81,16 @@ class EventSearch extends React.Component<Props, SearchState> {
                   placeholder={t('.search_place_holder')}
                 />
               </Form>
+              <div
+                className="text-center"
+                dangerouslySetInnerHTML={{
+                  __html: t('.subscribe', {
+                    link: `<a class="link" href="webcal://thefetishtraveller.com/feed/events.ics">${t(
+                      '.subscribeHere'
+                    )}</a>`,
+                  }),
+                }}
+              />
             </div>
             <Link to="/events/submit" className="hero__cta">
               {t('.submit_here')}
