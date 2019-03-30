@@ -6,7 +6,7 @@ import {
   EventWithLocation,
   byMonth,
   byMainEvent,
-  formatDate,
+  formatEventDate,
 } from '../models/event';
 
 import Container from './container';
@@ -46,11 +46,11 @@ export class Calendar extends React.Component<Props> {
                     <div className="calendar__event__details">
                       <h2>{group.event.name}</h2>
                       <div className="calendar__event__date">
-                        {formatDate(group.event)}
+                        {formatEventDate(group.event)}
                       </div>
                       {group.events.map(e => (
                         <p>
-                          {e.name}: {formatDate(e)}
+                          {e.name}: {formatEventDate(e)}
                         </p>
                       ))}
                     </div>
