@@ -7,6 +7,7 @@ import {
   EventWithLocation,
   canEdit,
   joinLocation,
+  formatEventDate,
 } from '../models/event';
 import { isLiked } from '../models/like';
 import {
@@ -81,7 +82,7 @@ class EventPage extends React.Component<Props, EventState> {
     const coordinates = extractCoordinates(event.location);
     const editing = this.state.editing;
     const meta = [
-      [t('.date'), dateRange(event.startAt, event.endAt)],
+      [t('.date'), formatEventDate(event)],
       [t('.location'), locationDescription(event.location)],
       [t('.website'), link(event.website)],
       [t('.organizer'), event.organizerName],

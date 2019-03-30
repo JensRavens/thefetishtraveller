@@ -13,6 +13,7 @@ export interface APILocation {
   city?: string;
   zip?: string;
   category: any;
+  timezone?: string;
 }
 
 export interface APIEvent {
@@ -34,6 +35,7 @@ export interface APIEvent {
   logo?: Image;
   flyer?: Image;
   categories?: string[];
+  fullDay: boolean;
 }
 
 export interface APILike {

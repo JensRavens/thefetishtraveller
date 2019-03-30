@@ -1,4 +1,5 @@
 import moment from 'moment';
+import { I18n } from '@nerdgeschoss/i18n';
 
 export function guid(): string {
   function s4(): string {
@@ -9,27 +10,44 @@ export function guid(): string {
   return [s4() + s4(), s4(), s4(), s4(), s4() + s4() + s4()].join('-');
 }
 
-function format(date: Date): string {
+function format(date: Date, timeZone?: string, fullDay?: boolean): string {
   if (typeof date === 'string') {
     return '';
   }
-  const offset = date.getHours() + date.getTimezoneOffset() / 60;
-  if (offset === 0) {
-    return moment(date).format('ll');
+  if (!fullDay) {
+    return new Intl.DateTimeFormat(I18n.locale, {
+      timeZone: timeZone || undefined,
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+    }).format(date);
   }
-  return moment(date).format('lll');
+  return new Intl.DateTimeFormat(I18n.locale, {
+    timeZone: timeZone || undefined,
+  }).format(date);
 }
 
-export function dateRange(date: Date, date2: Date) {
+export function dateRange(
+  date: Date,
+  date2: Date,
+  timezone?: string,
+  fullDay?: boolean
+): string {
   if (!date2) {
     if (!date) {
       return '';
     }
-    return format(date);
+    return format(date, timezone, fullDay);
   }
   if (moment(date).isSame(date2, 'day')) {
-    return format(date);
+    return format(date, timezone, fullDay);
   } else {
-    return `${format(date)} - ${format(date2)}`;
+    return `${format(date, timezone, fullDay)} - ${format(
+      date2,
+      timezone,
+      fullDay
+    )}`;
   }
 }

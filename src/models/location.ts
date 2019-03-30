@@ -15,6 +15,7 @@ export interface Location extends Syncable {
   zip?: string;
   countryCode: string;
   category: 'city' | 'bar' | 'region' | 'shop' | 'hotel' | 'venue';
+  timezone?: string;
 }
 
 export function countryName(code: string): string {

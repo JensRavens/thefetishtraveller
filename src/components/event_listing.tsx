@@ -1,7 +1,7 @@
 import React from 'react';
 import { flatten, uniq } from 'lodash';
 
-import { EventWithLocation } from '../models/event';
+import { EventWithLocation, formatEventDate } from '../models/event';
 import { locationDescription } from '../models/location';
 import { Link } from 'react-router-dom';
 
@@ -43,7 +43,7 @@ export class EventListing extends React.Component<Props> {
           <div className="event-listing__description" />
           <div className="event-listing__details">
             {locationDescription(event.location)} <br />{' '}
-            {dateRange(event.startAt, event.endAt)}
+            {formatEventDate(event)}
             {event.events && !!event.events.length && (
               <React.Fragment>
                 <br />
