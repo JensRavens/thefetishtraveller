@@ -15,6 +15,7 @@
 #  lat          :decimal(, )
 #  lon          :decimal(, )
 #  category     :string
+#  timezone     :string
 #
 
 class Location < ApplicationRecord

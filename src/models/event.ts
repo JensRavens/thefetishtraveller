@@ -28,6 +28,7 @@ export interface Event extends Syncable {
   flyer?: Image;
   categories?: string[];
   events?: Event[];
+  fullDay: boolean;
 }
 
 export interface EventWithLocation extends Event {
@@ -42,6 +43,15 @@ export function canEdit(event: Event, session?: APISession): boolean {
       (!!session.ownedEventIds &&
         !!event.serverId &&
         session.ownedEventIds.includes(event.serverId)))
+  );
+}
+
+export function formatEventDate(event: EventWithLocation): string {
+  return dateRange(
+    event.startAt,
+    event.endAt,
+    event.location.timezone,
+    event.fullDay
   );
 }
 
@@ -114,10 +124,6 @@ export function months(
 export function inMonth(event: Event, month: { year: number; month: number }) {
   const time = moment(event.startAt);
   return time.month() === month.month && time.year() === month.year;
-}
-
-export function formatDate(event: Event): string {
-  return dateRange(event.startAt, event.endAt);
 }
 
 export function byMonth<T extends Event>(

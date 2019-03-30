@@ -15,10 +15,11 @@
 #  lat          :decimal(, )
 #  lon          :decimal(, )
 #  category     :string
+#  timezone     :string
 #
 
 class LocationSerializer < ApplicationSerializer
-  attributes :id, :slug, :name, :city, :zip, :address, :country_code, :lat, :lon, :category
+  attributes :id, :slug, :name, :city, :zip, :address, :country_code, :lat, :lon, :category, :timezone
 
   def lat
     object.lat&.to_f
