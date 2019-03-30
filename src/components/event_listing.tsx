@@ -5,7 +5,6 @@ import { EventWithLocation, formatEventDate } from '../models/event';
 import { locationDescription } from '../models/location';
 import { Link } from 'react-router-dom';
 
-import { dateRange } from '../util';
 import { scoped } from '@nerdgeschoss/i18n';
 
 interface Props {

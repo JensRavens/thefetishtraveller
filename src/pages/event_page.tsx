@@ -21,7 +21,6 @@ import Listing from '../components/listing';
 import { Meta } from '../components/meta';
 import { EventListing } from '../components/event_listing';
 import { Map } from '../components/map';
-import { dateRange } from '../util';
 import { scoped } from '@nerdgeschoss/i18n';
 import { syncer } from '../api-syncer';
 import { guid } from '../util';
@@ -263,6 +262,7 @@ function buildEvent(): EventWithLocation {
     endAt: new Date(),
     locationId: '',
     locationSlug: 'change this',
+    fullDay: true,
     location: {
       id: '',
       slug: '',
