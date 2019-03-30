@@ -61,7 +61,7 @@ export function matchesTerm(
     (location.name || '').toLocaleLowerCase() +
     (location.address || '').toLocaleLowerCase() +
     (location.countryCode &&
-      countryName(location.countryCode).toLocaleLowerCase());
+      (countryName(location.countryCode) || '').toLocaleLowerCase());
   const normalizedTerm = term.toLocaleLowerCase();
   return locationName.includes(normalizedTerm);
 }
