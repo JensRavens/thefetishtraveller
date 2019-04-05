@@ -31,6 +31,8 @@ en:
       culture: Culture
       bluf: BLUF
       social: Social
+      dinner: Dinner
+      brunch: Brunch
     subscribe: 'You can also subscribe to this calendar :link:.'
     subscribeHere: here
   location:
@@ -60,6 +62,10 @@ en:
       venue: Venue
       region: Region
       city: City
+      restaurant: Restaurant
+      hotel: Hotel
+      cafe: Cafe
+      club: Club
     city: City
     country: Country
     locations_in: 'Locations in :name:'
