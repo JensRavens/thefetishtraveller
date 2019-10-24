@@ -2,7 +2,7 @@ source "https://rubygems.org"
 ruby "2.6.1"
 
 # Core
-gem "rails", "5.2.2"
+gem "rails", "6.0.0"
 gem "puma"
 
 # Database
@@ -43,7 +43,7 @@ gem "faker"
 
 # Services
 gem "newrelic_rpm"
-gem "airbrake", "7.2.1"
+gem "airbrake"
 gem "aws-sdk-s3"
 
 group :development, :test do

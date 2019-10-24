@@ -3,7 +3,7 @@ import { Like } from './models/like';
 import { Location } from './models/location';
 import EJSON from 'ejson';
 import { APISession } from './api';
-import { DataTable, reducer, DB, DBAction, MutableDB } from 'redux-database';
+import { DataTable, reducer, DB, MutableDB } from 'redux-database';
 
 declare var __REDUX_DEVTOOLS_EXTENSION__: () => void;
 
@@ -61,7 +61,7 @@ export const store = createStore(
   composedEnhancers as any
 );
 
-export { DB, DBAction };
+export { DB };
 export const writeDB = new MutableDB(initialState, { store });
 
 try {

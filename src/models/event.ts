@@ -29,20 +29,23 @@ export interface Event extends Syncable {
   categories?: string[];
   events?: Event[];
   fullDay: boolean;
+  editable?: boolean;
+  unsubmitted?: boolean;
 }
 
 export interface EventWithLocation extends Event {
-  location: Location;
+  location?: Location;
   locationSlug?: string;
 }
 
 export function canEdit(event: Event, session?: APISession): boolean {
   return (
-    !!session &&
-    (session.level === 'admin' ||
-      (!!session.ownedEventIds &&
-        !!event.serverId &&
-        session.ownedEventIds.includes(event.serverId)))
+    event.editable ||
+    (!!session &&
+      (session.level === 'admin' ||
+        (!!session.ownedEventIds &&
+          !!event.serverId &&
+          session.ownedEventIds.includes(event.serverId))))
   );
 }
 
@@ -50,7 +53,7 @@ export function formatEventDate(event: EventWithLocation): string {
   return dateRange(
     event.startAt,
     event.endAt,
-    event.location.timezone,
+    event.location ? event.location.timezone : undefined,
     event.fullDay
   );
 }
@@ -69,9 +72,7 @@ export function joinLocation(
   const events: EventWithLocation[] = [];
   (rawEvents as Event[]).forEach(event => {
     const location = locations.find(event.locationId);
-    if (location) {
-      events.push({ ...event, location });
-    }
+    events.push({ ...event, location });
   });
   return events;
 }

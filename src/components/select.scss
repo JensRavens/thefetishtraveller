@@ -1,9 +1,8 @@
-.text-input {
+.select {
   position: relative;
   margin-bottom: 1em;
 
-  > input,
-  > textarea {
+  > select {
     font-size: inherit;
     -webkit-appearance: none;
     appearance: none;

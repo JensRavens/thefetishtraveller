@@ -92,7 +92,7 @@ class EventSearch extends React.Component<Props, SearchState> {
                 }}
               />
             </div>
-            <Link to="/events/submit" className="hero__cta">
+            <Link to="/events/new" className="hero__cta">
               {t('.submit_here')}
             </Link>
           </Container>

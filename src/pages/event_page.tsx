@@ -14,6 +14,7 @@ import {
   locationDescription,
   extractCoordinates,
   isVenue,
+  Location,
 } from '../models/location';
 import { DB, writeDB, State, history } from '../state';
 import Container from '../components/container';
@@ -41,6 +42,7 @@ interface Props {
   subevents: EventWithLocation[];
   newEvent: boolean;
   changes?: Partial<Event>;
+  possibleLocations: Location[];
 }
 
 interface EventState {
@@ -71,6 +73,7 @@ class EventPage extends React.Component<Props, EventState> {
       otherEvents,
       subevents,
       loggedIn,
+      possibleLocations,
     } = this.props;
     if (!event) {
       return null;
@@ -78,11 +81,11 @@ class EventPage extends React.Component<Props, EventState> {
     const hero =
       (event.header && event.header.big) || (event.hero && event.hero.big);
     const flyer = event.flyer && event.flyer.big;
-    const coordinates = extractCoordinates(event.location);
+    const coordinates = event.location && extractCoordinates(event.location);
     const editing = this.state.editing;
     const meta = [
       [t('.date'), formatEventDate(event)],
-      [t('.location'), locationDescription(event.location)],
+      [t('.location'), event.location && locationDescription(event.location)],
       [t('.website'), link(event.website)],
       [t('.organizer'), event.organizerName],
       [t('.tickets'), link(event.ticketLink)],
@@ -96,7 +99,7 @@ class EventPage extends React.Component<Props, EventState> {
             '@type': 'Event',
             name: event.name,
             startDate: event.startAt.toISOString(),
-            location: {
+            location: event.location && {
               '@type': 'Place',
               name: event.location.name,
               address: {
@@ -126,7 +129,7 @@ class EventPage extends React.Component<Props, EventState> {
           )}
           {editing && (
             <React.Fragment>
-              <EventForm event={event} />
+              <EventForm event={event} possibleLocations={possibleLocations} />
               <div className="button" onClick={this.submit}>
                 {t('save')}
               </div>
@@ -167,16 +170,18 @@ class EventPage extends React.Component<Props, EventState> {
             </div>
           )}
         </Container>
-        <Container>
-          <div className="spacer spacer--small" />
-          <h3>
-            <Link to={`/locations/${event.location.slug}`}>
-              {locationDescription(event.location)}
-            </Link>
-          </h3>
-          <div />
-        </Container>
-        {coordinates && (
+        {event.location && (
+          <Container>
+            <div className="spacer spacer--small" />
+            <h3>
+              <Link to={`/locations/${event.location.slug}`}>
+                {locationDescription(event.location)}
+              </Link>
+            </h3>
+            <div />
+          </Container>
+        )}
+        {coordinates && event.location && (
           <Map
             center={coordinates}
             markerTitle={
@@ -185,7 +190,8 @@ class EventPage extends React.Component<Props, EventState> {
             zoom={isVenue(event.location) ? 16 : undefined}
           />
         )}
-        {!!subevents.length && (
+
+        {!!subevents.length && event.location && (
           <React.Fragment>
             <Container variant="small">
               <div className="spacer spacer--small" />
@@ -199,7 +205,7 @@ class EventPage extends React.Component<Props, EventState> {
             </Listing>
           </React.Fragment>
         )}
-        {!!otherEvents.length ? (
+        {!!otherEvents.length && event.location ? (
           <React.Fragment>
             <Container variant="small">
               <div className="spacer spacer--small" />
@@ -232,15 +238,19 @@ class EventPage extends React.Component<Props, EventState> {
   };
 
   private submit = async () => {
-    const { changes } = this.props;
+    const { changes, event: localEvent } = this.props;
+    console.log('submit', changes, localEvent);
 
-    if (changes && Object.keys(changes).length > 0) {
-      if (this.props.newEvent) {
-        syncer.createEvent(this.props.event!.id, changes).then(event => {
-          history.replace(`/events/${event.slug}`);
-        });
+    if (localEvent && changes && Object.keys(changes).length > 0) {
+      if (localEvent.unsubmitted) {
+        syncer
+          .createEvent(localEvent.id, { ...changes, slug: undefined })
+          .then(event => {
+            console.log('created', event);
+            // history.replace(`/events/${event.slug}`);
+          });
       } else {
-        await syncer.updateEvent(this.props.event!.id, changes);
+        await syncer.updateEvent(localEvent.id, changes);
       }
     }
 
@@ -253,24 +263,23 @@ class EventPage extends React.Component<Props, EventState> {
   };
 }
 
-function buildEvent(): EventWithLocation {
-  return {
+function buildEvent(): Event {
+  const event: Event = {
     id: guid(),
     slug: '',
     name: 'New Event',
     startAt: new Date(),
     endAt: new Date(),
     locationId: '',
-    locationSlug: 'change this',
     fullDay: true,
-    location: {
-      id: '',
-      slug: '',
-      name: 'Change this',
-      countryCode: 'de',
-      category: 'city',
-    },
+    editable: true,
+    unsubmitted: true,
   };
+  writeDB
+    .context('local')
+    .table('events')
+    .insert(event);
+  return event;
 }
 
 function mapStateToProps(
@@ -281,12 +290,17 @@ function mapStateToProps(
   const db = new DB(state);
   const events = db.context('local').table('events');
   const newEvent = slug === 'new';
-  const rawEvent = events.where({ slug })[0];
+  if (newEvent) {
+    const id = buildEvent().id;
+    history.replace(`/events/${id}`);
+  }
+  const rawEvent = events.where(e => e.slug === slug || e.id === slug)[0];
   const session = db.get('session');
   const loggedIn = isLoggedIn(session);
-  const event: EventWithLocation | undefined = newEvent
-    ? buildEvent()
-    : joinLocation(rawEvent ? [rawEvent] : [], state)[0];
+  const event: EventWithLocation | undefined = joinLocation(
+    rawEvent ? [rawEvent] : [],
+    state
+  )[0];
   const subevents: EventWithLocation[] =
     event && !newEvent
       ? joinLocation(
@@ -303,6 +317,7 @@ function mapStateToProps(
           state
         )
       : [];
+  const possibleLocations = db.table('locations').all;
   const editable = canEdit(event, session) || newEvent;
   const liked = rawEvent && isLiked(rawEvent, db.table('likes').all);
   const changeSet = event && events.changesFor(event.id);
@@ -316,6 +331,7 @@ function mapStateToProps(
     subevents,
     loggedIn,
     changes,
+    possibleLocations,
   };
 }
 
