@@ -74,7 +74,7 @@ export class APISyncer {
     changes: Partial<APIEvent>
   ): Promise<Event> {
     const event = await this.api.createEvent({ ...changes, id });
-    writeDB.table('events').insert(event);
+    writeDB.table('events').upsert(event);
     return event;
   }
 
@@ -188,7 +188,6 @@ window.fbAsyncInit = () => {
     xfbml: true,
     version: 'v3.0',
   });
-
   window.FB.Event.subscribe('auth.statusChange', (response: any) => {
     if (response.authResponse) {
       syncer.facebookLogin(response.authResponse.accessToken);

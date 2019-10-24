@@ -9,20 +9,30 @@ import { ImageInput } from '../components/input/image-input';
 import { readImageUrl } from '../models/image';
 import { DateTimeInput } from '../components/input/datetime-input';
 import { t } from '@nerdgeschoss/i18n';
+import Select from '../components/select';
+import { Location, locationDescription } from '../models/location';
 
 interface Props {
   event: EventWithLocation;
+  possibleLocations: Location[];
 }
 
 export class EventForm extends React.Component<Props> {
   public render() {
-    const { event } = this.props;
+    const { event, possibleLocations } = this.props;
     return (
       <Form model={event} onInput={this.onChange}>
         <TextInput name="name" label={t('event.name')} />
         <TextInput name="website" label={t('event.website')} />
         <TextInput name="ticketLink" label={t('event.ticketLink')} />
         <TextInput name="organizerName" label={t('event.organizerName')} />
+        <Select
+          name="locationId"
+          label={t('event.locationId')}
+          options={
+            possibleLocations.map(e => [e.id, locationDescription(e)]) as any
+          }
+        />
         <TextInput
           name="abstract"
           type="multiline"
@@ -57,6 +67,7 @@ export class EventForm extends React.Component<Props> {
     const eventChanges = {
       ...pick(
         event,
+        'locationId',
         'name',
         'abstract',
         'description',
