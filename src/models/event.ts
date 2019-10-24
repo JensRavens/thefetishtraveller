@@ -4,7 +4,6 @@ import { uniqBy } from 'lodash';
 import { DB, State } from '../state';
 import { Location, countryName } from './location';
 import { Syncable } from './syncable';
-import { APISession } from '../api';
 import { Image } from './image';
 import { dateRange } from '../util';
 
@@ -36,17 +35,6 @@ export interface Event extends Syncable {
 export interface EventWithLocation extends Event {
   location?: Location;
   locationSlug?: string;
-}
-
-export function canEdit(event: Event, session?: APISession): boolean {
-  return (
-    event.editable ||
-    (!!session &&
-      (session.level === 'admin' ||
-        (!!session.ownedEventIds &&
-          !!event.serverId &&
-          session.ownedEventIds.includes(event.serverId))))
-  );
 }
 
 export function formatEventDate(event: EventWithLocation): string {

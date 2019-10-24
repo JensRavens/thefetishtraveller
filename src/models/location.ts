@@ -1,5 +1,4 @@
 import { Syncable } from './syncable';
-import { APISession } from '../api';
 import { t } from '@nerdgeschoss/i18n';
 
 export interface Location extends Syncable {
@@ -20,15 +19,6 @@ export interface Location extends Syncable {
 
 export function countryName(code: string): string {
   return (t('location.countries') as any)[code];
-}
-
-export function canEdit(location: Location, session?: APISession): boolean {
-  return (
-    !!session &&
-    !!session.ownedLocationIds &&
-    !!location.serverId &&
-    session.ownedLocationIds.includes(location.serverId)
-  );
 }
 
 export function locationDescription(location: Location): string {

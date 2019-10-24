@@ -4,9 +4,9 @@ module API
       before_action :require_login, only: [:update, :create]
 
       def index
-        events = Event.all.with_attachments.includes(:owners)
+        events = Event.all.with_attachments.in_future.includes(:owners)
         events = events.published unless current_user&.admin?
-        render json: events
+        render json: events, edit_info: true
       end
 
       def show

@@ -20,4 +20,6 @@ class ApplicationSerializer < ActiveModel::Serializer
       host: ENV['HOST'].presence || "localhost:3000"
     }
   end
+
+  alias_method :current_user, :scope
 end
