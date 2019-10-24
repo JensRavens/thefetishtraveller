@@ -5,7 +5,6 @@ import { withRouter, RouteComponentProps } from 'react-router';
 import {
   Event,
   EventWithLocation,
-  canEdit,
   joinLocation,
   formatEventDate,
 } from '../models/event';
@@ -40,7 +39,6 @@ interface Props {
   editable: boolean;
   otherEvents: EventWithLocation[];
   subevents: EventWithLocation[];
-  newEvent: boolean;
   changes?: Partial<Event>;
   possibleLocations: Location[];
 }
@@ -289,8 +287,7 @@ function mapStateToProps(
   const slug: string = props.match.params.id;
   const db = new DB(state);
   const events = db.context('local').table('events');
-  const newEvent = slug === 'new';
-  if (newEvent) {
+  if (slug === 'new') {
     const id = buildEvent().id;
     history.replace(`/events/${id}`);
   }
@@ -301,24 +298,22 @@ function mapStateToProps(
     rawEvent ? [rawEvent] : [],
     state
   )[0];
-  const subevents: EventWithLocation[] =
-    event && !newEvent
-      ? joinLocation(
-          events.where({ eventId: event.id }).filter(e => e.id !== event!.id),
-          state
-        )
-      : [];
-  const otherEvents: EventWithLocation[] =
-    event && !newEvent
-      ? joinLocation(
-          events
-            .where({ locationId: event.locationId })
-            .filter(e => e.id !== event!.id),
-          state
-        )
-      : [];
+  const subevents: EventWithLocation[] = event
+    ? joinLocation(
+        events.where({ eventId: event.id }).filter(e => e.id !== event!.id),
+        state
+      )
+    : [];
+  const otherEvents: EventWithLocation[] = event
+    ? joinLocation(
+        events
+          .where({ locationId: event.locationId })
+          .filter(e => e.id !== event!.id),
+        state
+      )
+    : [];
   const possibleLocations = db.table('locations').all;
-  const editable = canEdit(event, session) || newEvent;
+  const editable = !!event.editable;
   const liked = rawEvent && isLiked(rawEvent, db.table('likes').all);
   const changeSet = event && events.changesFor(event.id);
   const changes = changeSet && changeSet.changes;
@@ -327,7 +322,6 @@ function mapStateToProps(
     liked,
     editable,
     otherEvents,
-    newEvent,
     subevents,
     loggedIn,
     changes,

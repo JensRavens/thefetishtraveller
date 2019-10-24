@@ -33,4 +33,8 @@ class EventSerializer < ApplicationSerializer
   image_attribue :header
   image_attribue :logo
   image_attribue :flyer
+
+  attribute :editable, if: -> { instance_options[:edit_info] } do
+    current_user&.admin? || current_user&.owned_event_ids&.include?(object.id) || false
+  end
 end
