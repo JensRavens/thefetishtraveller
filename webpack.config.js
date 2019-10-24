@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 const mode = process.env.NODE_ENV || 'development';
@@ -88,6 +89,7 @@ const config = {
       filename: '[name].[hash].css',
       chunkFilename: '[name]-[id]-[hash].css',
     }),
+    new CopyWebpackPlugin([{ from: 'src/public' }]),
     new webpack.HotModuleReplacementPlugin(),
   ],
   performance: {
@@ -105,7 +107,6 @@ if (mode == 'development') {
     devtool: 'cheap-module-source-map',
     devServer: {
       hot: true,
-      watchContentBase: true,
       historyApiFallback: true,
       disableHostCheck: true,
       watchOptions: {

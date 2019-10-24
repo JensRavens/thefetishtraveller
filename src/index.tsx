@@ -1,6 +1,6 @@
+import Application from './pages/application';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Application from './pages/application';
 import { Provider } from 'react-redux';
 import { store } from './state';
 import { syncer } from './api-syncer';
