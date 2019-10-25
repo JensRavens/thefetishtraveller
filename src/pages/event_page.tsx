@@ -8,6 +8,9 @@ import {
   joinLocation,
   formatEventDate,
 } from '../models/event';
+import Lightbox from 'react-image-lightbox';
+import 'react-image-lightbox/style.css';
+
 import { isLiked } from '../models/like';
 import {
   locationDescription,
@@ -45,6 +48,7 @@ interface Props {
 
 interface EventState {
   editing: boolean;
+  galleryIndex?: number;
 }
 
 function format(text: string): React.ReactNode {
@@ -80,7 +84,7 @@ class EventPage extends React.Component<Props, EventState> {
       (event.header && event.header.big) || (event.hero && event.hero.big);
     const flyer = event.flyer && event.flyer.big;
     const coordinates = event.location && extractCoordinates(event.location);
-    const editing = this.state.editing;
+    const { editing, galleryIndex } = this.state;
     const meta = [
       [t('.date'), formatEventDate(event)],
       [t('.location'), event.location && locationDescription(event.location)],
@@ -116,6 +120,35 @@ class EventPage extends React.Component<Props, EventState> {
         <div className="main-menu__spacer" />
         <div className="spacer" />
         <Meta title={event.name} description={event.abstract || null} />
+        {galleryIndex !== undefined && (
+          <Lightbox
+            mainSrc={event.galleryImages[galleryIndex].big}
+            nextSrc={
+              event.galleryImages[
+                (galleryIndex + 1) % event.galleryImages.length
+              ].big
+            }
+            prevSrc={
+              event.galleryImages[
+                (galleryIndex + event.galleryImages.length - 1) %
+                  event.galleryImages.length
+              ].big
+            }
+            onCloseRequest={() => this.setState({ galleryIndex: undefined })}
+            onMovePrevRequest={() =>
+              this.setState({
+                galleryIndex:
+                  (galleryIndex + event.galleryImages.length - 1) %
+                  event.galleryImages.length,
+              })
+            }
+            onMoveNextRequest={() =>
+              this.setState({
+                galleryIndex: (galleryIndex + 1) % event.galleryImages.length,
+              })
+            }
+          />
+        )}
         <Container variant="small">
           {editable && !editing && (
             <div
@@ -168,6 +201,18 @@ class EventPage extends React.Component<Props, EventState> {
             </div>
           )}
         </Container>
+        {event.galleryImages.length > 0 && (
+          <Listing small>
+            {event.galleryImages.map((image, index) => (
+              <div
+                className="gallery__image"
+                onClick={() => this.setState({ galleryIndex: index })}
+              >
+                <img src={image.medium} />
+              </div>
+            ))}
+          </Listing>
+        )}
         {event.location && (
           <Container>
             <div className="spacer spacer--small" />
@@ -270,6 +315,7 @@ function buildEvent(): Event {
     fullDay: true,
     editable: true,
     unsubmitted: true,
+    galleryImages: [],
   };
   writeDB
     .context('local')

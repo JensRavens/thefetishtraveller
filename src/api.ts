@@ -34,6 +34,7 @@ export interface APIEvent {
   header?: Image;
   logo?: Image;
   flyer?: Image;
+  galleryImages: Image[];
   categories?: string[];
   fullDay: boolean;
 }
@@ -163,7 +164,13 @@ export class API {
     params?: { [key: string]: any }
   ): Promise<{ [key: string]: any }> {
     let containsFormData = false;
-    if (params && some(values(params), e => e instanceof Blob)) {
+    if (
+      params &&
+      some(
+        values(params),
+        e => e instanceof Blob || (e instanceof Array && e[0] instanceof Blob)
+      )
+    ) {
       containsFormData = true;
     }
     const headers = {
@@ -190,7 +197,13 @@ export class API {
         const form = new FormData();
         const convertedParams = this.kebabify(params);
         Object.keys(convertedParams).forEach(key => {
-          form.append(key, convertedParams[key]);
+          if (convertedParams[key] instanceof Array) {
+            convertedParams[key].forEach((file: File) =>
+              form.append(key + '[]', file)
+            );
+          } else {
+            form.append(key, convertedParams[key]);
+          }
         });
         body = form;
       } else {
@@ -232,6 +245,9 @@ export class API {
   private kebabify(subject: any): any {
     if (subject instanceof Array) {
       return subject.map(e => this.kebabify(e));
+    }
+    if (subject instanceof Blob) {
+      return subject;
     }
     if (subject instanceof Object) {
       const transformed = {};
