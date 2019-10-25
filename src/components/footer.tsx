@@ -6,6 +6,8 @@ import { scoped, I18n } from '@nerdgeschoss/i18n';
 import Container from './container';
 
 const t = scoped('footer');
+import twitter from '../assets/twitter.svg';
+import facebook from '../assets/facebook.svg';
 
 export default class Header extends React.Component {
   public render() {
@@ -15,6 +17,22 @@ export default class Header extends React.Component {
           <div className="footer__category">
             <div className="logo">
               The <em>Fetish</em> Traveller
+            </div>
+            <div className="footer__social">
+              <a
+                href="https://twitter.com/thefetishtrave1"
+                target="_blank"
+                rel="noopener"
+              >
+                <img src={twitter}></img>
+              </a>
+              <a
+                href="https://www.facebook.com/thefetishtraveller"
+                target="_blank"
+                rel="noopener"
+              >
+                <img src={facebook}></img>
+              </a>
             </div>
             <div className="footer__copyright">
               © 2019 Jens Ravens
