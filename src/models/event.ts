@@ -32,6 +32,19 @@ export interface Event extends Syncable {
   unsubmitted?: boolean;
 }
 
+export const eventCategories = [
+  'fetish',
+  'csd',
+  'election',
+  'festival',
+  'party',
+  'culture',
+  'bluf',
+  'social',
+  'dinner',
+  'brunch',
+];
+
 export interface EventWithLocation extends Event {
   location?: Location;
   locationSlug?: string;

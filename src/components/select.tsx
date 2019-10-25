@@ -7,12 +7,13 @@ interface Props {
   name: string;
   label?: string;
   options: Array<{ value: string; label: string }>;
+  multi?: boolean;
 }
 
 export default class Select extends React.Component<Props> {
   private id = guid();
   public render() {
-    const { name, label, options } = this.props;
+    const { name, label, options, multi } = this.props;
     const id = this.id;
     return (
       <Consumer>
@@ -24,9 +25,21 @@ export default class Select extends React.Component<Props> {
               </label>
             )}
             <SelectElement
+              isMulti={multi}
               name={name}
-              value={options.find(e => e.value === form!.model[name])}
-              onChange={option => form!.notify(name, option!['value'])}
+              value={
+                multi
+                  ? options.filter(e =>
+                      ((form!.model[name] as string[]) || []).includes(e.value)
+                    )
+                  : options.find(e => e.value === form!.model[name])
+              }
+              onChange={option => {
+                form!.notify(
+                  name,
+                  multi ? (option as any[]).map(e => e.value) : option!['value']
+                );
+              }}
               options={options}
             ></SelectElement>
           </div>
