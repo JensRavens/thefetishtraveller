@@ -6,6 +6,10 @@ module API
     class APIController < ::APIController
       rescue_from NotAuthorized, with: :not_authorized
 
+      def log_activity(object, modifications = nil, action: action_name)
+        Activity.create! user: current_user, action: action, object: object, modifications: modifications || {}
+      end
+
       private
 
       def current_session

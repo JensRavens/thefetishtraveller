@@ -237,14 +237,12 @@ class EventPage extends React.Component<Props, EventState> {
 
   private submit = async () => {
     const { changes, event: localEvent } = this.props;
-    console.log('submit', changes, localEvent);
 
     if (localEvent && changes && Object.keys(changes).length > 0) {
       if (localEvent.unsubmitted) {
         syncer
           .createEvent(localEvent.id, { ...changes, slug: undefined })
           .then(event => {
-            console.log('created', event);
             // history.replace(`/events/${event.slug}`);
           });
       } else {

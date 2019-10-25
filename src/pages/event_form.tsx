@@ -109,7 +109,6 @@ export class EventForm extends React.Component<Props> {
         delete eventChanges[key];
       }
     });
-    console.log('changes', eventChanges);
     writeDB
       .context('local')
       .table('events')
