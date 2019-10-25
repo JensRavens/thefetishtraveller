@@ -1,7 +1,7 @@
 import React from 'react';
 import { pick } from 'lodash';
 
-import { EventWithLocation } from '../models/event';
+import { EventWithLocation, eventCategories } from '../models/event';
 import { Form } from '../components/form';
 import { TextInput } from '../components/input/text-input';
 import { writeDB } from '../state';
@@ -24,6 +24,15 @@ export class EventForm extends React.Component<Props> {
     return (
       <Form model={event} onInput={this.onChange}>
         <TextInput name="name" label={t('event.name')} />
+        <Select
+          multi
+          name="categories"
+          label={t('event.categories')}
+          options={eventCategories.map(e => ({
+            value: e,
+            label: t(`event.category.${e}`),
+          }))}
+        />
         <TextInput name="website" label={t('event.website')} />
         <TextInput name="ticketLink" label={t('event.ticketLink')} />
         <TextInput name="organizerName" label={t('event.organizerName')} />
@@ -64,6 +73,7 @@ export class EventForm extends React.Component<Props> {
   }
 
   private onChange = async (event: EventWithLocation) => {
+    (window as any).event = event;
     const eventBeforeChange = this.props.event;
     const hero =
       event.hero instanceof File ? await readImageUrl(event.hero) : event.hero;
@@ -79,6 +89,7 @@ export class EventForm extends React.Component<Props> {
       ...pick(
         event,
         'locationId',
+        'categories',
         'name',
         'abstract',
         'description',
@@ -98,6 +109,7 @@ export class EventForm extends React.Component<Props> {
         delete eventChanges[key];
       }
     });
+    console.log('changes', eventChanges);
     writeDB
       .context('local')
       .table('events')
