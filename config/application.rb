@@ -29,6 +29,6 @@ module Thefetishtraveller
 
     config.action_mailer.default_url_options = { host: ENV["HOST"] } if ENV["HOST"].present?
     config.active_job.queue_adapter = :sidekiq
-    config.active_storage.variant_processor = :vips
+    # config.active_storage.variant_processor = :vips
   end
 end
