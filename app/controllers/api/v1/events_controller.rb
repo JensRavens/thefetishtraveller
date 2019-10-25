@@ -15,11 +15,14 @@ module API
 
       def update
         authorize!(event).update!(event_params)
+        log_activity event, event_params
         render json: event
       end
 
       def create
-        render json: current_user.owned_events.create!(event_params.merge(id: params[:id]))
+        @event = current_user.owned_events.create!(event_params.merge(id: params[:id]))
+        log_activity event, event_params
+        render json: event
       end
 
       private
