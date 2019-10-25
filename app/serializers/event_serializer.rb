@@ -29,10 +29,11 @@ class EventSerializer < ApplicationSerializer
   attributes :id, :slug, :name, :start_at, :end_at, :organizer_name, :official, :categories, :website,
     :ticket_link, :description, :owner_ids, :location_id, :abstract, :event_id, :series, :full_day
 
-  image_attribue :hero
-  image_attribue :header
-  image_attribue :logo
-  image_attribue :flyer
+  image_attribute :hero
+  image_attribute :header
+  image_attribute :logo
+  image_attribute :flyer
+  image_list_attribute :gallery_images
 
   attribute :editable, if: -> { instance_options[:edit_info] } do
     current_user&.admin? || current_user&.owned_event_ids&.include?(object.id) || false

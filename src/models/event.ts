@@ -25,6 +25,7 @@ export interface Event extends Syncable {
   header?: Image;
   logo?: Image;
   flyer?: Image;
+  galleryImages: Image[];
   categories?: string[];
   events?: Event[];
   fullDay: boolean;

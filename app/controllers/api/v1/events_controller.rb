@@ -14,7 +14,9 @@ module API
       end
 
       def update
-        authorize!(event).update!(event_params)
+        authorize!(event)
+        event.gallery_images.destroy_all if event_params[:gallery_images]
+        event.update!(event_params)
         log_activity event, event_params
         render json: event
       end
@@ -32,7 +34,7 @@ module API
       end
 
       def event_params
-        p = params.permit(:id, :slug, :name, :start_at, :end_at, :organizer_name, :abstract, :description, :website, :location_id, :location_slug, :series, :event_id, :flyer, :hero, :header, :full_day, categories: []).to_h
+        p = params.permit(:id, :slug, :name, :start_at, :end_at, :organizer_name, :abstract, :description, :website, :location_id, :location_slug, :series, :event_id, :flyer, :hero, :header, :full_day, categories: [], gallery_images: []).to_h
         p[:location_id] = Location.friendly.find(p.delete(:location_slug)).id if p[:location_slug].present?
         p
       end

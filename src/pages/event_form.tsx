@@ -68,6 +68,7 @@ export class EventForm extends React.Component<Props> {
         <ImageInput name="hero" label={t('event.hero')} />
         <ImageInput name="header" label={t('event.header')} />
         <ImageInput name="flyer" label={t('event.flyer')} />
+        <ImageInput name="galleryImages" label={t('event.gallery')} multi />
       </Form>
     );
   }
@@ -85,6 +86,12 @@ export class EventForm extends React.Component<Props> {
       event.flyer instanceof File
         ? await readImageUrl(event.flyer)
         : event.flyer;
+    const galleryImages =
+      event.galleryImages[0] instanceof File
+        ? await Promise.all(
+            event.galleryImages.map(e => readImageUrl(e as any))
+          )
+        : event.galleryImages;
     const eventChanges = {
       ...pick(
         event,
@@ -103,6 +110,7 @@ export class EventForm extends React.Component<Props> {
       hero,
       header,
       flyer,
+      galleryImages,
     };
     Object.keys(eventChanges).forEach(key => {
       if (eventBeforeChange[key] === eventChanges[key]) {

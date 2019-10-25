@@ -5,13 +5,14 @@ import { guid } from 'redux-database/dist/util';
 interface Props {
   name: string;
   label?: string;
+  multi?: boolean;
 }
 
 export class ImageInput extends React.Component<Props> {
   private id = guid();
 
   public render() {
-    const { name, label } = this.props;
+    const { name, label, multi } = this.props;
     const id = this.id;
 
     return (
@@ -28,10 +29,15 @@ export class ImageInput extends React.Component<Props> {
                 <input
                   id={id}
                   type="file"
+                  accept="image/*"
+                  multiple={multi}
                   onChange={event =>
                     context!.notify(
                       name,
-                      event.currentTarget.files && event.currentTarget.files[0]
+                      event.currentTarget.files &&
+                        (multi
+                          ? Array.from(event.currentTarget.files)
+                          : event.currentTarget.files[0])
                     )
                   }
                 />

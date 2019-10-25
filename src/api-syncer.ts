@@ -55,6 +55,12 @@ export class APISyncer {
   }
 
   public async updateEvent(id: string, changes: Partial<APIEvent>) {
+    const changesToSubmit = this.applyFileChanges(changes);
+    const event = await this.api.updateEvent(id, changesToSubmit);
+    writeDB.table('events').update(id, event);
+  }
+
+  private applyFileChanges(changes: Partial<APIEvent>): Partial<APIEvent> {
     const changesToSubmit = { ...changes };
     if (changesToSubmit.hero) {
       (changesToSubmit.hero as any) = changesToSubmit.hero.file;
@@ -65,15 +71,22 @@ export class APISyncer {
     if (changesToSubmit.flyer) {
       (changesToSubmit.flyer as any) = changesToSubmit.flyer.file;
     }
-    const event = await this.api.updateEvent(id, changesToSubmit);
-    writeDB.table('events').update(id, event);
+    if (changesToSubmit.galleryImages) {
+      (changesToSubmit.galleryImages as any) = changesToSubmit.galleryImages!.map(
+        e => e.file
+      );
+    }
+    return changesToSubmit;
   }
 
   public async createEvent(
     id: string,
     changes: Partial<APIEvent>
   ): Promise<Event> {
-    const event = await this.api.createEvent({ ...changes, id });
+    const event = await this.api.createEvent({
+      ...this.applyFileChanges(changes),
+      id,
+    });
     writeDB.table('events').upsert(event);
     return event;
   }
