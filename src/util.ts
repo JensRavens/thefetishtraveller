@@ -14,19 +14,24 @@ function format(date: Date, timeZone?: string, fullDay?: boolean): string {
   if (typeof date === 'string') {
     return '';
   }
-  if (!fullDay) {
+  try {
+    if (!fullDay) {
+      return new Intl.DateTimeFormat(I18n.locale, {
+        timeZone: timeZone || undefined,
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+        hour: 'numeric',
+        minute: 'numeric',
+      }).format(date);
+    }
     return new Intl.DateTimeFormat(I18n.locale, {
       timeZone: timeZone || undefined,
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
     }).format(date);
+  } catch (error) {
+    console.error(error);
+    return '';
   }
-  return new Intl.DateTimeFormat(I18n.locale, {
-    timeZone: timeZone || undefined,
-  }).format(date);
 }
 
 export function dateRange(

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import { Consumer } from '../form';
 import { guid } from '../../util';
 
@@ -21,40 +21,41 @@ function localTimeString(date: Date): string {
   return YYYY + '-' + MM + '-' + DD + 'T' + HH + ':' + II + ':' + SS;
 }
 
-export class DateTimeInput extends React.Component<Props> {
-  private id = guid();
-  public render() {
-    const { name, label } = this.props;
-    const id = this.id;
-    return (
-      <div className="datetime-input">
-        {label && (
-          <label className="image-input__label" htmlFor={id}>
-            {label}
-          </label>
-        )}
-        <Consumer>
-          {context => {
-            const date: Date | undefined = context!.model[name];
-            const dateString = (date && localTimeString(date)) || '';
-            return (
-              <>
-                <input
-                  id={id}
-                  type="datetime-local"
-                  value={dateString}
-                  onChange={event =>
-                    context!.notify(
-                      name,
-                      new Date(Date.parse(event.currentTarget.value))
-                    )
+export function DateTimeInput({ name, label }: Props): JSX.Element {
+  const id = useRef(guid()).current;
+  let [value, setValue] = useState<string | undefined>(undefined);
+  return (
+    <div className="datetime-input">
+      {label && (
+        <label className="image-input__label" htmlFor={id}>
+          {label}
+        </label>
+      )}
+      <Consumer>
+        {context => {
+          const date: Date | undefined = context!.model[name];
+          const dateString = value || (date && localTimeString(date)) || '';
+          return (
+            <>
+              <input
+                id={id}
+                type="datetime-local"
+                value={dateString}
+                onChange={event => {
+                  let dateString = event.currentTarget.value;
+                  let timestamp = Date.parse(dateString);
+                  if (isNaN(timestamp)) {
+                    setValue(dateString);
+                  } else {
+                    setValue(undefined);
+                    context!.notify(name, new Date(timestamp));
                   }
-                />
-              </>
-            );
-          }}
-        </Consumer>
-      </div>
-    );
-  }
+                }}
+              />
+            </>
+          );
+        }}
+      </Consumer>
+    </div>
+  );
 }
