@@ -29,9 +29,10 @@ export class EventForm extends React.Component<Props> {
         <Select
           name="locationId"
           label={t('event.locationId')}
-          options={
-            possibleLocations.map(e => [e.id, locationDescription(e)]) as any
-          }
+          options={possibleLocations.map(e => ({
+            value: e.id,
+            label: locationDescription(e),
+          }))}
         />
         <TextInput
           name="abstract"
