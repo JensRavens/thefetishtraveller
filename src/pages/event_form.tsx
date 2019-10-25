@@ -11,6 +11,7 @@ import { DateTimeInput } from '../components/input/datetime-input';
 import { t } from '@nerdgeschoss/i18n';
 import Select from '../components/select';
 import { Location, locationDescription } from '../models/location';
+import { Checkbox } from '../components/input/checkbox';
 
 interface Props {
   event: EventWithLocation;
@@ -44,8 +45,17 @@ export class EventForm extends React.Component<Props> {
           type="multiline"
           label={t('event.description')}
         />
-        <DateTimeInput name="startAt" label={t('event.startAt')} />
-        <DateTimeInput name="endAt" label={t('event.endAt')} />
+        <Checkbox name="fullDay" label={t('event.fullDay')} />
+        <DateTimeInput
+          name="startAt"
+          label={t('event.startAt')}
+          displayTime={!event.fullDay}
+        />
+        <DateTimeInput
+          name="endAt"
+          label={t('event.endAt')}
+          displayTime={!event.fullDay}
+        />
         <ImageInput name="hero" label={t('event.hero')} />
         <ImageInput name="header" label={t('event.header')} />
         <ImageInput name="flyer" label={t('event.flyer')} />
@@ -76,7 +86,8 @@ export class EventForm extends React.Component<Props> {
         'ticketLink',
         'organizerName',
         'startAt',
-        'endAt'
+        'endAt',
+        'fullDay'
       ),
       hero,
       header,

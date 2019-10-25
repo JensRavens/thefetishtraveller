@@ -4,24 +4,33 @@ import { guid } from '../../util';
 
 interface Props {
   name: string;
+  displayTime?: boolean;
   label?: string;
 }
 
-function localTimeString(date: Date): string {
+function localTimeString(date: Date, time: boolean): string {
   const ten = (i: number) => {
     return (i < 10 ? '0' : '') + i;
   };
   const YYYY = date.getFullYear();
   const MM = ten(date.getMonth() + 1);
   const DD = ten(date.getDate());
-  const HH = ten(date.getHours());
-  const II = ten(date.getMinutes());
-  const SS = ten(date.getSeconds());
 
-  return YYYY + '-' + MM + '-' + DD + 'T' + HH + ':' + II + ':' + SS;
+  var string = YYYY + '-' + MM + '-' + DD;
+  if (time) {
+    const HH = ten(date.getHours());
+    const II = ten(date.getMinutes());
+    const SS = ten(date.getSeconds());
+    string += 'T' + HH + ':' + II + ':' + SS;
+  }
+  return string;
 }
 
-export function DateTimeInput({ name, label }: Props): JSX.Element {
+export function DateTimeInput({
+  name,
+  label,
+  displayTime,
+}: Props): JSX.Element {
   const id = useRef(guid()).current;
   let [value, setValue] = useState<string | undefined>(undefined);
   return (
@@ -34,12 +43,13 @@ export function DateTimeInput({ name, label }: Props): JSX.Element {
       <Consumer>
         {context => {
           const date: Date | undefined = context!.model[name];
-          const dateString = value || (date && localTimeString(date)) || '';
+          const dateString =
+            value || (date && localTimeString(date, !!displayTime)) || '';
           return (
             <>
               <input
                 id={id}
-                type="datetime-local"
+                type={displayTime ? 'datetime-local' : 'date'}
                 value={dateString}
                 onChange={event => {
                   let dateString = event.currentTarget.value;

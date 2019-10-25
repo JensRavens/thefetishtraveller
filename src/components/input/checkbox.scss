@@ -1,0 +1,13 @@
+.checkbox {
+  position: relative;
+  margin-bottom: 1em;
+
+  > input {
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 0.5ex;
+    color: $color-text-label;
+  }
+}
