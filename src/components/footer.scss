@@ -12,6 +12,20 @@
     color: $color-text-muted-dark-background;
   }
 
+  &__social {
+    display: flex;
+    margin-top: 10px;
+
+    a {
+      margin-right: 1rem;
+    }
+
+    img {
+      width: 32px;
+      filter: invert(100%);
+    }
+  }
+
   &__category {
     flex: 1 0 0;
     position: relative;
