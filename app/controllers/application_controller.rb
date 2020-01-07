@@ -1,7 +1,7 @@
 require 'open-uri'
 
 class ApplicationController < ActionController::Base
-  protect_from_forgery prepend: true, with: :exception
+  skip_forgery_protection
   layout 'application'
 
   def webpack_index
