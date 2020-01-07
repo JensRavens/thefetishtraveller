@@ -32,6 +32,7 @@ gem "image_processing"
 gem "icalendar", "~> 2.4"
 gem "httparty"
 gem "activeadmin"
+gem "graphql"
 
 # Assets
 gem "webpacker", require: false
@@ -58,6 +59,7 @@ group :development, :test do
   gem "capybara-screenshot"
   gem "capybara-selenium"
   gem "chromedriver-helper"
+  gem "graphiql-rails"
 end
 
 group :development do
