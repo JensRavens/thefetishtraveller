@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :events, only: [:index]
   end
 
+  get 'logout', to: 'application#logout'
   get 'sitemaps/*path', to: 'pages#sitemap'
   get '*path', to: 'pages#show', constraints: lambda { |req|
     req.path.exclude? 'rails/'
