@@ -23,10 +23,10 @@ class Location < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
-  has_many :events, dependent: :destroy
+  has_many :events, dependent: :restrict_with_exception
   has_and_belongs_to_many :owners, class_name: "User"
 
-  validates :name, presence: true
+  validates :name, :country_code, presence: true
 
   def country
     Country[country_code.to_sym]

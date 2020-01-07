@@ -29,6 +29,7 @@ class Event < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
   include DocumentSerializable
+  CATEGORIES = ["bluf", "csd", "culture", "election", "festival", "party", "social"].freeze
 
   has_many :likes, dependent: :destroy
   belongs_to :location
@@ -55,6 +56,10 @@ class Event < ApplicationRecord
 
   def publish!
     update! publish_at: DateTime.now
+  end
+
+  def categories=(values)
+    self[:categories] = Array.wrap(values).select { |e| Event::CATEGORIES.include?(e) }
   end
 
   def to_ics
