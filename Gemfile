@@ -2,7 +2,7 @@ source "https://rubygems.org"
 ruby "2.6.1"
 
 # Core
-gem "rails", "6.0.0"
+gem "rails", "6.0.2"
 gem "puma"
 
 # Database
@@ -31,6 +31,7 @@ gem "sitemap_generator"
 gem "image_processing"
 gem "icalendar", "~> 2.4"
 gem "httparty"
+gem "activeadmin"
 
 # Assets
 gem "webpacker", require: false
