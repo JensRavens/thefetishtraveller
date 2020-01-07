@@ -90,6 +90,9 @@ store.subscribe(() => {
   localStorage.setItem(`events-${localStorageVersion}`, events);
   const settings = EJSON.stringify(store.getState().settings);
   localStorage.setItem(`settings-${localStorageVersion}`, settings);
+  const session = writeDB.get('session');
+  const sid = session && session.id;
+  document.cookie = `sid=${sid}; path=/; SameSite=lax`;
 });
 
 export const history = createBrowserHistory();
