@@ -32,6 +32,10 @@ class Location < ApplicationRecord
     Country[country_code.to_sym]
   end
 
+  def country_name
+    country&.name
+  end
+
   def description
     [name, city, country.name].compact.uniq.join(', ')
   end
