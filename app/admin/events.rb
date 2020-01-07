@@ -82,6 +82,22 @@ ActiveAdmin.register Event do
         end
       end
     end
+    if event.likes.any?
+      panel "Attendance" do
+        table_for event.likes do
+          column :first_name do |like|
+            like.user.first_name
+          end
+          column :last_name do |like|
+            like.user.last_name
+          end
+          column :email do |like|
+            like.user.email
+          end
+          column :created_at
+        end
+      end
+    end
     active_admin_comments
   end
 
