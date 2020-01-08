@@ -19,7 +19,7 @@ export class LocationListing extends React.Component<Props> {
           </div>
           <div className="location-listing__name">{location.name}</div>
           <div className="location-listing__city">
-            {location.city}, {countryName(location.countryCode)}
+            {location.city}, {location.countryName}
           </div>
         </div>
       </Link>

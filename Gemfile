@@ -33,6 +33,7 @@ gem "icalendar", "~> 2.4"
 gem "httparty"
 gem "activeadmin"
 gem "graphql"
+gem 'graphql-batch'
 
 # Assets
 gem "webpacker", require: false

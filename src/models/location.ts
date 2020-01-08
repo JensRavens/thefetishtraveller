@@ -13,6 +13,7 @@ export interface Location extends Syncable {
   lon?: number;
   zip?: string;
   countryCode: string;
+  countryName?: string;
   category: 'city' | 'bar' | 'region' | 'shop' | 'hotel' | 'venue';
   timezone?: string;
 }
@@ -21,22 +22,28 @@ export function countryName(code: string): string {
   return (t('location.countries') as any)[code];
 }
 
-export function locationDescription(location: Location): string {
+export function locationDescription(location: {
+  name: string;
+  city?: string | null;
+  countryName?: string | null;
+  countryCode?: string;
+}): string {
   const line = [location.name];
   if (location.city && location.name !== location.city) {
     line.push(location.city);
   }
-  line.push(countryName(location.countryCode));
+  line.push(location.countryName || countryName(location.countryCode!));
   return line.join(', ');
 }
 
-export function isVenue(location: Location): boolean {
-  return location.name !== location.city;
+export function isVenue(location: { category: string | null }): boolean {
+  return location.category !== 'venue';
 }
 
-export function extractCoordinates(
-  location: Location
-): { lat: number; lon: number } | undefined {
+export function extractCoordinates(location: {
+  lat?: number | null;
+  lon?: number | null;
+}): { lat: number; lon: number } | undefined {
   if (!location.lat || !location.lon) {
     return;
   }
@@ -50,6 +57,7 @@ export function matchesTerm(
   const locationName =
     (location.name || '').toLocaleLowerCase() +
     (location.address || '').toLocaleLowerCase() +
+    (location.countryName || '').toLocaleLowerCase() +
     (location.countryCode &&
       (countryName(location.countryCode) || '').toLocaleLowerCase());
   const normalizedTerm = term.toLocaleLowerCase();

@@ -3,15 +3,15 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: NextEventsQuery
+// GraphQL query operation: EventSearchQuery
 // ====================================================
 
-export interface NextEventsQuery_events_nodes_hero {
+export interface EventSearchQuery_events_nodes_hero {
   __typename: "Image";
   medium: string;
 }
 
-export interface NextEventsQuery_events_nodes_location {
+export interface EventSearchQuery_events_nodes_location {
   __typename: "Location";
   id: string;
   name: string;
@@ -19,7 +19,7 @@ export interface NextEventsQuery_events_nodes_location {
   countryCode: string;
 }
 
-export interface NextEventsQuery_events_nodes {
+export interface EventSearchQuery_events_nodes {
   __typename: "Event";
   id: string;
   name: string;
@@ -29,21 +29,21 @@ export interface NextEventsQuery_events_nodes {
   startAt: ISO8601DateTime;
   endAt: ISO8601DateTime;
   fullDay: boolean;
-  hero: NextEventsQuery_events_nodes_hero | null;
-  location: NextEventsQuery_events_nodes_location;
+  hero: EventSearchQuery_events_nodes_hero | null;
+  location: EventSearchQuery_events_nodes_location;
 }
 
-export interface NextEventsQuery_events {
+export interface EventSearchQuery_events {
   __typename: "EventConnection";
   /**
    * A list of nodes.
    */
-  nodes: (NextEventsQuery_events_nodes | null)[] | null;
+  nodes: (EventSearchQuery_events_nodes | null)[] | null;
 }
 
-export interface NextEventsQuery {
+export interface EventSearchQuery {
   /**
    * Search for events
    */
-  events: NextEventsQuery_events;
+  events: EventSearchQuery_events;
 }

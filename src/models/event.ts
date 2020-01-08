@@ -2,10 +2,10 @@ import moment from 'moment';
 import { uniqBy } from 'lodash';
 
 import { DB, State } from '../state';
-import { Location, countryName } from './location';
+import { Location } from './location';
 import { Syncable } from './syncable';
 import { Image } from './image';
-import { dateRange } from '../util';
+import { dateRange, parseDate } from '../util';
 
 export interface Event extends Syncable {
   id: string;
@@ -51,7 +51,12 @@ export interface EventWithLocation extends Event {
   locationSlug?: string;
 }
 
-export function formatEventDate(event: EventWithLocation): string {
+export function formatEventDate(event: {
+  startAt: Date | string;
+  endAt: Date | string;
+  fullDay?: boolean;
+  location?: { timezone?: string | null } | null;
+}): string {
   return dateRange(
     event.startAt,
     event.endAt,
@@ -96,11 +101,11 @@ export function joinSubevents(
   return events;
 }
 
-export function isCurrent(event: Event): boolean {
-  return event.endAt > new Date();
+export function isCurrent(event: { endAt: string | Date }): boolean {
+  return parseDate(event.endAt) > new Date();
 }
 
-export function isRoot(event: Event): boolean {
+export function isRoot(event: { eventId?: string }): boolean {
   return !event.eventId;
 }
 
@@ -108,9 +113,15 @@ export function chronological(a: Event, b: Event): number {
   return (a.startAt as any) - (b.startAt as any);
 }
 
+export interface Month {
+  year: number;
+  month: number;
+  name: string;
+}
+
 export function months(
-  events: Event[]
-): Array<{ year: number; month: number; name: string }> {
+  events: Array<{ startAt: Date | string }>
+): Array<Month> {
   return uniqBy(
     events.map(e => {
       const time = moment(e.startAt);
@@ -124,7 +135,10 @@ export function months(
   );
 }
 
-export function inMonth(event: Event, month: { year: number; month: number }) {
+export function inMonth(
+  event: { startAt: Date | string },
+  month: { year: number; month: number }
+) {
   const time = moment(event.startAt);
   return time.month() === month.month && time.year() === month.year;
 }
@@ -169,7 +183,15 @@ export function byMainEvent<T extends Event>(
 }
 
 export function matchesTerm(
-  event: Partial<EventWithLocation>,
+  event: {
+    name: string;
+    categories?: string[] | null;
+    location?: {
+      name: string;
+      city?: string | null;
+      countryName?: string | null;
+    } | null;
+  },
   term: string
 ): boolean {
   let normalizedEvent = (event.name || '').toLocaleLowerCase();
@@ -177,7 +199,7 @@ export function matchesTerm(
     normalizedEvent += (
       event.location.name +
       (event.location.city || '') +
-      countryName(event.location.countryCode) +
+      (event.location.countryName || '') +
       (event.categories || []).join()
     ).toLocaleLowerCase();
   }

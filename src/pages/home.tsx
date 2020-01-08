@@ -1,15 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { DB, State } from '../state';
-import {
-  EventWithLocation,
-  joinLocation,
-  chronological,
-  isCurrent,
-} from '../models/event';
-import { Like } from '../models/like';
-
 import { EventListing } from '../components/event_listing';
 import Container from '../components/container';
 import Hero from '../components/hero';
@@ -36,6 +27,9 @@ const NEXT_EVENTS = gql`
         startAt
         endAt
         fullDay
+        hero {
+          medium
+        }
         location {
           id
           name
@@ -70,13 +64,16 @@ export default function Home(): JSX.Element {
         </Container>
       </Hero>
       <div className="spacer" />
-      <h2>{t('.next_up')}</h2>
-      <Listing singleLine={true}>
-        {data &&
-          data.events.nodes!.map(e => (
-            <EventListing key={e.id} event={e as any} liked={e.liked} />
-          ))}
-      </Listing>
+      {data && (
+        <>
+          <h2>{t('.next_up')}</h2>
+          <Listing singleLine={true}>
+            {data.events.nodes!.map(e => (
+              <EventListing key={e!.id} event={e as any} liked={e!.liked} />
+            ))}
+          </Listing>
+        </>
+      )}
       <div className="button-line button-line--dark">
         <Link to="/events" className="button">
           {t('.find_more_events')}

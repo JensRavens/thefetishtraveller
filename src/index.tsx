@@ -3,7 +3,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { store } from './state';
-import { syncer } from './api-syncer';
 import { client } from './models/apollo';
 import { ApolloProvider } from '@apollo/client';
 
@@ -25,5 +24,4 @@ document.addEventListener('DOMContentLoaded', () => {
     </ApolloProvider>,
     document.body.appendChild(document.createElement('div'))
   );
-  syncer.refresh();
 });
