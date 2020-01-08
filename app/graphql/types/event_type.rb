@@ -18,5 +18,10 @@ module Types
     field :series_name, String, null: true, method: :series
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+    field :liked, Boolean, null: false
+
+    def liked
+      current_user&.likes&.where(event_id: object.id)&.any? || false
+    end
   end
 end

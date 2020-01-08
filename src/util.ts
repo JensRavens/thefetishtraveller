@@ -10,9 +10,13 @@ export function guid(): string {
   return [s4() + s4(), s4(), s4(), s4(), s4() + s4() + s4()].join('-');
 }
 
+function parseDate(date: string): Date {
+  return new Date(Date.parse(date));
+}
+
 function format(date: Date, timeZone?: string, fullDay?: boolean): string {
   if (typeof date === 'string') {
-    return '';
+    date = parseDate(date as any);
   }
   try {
     if (!fullDay) {
