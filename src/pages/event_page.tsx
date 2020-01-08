@@ -20,10 +20,11 @@ import { parseDate } from '../util';
 import { JsonLd } from '../components/JsonLd';
 import LikeButton from '../components/like-button';
 import { Link } from 'react-router-dom';
-import { gql, useQuery } from '@apollo/client';
+import { gql, useQuery, useMutation } from '@apollo/client';
 import { EventQuery, EventQueryVariables } from '../generated/EventQuery';
 import { compact } from 'lodash';
 import { useSession } from '../models/session';
+import { ToggleLike, ToggleLikeVariables } from '../generated/ToggleLike';
 
 marked.setOptions({ sanitize: true, breaks: true, smartypants: true });
 
@@ -90,27 +91,38 @@ const DATA = gql`
   }
 `;
 
+const LIKE = gql`
+  mutation ToggleLike($eventId: ID!, $like: Boolean!) {
+    toggleLike(input: { eventId: $eventId, like: $like }) {
+      event {
+        id
+        liked
+      }
+    }
+  }
+`;
+
 export default function EventPage() {
   const [galleryIndex, setGalleryIndex] = useState<number | undefined>();
   const { id } = useParams<{ id: string }>();
+  const [like] = useMutation<ToggleLike, ToggleLikeVariables>(LIKE);
   const { data, error } = useQuery<EventQuery, EventQueryVariables>(DATA, {
     variables: { slug: id },
   });
   if (error) {
     console.error(error);
   }
+  const session = useSession();
   const event = data && data.eventBySlug;
   if (!event) {
     return null;
   }
   const subevents: any[] = [];
   const otherEvents: any[] = [];
-  const loggedIn = false;
   const hero =
     (event.header && event.header.big) || (event.hero && event.hero.big);
   const flyer = event.flyer && event.flyer.big;
   const coordinates = event.location && extractCoordinates(event.location);
-  const session = useSession();
   const meta = [
     [t('.date'), formatEventDate(event)],
     [t('.location'), event.location && locationDescription(event.location)],
@@ -191,7 +203,9 @@ export default function EventPage() {
           {session && (
             <LikeButton
               active={event.liked}
-              onClick={() => console.log('toggle like')}
+              onClick={() =>
+                like({ variables: { eventId: event.id, like: !event.liked } })
+              }
             />
           )}
         </div>

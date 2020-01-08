@@ -20,7 +20,7 @@ export function parseDate(date: Date | string): Date {
 
 function format(
   date: Date | string,
-  timeZone?: string,
+  timeZone?: string | null,
   fullDay?: boolean
 ): string {
   if (typeof date === 'string') {
@@ -49,7 +49,7 @@ function format(
 export function dateRange(
   date: Date | string,
   date2: Date | string,
-  timezone?: string,
+  timezone?: string | null,
   fullDay?: boolean
 ): string {
   if (!date2) {

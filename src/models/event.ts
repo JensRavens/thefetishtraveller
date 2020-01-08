@@ -143,7 +143,7 @@ export function inMonth(
   return time.month() === month.month && time.year() === month.year;
 }
 
-export function byMonth<T extends Event>(
+export function byMonth<T extends { startAt: Date | string }>(
   events: T[]
 ): Array<{ date: Date; events: T[] }> {
   const buckets: { [date: string]: T[] } = {};
@@ -163,7 +163,7 @@ export function byMonth<T extends Event>(
   return result;
 }
 
-export function byMainEvent<T extends Event>(
+export function byMainEvent<T extends { eventId?: string | null; id: string }>(
   events: T[]
 ): Array<{ event: T; events: T[] }> {
   const buckets: { [eventId: string]: T[] } = {};

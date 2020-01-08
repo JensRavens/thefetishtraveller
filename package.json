@@ -9,7 +9,7 @@
     "lint:style": "tslint -c tslint.json -p . 'src/**/*.{ts,tsx}'",
     "lint:format": "prettier --list-different \"src/**/*.{tsx,ts,scss,json}\"",
     "test": "jest",
-    "apollo:generate": "apollo codegen:generate --excludes=node_modules/* --includes=**/*.tsx --endpoint http://localhost:3000/graphql --target typescript --tagName gql --outputFlat src/generated --passthroughCustomScalars"
+    "apollo:generate": "rm -rf src/generated && apollo codegen:generate --excludes=node_modules/* --includes=**/*.tsx --endpoint http://localhost:3000/graphql --target typescript --tagName gql --outputFlat src/generated --passthroughCustomScalars"
   },
   "dependencies": {
     "@apollo/client": "^3.0.0-beta.19",

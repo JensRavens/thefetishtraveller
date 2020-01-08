@@ -23,6 +23,7 @@ export interface EventQuery_eventBySlug_flyer {
 
 export interface EventQuery_eventBySlug_galleryImages_nodes {
   __typename: "Image";
+  id: string;
   medium: string;
   big: string;
 }

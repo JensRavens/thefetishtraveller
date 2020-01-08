@@ -51,7 +51,6 @@ class Application extends React.Component<Props> {
                       component={EventSubmit}
                     />
                     <Route path="/events/:id" exact component={EventPage} />
-                    <Route path="/calendar" exact component={TravelPlans} />
                     <Route path="/locations" exact component={LocationSearch} />
                     <Route
                       path="/locations/:id"
@@ -61,7 +60,7 @@ class Application extends React.Component<Props> {
                     <Route
                       path="/travel-plans/:id"
                       exact
-                      component={TravelPlanPage}
+                      component={TravelPlans}
                     />
                     <Route path="/imprint" exact component={Imprint} />
                   </Switch>

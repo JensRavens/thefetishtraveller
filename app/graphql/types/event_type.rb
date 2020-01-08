@@ -25,7 +25,7 @@ module Types
     field :gallery_images, ImageType.connection_type, null: false
 
     def liked
-      current_user&.likes&.where(event_id: object.id)&.any? || false
+      current_user&.event_ids&.include?(object.id)
     end
 
     def location
