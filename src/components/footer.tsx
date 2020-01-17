@@ -35,7 +35,7 @@ export default class Header extends React.Component {
               </a>
             </div>
             <div className="footer__copyright">
-              © 2019 Jens Ravens
+              © 2020 Jens Ravens
               <br />
               All Rights Reserved
             </div>
