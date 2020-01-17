@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Event do
   permit_params :publish_at, :publish_until, :slug, :location_id, :event_id, :name, :start_at, :end_at, :website, :official, :abstract, :description, :ticket_link, :organizer_name, :series, :full_day, :hero, :header, :flyer, categories: [], gallery_images: []
   scope :published
@@ -8,16 +10,14 @@ ActiveAdmin.register Event do
     redirect_to resource_path, notice: "Published!"
   end
 
-  action_item :super_action, only: :show, if: ->{ !resource.published? } do
+  action_item :super_action, only: :show, if: -> { !resource.published? } do
     @event = Event.friendly.find(params[:id])
-    link_to 'Publish', publish_admin_event_path(@event), method: :post
+    link_to "Publish", publish_admin_event_path(@event), method: :post
   end
-  
+
   index do
     selectable_column
-    column :name do |event|
-      event.name
-    end
+    column :name, &:name
     column :location do |event|
       event.location.description
     end
@@ -76,7 +76,7 @@ ActiveAdmin.register Event do
         panel "Gallery" do
           div class: "gallery" do
             safe_join(event.gallery_images.map do |image|
-              link_to image_tag(image), url_for(image), target: "_blank"
+              link_to image_tag(image), url_for(image), target: "_blank", rel: "noopener"
             end, "")
           end
         end
@@ -139,7 +139,7 @@ ActiveAdmin.register Event do
           input :publish_at
           input :publish_until
           input :series
-          input :categories, as: :check_boxes, collection: Event::CATEGORIES.map{|e| [e.humanize, e]}
+          input :categories, as: :check_boxes, collection: Event::CATEGORIES.map { |e| [e.humanize, e] }
         end
         inputs "Media" do
           input :hero, as: :file, hint: f.object.hero.attached? ? image_tag(f.object.hero.variant(resize_to_limit: [100, 100])) : nil, input_html: { accept: "image/*" }
@@ -148,7 +148,7 @@ ActiveAdmin.register Event do
           input :gallery_images, as: :file, input_html: { accept: "image/*", multiple: true }
           div class: "gallery" do
             safe_join(event.gallery_images.map do |image|
-              link_to image_tag(image), url_for(image), target: "_blank"
+              link_to image_tag(image), url_for(image), target: "_blank", rel: "noopener"
             end, "")
           end
         end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 calendar = Icalendar::Calendar.new
 calendar.append_custom_property("X-WR-CALNAME;VALUE=TEXT", "thefetishtraveller.com")
 @events.each do |event|

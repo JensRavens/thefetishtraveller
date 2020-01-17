@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ApplicationSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
@@ -5,6 +7,7 @@ class ApplicationSerializer < ActiveModel::Serializer
     attribute(name) do
       attachment = object.public_send(selector || name)
       next unless attachment.attached?
+
       attachment_attributes(attachment)
     end
   end
@@ -18,20 +21,20 @@ class ApplicationSerializer < ActiveModel::Serializer
 
   def default_url_options
     {
-      host: ENV['HOST'].presence || "localhost:3000"
+      host: ENV["HOST"].presence || "localhost:3000"
     }
   end
 
-  alias_method :current_user, :scope
+  alias current_user scope
 
   private
 
   def attachment_attributes(attachment)
     {
       full: url_for(attachment),
-      big: url_for(attachment.variant(resize: '1024x1024>')),
-      medium: url_for(attachment.variant(resize: '512x512>')),
-      small: url_for(attachment.variant(resize: '256x256>'))
+      big: url_for(attachment.variant(resize: "1024x1024>")),
+      medium: url_for(attachment.variant(resize: "512x512>")),
+      small: url_for(attachment.variant(resize: "256x256>"))
     }
   end
 end

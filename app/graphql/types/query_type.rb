@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Types
   class QueryType < Types::BaseObject
     field :locations, LocationType.connection_type, null: false, description: "List all locations"

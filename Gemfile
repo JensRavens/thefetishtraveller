@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source "https://rubygems.org"
 ruby "2.6.1"
 
@@ -6,12 +8,12 @@ gem "rails", "6.0.2"
 gem "puma"
 
 # Database
-gem 'pg'
+gem "pg"
 gem "redis"
 
 # Extensions
-gem 'bootsnap', require: false
-gem 'mini_magick'
+gem "bootsnap", require: false
+gem "mini_magick"
 gem "dotenv-rails"
 gem "rails-i18n"
 gem "active_model_serializers"
@@ -33,7 +35,7 @@ gem "icalendar", "~> 2.4"
 gem "httparty"
 gem "activeadmin"
 gem "graphql"
-gem 'graphql-batch'
+gem "graphql-batch"
 
 # Assets
 gem "webpacker", require: false
@@ -51,7 +53,9 @@ gem "aws-sdk-s3"
 group :development, :test do
   gem "rspec-rails"
   gem "guard-rspec", require: false
+  gem "rubocop", require: false
   gem "rubocop-rspec-focused", require: false
+  gem "rubocop-rails", require: false
   gem "webmock", require: false
   gem "timecop"
   gem "rspec_junit_formatter"
@@ -68,7 +72,6 @@ group :development do
   gem "spring"
   gem "spring-watcher-listen"
   gem "spring-commands-rspec"
-  gem "rubocop"
   gem "web-console"
   gem "annotate"
   gem "erd", require: false

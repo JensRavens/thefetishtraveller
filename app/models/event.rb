@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: events
@@ -34,12 +36,12 @@ class Event < ApplicationRecord
   has_many :likes, dependent: :destroy
   belongs_to :location
 
-  scope :published, -> { where('events.publish_at <= NOW()') }
+  scope :published, -> { where("events.publish_at <= NOW()") }
   scope :with_attachments, -> { with_attached_hero.with_attached_header.with_attached_logo.with_attached_flyer.with_attached_gallery_images }
-  scope :in_future, -> { where('events.end_at >= NOW()') }
+  scope :in_future, -> { where("events.end_at >= NOW()") }
 
   has_many :events, dependent: :destroy
-  belongs_to :event, required: false
+  belongs_to :event, optional: true
 
   has_and_belongs_to_many :owners, class_name: "User"
 

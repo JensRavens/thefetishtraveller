@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Mutations
   class ToggleLike < BaseMutation
     field :event, Types::EventType, null: false
@@ -6,6 +8,7 @@ module Mutations
     argument :like, Boolean, required: true
     def resolve(event_id:, like:)
       return unless current_user
+
       event = Event.find(event_id)
       if like
         current_user.likes.create! event: event

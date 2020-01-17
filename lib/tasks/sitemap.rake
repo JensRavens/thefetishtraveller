@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :sitemap do
   desc "Upload the sitemap files to S3"
   task upload_to_s3: :environment do
@@ -5,8 +7,9 @@ namespace :sitemap do
 
     bucket = s3.bucket(ENV["AWS_BUCKET"])
 
-    Dir.entries(Rails.root.join("tmp", "sitemaps")).each do |file_name|
+    Dir.entries(Rails.root.join("tmp/sitemaps")).each do |file_name|
       next if [".", "..", ".DS_Store"].include? file_name
+
       path = "sitemaps/#{file_name}"
       file = Rails.root.join("tmp", "sitemaps", file_name)
       bucket.object(path).upload_file(file, acl: "public-read")
