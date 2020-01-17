@@ -29,7 +29,7 @@ module Types
     end
 
     def events(user_id: nil)
-      events = Event.published
+      events = Event.published.in_future
       events = events.merge(User.find(user_id).events) if user_id.present?
       events
     end
