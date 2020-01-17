@@ -20,7 +20,7 @@ module Types
     field :series_name, String, null: true, method: :series
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
-    field :liked, Boolean, null: false
+    field :liked, Boolean, null: true
     field :hero, ImageType, null: true
     field :header, ImageType, null: true
     field :flyer, ImageType, null: true
