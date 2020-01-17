@@ -10,6 +10,7 @@ import './registerServiceworker';
 
 import './style.scss';
 import { loadLocales } from './models/locales';
+import './api-syncer';
 
 loadLocales();
 

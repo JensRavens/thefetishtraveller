@@ -197,9 +197,10 @@ window.db = writeDB;
 window.fbAsyncInit = () => {
   window.FB.init({
     appId: '323489808193714',
-    cookie: true,
+    autoLogAppEvents: true,
     xfbml: true,
-    version: 'v3.0',
+    version: 'v5.0',
+    status: true,
   });
   window.FB.Event.subscribe('auth.statusChange', (response: any) => {
     if (response.authResponse) {
