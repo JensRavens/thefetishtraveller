@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # make sure it is loaded
-ActiveStorage::RepresentationsController
+ActiveStorage::RepresentationsController # rubocop:disable Lint/Void
 
 module ActiveStorage
   class RepresentationsController < BaseController
@@ -11,8 +11,8 @@ module ActiveStorage
       expires_in 1.year, public: true
       variant = @blob.representation(params[:variation_key]).processed
       send_data @blob.service.download(variant.key),
-        type: @blob.content_type || DEFAULT_SEND_FILE_TYPE,
-        disposition: 'inline'
+                type: @blob.content_type || DEFAULT_SEND_FILE_TYPE,
+                disposition: "inline"
     end
   end
 end

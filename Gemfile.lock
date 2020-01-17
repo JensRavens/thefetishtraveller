@@ -185,6 +185,9 @@ GEM
       railties
       sprockets-rails
     graphql (1.9.12)
+    graphql-batch (0.4.2)
+      graphql (>= 1.3, < 2)
+      promise.rb (~> 0.7.2)
     groupdate (4.3.0)
       activesupport (>= 5)
     guard (2.16.1)
@@ -284,6 +287,7 @@ GEM
     pg (1.2.1)
     polyamorous (2.3.0)
       activerecord (>= 5.0)
+    promise.rb (0.7.4)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -388,6 +392,9 @@ GEM
       rainbow (>= 2.2.2, < 4.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
+    rubocop-rails (2.4.1)
+      rack (>= 1.1)
+      rubocop (>= 0.72.0)
     rubocop-rspec-focused (1.0.0)
       rubocop (>= 0.51)
     ruby-graphviz (1.2.4)
@@ -495,6 +502,7 @@ DEPENDENCIES
   friendly_id
   graphiql-rails
   graphql
+  graphql-batch
   groupdate
   guard-rspec
   httparty
@@ -518,6 +526,7 @@ DEPENDENCIES
   rspec-rails
   rspec_junit_formatter
   rubocop
+  rubocop-rails
   rubocop-rspec-focused
   sidekiq
   sidekiq-scheduler

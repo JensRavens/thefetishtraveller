@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 ActiveAdmin.register Location do
   permit_params :slug, :name, :country_code, :address, :zip, :city, :lat, :lon, :category, :timezone
-  
+
   index do
     selectable_column
     column :name
@@ -51,11 +53,11 @@ ActiveAdmin.register Location do
       input :address
       input :zip
       input :city
-      input :country_code, label: "Country", as: :select, collection: Country.all.map{|e| [e.name, e.alpha2.downcase]}.sort_by(&:first), include_blank: false
+      input :country_code, label: "Country", as: :select, collection: Country.all.map { |e| [e.name, e.alpha2.downcase] }.sort_by(&:first), include_blank: false
       input :lat
       input :lon
       input :category, collection: [:region, :city, :hotel, :shop, :bar, :venue].map { |e| [e.to_s.humanize, e] }, include_blank: false
-      input :timezone, as: :select, collection: ActiveSupport::TimeZone.all.map{|e| [e.name, e.tzinfo.identifier]}.sort_by(&:first), include_blank: false
+      input :timezone, as: :select, collection: ActiveSupport::TimeZone.all.map { |e| [e.name, e.tzinfo.identifier] }.sort_by(&:first), include_blank: false
     end
     actions
   end

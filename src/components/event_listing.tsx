@@ -41,7 +41,7 @@ export class EventListing extends React.Component<Props> {
           <div className="event-listing__name">{event.name}</div>
           <div className="event-listing__description" />
           <div className="event-listing__details">
-            {locationDescription(event.location)} <br />{' '}
+            {locationDescription(event.location!)} <br />{' '}
             {formatEventDate(event)}
             {event.events && !!event.events.length && (
               <React.Fragment>

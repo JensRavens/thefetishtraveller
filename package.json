@@ -8,9 +8,11 @@
     "lint:types": "tsc --noEmit",
     "lint:style": "tslint -c tslint.json -p . 'src/**/*.{ts,tsx}'",
     "lint:format": "prettier --list-different \"src/**/*.{tsx,ts,scss,json}\"",
-    "test": "jest"
+    "test": "jest",
+    "apollo:generate": "rm -rf src/generated && apollo codegen:generate --excludes=node_modules/* --includes=**/*.tsx --endpoint http://localhost:3000/graphql --target typescript --tagName gql --outputFlat src/generated --passthroughCustomScalars"
   },
   "dependencies": {
+    "@apollo/client": "^3.0.0-beta.19",
     "@babel/core": "^7.6.4",
     "@babel/plugin-transform-runtime": "^7.6.2",
     "@babel/preset-env": "^7.6.3",
@@ -41,6 +43,7 @@
     "cssnano": "^4.1.10",
     "ejson": "^2.1.2",
     "file-loader": "^4.2.0",
+    "graphql": "^14.5.8",
     "html-webpack-plugin": "^3.2.0",
     "js-yaml-loader": "^1.2.2",
     "json-loader": "^0.5.7",
@@ -73,5 +76,8 @@
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2"
+  },
+  "devDependencies": {
+    "apollo": "^2.21.2"
   }
 }

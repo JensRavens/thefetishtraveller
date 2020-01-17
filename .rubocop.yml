@@ -6,17 +6,16 @@ AllCops:
     - 'db/schema.rb'
     - 'node_modules/**/*'
     - 'vendor/bundle/**/*'
+    - 'bin/**/*'
 
 require:
   - rubocop/rspec/focused
+  - rubocop-rails
 
 Bundler/OrderedGems:
   Enabled: false
 
 Lint/AmbiguousBlockAssociation:
-  Enabled: false
-
-Lint/RescueWithoutErrorClass:
   Enabled: false
 
 RSpec/Focused:
@@ -34,16 +33,19 @@ Rails/ReversibleMigration:
 Rails/SkipsModelValidations:
   Enabled: false
 
+Rails/BulkChangeTable:
+  Enabled: false
+
+Rails/RakeEnvironment:
+  Enabled: false
+
 Metrics:
   Enabled: false
 
 Rails/HasAndBelongsToMany:
   Enabled: false
 
-Rails/OutputSafety:
-  Enabled: false
-
-Layout/AlignParameters:
+Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 
 Style/ConditionalAssignment:
@@ -55,20 +57,20 @@ Style/Documentation:
 Style/EmptyMethod:
   EnforcedStyle: expanded
 
-Style/FrozenStringLiteralComment:
-  Enabled: false
-
-Style/Lambda:
-  Enabled: false
-
-Style/MethodMissing:
-  Enabled: false
-
 Style/MultilineBlockChain:
   Enabled: false
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
+
+Layout/FirstArrayElementIndentation:
+  EnforcedStyle: consistent
+
+Layout/LineLength:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
 
 Style/NilComparison:
   Enabled: false
@@ -93,6 +95,3 @@ Style/RegexpLiteral:
 
 Style/StringLiterals:
   EnforcedStyle: double_quotes
-
-Style/WordArray:
-  Enabled: false
