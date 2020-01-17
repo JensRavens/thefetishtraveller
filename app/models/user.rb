@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -27,8 +29,9 @@ class User < ApplicationRecord
 
   class << self
     def authenticate_facebook(token)
-      response = HTTParty.get "https://graph.facebook.com/me", query: { fields: 'id,first_name,last_name,email', access_token: token }
+      response = HTTParty.get "https://graph.facebook.com/me", query: { fields: "id,first_name,last_name,email", access_token: token }
       raise "facebook request error: #{response.code}" unless response.code == 200
+
       data = OpenStruct.new JSON.parse(response.body).symbolize_keys
       user = User.find_or_initialize_by facebook_id: data.id
       user.assign_attributes email: data.email, first_name: data.first_name, last_name: data.last_name
@@ -51,6 +54,7 @@ class User < ApplicationRecord
 
   def level
     return "admin" if admin?
+
     guest? ? "guest" : "user"
   end
 

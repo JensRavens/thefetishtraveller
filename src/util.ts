@@ -10,9 +10,21 @@ export function guid(): string {
   return [s4() + s4(), s4(), s4(), s4(), s4() + s4() + s4()].join('-');
 }
 
-function format(date: Date, timeZone?: string, fullDay?: boolean): string {
+export function parseDate(date: Date | string): Date {
   if (typeof date === 'string') {
-    return '';
+    return new Date(Date.parse(date));
+  } else {
+    return date;
+  }
+}
+
+function format(
+  date: Date | string,
+  timeZone?: string | null,
+  fullDay?: boolean
+): string {
+  if (typeof date === 'string') {
+    date = parseDate(date as any);
   }
   try {
     if (!fullDay) {
@@ -35,9 +47,9 @@ function format(date: Date, timeZone?: string, fullDay?: boolean): string {
 }
 
 export function dateRange(
-  date: Date,
-  date2: Date,
-  timezone?: string,
+  date: Date | string,
+  date2: Date | string,
+  timezone?: string | null,
   fullDay?: boolean
 ): string {
   if (!date2) {

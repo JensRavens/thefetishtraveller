@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: locations
@@ -37,6 +39,6 @@ class Location < ApplicationRecord
   end
 
   def description
-    [name, city, country.name].compact.uniq.join(', ')
+    [name, city, country.name].compact.uniq.join(", ")
   end
 end

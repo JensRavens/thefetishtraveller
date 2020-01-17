@@ -1,12 +1,14 @@
-require 'open-uri'
+# frozen_string_literal: true
+
+require "open-uri"
 
 class ApplicationController < ActionController::Base
   skip_forgery_protection
-  layout 'application'
+  layout "application"
 
   def webpack_index
     @webpack_index ||= begin
-      code = File.read(Rails.root.join('public/index.html'))
+      File.read(Rails.root.join("public/index.html"))
     end
   end
 

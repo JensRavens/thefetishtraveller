@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module API
   module V1
     class NotAuthorized < StandardError
@@ -13,7 +15,7 @@ module API
       private
 
       def current_session
-        @current_session ||= Session.find_by id: request.authorization.to_s.split(' ').second
+        @current_session ||= Session.find_by id: request.authorization.to_s.split(" ").second
       end
 
       def current_user
@@ -25,11 +27,9 @@ module API
       end
 
       def authorize!(resource)
-        if current_user&.admin? || resource.owner_ids.include?(current_user&.id)
-          resource
-        else
-          raise NotAuthorized
-        end
+        return resource if current_user&.admin? || resource.owner_ids.include?(current_user&.id)
+
+        raise NotAuthorized
       end
 
       def not_authorized

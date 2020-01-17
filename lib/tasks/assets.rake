@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 namespace :assets do
   task :precompile do
-    sh 'yarn build'
+    sh "yarn build"
   end
 
   task :clean do

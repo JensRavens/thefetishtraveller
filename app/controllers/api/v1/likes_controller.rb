@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module API
   module V1
     class LikesController < APIController
@@ -5,7 +7,7 @@ module API
 
       def create
         current_user.likes.create! event: event
-        render json: { }
+        render json: {}
       end
 
       def index

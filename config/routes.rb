@@ -1,8 +1,8 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   post "/graphql", to: "graphql#execute"
-  if Rails.env.development?
-    mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
-  end
+  mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql" if Rails.env.development?
   ActiveAdmin.routes(self)
   namespace :api do
     namespace :v1 do
@@ -20,10 +20,10 @@ Rails.application.routes.draw do
     resources :events, only: [:index]
   end
 
-  get 'logout', to: 'application#logout'
-  get 'sitemaps/*path', to: 'pages#sitemap'
-  get '*path', to: 'pages#show', constraints: lambda { |req|
-    req.path.exclude? 'rails/'
+  get "logout", to: "application#logout"
+  get "sitemaps/*path", to: "pages#sitemap"
+  get "*path", to: "pages#show", constraints: ->(req) {
+    req.path.exclude? "rails/"
   }
-  root 'pages#show'
+  root "pages#show"
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class MovePropertiesToFields < ActiveRecord::Migration[5.2]
   def change
     # locations
@@ -26,8 +28,8 @@ class MovePropertiesToFields < ActiveRecord::Migration[5.2]
     reversible do |dir|
       dir.up do
         Location.update_all <<-SQL.squish
-          name = properties->>'name', 
-          country_code = properties->>'country_code', 
+          name = properties->>'name',
+          country_code = properties->>'country_code',
           address = properties->>'adress',
           zip = properties->>'zip',
           city = properties->>'city',
@@ -36,7 +38,7 @@ class MovePropertiesToFields < ActiveRecord::Migration[5.2]
         SQL
 
         Event.update_all <<-SQL.squish
-          name = properties->>'name', 
+          name = properties->>'name',
           start_at = (properties->>'start_at')::timestamp,
           end_at = (properties->>'end_at')::timestamp,
           website = (properties->>'website'),
