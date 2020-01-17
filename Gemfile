@@ -36,6 +36,7 @@ gem "httparty"
 gem "activeadmin"
 gem "graphql"
 gem "graphql-batch"
+gem "graphiql-rails"
 
 # Assets
 gem "webpacker", require: false
@@ -64,7 +65,6 @@ group :development, :test do
   gem "capybara-screenshot"
   gem "capybara-selenium"
   gem "chromedriver-helper"
-  gem "graphiql-rails"
 end
 
 group :development do
