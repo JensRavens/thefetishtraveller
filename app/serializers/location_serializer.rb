@@ -18,6 +18,7 @@
 #  lon          :decimal(, )
 #  category     :string
 #  timezone     :string
+#  bluf_id      :string
 #
 
 class LocationSerializer < ApplicationSerializer

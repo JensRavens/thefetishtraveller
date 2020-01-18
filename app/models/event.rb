@@ -25,6 +25,7 @@
 #  categories     :text             default([]), not null, is an Array
 #  series         :string
 #  full_day       :boolean          default(FALSE), not null
+#  bluf_id        :string
 #
 
 class Event < ApplicationRecord
@@ -39,6 +40,7 @@ class Event < ApplicationRecord
   scope :published, -> { where("events.publish_at <= NOW()") }
   scope :with_attachments, -> { with_attached_hero.with_attached_header.with_attached_logo.with_attached_flyer.with_attached_gallery_images }
   scope :in_future, -> { where("events.end_at >= NOW()") }
+  scope :awaiting_review, -> { where(publish_at: nil).in_future }
 
   has_many :events, dependent: :destroy
   belongs_to :event, optional: true
@@ -81,5 +83,9 @@ class Event < ApplicationRecord
     event.geo = [location.lat, location.lon] if location&.lat && location&.lon
     event.location = location&.description
     event
+  end
+
+  def source_url
+    return "https://bluf.com/events/#{bluf_id}" if bluf_id.present?
   end
 end

@@ -4,6 +4,12 @@ ActiveAdmin.register Event do
   permit_params :publish_at, :publish_until, :slug, :location_id, :event_id, :name, :start_at, :end_at, :website, :official, :abstract, :description, :ticket_link, :organizer_name, :series, :full_day, :hero, :header, :flyer, categories: [], gallery_images: []
   scope :published
   scope :in_future, default: true
+  scope :awaiting_review
+
+  batch_action :publish do |ids|
+    batch_action_collection.awaiting_review.where(id: ids).update_all(publish_at: DateTime.current)
+    redirect_to collection_path, alert: "The events have been published."
+  end
 
   member_action :publish, method: :post do
     resource.publish!
@@ -112,6 +118,7 @@ ActiveAdmin.register Event do
       row :publish_until if event.published? && event.publish_until?
       row :updated_at
       row :created_at
+      row :source_url
     end
   end
 
