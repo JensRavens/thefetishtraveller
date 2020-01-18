@@ -41,6 +41,7 @@ class Event < ApplicationRecord
   scope :with_attachments, -> { with_attached_hero.with_attached_header.with_attached_logo.with_attached_flyer.with_attached_gallery_images }
   scope :in_future, -> { where("events.end_at >= NOW()") }
   scope :awaiting_review, -> { where(publish_at: nil).in_future }
+  scope :chronologic, -> { order(start_at: :asc) }
 
   has_many :events, dependent: :destroy
   belongs_to :event, optional: true
