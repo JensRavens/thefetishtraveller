@@ -25,6 +25,7 @@
 #  categories     :text             default([]), not null, is an Array
 #  series         :string
 #  full_day       :boolean          default(FALSE), not null
+#  bluf_id        :string
 #
 
 class EventSerializer < ApplicationSerializer

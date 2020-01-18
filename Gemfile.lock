@@ -513,6 +513,7 @@ DEPENDENCIES
   listen
   mini_magick
   newrelic_rpm
+  nokogiri
   oj
   pg
   puma

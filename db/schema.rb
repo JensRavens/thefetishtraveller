@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_07_173912) do
+ActiveRecord::Schema.define(version: 2020_01_18_113114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -83,6 +83,8 @@ ActiveRecord::Schema.define(version: 2020_01_07_173912) do
     t.text "categories", default: [], null: false, array: true
     t.string "series"
     t.boolean "full_day", default: false, null: false
+    t.string "bluf_id"
+    t.index ["bluf_id"], name: "index_events_on_bluf_id", unique: true
     t.index ["event_id"], name: "index_events_on_event_id"
     t.index ["location_id"], name: "index_events_on_location_id"
     t.index ["slug"], name: "index_events_on_slug"
@@ -116,6 +118,8 @@ ActiveRecord::Schema.define(version: 2020_01_07_173912) do
     t.decimal "lon"
     t.string "category"
     t.string "timezone"
+    t.string "bluf_id"
+    t.index ["bluf_id"], name: "index_locations_on_bluf_id", unique: true
     t.index ["category"], name: "index_locations_on_category"
     t.index ["slug"], name: "index_locations_on_slug"
   end

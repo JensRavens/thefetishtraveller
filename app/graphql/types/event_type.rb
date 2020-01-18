@@ -39,11 +39,11 @@ module Types
     end
 
     def header
-      AssociationLoader.for(Event, :hero_attachment).load(object)
+      AssociationLoader.for(Event, :header_attachment).load(object)
     end
 
     def flyer
-      AssociationLoader.for(Event, :hero_attachment).load(object)
+      AssociationLoader.for(Event, :flyer_attachment).load(object)
     end
 
     def gallery_images

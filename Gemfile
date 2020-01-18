@@ -37,6 +37,7 @@ gem "activeadmin"
 gem "graphql"
 gem "graphql-batch"
 gem "graphiql-rails"
+gem "nokogiri"
 
 # Assets
 gem "webpacker", require: false

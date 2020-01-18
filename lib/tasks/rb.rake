@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 namespace :db do
   desc "Downloads the app from heroku to local db"
   task pull: [:environment, :drop] do
