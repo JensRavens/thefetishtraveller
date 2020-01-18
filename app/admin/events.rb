@@ -25,7 +25,7 @@ ActiveAdmin.register Event do
     selectable_column
     column :name, &:name
     column :location do |event|
-      event.location.description
+      event.location&.description
     end
     column :start_at
     column :organizer_name
@@ -61,7 +61,7 @@ ActiveAdmin.register Event do
     attributes_table do
       row :name
       row :location do
-        event.location.description
+        event.location&.description
       end
       row :start_at
       row :end_at
