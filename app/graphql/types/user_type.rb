@@ -12,13 +12,13 @@ module Types
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
     field :events, EventType.connection_type, null: false
-    field :has_events, Boolean, null: false, method: :events?
+    field :has_events, Boolean, null: false
 
     def events
       AssociationLoader.for(User, :events).load(object)
     end
 
-    def events?
+    def has_events # rubocop:disable Naming/PredicateName
       events.then(&:any?)
     end
   end
