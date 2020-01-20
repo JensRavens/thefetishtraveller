@@ -2,12 +2,14 @@
   font-family: 'Bebas Neue';
   font-weight: bold;
   src: url('./assets/bebas_neue_bold.woff2') format('woff2');
+  font-display: swap;
 }
 
 @font-face {
   font-family: 'Uni Sans';
   font-weight: bold;
   src: url('./assets/uni_sans_heavy.woff2') format('woff2');
+  font-display: swap;
 }
 
 body {

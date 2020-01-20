@@ -85,6 +85,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './src/index.html',
+      filename: 'app.html',
     }),
     new MiniCssExtractPlugin({
       filename: '[name].[hash].css',
@@ -94,7 +95,7 @@ const config = {
     new webpack.HotModuleReplacementPlugin(),
     new GenerateSW({
       swDest: 'serviceworker.js',
-      navigateFallback: '/index.html',
+      navigateFallback: '/app.html',
     }),
   ],
   performance: {
