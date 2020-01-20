@@ -1,6 +1,7 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const { GenerateSW } = require('workbox-webpack-plugin');
 const webpack = require('webpack');
 
 const mode = process.env.NODE_ENV || 'development';
@@ -91,6 +92,10 @@ const config = {
     }),
     new CopyWebpackPlugin([{ from: 'src/public' }]),
     new webpack.HotModuleReplacementPlugin(),
+    new GenerateSW({
+      swDest: 'serviceworker.js',
+      navigateFallback: '/index.html',
+    }),
   ],
   performance: {
     hints: false,
