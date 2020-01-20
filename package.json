@@ -1,7 +1,7 @@
 {
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --color",
     "build": "NODE_ENV=production webpack",
     "format": "prettier --write \"src/**/*.{tsx,ts,scss,json}\"",
     "lint": "yarn lint:types && yarn lint:style && yarn lint:format",

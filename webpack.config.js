@@ -118,6 +118,7 @@ if (mode == 'development') {
       watchOptions: {
         infoVerbosity: 'verbose',
       },
+      index: 'app.html',
       proxy: {
         '/api': {
           target: 'http://localhost:3000',
