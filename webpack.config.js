@@ -98,7 +98,7 @@ const config = {
       clientsClaim: true,
       skipWaiting: true,
       navigateFallback: '/app.html',
-      navigateFallbackDenylist: [/admin/],
+      navigateFallbackDenylist: [/\/admin/],
     }),
   ],
   performance: {
