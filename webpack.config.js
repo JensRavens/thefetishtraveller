@@ -95,7 +95,10 @@ const config = {
     new webpack.HotModuleReplacementPlugin(),
     new GenerateSW({
       swDest: 'serviceworker.js',
+      clientsClaim: true,
+      skipWaiting: true,
       navigateFallback: '/app.html',
+      navigateFallbackDenylist: [/admin/],
     }),
   ],
   performance: {
