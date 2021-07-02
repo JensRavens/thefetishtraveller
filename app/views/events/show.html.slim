@@ -1,0 +1,52 @@
+.main-menu__spacer
+.spacer
+.container
+  h2 = @event.name
+  - if @event.abstract.present?
+    h4 = @event.abstract
+    .spacer--small
+  - if @event.hero.attached?
+    p = image_tag @event.hero
+  .meta-box class=("meta-box--floating" if @event.hero.attached?)
+    p
+      strong = t ".date"
+      br
+      = l @event.start_at, format: :short
+    p
+      strong = t ".location"
+      br
+      = @event.location.description
+    p
+      strong = t ".website"
+      br
+      = @event.website
+    p
+      strong = t ".organizer"
+      br
+      = @event.organizer_name
+    p
+      strong = t ".tickets"
+      br
+      = @event.ticket_link
+  - if @event.description.present?
+    = simple_format @event.description
+  - if @event.flyer.attached? && false
+    .flyer = image_tag @event.flyer
+- if @event.gallery_images.any?
+  .listing.listing--small
+    - @event.gallery_images.each do |image|
+    .gallery__image = image_tag image
+.container
+  .spacer.spacer--small
+  h3 = @event.location.description
+- if @subevents.any?
+  .spacer.spacer--small
+  .container.container--small
+    h2 = t ".happening_here", location: @event.location.name
+  .listing = render @subevents
+.spacer.spacer--small
+- if @other_events.any?
+  .container.container--small
+    h2 = t ".other_events_in", location: @event.location.name
+  .listing = render @other_events
+

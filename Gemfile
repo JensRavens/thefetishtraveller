@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 source "https://rubygems.org"
-ruby "2.6.1"
+ruby "2.7.3"
 
 # Core
-gem "rails", "6.0.2"
+gem "rails", "6.1.4"
 gem "puma"
 
 # Database
@@ -38,9 +38,12 @@ gem "graphql"
 gem "graphql-batch"
 gem "graphiql-rails"
 gem "nokogiri"
+gem "slim-rails"
 
 # Assets
 gem "webpacker", require: false
+gem "sass-rails"
+gem "autoprefixer-rails"
 
 # Seed Data
 gem "database_cleaner"
@@ -49,23 +52,17 @@ gem "faker"
 
 # Services
 gem "newrelic_rpm"
-gem "airbrake"
 gem "aws-sdk-s3"
 
 group :development, :test do
   gem "rspec-rails"
-  gem "guard-rspec", require: false
   gem "rubocop", require: false
-  gem "rubocop-rspec-focused", require: false
   gem "rubocop-rails", require: false
-  gem "webmock", require: false
-  gem "timecop"
-  gem "rspec_junit_formatter"
-  gem "vcr"
   gem "capybara"
-  gem "capybara-screenshot"
-  gem "capybara-selenium"
-  gem "chromedriver-helper"
+  gem "webdrivers"
+  gem "pry-rails"
+  gem "guard"
+  gem "guard-minitest"
 end
 
 group :development do

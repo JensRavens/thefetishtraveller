@@ -1,14 +1,10 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Localizable
+
   skip_forgery_protection
   layout "application"
-
-  def webpack_index
-    @webpack_index ||= begin
-      File.read(Rails.root.join("public/app.html"))
-    end
-  end
 
   def current_user
     @current_user ||= ::Session.find_by(id: cookies[:sid])&.user
@@ -23,5 +19,7 @@ class ApplicationController < ActionController::Base
     redirect_to root_path
   end
 
-  helper_method :webpack_index
+  def active_admin?
+    params[:controller] =~ /^admin\//i
+  end
 end

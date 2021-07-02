@@ -20,11 +20,11 @@ export class EventListing extends React.Component<Props> {
     const backgroundImage =
       event.hero && event.hero.medium && `url(${event.hero.medium})`;
     const subcategories: string[] = flatten(
-      (event.events || []).map(e => e.categories || [])
+      (event.events || []).map((e) => e.categories || [])
     );
     const categories = (event.categories || []).concat(subcategories);
     const category = uniq(categories)
-      .map(e => t('.category.' + e))
+      .map((e) => t('.category.' + e))
       .join(', ');
     return (
       <Link

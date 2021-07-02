@@ -1,0 +1,11 @@
+= hero do
+  .container
+    h1 = t ".title"
+    .hero__addon
+      input type="search"
+      .text-center = t(".subscribe_to_calendar", link: feed_events_url)
+.filter-bar
+  a.filter-bar__option href=url_for(month: nil) class=("filter-bar__option--selected" if params["month"].blank?) = t ".all"
+  - @months.each do |option|
+    a.filter-bar__option href=url_for(month: option.first) class=("filter-bar__option--selected" if option.first == params["month"]) = option.second
+.listing = render @events

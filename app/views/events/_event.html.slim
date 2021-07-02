@@ -1,0 +1,8 @@
+a.event-listing href=event_path(event)
+  .event-listing__background
+  .event-listing__content
+    .event-listing__category = event.categories.join(", ")
+    .event-listing__name = event.name
+    .event-listing__description
+    .event-listing__details
+      = event.location.description

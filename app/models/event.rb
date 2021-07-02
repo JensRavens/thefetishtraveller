@@ -35,6 +35,7 @@ class Event < ApplicationRecord
   CATEGORIES = ["bluf", "csd", "culture", "election", "festival", "party", "social"].freeze
 
   has_many :likes, dependent: :destroy
+  has_many :events, dependent: :destroy
   belongs_to :location
 
   scope :published, -> { where("events.publish_at <= NOW()") }
@@ -42,6 +43,7 @@ class Event < ApplicationRecord
   scope :in_future, -> { where("events.end_at >= NOW()") }
   scope :awaiting_review, -> { where(publish_at: nil).in_future }
   scope :chronologic, -> { order(start_at: :asc) }
+  scope :happening_in_month, ->(month) { where("events.start_at > ? AND events.start_at < ?", month.beginning_of_month, month.end_of_month) }
 
   has_many :events, dependent: :destroy
   belongs_to :event, optional: true

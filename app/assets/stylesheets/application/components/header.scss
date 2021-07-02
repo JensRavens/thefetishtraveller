@@ -1,0 +1,146 @@
+.header {
+  position: relative;
+  top: 0;
+  height: 60px;
+  z-index: var(--z-nav);
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  font-family: 'Bebas Neue';
+
+  &--detached {
+    background-color: var(--color-background-dark);
+  }
+
+  .logo {
+    flex: 1 0 0;
+    text-align: center;
+    @media (min-width: $tablet) {
+      text-align: left;
+    }
+  }
+}
+
+.main-menu {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+  font-weight: 600;
+  align-items: center;
+  padding: 0 8px;
+
+  &__spacer {
+    height: 60px;
+    margin-top: -60px;
+    background-color: var(--color-background-dark);
+  }
+
+  &--expanded {
+    .main-menu__mobile {
+      transform: none;
+    }
+
+    .main-menu__switch {
+      &-icon {
+        opacity: 0;
+        transform: translateX(20px);
+      }
+
+      &::before {
+        transform: rotate(45deg);
+      }
+
+      &::after {
+        transform: rotate(-45deg);
+      }
+    }
+  }
+
+  &__mobile {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: 15px;
+    background-color: var(--color-background-dark);
+    transform: translateX(-100%);
+    transition: transform 0.6s;
+    z-index: var(--z-nav + 5);
+
+    a {
+      display: block;
+      font-size: 1.5em;
+      margin: 1em;
+      text-align: center;
+    }
+  }
+
+  &__switch {
+    flex: 0 0 36px;
+    height: 30px;
+    position: relative;
+    z-index: var(--z-nav + 10);
+    cursor: pointer;
+    order: -1;
+
+    &::after {
+      bottom: 0;
+    }
+  }
+
+  &__switch::before,
+  &__switch::after,
+  &__switch-icon {
+    content: '';
+    display: block;
+    position: absolute;
+    height: 4px;
+    background-color: white;
+    width: 100%;
+    transition: all 0.3s;
+    transform-origin: 0 50%;
+  }
+
+  &__switch-icon {
+    top: calc(50% - 2px);
+  }
+
+  &__category--additional {
+    display: none;
+  }
+
+  @media (min-width: $tablet) {
+    align-items: baseline;
+    padding: 0 75px;
+
+    &__mobile {
+      display: none;
+    }
+
+    &__switch {
+      display: none;
+    }
+
+    &__category {
+      display: block !important;
+      flex: 1 0 0;
+      text-align: center;
+
+      &:first-child {
+        text-align: left;
+      }
+
+      &:last-child {
+        text-align: right;
+      }
+
+      > *:not(:last-child) {
+        margin-right: 1rem;
+      }
+    }
+  }
+}
