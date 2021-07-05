@@ -1,0 +1,19 @@
+.spacer {
+  height: 80px;
+
+  @media (min-width: $tablet) {
+    height: 150px;
+  }
+
+  &--no-margin {
+    height: 0;
+  }
+
+  &--small {
+    height: 60px;
+  }
+
+  &--tiny {
+    height: 30px;
+  }
+}

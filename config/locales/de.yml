@@ -1,0 +1,38 @@
+---
+de:
+  components:
+    footer:
+      about_us: About us
+      about_us_text: About us text
+      home: Home
+      imprint: Imprint
+      quick_navigation: Quick navigation
+      submit: Submit
+    menu:
+      events: Events
+      login: Login
+      logout: Logout
+    newsletter:
+      cto: Cto
+      subscribe: Subscribe
+  events:
+    index:
+      all: All
+      subscribe_to_calendar: Subscribe to calendar
+      title: Title
+    show:
+      date: Date
+      happening_here: Happening here
+      location: Location
+      organizer: Organizer
+      other_events_in: Other events in
+      tickets: Tickets
+      website: Website
+  hello: Hello world
+  pages:
+    home:
+      claim: Claim
+      explore_events_now: Explore events now
+      find_more_events: Find more events
+      intro: Intro
+      next_up: Next up

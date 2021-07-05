@@ -198,11 +198,22 @@ GEM
     has_scope (0.8.0)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
+    highline (2.0.3)
     httparty (0.18.1)
       mime-types (~> 3.0)
       multi_xml (>= 0.5.2)
     i18n (1.8.10)
       concurrent-ruby (~> 1.0)
+    i18n-tasks (0.9.34)
+      activesupport (>= 4.0.2)
+      ast (>= 2.1.0)
+      erubi
+      highline (>= 2.0.0)
+      i18n
+      parser (>= 2.2.3.0)
+      rails-i18n
+      rainbow (>= 2.2.2, < 4.0)
+      terminal-table (>= 1.5.1)
     i18n_data (0.13.0)
     icalendar (2.7.1)
       ice_cube (~> 0.16)
@@ -432,6 +443,8 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     temple (0.8.2)
+    terminal-table (3.0.1)
+      unicode-display_width (>= 1.1.1, < 3)
     thor (1.1.0)
     thread_safe (0.3.6)
     thwait (0.2.0)
@@ -492,6 +505,7 @@ DEPENDENCIES
   guard
   guard-minitest
   httparty
+  i18n-tasks
   icalendar (~> 2.4)
   image_processing
   kaminari

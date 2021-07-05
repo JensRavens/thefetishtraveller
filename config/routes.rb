@@ -16,7 +16,8 @@ Rails.application.routes.draw do
   get "logout", to: "application#logout"
   get "sitemaps/*path", to: "pages#sitemap"
   scope "/(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
-    resources :events, only: [:index, :show]
+    resources :events, only: [:index, :show, :new]
     root "pages#home"
+    get "imprint", to: "pages#imprint"
   end
 end

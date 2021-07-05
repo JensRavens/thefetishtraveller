@@ -63,6 +63,7 @@ group :development, :test do
   gem "pry-rails"
   gem "guard"
   gem "guard-minitest"
+  gem "i18n-tasks"
 end
 
 group :development do
