@@ -33,4 +33,7 @@ head
 
   / Assets
   = stylesheet_link_tag "application", media: 'all', 'data-turbo-track': 'reload'
-  / = javascript_pack_tag 'application', 'data-turbo-track': 'reload', async: true
+  = javascript_pack_tag 'application', 'data-turbo-track': 'reload', async: true
+
+  = yield :additional_head_tags if content_for? :additional_head_tags
+

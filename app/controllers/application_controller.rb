@@ -6,20 +6,16 @@ class ApplicationController < ActionController::Base
   skip_forgery_protection
   layout "application"
 
-  def current_user
-    @current_user ||= ::Session.find_by(id: cookies[:sid])&.user
-  end
-
   def authenticate_admin_user!
     redirect_to root_path unless current_user&.admin?
   end
 
-  def logout
-    cookies[:sid] = nil
-    redirect_to root_path
-  end
-
   def active_admin?
     params[:controller] =~ /^admin\//i
+  end
+
+  helper_method :current_user
+  def current_user
+    @current_user ||= session[:user_id].presence.then { |id| User.find_by(id: id) }
   end
 end

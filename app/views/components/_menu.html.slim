@@ -6,7 +6,7 @@ header.header
       a href=events_path = t ".events"
       / a href="" = t ".locations"
     .main-menu__category.main-menu__category--additional
-      - if false
+      - if current_user
         a href=logout_path = t ".logout"
       - else
-        a href=logout_path = t ".login"
+        a href=login_path = t ".login"

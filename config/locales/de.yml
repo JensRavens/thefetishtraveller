@@ -36,3 +36,11 @@ de:
       find_more_events: Find more events
       intro: Intro
       next_up: Next up
+  sessions:
+    new:
+      claim: Claim
+      how: How
+      how_explanation: How explanation
+      intro: Intro
+      why: Why
+      why_explanation: Why explanation

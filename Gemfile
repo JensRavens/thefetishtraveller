@@ -39,11 +39,13 @@ gem "graphql-batch"
 gem "graphiql-rails"
 gem "nokogiri"
 gem "slim-rails"
+gem "jwt"
 
 # Assets
-gem "webpacker", require: false
+gem "webpacker"
 gem "sass-rails"
 gem "autoprefixer-rails"
+gem "turbo-rails"
 
 # Seed Data
 gem "database_cleaner"

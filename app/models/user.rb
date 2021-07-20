@@ -38,6 +38,13 @@ class User < ApplicationRecord
       user.save!
       user
     end
+
+    def authenticate_email(email:, first_name: nil, last_name: nil)
+      user = User.find_or_initialize_by email: email
+      user.assign_attributes first_name: first_name, last_name: last_name unless first_name.nil? || last_name.nil?
+      user.save!
+      user
+    end
   end
 
   def migrate_to(user)

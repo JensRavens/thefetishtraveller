@@ -6,16 +6,18 @@ require "sidekiq-scheduler/web"
 Rails.application.routes.draw do
   post "/graphql", to: "graphql#execute"
   mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
-  ActiveAdmin.routes(self)
   mount Sidekiq::Web => "/sidekiq" # move to admin once we have admin auth
 
   namespace :feed do
     resources :events, only: [:index]
   end
 
-  get "logout", to: "application#logout"
   get "sitemaps/*path", to: "pages#sitemap"
   scope "/(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+    ActiveAdmin.routes(self)
+    get "login", to: "sessions#new"
+    get "logout", to: "sessions#destroy"
+    resources :sessions, only: :create
     resources :events, only: [:index, :show, :new]
     root "pages#home"
     get "imprint", to: "pages#imprint"

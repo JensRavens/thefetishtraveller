@@ -30,6 +30,10 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
+  config.assets.quiet = true
+
+  config.action_controller.asset_host = proc { |source| '//webpack.thefetishtraveller.test' if source.starts_with?('/packs') }
+
   # Store uploaded files on the local file system (see config/storage.yml for options)
   config.active_storage.service = :local
 
@@ -57,4 +61,7 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :letter_opener
 
   Rails.application.routes.default_url_options[:host] = "localhost:3000"
+
+  config.hosts << "thefetishtraveller.test"
+  config.hosts << "a32311c84aa7.ngrok.io"
 end
