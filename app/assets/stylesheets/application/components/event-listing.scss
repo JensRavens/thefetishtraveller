@@ -59,9 +59,10 @@
     }
   }
 
-  @media (min-width: $phablet) {
+  @media (min-width: $desktop) {
+    aspect-ratio: 1;
     &__content {
-      height: 322px;
+      min-height: 322px;
       padding: 50px 40px;
     }
   }

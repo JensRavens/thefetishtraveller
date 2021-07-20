@@ -8,33 +8,12 @@
   > * {
     border: 1px solid white;
     position: relative;
-
-    .gallery__image {
-      cursor: pointer;
-      width: 100%;
-
-      &::before {
-        display: block;
-        content: '';
-        padding-top: 100%;
-      }
-
-      img {
-        position: absolute;
-        object-fit: cover;
-        top: 0;
-        height: 100%;
-        width: 100%;
-      }
-    }
   }
 
-  &--small {
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
   &--single-line {
-    display: flex;
-
+    grid-auto-flow: column;
+    overflow: hidden;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     > * {
       @media (min-width: $phablet) {
         @for $i from 3 through 6 {
