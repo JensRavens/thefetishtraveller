@@ -109,7 +109,9 @@ ActiveAdmin.register Event do
 
   sidebar "Details", only: :show do
     attributes_table_for event do
-      row :slug
+      row :slug do
+        link_to event.slug, event
+      end
       row :series
       row :published do
         status_tag event.published?

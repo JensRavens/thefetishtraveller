@@ -42,4 +42,8 @@ class Location < ApplicationRecord
   def description
     [name, city, country.name].compact.uniq.join(", ")
   end
+
+  def coordinates?
+    lat.present? && lon.present?
+  end
 end

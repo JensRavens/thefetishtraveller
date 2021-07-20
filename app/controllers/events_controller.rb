@@ -13,6 +13,6 @@ class EventsController < ApplicationController
   def show
     @event = Event.friendly.find(params[:id])
     @subevents = @event.events
-    @other_events = @event.location.events
+    @other_events = @event.location.events.published.in_future
   end
 end

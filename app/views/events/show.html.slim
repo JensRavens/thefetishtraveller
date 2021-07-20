@@ -30,23 +30,28 @@
       = @event.ticket_link
   - if @event.description.present?
     = simple_format @event.description
-  - if @event.flyer.attached? && false
+  - if @event.flyer.attached?
     .flyer = image_tag @event.flyer
 - if @event.gallery_images.any?
   .listing.listing--small
     - @event.gallery_images.each do |image|
-    .gallery__image = image_tag image
+      .gallery__image = image_tag image
 .container
   .spacer.spacer--small
   h3 = @event.location.description
+- if @event.location.coordinates?
+  .spacer.spacer--tiny
+  .map data-controller="map"
 - if @subevents.any?
   .spacer.spacer--small
   .container.container--small
     h2 = t ".happening_here", location: @event.location.name
+    .spacer.spacer--small
   .listing = render @subevents
 .spacer.spacer--small
 - if @other_events.any?
   .container.container--small
     h2 = t ".other_events_in", location: @event.location.name
+    .spacer.spacer--small
   .listing = render @other_events
 
