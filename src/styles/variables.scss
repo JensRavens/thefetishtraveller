@@ -17,9 +17,9 @@ $color-shadow: rgba($color-text, 0.3);
 $size-text: 14px;
 
 // font
-$font-heading: 'Uni Sans', 'Open Sans', sans-serif;
-$font-heading-alternate: 'Bebas Neue', 'Open Sans', sans-serif;
-$font-text: 'Open Sans', sans-serif;
+$font-heading: 'Uni Sans', 'Open Sans', Helvetica, Arial, sans-serif;
+$font-heading-alternate: 'Bebas Neue', 'Open Sans', Helvetica, Arial, sans-serif;
+$font-text: 'Open Sans', Helvetica, Arial, sans-serif;
 
 // breakpoints
 $phablet: 600px;

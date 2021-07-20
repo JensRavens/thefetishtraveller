@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_18_113114) do
+ActiveRecord::Schema.define(version: 2021_07_20_225056) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -146,6 +146,8 @@ ActiveRecord::Schema.define(version: 2020_01_18_113114) do
     t.datetime "updated_at", null: false
     t.string "roles", default: [], null: false, array: true
     t.string "facebook_id"
+    t.string "apple_id"
+    t.index ["apple_id"], name: "index_users_on_apple_id", unique: true
     t.index ["email"], name: "index_users_on_email"
     t.index ["facebook_id"], name: "index_users_on_facebook_id"
   end

@@ -13,6 +13,7 @@
 #  updated_at      :datetime         not null
 #  roles           :string           default([]), not null, is an Array
 #  facebook_id     :string
+#  apple_id        :string
 #
 
 class User < ApplicationRecord
@@ -39,10 +40,13 @@ class User < ApplicationRecord
       user
     end
 
-    def authenticate_email(email:, first_name: nil, last_name: nil)
-      user = User.find_or_initialize_by email: email
-      user.assign_attributes first_name: first_name, last_name: last_name unless first_name.nil? || last_name.nil?
-      user.save!
+    def authenticate_apple(id:, email:, first_name: nil, last_name: nil)
+      user = User.find_by(apple_id: id) || User.find_by(email: email) || User.new(id: id)
+      user.apple_id ||= id
+      user.email ||= email
+      user.first_name ||= first_name
+      user.last_name ||= last_name
+      user.save! if user.changed?
       user
     end
   end
