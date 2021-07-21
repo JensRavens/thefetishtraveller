@@ -7,6 +7,9 @@
 .main-menu__spacer
 .spacer
 .container
+  - if @event.pending_review?
+    h3 = t ".pending_review"
+    .spacer
   h2 = @event.name
   - if @event.abstract.present?
     h4 = @event.abstract

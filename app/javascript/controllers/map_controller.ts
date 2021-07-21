@@ -1,5 +1,6 @@
 import { Controller } from 'stimulus';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const google: any;
 
 export default class extends Controller {
@@ -7,8 +8,7 @@ export default class extends Controller {
   declare readonly coordinatesValue: { lat: number; lng: number };
   declare readonly titleValue: string;
 
-  async connect() {
-    console.log('mounting', this.coordinatesValue);
+  async connect(): Promise<void> {
     const map = new google.maps.Map(this.element, {
       center: this.coordinatesValue,
       zoom: 12,

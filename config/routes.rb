@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     get "login", to: "sessions#new"
     get "logout", to: "sessions#destroy"
     resources :sessions, only: :create
-    resources :events, only: [:index, :show, :new]
+    resources :events, only: [:index, :show, :new, :create]
     resources :travel_plans, only: [:show, :create, :destroy]
     root "pages#home"
     get "imprint", to: "pages#imprint"

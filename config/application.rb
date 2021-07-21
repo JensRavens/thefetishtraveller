@@ -12,7 +12,7 @@ Dotenv::Railtie.load
 
 module Thefetishtraveller
   class Application < Rails::Application
-    config.load_defaults 5.2
+    config.load_defaults 6.1
     config.time_zone = "Berlin"
 
     config.action_mailer.default_url_options = { host: ENV["HOST"] } if ENV["HOST"].present?
@@ -20,5 +20,6 @@ module Thefetishtraveller
     config.action_view.form_with_generates_remote_forms = false
 
     config.autoload_paths << Rails.root.join("app", "form_builders")
+    config.assets.paths << Rails.root.join('node_modules')
   end
 end

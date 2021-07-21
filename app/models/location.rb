@@ -26,6 +26,8 @@ class Location < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  scope :alphabetic, -> { order(name: :asc) }
+
   has_many :events, dependent: :restrict_with_exception
   has_and_belongs_to_many :owners, class_name: "User"
 

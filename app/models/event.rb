@@ -58,6 +58,12 @@ class Event < ApplicationRecord
 
   has_many_attached :gallery_images
 
+  validates :name, :start_at, :end_at, presence: true
+
+  def pending_review?
+    publish_at.nil?
+  end
+
   def published?
     publish_at&.past?
   end

@@ -10,6 +10,17 @@ class AwesomeForm < ActionView::Helpers::FormBuilder
     wrap method, super(method, options), "input--text", options
   end
 
+  def text_area(method, options = {})
+    prepare_options method, options
+    wrap method, super(method, options), "input--text", options
+  end
+
+  def image_field(method, options = {})
+    prepare_options method, options
+    options[:accept] = "image/*"
+    wrap method, file_field(method, options), "input--image", options
+  end
+
   def search_field(method, options = {})
     prepare_options method, options
     wrap method, super(method, options), "input--text", options
@@ -32,6 +43,7 @@ class AwesomeForm < ActionView::Helpers::FormBuilder
 
   def datetime_field(method, options = {})
     prepare_options method, options
+    options[:"data-controller"] = "datepicker"
     wrap method, original_text_field(method, options), "input--datetime", options
   end
 
@@ -44,6 +56,19 @@ class AwesomeForm < ActionView::Helpers::FormBuilder
   def check_box(method, options = {})
     prepare_options method, options
     wrap method, super(method, options), "input--checkbox", options
+  end
+
+  def collection_select(method, collection, id_method, display_method, options = {})
+    prepare_options method, options
+    wrap method, super(method, collection, id_method, display_method, options), "input--select", options
+  end
+
+  def collection_check_boxes(method, collection, id_method, display_method, options = {})
+    prepare_options method, options
+    content = super(method, collection, id_method, display_method, options) do |f|
+      content_tag(:div, safe_join([f.check_box, f.label]), class: "input input--checkbox")
+    end
+    wrap method, content, "input--checkboxes", options
   end
 
   def radio_button(method, value, options = {})
