@@ -2,8 +2,11 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  color: inherit;
+  border: none;
   appearance: none;
+  font-size: 1em;
+  font-family: inherit;
+  line-height: inherit;
 }
 
 img {

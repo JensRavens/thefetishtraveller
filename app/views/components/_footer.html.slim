@@ -23,4 +23,4 @@ footer.footer
       a href=new_event_path = t ".submit"
       .footer__locales
         - I18n.available_locales.each do |locale|
-          a class=('active' if I18n.locale == locale) href=url_for(locale: locale)
+          a class=('active' if I18n.locale == locale) href=url_for(locale: locale) = locale

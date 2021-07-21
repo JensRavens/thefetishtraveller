@@ -2,6 +2,7 @@ doctype html
 html lang=I18n.locale
   = render "components/head"
   body
-    = render "components/menu"
-    main = yield
-    = render "components/footer"
+    .page
+      = render "components/menu"
+      main.page__main = yield
+      = render "components/footer"
