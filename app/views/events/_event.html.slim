@@ -6,3 +6,5 @@ a.event-listing href=event_path(event) style="background-image: url(#{image_asse
     .event-listing__description
     .event-listing__details
       = event.location.description
+      br
+      = formatted_event_date event: event

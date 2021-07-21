@@ -13,25 +13,28 @@
     p
       strong = t ".date"
       br
-      = l @event.start_at, format: :short
+      = formatted_event_date event: @event
     p
       strong = t ".location"
       br
       = @event.location.description
-    p
-      strong = t ".website"
-      br
-      = @event.website
-    p
-      strong = t ".organizer"
-      br
-      = @event.organizer_name
-    p
-      strong = t ".tickets"
-      br
-      = @event.ticket_link
+    - if @event.website.present?
+      p
+        strong = t ".website"
+        br
+        = link_to simple_url(@event.website), @event.website, class: "link"
+    - if @event.organizer_name.present?
+      p
+        strong = t ".organizer"
+        br
+        = @event.organizer_name
+    - if @event.ticket_link.present?
+      p
+        strong = t ".tickets"
+        br
+        = @event.ticket_link
     - if current_user&.admin?
-      = link_to "edit", admin_event_path(@event), class: "button"
+      = link_to "edit", admin_event_path(@event), class: "link"
   - if @event.description.present?
     = simple_format @event.description
   - if @event.flyer.attached?
