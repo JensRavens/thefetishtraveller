@@ -7,25 +7,23 @@ head
   / link rel="apple-touch-icon" href=asset_path("app.png")
   meta name="theme-color" content="#D0021B"
   / SEO
-  / - unless @allow_indexing
-  /   meta name="robots" content="noindex"
-  / - title = content_for?(:title) ? yield(:title) : "FlipVinyl"
-  / - description = content_for?(:description) ? yield(:description) : t(".default_description")
-  / - thumbnail_url = nil # content_for?(:thumbnail_url) ? yield(:thumbnail_url) : asset_url("photos/social-share.jpg")
-  / - url = content_for?(:canonical_url) ? yield(:canonical_url) : url_for(only_path: false)
+  - title = content_for?(:title) ? "#{yield(:title)} | The Fetish Traveller" : "The Fetish Traveller"
+  - description = content_for?(:description) ? yield(:description) : t(".default_description")
+  - thumbnail_url = content_for?(:thumbnail_url) ? yield(:thumbnail_url) : nil
+  - url = content_for?(:canonical_url) ? yield(:canonical_url) : url_for(only_path: false)
 
-  / title = title
-  / meta name="description" content=description
+  title = title
+  meta name="description" content=description
   / / = favicon_link_tag asset_path('app.png')
 
-  / meta property="og:title" content=title
-  / meta property="og:description" content=description
-  / meta property="og:type" content="website"
-  / meta property="og:image" content=thumbnail_url
-  / meta property="og:url" content=url
-  / meta property="og:locale" content=I18n.locale
-  / link rel="canonical" href=url
-  / meta name="twitter:card" content="summary"
+  meta property="og:title" content=title
+  meta property="og:description" content=description
+  meta property="og:type" content="website"
+  meta property="og:image" content=thumbnail_url
+  meta property="og:url" content=url
+  meta property="og:locale" content=I18n.locale
+  link rel="canonical" href=url
+  meta name="twitter:card" content="summary"
 
   / Security
   = csrf_meta_tags
