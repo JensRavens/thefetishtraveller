@@ -15,6 +15,8 @@ en:
     newsletter:
       cto: Subscribe now to our newsletter
       subscribe: subscribe
+    head:
+      default_description: Find fetish events all around the globe and connect with like-minded gear heads.
   events:
     index:
       all: All
