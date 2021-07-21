@@ -13,7 +13,6 @@
   &--single-line {
     grid-auto-flow: column;
     overflow: hidden;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     > * {
       @media (min-width: $phablet) {
         @for $i from 3 through 6 {

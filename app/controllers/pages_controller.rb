@@ -2,7 +2,7 @@
 
 class PagesController < ApplicationController
   def home
-    @events = Event.limit(6)
+    @events = Event.published.in_future.chronologic.limit(6)
   end
 
   def sitemap
