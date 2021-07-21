@@ -22,4 +22,6 @@ Rails.application.routes.draw do
     root "pages#home"
     get "imprint", to: "pages#imprint"
   end
+
+  resources :files, only: :show
 end

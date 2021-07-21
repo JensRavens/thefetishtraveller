@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
   def current_user
     @current_user ||= session[:user_id].presence.then { |id| User.find_by(id: id) }
   end
+
+  def message_verifier
+    @message_verifier ||= ActiveSupport::MessageVerifier.new(Rails.application.secrets.secret_key_base)
+  end
 end

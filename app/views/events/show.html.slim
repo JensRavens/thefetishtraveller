@@ -8,7 +8,7 @@
     h4 = @event.abstract
     .spacer--small
   - if @event.hero.attached?
-    p = image_tag @event.hero
+    p = image_tag @event.hero, width: 800
   .meta-box class=("meta-box--floating" if @event.hero.attached?)
     p
       strong = t ".date"
@@ -30,14 +30,16 @@
       strong = t ".tickets"
       br
       = @event.ticket_link
+    - if current_user&.admin?
+      = link_to "edit", admin_event_path(@event), class: "button"
   - if @event.description.present?
     = simple_format @event.description
   - if @event.flyer.attached?
-    .flyer = image_tag @event.flyer
+    .flyer = image_tag @event.flyer, width: 800
 - if @event.gallery_images.any?
   .listing.listing--small
     - @event.gallery_images.each do |image|
-      .gallery__image = image_tag image
+      .gallery__image = image_tag image, width: 350
 .container
   .spacer.spacer--small
   h3 = @event.location.description
@@ -55,5 +57,5 @@
   .container.container--small
     h2 = t ".other_events_in", location: @event.location.name
     .spacer.spacer--small
-  .listing = render @other_events
+  / .listing = render @other_events
 
