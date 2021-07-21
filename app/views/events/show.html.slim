@@ -1,3 +1,5 @@
+- content_for :additional_head_tags do
+  script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqKALdkIndBLVLReuQHzhcXjghXpS5SoE"
 .main-menu__spacer
 .spacer
 .container
@@ -41,7 +43,7 @@
   h3 = @event.location.description
 - if @event.location.coordinates?
   .spacer.spacer--tiny
-  .map data-controller="map"
+  .map data-controller="map" data-map-coordinates-value={lat: @event.location.lat.to_f, lng: @event.location.lon.to_f}.to_json data-map-title-value=@event.location.name
 - if @subevents.any?
   .spacer.spacer--small
   .container.container--small

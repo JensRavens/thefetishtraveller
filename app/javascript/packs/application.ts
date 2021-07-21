@@ -4,3 +4,4 @@ import '@hotwired/turbo-rails';
 Rails.start();
 
 import '../sprinkles/touch';
+import '../controllers';
