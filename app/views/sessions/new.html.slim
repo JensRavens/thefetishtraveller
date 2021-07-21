@@ -18,3 +18,9 @@
   h3 = t ".how"
   p = t ".how_explanation"
   .spacer
+  - if Rails.env.development?
+    h3 DevLogin
+    = form_with url: sessions_path do |f|
+      = f.email_field :email
+      = f.submit "Login"
+    .spacer

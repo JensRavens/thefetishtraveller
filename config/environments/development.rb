@@ -62,6 +62,5 @@ Rails.application.configure do
 
   Rails.application.routes.default_url_options[:host] = "localhost:3000"
 
-  config.hosts << "thefetishtraveller.test"
-  config.hosts << "a32311c84aa7.ngrok.io"
+  config.hosts = nil
 end

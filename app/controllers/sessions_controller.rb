@@ -6,6 +6,23 @@ class SessionsController < ApplicationController
   end
 
   def create
+    user = Rails.env.development? && params[:email].present? ? dev_login : apple_login
+    session[:user_id] = user.id
+    redirect_to root_path
+  end
+
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_path
+  end
+
+  private
+
+  def dev_login
+    User.authenticate_email email: params[:email]
+  end
+
+  def apple_login
     name = params[:user] ? JSON.parse(params[:user])["name"] : {}
     headers = {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -21,13 +38,6 @@ class SessionsController < ApplicationController
     raise StandardError, "Login check failed: #{response.body}" unless response.ok?
 
     token = JWT.decode(response["id_token"], nil, false).first
-    user = User.authenticate_apple id: token["sub"], email: token["email"], first_name: name["firstName"], last_name: name["lastName"]
-    session[:user_id] = user.id
-    redirect_to root_path
-  end
-
-  def destroy
-    session[:user_id] = nil
-    redirect_to root_path
+    User.authenticate_apple id: token["sub"], email: token["email"], first_name: name["firstName"], last_name: name["lastName"]
   end
 end
