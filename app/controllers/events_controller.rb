@@ -2,7 +2,7 @@
 
 class EventsController < ApplicationController
   def index
-    @events = Event.published.in_future.chronologic
+    @events = Event.published.in_future.chronologic.searched(params[:s])
     @months = @events.pluck(:start_at)
       .map { |e| [[e.year, e.month].join("-"), e.strftime("%b %y")] }
       .uniq(&:first).sort_by(&:first)
