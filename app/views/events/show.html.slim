@@ -37,6 +37,12 @@
         strong = t ".tickets"
         br
         = @event.ticket_link
+    - if current_user
+      turbo-frame#like-button
+        - if attends? event: @event
+          = button_to t(".on_my_calendar"), travel_plan_path(event_id: @event.id), method: :delete, class: "like-button active"
+        - else
+          = button_to t(".add_to_calendar"), travel_plans_path(event_id: @event.id), class: "like-button"
     - if current_user&.admin?
       = link_to "edit", admin_event_path(@event), class: "link"
   - if @event.description.present?

@@ -2,7 +2,7 @@
 
 # == Schema Information
 #
-# Table name: likes
+# Table name: travel_plans
 #
 #  id         :uuid             not null, primary key
 #  event_id   :uuid             not null
@@ -11,7 +11,7 @@
 #  updated_at :datetime         not null
 #
 
-class Like < ApplicationRecord
+class TravelPlan < ApplicationRecord
   belongs_to :user
   belongs_to :event
 end

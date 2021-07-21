@@ -4,9 +4,10 @@ header.header
       a href=root_path == "The <em>Fetish</em> Traveller"
     .main-menu__category.main-menu__category--additional
       a href=events_path = t ".events"
-      / a href="" = t ".locations"
     .main-menu__category.main-menu__category--additional
       - if current_user
+        - if current_user.travel_plans.any?
+          a href=travel_plan_path(id: current_user.id) = t ".your_calendar"
         a href=logout_path = t ".logout"
       - else
         a href=login_path = t ".login"

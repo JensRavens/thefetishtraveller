@@ -106,3 +106,6 @@ de:
   calendar:
     heading: Deine Reisepläne
     subscribe: Abbonieren
+  time:
+    formats:
+      month: '%B'

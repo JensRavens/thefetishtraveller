@@ -108,3 +108,6 @@ en:
   calendar:
     heading: Your Travel Plans
     subscribe: Subscribe
+  time:
+    formats:
+      month: '%B'

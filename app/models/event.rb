@@ -34,7 +34,7 @@ class Event < ApplicationRecord
   include DocumentSerializable
   CATEGORIES = ["bluf", "csd", "culture", "election", "festival", "party", "social"].freeze
 
-  has_many :likes, dependent: :destroy
+  has_many :travel_plans, dependent: :delete_all
   has_many :events, dependent: :destroy
   belongs_to :location
 
@@ -91,5 +91,9 @@ class Event < ApplicationRecord
 
   def source_url
     return "https://bluf.com/events/#{bluf_id}" if bluf_id.present?
+  end
+
+  def main_event
+    event || self
   end
 end

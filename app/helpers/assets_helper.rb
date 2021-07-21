@@ -2,6 +2,8 @@
 
 module AssetsHelper
   def image_tag(source, options = {})
+    return nil unless source.present?
+
     if source.is_a?(ActiveStorage::Variant) || source.is_a?(ActiveStorage::Attached) || source.is_a?(ActiveStorage::Attachment)
       attachment = source
       width = options[:width]

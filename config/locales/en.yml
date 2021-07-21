@@ -30,6 +30,8 @@ en:
       other_events_in: Other Events in %{location}
       tickets: Tickets
       website: Website
+      add_to_calendar: Add to Calendar
+      on_my_calendar: On my Calendar
   hello: Hello world
   pages:
     home:
@@ -46,3 +48,9 @@ en:
       intro: Login to save your favorites list, travel plans or submit events.
       why: Why Should I Login?
       why_explanation: If you log in, you can save events to a favorite list and make travel plans. A log in is needed to sync your travel plans across devices. Facebook is used for authentication purposes only - we will never post anything to your timeline without your permission.
+  travel_plans:
+    show:
+      heading: Travel Plans of %{name}
+  time:
+    formats:
+      month: '%B'

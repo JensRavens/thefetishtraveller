@@ -19,8 +19,8 @@
 class User < ApplicationRecord
   has_secure_password validations: false
 
-  has_many :likes, dependent: :destroy
-  has_many :events, through: :likes
+  has_many :travel_plans, dependent: :destroy
+  has_many :events, through: :travel_plans
   has_many :sessions, dependent: :destroy
 
   has_and_belongs_to_many :owned_events, class_name: "Event"
@@ -49,6 +49,10 @@ class User < ApplicationRecord
       user.save! if user.changed?
       user
     end
+
+    def authenticate_email(email:)
+      User.find_or_create_by(email: email)
+    end
   end
 
   def migrate_to(user)
@@ -71,5 +75,9 @@ class User < ApplicationRecord
 
   def name
     [first_name, last_name].presence.join(" ").presence
+  end
+
+  def public_name
+    first_name
   end
 end

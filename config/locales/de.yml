@@ -44,3 +44,6 @@ de:
       intro: Intro
       why: Why
       why_explanation: Why explanation
+  time:
+    formats:
+      month: '%B'
