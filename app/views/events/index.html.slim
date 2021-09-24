@@ -3,13 +3,13 @@
   .container
     h1 = t ".title"
     .hero__addon.stack
-      .event-search = form_with method: :get, builder: AwesomeForm do |f|
+      .event-search = form_with method: :get, builder: AwesomeForm, data: { "turbo-frame": "event-result" } do |f|
         = f.hidden_field :month, value: params[:month]
-        = f.search_field :s, value: params[:s], label: false
-        = f.submit
+        = f.search_field :s, value: params[:s], label: false, data: { controller: "autosubmit" }
       .text-center = t(".subscribe_to_calendar_html", link: feed_events_url(format: :ics, protocol: :webcal))
 .filter-bar
   a.filter-bar__option href=url_for(month: nil) class=("filter-bar__option--selected" if params["month"].blank?) = t ".all"
   - @months.each do |option|
     a.filter-bar__option href=url_for(month: option.first) class=("filter-bar__option--selected" if option.first == params["month"]) = option.second
-.listing = render @events
+= turbo_frame_tag "event-result"
+  .listing = render @events
