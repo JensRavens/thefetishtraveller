@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class EventsController < ApplicationController
+  before_action :require_login, only: [:new, :create]
+
   def index
     @events = Event.published.in_future.chronologic.searched(params[:s])
     @months = @events.pluck(:start_at)
@@ -17,8 +19,6 @@ class EventsController < ApplicationController
   end
 
   def new
-    return redirect_to login_path unless current_user
-
     @event = Event.new
   end
 

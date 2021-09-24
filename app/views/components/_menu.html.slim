@@ -8,6 +8,7 @@ header.header
       - if current_user
         - if current_user.travel_plans.any?
           a href=travel_plan_path(id: current_user.id) = t ".your_calendar"
-        a href=logout_path = t ".logout"
+        a.main-menu__avatar href=profile_path(current_user)
+          img src=current_user.avatar_url
       - else
         a href=login_path = t ".login"

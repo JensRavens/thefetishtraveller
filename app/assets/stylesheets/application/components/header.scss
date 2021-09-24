@@ -31,6 +31,7 @@
   font-weight: 600;
   align-items: center;
   padding: 0 8px;
+  line-height: 1;
 
   &__spacer {
     height: 60px;
@@ -113,8 +114,15 @@
     display: none;
   }
 
+  &__avatar {
+    width: 40px;
+    display: flex;
+    border-radius: 100%;
+    overflow: hidden;
+  }
+
   @media (min-width: $tablet) {
-    align-items: baseline;
+    align-items: center;
     padding: 0 75px;
 
     &__mobile {
@@ -126,20 +134,18 @@
     }
 
     &__category {
-      display: block !important;
+      display: flex !important;
       flex: 1 0 0;
-      text-align: center;
+      gap: 1rem;
+      justify-content: center;
+      align-items: center;
 
       &:first-child {
-        text-align: left;
+        justify-content: flex-start;
       }
 
       &:last-child {
-        text-align: right;
-      }
-
-      > *:not(:last-child) {
-        margin-right: 1rem;
+        justify-content: flex-end;
       }
     }
   }

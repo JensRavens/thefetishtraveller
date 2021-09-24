@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
   def message_verifier
     @message_verifier ||= ActiveSupport::MessageVerifier.new(Rails.application.secrets.secret_key_base)
   end
+
+  def require_login
+    redirect_to login_path unless current_user
+  end
 end

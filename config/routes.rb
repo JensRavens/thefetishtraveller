@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :sessions, only: :create
     resources :events, only: [:index, :show, :new, :create]
     resources :travel_plans, only: [:show, :create, :destroy]
+    resources :profiles, only: :show
     root "pages#home"
     get "imprint", to: "pages#imprint"
   end
