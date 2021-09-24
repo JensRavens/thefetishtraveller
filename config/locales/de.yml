@@ -2,48 +2,54 @@
 de:
   components:
     footer:
-      about_us: About us
-      about_us_text: About us text
+      about_us: Über uns
+      about_us_text: Diese Webseite ist ein unabhängiges non-profit Projekt des Mister Leather Berlin 2018. Kontaktiere mich unter contact@thefetishtraveller.com, um mehr zu erfahren.
       home: Home
-      imprint: Imprint
-      quick_navigation: Quick navigation
-      submit: Submit
+      imprint: Impressum
+      quick_navigation: Schnellnavigation
+      submit: Events übermitteln
     menu:
       events: Events
       login: Login
       logout: Logout
     newsletter:
-      cto: Cto
-      subscribe: Subscribe
+      cto: Jetzt für den Newsletter anmelden
+      subscribe: anmelden
+    head:
+      default_description: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
   events:
     index:
-      all: All
-      subscribe_to_calendar: Subscribe to calendar
-      title: Title
+      all: Alle
+      subscribe_to_calendar_html: Du kannst diesen Kalender auch <a href="%{link}" class="link">hier</a> abonnieren.
+      title: Events
     show:
       date: Date
-      happening_here: Happening here
-      location: Location
-      organizer: Organizer
-      other_events_in: Other events in
+      happening_here: auch hier
+      location: Ort
+      organizer: Veranstalter
+      other_events_in: Andere Events in %{location}
       tickets: Tickets
       website: Website
-  hello: Hello world
+      add_to_calendar: Zum Kalender Hinzufügen
+      on_my_calendar: Auf meinem Kalendar
   pages:
     home:
-      claim: Claim
-      explore_events_now: Explore events now
-      find_more_events: Find more events
-      intro: Intro
-      next_up: Next up
+      claim: Die besten Fetisch Events Weltweit
+      explore_events_now: Jetzt Veranstaltungen erkunden
+      find_more_events: Finde mehr Veranstaltungen
+      intro: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
+      next_up: demnächst
   sessions:
     new:
-      claim: Claim
-      how: How
-      how_explanation: How explanation
-      intro: Intro
-      why: Why
-      why_explanation: Why explanation
+      claim: Personalisiere deine Reiseerfahrung
+      how: Wie kann ich mich einloggen?
+      how_explanation: Derzeit unterstützt diese Seite nur den Login mit Apple. Klicke einfach den Login Button und fang an, Reisepläne zu erstellen.
+      intro: Logge dich ein, um Favoritenlisten, Reisepläne oder neue Veranstaltungen zu erstellen.
+      why: Warum sollte ich mich einloggen?
+      why_explanation: Wenn du dich einloggst, kannst du Veranstaltungen auf deine Favoritenliste setzen, Reisepläne verwalten oder Veranstaltunen einreichen und bearbeiten. Wir benötigen den Login, um deine Daten über mehrere Geräte hinweg zu synchronisieren.
+  travel_plans:
+    show:
+      heading: Reisepläne von %{name}
   time:
     formats:
       month: '%B'
