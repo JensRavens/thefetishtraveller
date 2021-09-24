@@ -1,0 +1,14 @@
+.main-menu__spacer
+= render "header", profile: @profile
+.spacer
+.container
+  = form_with model: @profile, url: profile_path(@profile), builder: AwesomeForm, class: :stack do |f|
+    = f.text_field :slug
+    .line.line--stretch
+      = f.text_field :first_name
+      = f.text_field :last_name
+    = f.email_field :email
+    .line.line--stretch
+      a.button href=profile_path(@profile) = t "general.cancel"
+      = f.submit
+.spacer

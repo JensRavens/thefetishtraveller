@@ -1,0 +1,46 @@
+.profile-header {
+  background-color: var(--color-footer);
+
+  > .container {
+    position: relative;
+  }
+
+  &__content {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    line-height: 1;
+    z-index: 1;
+    position: relative;
+    padding-top: 200px;
+    bottom: -80px;
+  }
+
+  &__avatar {
+    width: 160px;
+    margin-top: -80px;
+  }
+
+  &__name {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    flex: 1;
+  }
+
+  &__background {
+    z-index: 0;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: -8px;
+    right: -8px;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+  }
+}

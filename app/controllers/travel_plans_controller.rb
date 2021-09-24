@@ -2,7 +2,7 @@
 
 class TravelPlansController < ApplicationController
   def show
-    @user = User.find params[:id]
+    @user = User.friendly.find params[:profile_id]
     @events = @user.events.chronologic.scope_if(:in_future, params[:history].nil?).load
   end
 

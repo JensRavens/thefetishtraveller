@@ -14,9 +14,12 @@
 #  roles           :string           default([]), not null, is an Array
 #  facebook_id     :string
 #  apple_id        :string
+#  slug            :string
 #
 
 class User < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   has_secure_password validations: false
 
   has_many :travel_plans, dependent: :destroy
@@ -26,7 +29,13 @@ class User < ApplicationRecord
   has_and_belongs_to_many :owned_events, class_name: "Event"
   has_and_belongs_to_many :owned_locations, class_name: "Location"
 
+  has_one_attached :hero
+
   scope :guest, -> { where(email: nil) }
+
+  validates :slug, :email, presence: true, uniqueness: { case_sensitive: false }, on: :profile_edit
+  validates :first_name, :last_name, presence: true, on: :profile_edit
+
 
   class << self
     def authenticate_facebook(token)
@@ -78,7 +87,7 @@ class User < ApplicationRecord
   end
 
   def public_name
-    first_name
+    slug.presence || first_name
   end
 
   def avatar_url(size = 80)

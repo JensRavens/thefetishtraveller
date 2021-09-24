@@ -9,6 +9,7 @@
   cursor: pointer;
   z-index: 0;
   transition: color 0.3s;
+  text-align: center;
 
   &::before {
     content: '';

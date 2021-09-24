@@ -1,10 +1,4 @@
-- title @profile.name
+- title @profile.public_name
 
 .main-menu__spacer
-.spacer
-.container
-  h2 = @profile.name
-  .spacer
-  .text-right
-    a.button href=logout_path = t "components.menu.logout"
-  .spacer
+= render "header", profile: @profile
