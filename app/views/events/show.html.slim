@@ -5,11 +5,12 @@
   script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqKALdkIndBLVLReuQHzhcXjghXpS5SoE"
 
 .main-menu__spacer
+- if @event.pending_review?
+  .status-banner: .container: .stack.stack--small
+    strong = t ".pending_review"
+    div = t ".pending_review_explanation"
 .spacer
 .container
-  - if @event.pending_review?
-    h3 = t ".pending_review"
-    .spacer
   h2 = @event.name
   - if @event.abstract.present?
     h4 = @event.abstract
