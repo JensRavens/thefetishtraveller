@@ -17,11 +17,14 @@ class EventsController < ApplicationController
   end
 
   def new
+    return redirect_to login_path unless current_user
+
     @event = Event.new
   end
 
   def create
     @event = Event.new event_params
+    current_user && @event.owner_ids = [current_user.id]
     if @event.save
       redirect_to @event
     else

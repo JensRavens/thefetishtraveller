@@ -40,6 +40,7 @@ gem "graphiql-rails"
 gem "nokogiri"
 gem "slim-rails"
 gem "jwt"
+gem "pundit"
 
 # Assets
 gem "webpacker"
