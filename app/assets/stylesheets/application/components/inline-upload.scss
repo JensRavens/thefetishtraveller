@@ -1,0 +1,29 @@
+.inline-upload {
+  z-index: 99;
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background-color: white;
+  overflow: hidden;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    appearance: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+  }
+
+  &__ref {
+    position: relative;
+  }
+}

@@ -1,16 +1,24 @@
 import { Controller } from 'stimulus';
 
 export default class extends Controller {
+  static values = { event: String };
+
+  declare readonly eventValue: string;
+
   connect(): void {
-    console.log('connect', this.element);
-    this.element.addEventListener('input', this.onChange);
+    this.element.addEventListener(this.eventName, this.onChange);
   }
 
   disconnect(): void {
-    this.element.removeEventListener('input', this.onChange);
+    this.element.removeEventListener(this.eventName, this.onChange);
+  }
+
+  private get eventName(): string {
+    return this.eventValue || 'input';
   }
 
   private onChange(event: InputEvent): void {
+    console.log('input changed');
     (event.target as HTMLInputElement).form.requestSubmit();
   }
 }

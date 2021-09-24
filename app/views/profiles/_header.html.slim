@@ -1,9 +1,12 @@
+- edit ||= false
 .profile-header
   .container
-    .profile-header__background
+    .profile-header__background.inline-upload__ref style="background-image:url(#{image_asset_url(@profile.hero, width: 800)});"
+      = render "components/inline_upload", model: @profile, url: profile_path(@profile), method: :hero if edit
     .profile-header__content
-      a.profile-header__avatar href=profile_path(profile)
-        img.avatar.avatar--bordered src=profile.avatar_url(200)
+      .profile-header__avatar.inline-upload__ref
+        = render "components/inline_upload", model: @profile, url: profile_path(@profile), method: :avatar if edit
+        = image_tag @profile.avatar_image, class: "avatar avatar--bordered", width: 160
       .profile-header__name = profile.public_name
       .profile-header__actions
         - if policy(profile).edit?

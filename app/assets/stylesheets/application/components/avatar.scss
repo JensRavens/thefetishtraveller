@@ -2,6 +2,7 @@
   border-radius: 100%;
   overflow: hidden;
   aspect-ratio: 1;
+  object-fit: cover;
 
   &--bordered {
     border: 5px solid white;

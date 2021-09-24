@@ -29,6 +29,7 @@ class User < ApplicationRecord
   has_and_belongs_to_many :owned_events, class_name: "Event"
   has_and_belongs_to_many :owned_locations, class_name: "Location"
 
+  has_one_attached :avatar
   has_one_attached :hero
 
   scope :guest, -> { where(email: nil) }
@@ -90,8 +91,10 @@ class User < ApplicationRecord
     slug.presence || first_name
   end
 
-  def avatar_url(size = 80)
+  def avatar_image
+    return avatar if avatar.attached?
+
     hash = Digest::MD5.hexdigest(email.to_s.downcase)
-    "https://www.gravatar.com/avatar/#{hash}?d=mm&s=#{size}"
+    "https://www.gravatar.com/avatar/#{hash}?d=mm&s=#{200}"
   end
 end

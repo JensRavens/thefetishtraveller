@@ -1,5 +1,5 @@
 .main-menu__spacer
-= render "header", profile: @profile
+= render "header", profile: @profile, edit: true
 .spacer
 .container
   = form_with model: @profile, url: profile_path(@profile), builder: AwesomeForm, class: :stack do |f|
