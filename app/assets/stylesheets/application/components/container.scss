@@ -1,7 +1,7 @@
 .container {
   max-width: 1024px;
   margin: 0 8px;
-  margin: 0 unquote('max(env(safe-area-inset-right), 8px)');
+  margin: 0 var(--size-safe-padding);
 
   &:after {
     display: block;

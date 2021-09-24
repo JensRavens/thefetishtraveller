@@ -10,43 +10,15 @@ $widescreen-large: 1800px;
 $widescreen-xlarge: 2200px;
 
 :root {
-  // colors
-  --color-text: #272d3b;
-  --color-text-muted: #a8aaad;
-  --color-text-label: #a8aaad;
-  --color-text-muted-dark-background: #686d72;
-
-  --color-warning: #ff5167;
-  --color-background: #ffffff;
-  --color-background-dark: #191d24;
-  --color-background-dark-alternate: #17191d;
-  --color-tint: #d0021b;
-  --color-warn: #f39c12;
-  --color-border: #e5e5e5;
-  --color-footer: #1d2024;
-  --color-shadow: rgba(--color-text, 0.3);
-
-  // sizes
-  --size-text: 14px;
-
-  // font
-  --font-heading: 'Uni Sans', 'Open Sans', sans-serif;
-  --font-heading-alternate: 'Bebas Neue', 'Open Sans', sans-serif;
-  --font-text: 'Open Sans', sans-serif;
-
-  // breakpoints
   --phablet: $phablet;
   --tablet: $tablet;
   --desktop: $desktop;
   --widescreen: $widescreen;
   --widescreen-large: $widescreen-large;
   --widescreen-xlarge: $widescreen-xlarge;
-
-  // z values
-
-  --z-nav: 900;
 }
 
+@import 'application/variables.css';
 @import 'application/util/reset';
 @import 'application/util/typography';
 @import 'application/components/*';

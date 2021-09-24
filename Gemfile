@@ -4,7 +4,7 @@ source "https://rubygems.org"
 ruby "2.7.3"
 
 # Core
-gem "rails", "6.1.4"
+gem "rails", "6.1.4.1"
 gem "puma"
 
 # Database
