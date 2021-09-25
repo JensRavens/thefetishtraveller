@@ -37,7 +37,6 @@ class User < ApplicationRecord
   validates :slug, :email, presence: true, uniqueness: { case_sensitive: false }, on: :profile_edit
   validates :first_name, :last_name, presence: true, on: :profile_edit
 
-
   class << self
     def authenticate_facebook(token)
       response = HTTParty.get "https://graph.facebook.com/me", query: { fields: "id,first_name,last_name,email", access_token: token }
@@ -95,6 +94,6 @@ class User < ApplicationRecord
     return avatar if avatar.attached?
 
     hash = Digest::MD5.hexdigest(email.to_s.downcase)
-    "https://www.gravatar.com/avatar/#{hash}?d=mm&s=#{200}"
+    "https://www.gravatar.com/avatar/#{hash}?d=mm&s=200"
   end
 end

@@ -20,6 +20,6 @@ module Thefetishtraveller
     config.action_view.form_with_generates_remote_forms = false
 
     config.autoload_paths << Rails.root.join("app", "form_builders")
-    config.assets.paths << Rails.root.join('node_modules')
+    config.assets.paths << Rails.root.join("node_modules")
   end
 end

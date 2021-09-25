@@ -2,7 +2,7 @@
 
 module AssetsHelper
   def image_tag(source, options = {})
-    return nil unless source.present?
+    return nil if source.blank?
 
     if source.is_a?(ActiveStorage::Variant) || source.is_a?(ActiveStorage::Attached) || source.is_a?(ActiveStorage::Attachment)
       attachment = source
@@ -16,7 +16,7 @@ module AssetsHelper
   end
 
   def image_asset_url(source, width: nil, height: nil)
-    return unless source.present?
+    return if source.blank?
 
     options = {}
     if width

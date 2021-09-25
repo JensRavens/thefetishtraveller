@@ -15,7 +15,7 @@ module I18n
   thread_mattr_accessor :debug
 
   class << self
-    alias_method :old_translate, :translate
+    alias old_translate translate
     def translate(key, options = {})
       key = key.to_s.downcase
       untranslated = UNTRANSLATED_SCOPES.any? { |e| key.include? e }
@@ -26,7 +26,7 @@ module I18n
       options.reverse_merge!(default: old_translate(key, **options.merge(locale: :de))) if untranslated
       old_translate(key, **options)
     end
-    alias_method :t, :translate
+    alias t translate
 
     def debug?
       debug

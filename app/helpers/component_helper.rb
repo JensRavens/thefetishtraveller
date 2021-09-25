@@ -6,6 +6,6 @@ module ComponentHelper
   end
 
   def attends?(event:)
-    current_user && current_user.events.include?(event)
+    current_user&.events&.include?(event)
   end
 end

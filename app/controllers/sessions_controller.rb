@@ -25,10 +25,10 @@ class SessionsController < ApplicationController
   def apple_login
     name = params[:user] ? JSON.parse(params[:user])["name"] : {}
     headers = {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': "application/x-www-form-urlencoded"
     }
     form = {
-      grant_type: 'authorization_code',
+      grant_type: "authorization_code",
       code: params[:code],
       client_id: "com.thefetishtraveller.web",
       client_secret: ENV.fetch("APPLE_LOGIN_CLIENT_SECRET"),

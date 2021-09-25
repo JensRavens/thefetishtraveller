@@ -2,7 +2,7 @@
 
 module TextHelper
   def simple_url(url)
-    url.gsub(/https?\:\/\/(www\.)?/, '').split('/').first
+    url.gsub(/https?:\/\/(www\.)?/, "").split("/").first
   end
 
   def formatted_event_date(event:)

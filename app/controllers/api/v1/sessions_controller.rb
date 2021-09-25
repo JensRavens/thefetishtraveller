@@ -29,7 +29,7 @@ module API
           current_session.update! user: user
           render json: current_session
         else
-          head 422
+          head :unprocessable_entity
         end
       end
     end

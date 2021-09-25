@@ -90,7 +90,7 @@ class Event < ApplicationRecord
     end
     event.summary = name
     event.description = abstract if abstract.present?
-    event.url = "https://#{ENV.fetch('HOST') { 'thefetishtraveller.com' }}/events/#{slug}"
+    event.url = "https://#{ENV.fetch('HOST', 'thefetishtraveller.com')}/events/#{slug}"
     event.geo = [location.lat, location.lon] if location&.lat && location&.lon
     event.location = location&.description
     event

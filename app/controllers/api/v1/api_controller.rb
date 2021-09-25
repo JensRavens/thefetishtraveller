@@ -33,7 +33,7 @@ module API
       end
 
       def not_authorized
-        head 403
+        head :forbidden
       end
     end
   end
