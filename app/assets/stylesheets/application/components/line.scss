@@ -1,12 +1,9 @@
 .line {
   display: flex;
+  gap: 16px;
 
   &--stretch > * {
     flex: 1 0 0;
-  }
-
-  > * + * {
-    margin-left: 16px;
   }
 
   &--center {
