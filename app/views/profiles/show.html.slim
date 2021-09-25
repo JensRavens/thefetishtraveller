@@ -6,4 +6,4 @@
 
 h2 = t ".next_travels"
 - if @travel_plans.any?
-  .listing = render @travel_plans
+  = render "components/calendar", events: @travel_plans
