@@ -18,7 +18,6 @@ export default class extends Controller {
   }
 
   private onChange(event: InputEvent): void {
-    console.log('input changed');
     (event.target as HTMLInputElement).form.requestSubmit();
   }
 }

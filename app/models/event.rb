@@ -61,6 +61,14 @@ class Event < ApplicationRecord
 
   validates :name, :start_at, :end_at, presence: true
 
+  [:start_at, :end_at].map do |attribute|
+    define_method attribute do
+      return self[attribute] unless location
+
+      self[attribute].in_time_zone(location.timezone)
+    end
+  end
+
   def pending_review?
     publish_at.nil?
   end

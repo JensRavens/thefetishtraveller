@@ -41,6 +41,9 @@ Metrics:
 Rails/HasAndBelongsToMany:
   Enabled: false
 
+Rails/CreateTableWithTimestamps:
+  Enabled: false
+
 Layout/ParameterAlignment:
   EnforcedStyle: with_fixed_indentation
 

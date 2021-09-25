@@ -8,7 +8,6 @@ module TextHelper
   def formatted_event_date(event:)
     date = event.start_at
     date2 = event.end_at
-    timezone = event.location.timezone
     full_day = event.full_day
 
     return formatted_date(date, full_day: full_day) if date2.nil? || date.to_date == date2.to_date

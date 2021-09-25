@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     @months = @events.pluck(:start_at)
       .map { |e| [[e.year, e.month].join("-"), e.strftime("%b %y")] }
       .uniq(&:first).sort_by(&:first)
-    month = params[:month].presence&.split("-")&.then { |year, month| Date.new(year.to_i, month.to_i, 1) }
+    month = params[:month].presence&.split("-")&.then { |year, m| Date.new(year.to_i, m.to_i, 1) }
     @events = @events.happening_in_month(month) if month
   end
 

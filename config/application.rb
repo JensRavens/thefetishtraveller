@@ -19,7 +19,7 @@ module Thefetishtraveller
     config.active_job.queue_adapter = :sidekiq
     config.action_view.form_with_generates_remote_forms = false
 
-    config.autoload_paths << Rails.root.join("app", "form_builders")
+    config.autoload_paths << Rails.root.join("app/form_builders")
     config.assets.paths << Rails.root.join("node_modules")
   end
 end
