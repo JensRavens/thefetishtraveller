@@ -31,8 +31,11 @@
     margin-right: -8px;
     background-position: center;
     background-size: cover;
-    background-color: var(--color-footer);
     height: 200px;
+  }
+
+  &__backdrop {
+    background-color: var(--color-footer);
   }
 
   &__actions {

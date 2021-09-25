@@ -2,3 +2,8 @@
 
 .main-menu__spacer
 = render "header", profile: @profile
+.spacer
+
+h2 = t ".next_travels"
+- if @travel_plans.any?
+  .listing = render @travel_plans

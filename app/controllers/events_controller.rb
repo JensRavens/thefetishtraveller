@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :require_login, only: [:new, :create]
 
   def index
-    @events = Event.published.in_future.chronologic.searched(params[:s])
+    @events = Event.listed.searched(params[:s])
     @months = @events.pluck(:start_at)
       .map { |e| [[e.year, e.month].join("-"), e.strftime("%b %y")] }
       .uniq(&:first).sort_by(&:first)
@@ -15,7 +15,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.friendly.find(params[:id])
     @subevents = @event.events.chronologic
-    @other_events = @event.location.events.published.in_future.chronologic
+    @other_events = @event.location.events.listed
   end
 
   def new

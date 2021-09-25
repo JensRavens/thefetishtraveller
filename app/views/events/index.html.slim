@@ -11,5 +11,5 @@
   a.filter-bar__option href=url_for(month: nil) class=("filter-bar__option--selected" if params["month"].blank?) = t ".all"
   - @months.each do |option|
     a.filter-bar__option href=url_for(month: option.first) class=("filter-bar__option--selected" if option.first == params["month"]) = option.second
-= turbo_frame_tag "event-result"
+= turbo_frame_tag "event-result", target: "_top"
   .listing = render @events

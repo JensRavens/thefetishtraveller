@@ -45,6 +45,7 @@ class Event < ApplicationRecord
   scope :chronologic, -> { order(start_at: :asc) }
   scope :happening_in_month, ->(month) { where("events.start_at > ? AND events.start_at < ?", month.beginning_of_month, month.end_of_month) }
   scope :searched, ->(term) { where("events.name ILIKE ?", "%#{term}%") if term.present? }
+  scope :listed, -> { published.in_future.chronologic }
 
   has_many :events, dependent: :destroy
   belongs_to :event, optional: true

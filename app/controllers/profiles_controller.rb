@@ -2,17 +2,16 @@
 
 class ProfilesController < ApplicationController
   before_action :require_login, only: :show
+  before_action :load_profile
 
   def show
-    @profile = current_user
+    @travel_plans = @profile.events.listed.load
   end
 
   def edit
-    @profile = authorize current_user
   end
 
   def update
-    @profile = authorize current_user
     @profile.assign_attributes user_params
     if @profile.save context: :profile_edit
       redirect_to profile_path(@profile)
@@ -22,6 +21,10 @@ class ProfilesController < ApplicationController
   end
 
   private
+
+  def load_profile
+    @profile = authorize User.friendly.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:slug, :first_name, :last_name, :email, :avatar, :hero)

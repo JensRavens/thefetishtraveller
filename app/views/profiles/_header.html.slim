@@ -1,8 +1,9 @@
 - edit ||= false
 .profile-header
-  .container
+  .profile-header__backdrop: .container
     .profile-header__background.inline-upload__ref style="background-image:url(#{image_asset_url(@profile.hero, width: 800)});"
       = render "components/inline_upload", model: @profile, url: profile_path(@profile), method: :hero if edit
+  .container
     .profile-header__content
       .profile-header__avatar.inline-upload__ref
         = render "components/inline_upload", model: @profile, url: profile_path(@profile), method: :avatar if edit
