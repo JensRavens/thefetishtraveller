@@ -1,25 +1,21 @@
 .profile-header {
-  background-color: var(--color-footer);
-
   > .container {
     position: relative;
   }
 
   &__content {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 30px;
     line-height: 1;
     z-index: 1;
     position: relative;
-    padding-top: 200px;
-    bottom: -80px;
+    margin-top: -80px;
   }
 
   &__avatar {
     width: 160px;
-    margin-top: -80px;
-    position: relative;
   }
 
   &__name {
@@ -31,17 +27,28 @@
   &__background {
     z-index: 0;
     display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: -8px;
-    right: -8px;
+    margin-left: -8px;
+    margin-right: -8px;
     background-position: center;
     background-size: cover;
+    background-color: var(--color-footer);
+    height: 200px;
   }
 
   &__actions {
     display: flex;
     gap: 8px;
+  }
+
+  @media (min-width: $tablet) {
+    &__avatar {
+      margin-top: -80px;
+    }
+
+    &__content {
+      padding-top: 80px;
+      align-items: center;
+      flex-direction: row;
+    }
   }
 }
