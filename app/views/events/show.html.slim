@@ -3,6 +3,7 @@
 - thumbnail @event.hero
 - content_for :additional_head_tags do
   script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqKALdkIndBLVLReuQHzhcXjghXpS5SoE"
+- hero = @event.header.presence || @event.hero.presence
 
 .main-menu__spacer
 - if @event.pending_review?
@@ -15,9 +16,9 @@
   - if @event.abstract.present?
     h4 = @event.abstract
     .spacer--small
-  - if @event.hero.attached?
-    p = image_tag @event.hero, width: 800
-  .meta-box class=("meta-box--floating" if @event.hero.attached?)
+  - if hero
+    p = image_tag hero, width: 800
+  .meta-box class=("meta-box--floating" if hero)
     p
       strong = t ".date"
       br
