@@ -42,6 +42,7 @@ ActiveAdmin.register Event do
     column :attendance do |event|
       event.travel_plans.size
     end
+    column :series
     actions
   end
 
