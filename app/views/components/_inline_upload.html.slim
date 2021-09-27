@@ -1,0 +1,2 @@
+= form_with model: model, url: url, class: "inline-upload" do |f|
+  = f.file_field method, accept: "image/*", "data-controller": :autosubmit, "data-autosubmit-event-value": "change"

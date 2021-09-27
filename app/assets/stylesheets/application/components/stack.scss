@@ -1,0 +1,21 @@
+.stack {
+  display: grid;
+  gap: 16px;
+
+  // Prevent grid overflowing its container
+  & > * {
+    min-width: 0;
+  }
+
+  &--small {
+    gap: 8px;
+  }
+
+  &--medium {
+    gap: 24px;
+  }
+
+  &--large {
+    gap: 32px;
+  }
+}

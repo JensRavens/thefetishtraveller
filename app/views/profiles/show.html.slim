@@ -1,0 +1,9 @@
+- title @profile.public_name
+
+.main-menu__spacer
+= render "header", profile: @profile
+.spacer
+
+h2 = t ".next_travels"
+- if @travel_plans.any?
+  = render "components/calendar", events: @travel_plans

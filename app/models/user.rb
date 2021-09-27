@@ -13,19 +13,29 @@
 #  updated_at      :datetime         not null
 #  roles           :string           default([]), not null, is an Array
 #  facebook_id     :string
+#  apple_id        :string
+#  slug            :string
 #
 
 class User < ApplicationRecord
+  extend FriendlyId
+  friendly_id :name, use: :slugged
   has_secure_password validations: false
 
-  has_many :likes, dependent: :destroy
-  has_many :events, through: :likes
+  has_many :travel_plans, dependent: :destroy
+  has_many :events, through: :travel_plans
   has_many :sessions, dependent: :destroy
 
   has_and_belongs_to_many :owned_events, class_name: "Event"
   has_and_belongs_to_many :owned_locations, class_name: "Location"
 
+  has_one_attached :avatar
+  has_one_attached :hero
+
   scope :guest, -> { where(email: nil) }
+
+  validates :slug, :email, presence: true, uniqueness: { case_sensitive: false }, on: :profile_edit
+  validates :first_name, :last_name, presence: true, on: :profile_edit
 
   class << self
     def authenticate_facebook(token)
@@ -37,6 +47,20 @@ class User < ApplicationRecord
       user.assign_attributes email: data.email, first_name: data.first_name, last_name: data.last_name
       user.save!
       user
+    end
+
+    def authenticate_apple(id:, email:, first_name: nil, last_name: nil)
+      user = User.find_by(apple_id: id) || User.find_by(email: email) || User.new(id: id)
+      user.apple_id ||= id
+      user.email ||= email
+      user.first_name ||= first_name
+      user.last_name ||= last_name
+      user.save! if user.changed?
+      user
+    end
+
+    def authenticate_email(email:)
+      User.find_or_create_by(email: email)
     end
   end
 
@@ -60,5 +84,16 @@ class User < ApplicationRecord
 
   def name
     [first_name, last_name].presence.join(" ").presence
+  end
+
+  def public_name
+    slug.presence || first_name
+  end
+
+  def avatar_image
+    return avatar if avatar.attached?
+
+    hash = Digest::MD5.hexdigest(email.to_s.downcase)
+    "https://www.gravatar.com/avatar/#{hash}?d=mm&s=200"
   end
 end

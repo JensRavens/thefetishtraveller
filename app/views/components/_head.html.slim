@@ -1,0 +1,37 @@
+head
+  meta charset="UTF-8"
+
+  / WebApp
+  meta name="viewport" content="width=device-width, initial-scale = 1.0, viewport-fit=cover"
+  / link rel="manifest" href=manifest_path
+  / link rel="apple-touch-icon" href=asset_path("app.png")
+  meta name="theme-color" content="#191d24"
+  / SEO
+  - title = content_for?(:title) ? "#{yield(:title)} | The Fetish Traveller" : "The Fetish Traveller"
+  - description = content_for?(:description) ? yield(:description) : t(".default_description")
+  - thumbnail_url = content_for?(:thumbnail_url) ? yield(:thumbnail_url) : nil
+  - url = content_for?(:canonical_url) ? yield(:canonical_url) : url_for(only_path: false)
+
+  title = title
+  meta name="description" content=description
+  / / = favicon_link_tag asset_path('app.png')
+
+  meta property="og:title" content=title
+  meta property="og:description" content=description
+  meta property="og:type" content="website"
+  meta property="og:image" content=thumbnail_url
+  meta property="og:url" content=url
+  meta property="og:locale" content=I18n.locale
+  link rel="canonical" href=url
+  meta name="twitter:card" content="summary"
+
+  / Security
+  = csrf_meta_tags
+  = csp_meta_tag
+
+  / Assets
+  = stylesheet_link_tag "application", media: 'all', 'data-turbo-track': 'reload'
+  = javascript_pack_tag 'application', 'data-turbo-track': 'reload', async: true
+
+  = yield :additional_head_tags if content_for? :additional_head_tags
+

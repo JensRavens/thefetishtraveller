@@ -26,6 +26,8 @@ class Location < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+  scope :alphabetic, -> { order(name: :asc) }
+
   has_many :events, dependent: :restrict_with_exception
   has_and_belongs_to_many :owners, class_name: "User"
 
@@ -41,5 +43,9 @@ class Location < ApplicationRecord
 
   def description
     [name, city, country.name].compact.uniq.join(", ")
+  end
+
+  def coordinates?
+    lat.present? && lon.present?
   end
 end

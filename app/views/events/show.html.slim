@@ -1,0 +1,78 @@
+- title @event.name
+- description @event.abstract
+- thumbnail @event.hero
+- content_for :additional_head_tags do
+  script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqKALdkIndBLVLReuQHzhcXjghXpS5SoE"
+
+.main-menu__spacer
+- if @event.pending_review?
+  .status-banner: .container: .stack.stack--small
+    strong = t ".pending_review"
+    div = t ".pending_review_explanation"
+.spacer
+.container
+  h2 = @event.name
+  - if @event.abstract.present?
+    h4 = @event.abstract
+    .spacer--small
+  - if @event.hero.attached?
+    p = image_tag @event.hero, width: 800
+  .meta-box class=("meta-box--floating" if @event.hero.attached?)
+    p
+      strong = t ".date"
+      br
+      = formatted_event_date event: @event
+    p
+      strong = t ".location"
+      br
+      = @event.location.description
+    - if @event.website.present?
+      p
+        strong = t ".website"
+        br
+        = link_to simple_url(@event.website), @event.website, class: "link"
+    - if @event.organizer_name.present?
+      p
+        strong = t ".organizer"
+        br
+        = @event.organizer_name
+    - if @event.ticket_link.present?
+      p
+        strong = t ".tickets"
+        br
+        = @event.ticket_link
+    - if current_user && policy(@event).travel?
+      turbo-frame#like-button
+        - if attends? event: @event
+          = button_to t(".on_my_calendar"), travel_plan_path(event_id: @event.id), method: :delete, class: "like-button active"
+        - else
+          = button_to t(".add_to_calendar"), travel_plans_path(event_id: @event.id), class: "like-button"
+    - if policy(@event).edit?
+      = link_to "edit", admin_event_path(@event), class: "link"
+  - if @event.description.present?
+    = simple_format @event.description
+  - if @event.flyer.attached?
+    .flyer = image_tag @event.flyer, width: 800
+- if @event.gallery_images.any?
+  .listing.listing--small
+    - @event.gallery_images.each do |image|
+      .gallery__image = image_tag image, width: 350
+.container
+  .spacer.spacer--small
+  h3 = @event.location.description
+- if @event.location.coordinates?
+  .spacer.spacer--tiny
+  .map data-controller="map" data-map-coordinates-value={lat: @event.location.lat.to_f, lng: @event.location.lon.to_f}.to_json data-map-title-value=@event.location.name
+- if @subevents.any?
+  .spacer.spacer--small
+  .container.container--small
+    h2 = t ".happening_here", location: @event.location.name
+    .spacer.spacer--small
+  .listing = render @subevents
+.spacer.spacer--small
+- if @other_events.any?
+  .container.container--small
+    h2 = t ".other_events_in", location: @event.location.name
+    .spacer.spacer--small
+  .listing = render @other_events
+
