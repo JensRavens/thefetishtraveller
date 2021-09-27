@@ -31,6 +31,7 @@ yarn-debug.log*
 # Build files in public
 /public/*.css
 /public/*.js
+!/public/serviceworker.js
 /public/index.html
 /public/*.woff2
 /public/*.jpg
