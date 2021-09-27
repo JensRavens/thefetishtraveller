@@ -5,7 +5,3 @@ Rails.start();
 
 import '../sprinkles/touch';
 import '../controllers';
-
-if (navigator.serviceWorker) {
-  navigator.serviceWorker.register('/serviceworker.js');
-}
