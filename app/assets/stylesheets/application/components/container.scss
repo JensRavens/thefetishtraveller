@@ -1,0 +1,23 @@
+.container {
+  max-width: 1024px;
+  margin: 0 8px;
+  margin: 0 var(--size-safe-padding);
+
+  &:after {
+    display: block;
+    content: '';
+    clear: both;
+  }
+
+  @media (min-width: 1024px + 16px) {
+    margin: 0 auto;
+  }
+
+  &--small {
+    max-width: 800px;
+
+    @media (min-width: 800px + 16px) {
+      margin: 0 auto;
+    }
+  }
+}

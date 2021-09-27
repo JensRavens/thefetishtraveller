@@ -1,5 +1,5 @@
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 2.7
   DisplayCopNames: true
   DisplayStyleGuide: true
   Exclude:
@@ -9,7 +9,6 @@ AllCops:
     - 'bin/**/*'
 
 require:
-  - rubocop/rspec/focused
   - rubocop-rails
 
 Bundler/OrderedGems:
@@ -17,9 +16,6 @@ Bundler/OrderedGems:
 
 Lint/AmbiguousBlockAssociation:
   Enabled: false
-
-RSpec/Focused:
-  Enabled: true
 
 Rails:
   Enabled: true
@@ -43,6 +39,9 @@ Metrics:
   Enabled: false
 
 Rails/HasAndBelongsToMany:
+  Enabled: false
+
+Rails/CreateTableWithTimestamps:
   Enabled: false
 
 Layout/ParameterAlignment:

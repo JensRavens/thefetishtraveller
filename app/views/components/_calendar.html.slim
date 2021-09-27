@@ -1,0 +1,26 @@
+- allow_history ||= false
+- groups = events.group_by { |e| e.start_at.beginning_of_month }
+.calendar
+  .spacer
+  .calendar__line
+  - groups.each do |date, events|
+    section.calendar__section
+      .calendar__month
+        .calendar__timeline
+          .calendar__date = l date, format: :month
+          .calendar__year = date.year
+      .container.container--small
+        - events.group_by(&:main_event).each do |event, event_group|
+          - subevents = event_group - [event]
+          a href=event_path(event)
+            .calendar__event
+              = image_tag event.hero, size: 800, class: "calendar__event__image"
+              .calendar__event__details
+                h2 = event.name
+                .calendar__event__date = formatted_event_date event: event
+                - subevents.each do |subevent|
+                  p #{subevent.name}: #{formatted_event_date event: subevent}
+  .spacer
+  - if allow_history && params[:history].blank?
+    .container.container--small = link_to t(".show_history"), url_for(history: true), class: "button"
+    .spacer

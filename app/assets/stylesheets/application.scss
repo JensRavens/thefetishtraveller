@@ -1,0 +1,24 @@
+//= require 'flatpickr/dist/flatpickr.min.css'
+//= require 'application/variables.css'
+//= require_self
+
+// breakpoints
+$phablet: 600px;
+$tablet: 740px;
+$desktop: 1000px;
+$widescreen: 1440px;
+$widescreen-large: 1800px;
+$widescreen-xlarge: 2200px;
+
+:root {
+  --phablet: $phablet;
+  --tablet: $tablet;
+  --desktop: $desktop;
+  --widescreen: $widescreen;
+  --widescreen-large: $widescreen-large;
+  --widescreen-xlarge: $widescreen-xlarge;
+}
+
+@import 'application/util/reset';
+@import 'application/util/typography';
+@import 'application/components/*';

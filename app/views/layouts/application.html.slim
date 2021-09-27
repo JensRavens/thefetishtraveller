@@ -1,0 +1,8 @@
+doctype html
+html lang=I18n.locale
+  = render "components/head"
+  body
+    .page
+      = render "components/menu"
+      main.page__main = yield
+      = render "components/footer"

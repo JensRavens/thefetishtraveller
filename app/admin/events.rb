@@ -40,7 +40,7 @@ ActiveAdmin.register Event do
       status_tag "Gallery" if event.gallery_images.any?
     end
     column :attendance do |event|
-      event.likes.size
+      event.travel_plans.size
     end
     actions
   end
@@ -88,9 +88,9 @@ ActiveAdmin.register Event do
         end
       end
     end
-    if event.likes.any?
+    if event.travel_plans.any?
       panel "Attendance" do
-        table_for event.likes do
+        table_for event.travel_plans do
           column :first_name do |like|
             like.user.first_name
           end
@@ -109,7 +109,9 @@ ActiveAdmin.register Event do
 
   sidebar "Details", only: :show do
     attributes_table_for event do
-      row :slug
+      row :slug do
+        link_to event.slug, event
+      end
       row :series
       row :published do
         status_tag event.published?
@@ -119,6 +121,14 @@ ActiveAdmin.register Event do
       row :updated_at
       row :created_at
       row :source_url
+    end
+  end
+
+  sidebar "Owners", only: :show do
+    table_for event.owners do
+      column :first_name
+      column :last_name
+      column :email
     end
   end
 

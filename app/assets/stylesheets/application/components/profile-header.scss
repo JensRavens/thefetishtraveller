@@ -1,0 +1,57 @@
+.profile-header {
+  > .container {
+    position: relative;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    line-height: 1;
+    z-index: 1;
+    position: relative;
+    margin-top: -80px;
+  }
+
+  &__avatar {
+    width: 160px;
+  }
+
+  &__name {
+    font-family: var(--font-heading);
+    font-size: 42px;
+    flex: 1;
+  }
+
+  &__background {
+    z-index: 0;
+    display: block;
+    margin-left: -8px;
+    margin-right: -8px;
+    background-position: center;
+    background-size: cover;
+    height: 200px;
+  }
+
+  &__backdrop {
+    background-color: var(--color-footer);
+  }
+
+  &__actions {
+    display: flex;
+    gap: 8px;
+  }
+
+  @media (min-width: $tablet) {
+    &__avatar {
+      margin-top: -80px;
+    }
+
+    &__content {
+      padding-top: 80px;
+      align-items: center;
+      flex-direction: row;
+    }
+  }
+}

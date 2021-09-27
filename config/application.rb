@@ -2,18 +2,7 @@
 
 require_relative "boot"
 
-require "rails"
-# Pick the frameworks you want:
-require "active_model/railtie"
-require "active_job/railtie"
-require "active_record/railtie"
-require "active_storage/engine"
-require "action_controller/railtie"
-require "action_mailer/railtie"
-require "action_view/railtie"
-# require "action_cable/engine"
-require "sprockets/railtie"
-# require "rails/test_unit/railtie"
+require "rails/all"
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -23,19 +12,14 @@ Dotenv::Railtie.load
 
 module Thefetishtraveller
   class Application < Rails::Application
-    config.load_defaults 5.2
-
-    config.api_only = true
-
+    config.load_defaults 6.1
     config.time_zone = "Berlin"
 
     config.action_mailer.default_url_options = { host: ENV["HOST"] } if ENV["HOST"].present?
     config.active_job.queue_adapter = :sidekiq
-    # config.active_storage.variant_processor = :vips
+    config.action_view.form_with_generates_remote_forms = false
 
-    config.middleware.use Rack::MethodOverride
-    config.middleware.use ActionDispatch::Flash
-    config.middleware.use ActionDispatch::Cookies
-    config.middleware.use ActionDispatch::Session::CookieStore
+    config.autoload_paths << Rails.root.join("app/form_builders")
+    config.assets.paths << Rails.root.join("node_modules")
   end
 end

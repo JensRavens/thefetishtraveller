@@ -1,0 +1,50 @@
+.signup {
+  background-color: var(--color-background-dark-alternate);
+  padding: 35px;
+
+  &__container {
+    margin: 0 auto;
+    max-width: 630px;
+  }
+
+  &__email,
+  &__button {
+    appearance: none;
+    border-radius: 0;
+    border: none;
+    margin: 0;
+    padding: 0;
+    outline: none;
+    color: white;
+  }
+
+  &__email {
+    flex: 1 0 0;
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: bold;
+    caret-color: var(--color-tint);
+    margin-bottom: 2rem;
+    width: 100%;
+  }
+
+  &__button {
+    background-color: var(--color-tint);
+    line-height: 1;
+    padding: 16px 40px;
+    font-weight: bolder;
+    font-size: 13px;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: $tablet) {
+    &__container {
+      display: flex;
+    }
+
+    &__email {
+      font-size: 18px;
+      margin-bottom: 0;
+    }
+  }
+}

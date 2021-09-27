@@ -1,0 +1,50 @@
+.listing {
+  background-color: var(--color-background-dark);
+  border: 1px solid white;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+
+  > * {
+    border: 1px solid white;
+    position: relative;
+  }
+
+  &--single-line {
+    grid-auto-flow: column;
+    overflow: hidden;
+    > * {
+      @media (min-width: $phablet) {
+        @for $i from 3 through 6 {
+          &:nth-child(#{$i}) {
+            display: none;
+          }
+        }
+      }
+
+      @media (min-width: $desktop) {
+        &:nth-child(3) {
+          display: block;
+        }
+      }
+
+      @media (min-width: $widescreen) {
+        &:nth-child(4) {
+          display: block;
+        }
+      }
+
+      @media (min-width: $widescreen-large) {
+        &:nth-child(5) {
+          display: block;
+        }
+      }
+
+      @media (min-width: $widescreen-xlarge) {
+        &:nth-child(6) {
+          display: block;
+        }
+      }
+    }
+  }
+}

@@ -16,7 +16,7 @@ class BlufEventImportJob < ApplicationJob
 
       Tempfile.open(SecureRandom.hex) do |f|
         f.binmode
-        f.write HTTParty.get("https://bluf.com" + url).body
+        f.write HTTParty.get("https://bluf.com#{url}").body
         f.rewind
         event.flyer.attach io: f, filename: url.split("/").last
       end
@@ -25,9 +25,7 @@ class BlufEventImportJob < ApplicationJob
 
   private
 
-  attr_reader :countries
-  attr_reader :locations
-  attr_reader :flyers
+  attr_reader :countries, :locations, :flyers
 
   def event_listing
     response = HTTParty.get "https://bluf.com/events/"
