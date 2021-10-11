@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources :events, only: [:index, :show, :new, :create]
     resources :travel_plans, only: [:create, :destroy]
     resources :profiles, only: [:show, :edit, :update] do
-      resource :travel_plans, only: :show
+      get :travel_plans, on: :member
     end
     root "pages#home"
     get "imprint", to: "pages#imprint"

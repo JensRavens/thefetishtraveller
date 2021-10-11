@@ -4,3 +4,5 @@
 = render "header", profile: @profile
 .spacer.spacer--small
 = render "navigation-bar"
+- if @travel_plans.any?
+  = render "components/calendar", events: @travel_plans

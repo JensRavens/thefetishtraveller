@@ -1,6 +1,0 @@
-= hero do
-  h1 = title t(".heading", name: @user.public_name)
-  - if @events.any?
-    .hero_addon.text-center
-      a.button href=feed_events_url(format: :ics, protocol: :webcal, user_id: @user.id) = t ".subscribe"
-= render "components/calendar", events: @events, allow_history: true

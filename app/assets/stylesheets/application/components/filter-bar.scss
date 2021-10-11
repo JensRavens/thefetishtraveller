@@ -40,4 +40,9 @@
   @media (min-width: $desktop) {
     justify-content: center;
   }
+
+  &--inverted {
+    background-color: var(--color-background-dark);
+    color: white;
+  }
 }
