@@ -14,8 +14,10 @@ de:
       default_description: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
     menu:
       events: Events
+      feed: Feed
       login: Login
       logout: Logout
+      profiles: Profile
       your_calendar: Dein Kalender
     newsletter:
       cto: Jetzt für den Newsletter anmelden
@@ -48,6 +50,9 @@ de:
       find_more_events: Finde mehr Veranstaltungen
       intro: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
       next_up: demnächst
+  posts:
+    new:
+      cancel: Abbrechen
   profiles:
     edit:
       profile: Profile
@@ -57,10 +62,13 @@ de:
       edit: Bearbeiten
       follow: Follow
       unfollow: Unfollow
+    index:
+      title: Profile
     navigation-bar:
       posts: Posts
       travel_plans: Travel plans
     show:
+      create_post: Post verfassen
       next_travels: Nächste Reisen
   sessions:
     new:

@@ -14,8 +14,10 @@ en:
       default_description: Find fetish events all around the globe and connect with like-minded gear heads.
     menu:
       events: Events
+      feed: Feed
       login: Login
       logout: Logout
+      profiles: Profiles
       your_calendar: Your calendar
     newsletter:
       cto: Subscribe now to our newsletter
@@ -48,6 +50,9 @@ en:
       find_more_events: Find more events
       intro: Find fetish events all around the globe and connect with like-minded gear heads.
       next_up: next up
+  posts:
+    new:
+      cancel: Cancel
   profiles:
     edit:
       profile: Profile
@@ -57,10 +62,13 @@ en:
       edit: Edit
       follow: Follow
       unfollow: Unfollow
+    index:
+      title: Profiles
     navigation-bar:
       posts: Posts
       travel_plans: Travel plans
     show:
+      create_post: Create Post
       next_travels: Next travels
   sessions:
     new:
