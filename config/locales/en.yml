@@ -63,6 +63,15 @@ en:
     header:
       edit: Edit
       follow: Follow
+      followers:
+        one: 1 Follower
+        other: "%{count} Followers"
+      following:
+        one: 1 Following
+        other: "%{count} Following"
+      posts:
+        one: 1 Post
+        other: "%{count} Posts"
       unfollow: Unfollow
     index:
       title: Profiles
