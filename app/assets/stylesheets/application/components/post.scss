@@ -20,7 +20,7 @@
   }
 
   &__image {
-    margin: 0 -8px 8px;
+    margin: 0 -8px;
     width: calc(100% + 16px);
     max-width: unset;
   }
@@ -28,5 +28,15 @@
   &__avatar {
     display: flex;
     align-items: center;
+  }
+
+  &__icon-bar {
+    display: flex;
+    gap: 8px;
+    padding: 4px 0;
+  }
+
+  &__like-bar {
+    padding: 4px 0;
   }
 }
