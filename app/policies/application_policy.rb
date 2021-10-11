@@ -56,4 +56,8 @@ class ApplicationPolicy
   def logged_in?
     user.present?
   end
+
+  def admin?
+    user&.admin?
+  end
 end
