@@ -12,7 +12,7 @@ class AwesomeForm < ActionView::Helpers::FormBuilder
 
   def text_area(method, options = {})
     prepare_options method, options
-    wrap method, super(method, options), "input--text", options
+    wrap method, super(method, options), "input--text input--text-area", options
   end
 
   def image_field(method, options = {})
