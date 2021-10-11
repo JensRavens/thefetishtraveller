@@ -8,7 +8,9 @@
       .profile-header__avatar.inline-upload__ref
         = render "components/inline_upload", model: @profile, url: profile_path(@profile), method: :avatar if edit
         = image_tag @profile.avatar_image, class: "avatar avatar--bordered", width: 160
-      .profile-header__name = profile.public_name
+      .profile-header__text
+        .profile-header__name = profile.public_name
+        .profile-header__location = profile.location_description
       .profile-header__actions
         - if policy(profile).edit?
           a.button href=edit_profile_path(profile) = t ".edit"

@@ -4,17 +4,22 @@
 #
 # Table name: users
 #
-#  id              :uuid             not null, primary key
-#  email           :string
-#  first_name      :string
-#  last_name       :string
-#  password_digest :string
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  roles           :string           default([]), not null, is an Array
-#  facebook_id     :string
-#  apple_id        :string
-#  slug            :string
+#  id                   :uuid             not null, primary key
+#  email                :string
+#  first_name           :string
+#  last_name            :string
+#  password_digest      :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  roles                :string           default([]), not null, is an Array
+#  facebook_id          :string
+#  apple_id             :string
+#  slug                 :string
+#  location_description :string
+#  instagram            :string
+#  recon                :string
+#  romeo                :string
+#  bluf                 :string
 #
 
 class User < ApplicationRecord
