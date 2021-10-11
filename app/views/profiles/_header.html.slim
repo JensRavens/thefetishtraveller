@@ -10,7 +10,14 @@
         = image_tag @profile.avatar_image, class: "avatar avatar--bordered", width: 160
       .profile-header__text
         .profile-header__name = profile.public_name
-        .profile-header__location = profile.location_description
+        - profile.social_links.any?
+          .profile-header__social
+            - profile.social_links.map do |link|
+              a class="profile-header__social-link profile-header__social-link--#{link.network}" href=link.url title=link.network.to_s.humanize target="_blank" rel="noopener noreferrer" = link.profile
+        - if profile.location_description.present?
+          .profile-header__location = profile.location_description
+        - if profile.bio.present?
+          .profile-header__bio = simple_format profile.bio
       .profile-header__actions
         - if policy(profile).edit?
           a.button href=edit_profile_path(profile) = t ".edit"

@@ -2,7 +2,7 @@
 
 class UserPolicy < ApplicationPolicy
   def show?
-    logged_in?
+    logged_in? || record.public_profile?
   end
 
   def update?

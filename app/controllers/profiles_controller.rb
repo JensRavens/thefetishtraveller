@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class ProfilesController < ApplicationController
-  before_action :require_login, only: :show
   before_action :load_profile
 
   def show
@@ -27,6 +26,6 @@ class ProfilesController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:slug, :first_name, :last_name, :email, :avatar, :hero, :location_description, :instagram, :recon, :romeo, :bluf)
+    params.require(:user).permit(:slug, :first_name, :last_name, :email, :avatar, :hero, :location_description, :twitter, :instagram, :recon, :romeo, :bluf, :public_profile, :bio)
   end
 end

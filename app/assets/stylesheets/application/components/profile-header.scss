@@ -16,15 +16,23 @@
 
   &__avatar {
     width: 160px;
+    align-self: flex-start;
   }
 
   &__name {
     font-family: var(--font-heading);
     font-size: 42px;
+    margin-bottom: 1rem;
   }
 
   &__text {
     flex: 1;
+    text-align: center;
+
+    @media (min-width: $tablet) {
+      text-align: left;
+      padding-top: 24px;
+    }
   }
 
   &__background {
@@ -46,6 +54,64 @@
     gap: 8px;
   }
 
+  &__location {
+    margin-bottom: 1rem;
+
+    &::before {
+      display: inline-block;
+      content: '';
+      background-image: asset-url('icon/location.svg');
+      background-size: contain;
+      height: 13px;
+      width: 13px;
+      margin-right: 4px;
+    }
+  }
+
+  &__social {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  &__social-link {
+    display: flex;
+    gap: 4px;
+    align-items: center;
+
+    &::before {
+      display: inline-block;
+      content: '';
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 15px;
+      width: 15px;
+    }
+
+    &--twitter::before {
+      background-image: asset-url('social/twitter.svg');
+    }
+
+    &--instagram::before {
+      background-image: asset-url('social/instagram.svg');
+    }
+
+    &--recon::before {
+      background-image: asset-url('social/recon.svg');
+    }
+
+    &--romeo::before {
+      background-image: asset-url('social/romeo.svg');
+    }
+
+    &--bluf::before {
+      background-image: asset-url('social/bluf.svg');
+    }
+  }
+
   @media (min-width: $tablet) {
     &__avatar {
       margin-top: -80px;
@@ -61,6 +127,10 @@
       height: 300px;
       margin-left: -30px;
       margin-right: -30px;
+    }
+
+    &__social {
+      justify-content: flex-start;
     }
   }
 }

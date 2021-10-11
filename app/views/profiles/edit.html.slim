@@ -3,18 +3,26 @@
 .spacer
 .container
   = form_with model: @profile, url: profile_path(@profile), builder: AwesomeForm, class: :stack do |f|
+    h3.subheadline = t ".your_account"
     = f.text_field :slug
+    = f.check_box :public_profile
     .line.line--stretch
       = f.text_field :first_name
       = f.text_field :last_name
     = f.email_field :email
-    = f.text_field :location_description
+    h3.subheadline = t ".social"
     .line.line--stretch
+      = f.text_field :twitter
       = f.text_field :instagram
-      = f.text_field :recon
     .line.line--stretch
+      = f.text_field :recon
       = f.text_field :romeo
+    .line.line--stretch
       = f.text_field :bluf
+      div
+    h3.subheadline = t ".profile"
+    = f.text_field :location_description
+    = f.text_area :bio
     .line.line--stretch
       a.button href=profile_path(@profile) = t "general.cancel"
       = f.submit
