@@ -1,0 +1,10 @@
+.post
+  .post__meta
+    .post__avatar = image_tag post.user.avatar_image, class: "avatar", width: 32
+    .post__meta-text
+      .post__author = post.user.public_name
+      - if post.location_description.present?
+        .post__location = post.location_description
+  .post__content
+    img.post__image src=image_asset_url(post.image)
+    .post__description = simple_format post.description

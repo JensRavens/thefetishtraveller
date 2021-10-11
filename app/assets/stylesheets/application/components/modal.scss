@@ -31,17 +31,7 @@
     opacity: 0;
     transform: translate(0, 80px);
     position: relative;
-  }
-
-  &__close {
-    cursor: pointer;
-    margin: -16px -12px 16px auto;
-    width: 24px;
-    height: 24px;
-    background-image: asset-url('icons/close.svg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    padding: 1rem;
   }
 
   &--open {

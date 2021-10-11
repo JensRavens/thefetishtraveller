@@ -3,6 +3,7 @@
 class ApplicationController < ActionController::Base
   include Pundit
   include Localizable
+  include RemoteNavigation
 
   skip_forgery_protection
   layout "application"
