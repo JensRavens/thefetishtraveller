@@ -8,6 +8,13 @@
       = f.text_field :first_name
       = f.text_field :last_name
     = f.email_field :email
+    = f.text_field :location_description
+    .line.line--stretch
+      = f.text_field :instagram
+      = f.text_field :recon
+    .line.line--stretch
+      = f.text_field :romeo
+      = f.text_field :bluf
     .line.line--stretch
       a.button href=profile_path(@profile) = t "general.cancel"
       = f.submit
