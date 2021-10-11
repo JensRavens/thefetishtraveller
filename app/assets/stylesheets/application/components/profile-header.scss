@@ -76,6 +76,13 @@
     justify-content: center;
   }
 
+  &__metrics {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    justify-content: center;
+  }
+
   &__social-link {
     display: flex;
     gap: 4px;
@@ -129,7 +136,8 @@
       margin-right: -30px;
     }
 
-    &__social {
+    &__social,
+    &__metrics {
       justify-content: flex-start;
     }
   }

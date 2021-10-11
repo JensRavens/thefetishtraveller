@@ -10,6 +10,10 @@
         = image_tag @profile.avatar_image, class: "avatar avatar--bordered", width: 160
       .profile-header__text
         .profile-header__name = profile.public_name
+        .profile-header__metrics
+          div = t ".posts", count: profile.posts.count
+          div = t ".followers", count: profile.follows.count
+          div = t ".following", count: profile.followings.count
         - profile.social_links.any?
           .profile-header__social
             - profile.social_links.map do |link|

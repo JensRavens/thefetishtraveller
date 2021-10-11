@@ -63,7 +63,16 @@ de:
     header:
       edit: Bearbeiten
       follow: Follow
-      unfollow: Unfollow
+      followers:
+        one: 1 Follower
+        other: "%{count} Followers"
+      following:
+        one: 1 Following
+        other: "%{count} Folge ich"
+      posts:
+        one: 1 Post
+        other: "%{count} Posts"
+      unfollow: Entfolgen
     index:
       title: Profile
     navigation-bar:
