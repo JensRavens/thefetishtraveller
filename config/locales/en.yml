@@ -63,7 +63,7 @@ en:
       why_explanation: If you log in, you can save events to a favorite list and make travel plans. A log in is needed to sync your travel plans across devices. Facebook is used for authentication purposes only - we will never post anything to your timeline without your permission.
   time:
     formats:
-      month: '%B'
+      month: "%B"
   travel_plans:
     show:
       heading: Travel Plans of %{name}
