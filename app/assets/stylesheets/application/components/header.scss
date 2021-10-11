@@ -33,6 +33,10 @@
   padding: 0 8px;
   line-height: 1;
 
+  a.active {
+    color: var(--color-tint);
+  }
+
   &__spacer {
     height: 60px;
     margin-top: -60px;

@@ -3,6 +3,10 @@
 class PostsController < ApplicationController
   before_action :require_login
 
+  def index
+    @posts = Post.for_user(current_user).reverse_chronologic.page(params[:page]).per(20)
+  end
+
   def new
     @post = current_user.posts.new
     render layout: false

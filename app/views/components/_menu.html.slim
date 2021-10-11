@@ -3,7 +3,10 @@ header.header
     .main-menu__category.logo
       a href=root_path == "The <em>Fetish</em> Traveller"
     .main-menu__category.main-menu__category--additional
-      a href=events_path = t ".events"
+      a class=("active" if params[:controller] == "events") href=events_path = t ".events"
+      - if current_user
+        a class=("active" if params[:controller] == "profiles") href=profiles_path = t ".profiles"
+        a class=("active" if params[:controller] == "posts") href=posts_path = t ".feed"
     .main-menu__category.main-menu__category--additional
       - if current_user
         - if current_user.travel_plans.any?

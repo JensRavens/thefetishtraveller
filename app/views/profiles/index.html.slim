@@ -1,0 +1,8 @@
+- title t(".title")
+.main-menu__spacer
+= hero do
+  .container
+    h1 = t ".title"
+.listing = render @profiles
+.container = paginate @profiles
+
