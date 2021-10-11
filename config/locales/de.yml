@@ -53,6 +53,8 @@ de:
   posts:
     new:
       cancel: Abbrechen
+    post:
+      confirm_post_deletion: Willst du diesen Post wirklich löschen?
   profiles:
     edit:
       profile: Profile
