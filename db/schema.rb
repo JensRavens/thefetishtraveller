@@ -155,7 +155,10 @@ ActiveRecord::Schema.define(version: 2021_10_11_104430) do
     t.string "facebook_id"
     t.string "apple_id"
     t.string "slug"
+    t.boolean "public_profile", default: false, null: false
     t.string "location_description"
+    t.string "bio"
+    t.string "twitter"
     t.string "instagram"
     t.string "recon"
     t.string "romeo"

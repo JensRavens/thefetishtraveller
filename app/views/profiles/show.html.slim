@@ -4,6 +4,6 @@
 = render "header", profile: @profile
 .spacer
 
-h2 = t ".next_travels"
 - if @travel_plans.any?
+  h2 = t ".next_travels"
   = render "components/calendar", events: @travel_plans

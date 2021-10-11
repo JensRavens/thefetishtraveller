@@ -15,7 +15,10 @@
 #  facebook_id          :string
 #  apple_id             :string
 #  slug                 :string
+#  public_profile       :boolean          default(FALSE), not null
 #  location_description :string
+#  bio                  :string
+#  twitter              :string
 #  instagram            :string
 #  recon                :string
 #  romeo                :string
@@ -100,5 +103,11 @@ class User < ApplicationRecord
 
     hash = Digest::MD5.hexdigest(email.to_s.downcase)
     "https://www.gravatar.com/avatar/#{hash}?d=mm&s=200"
+  end
+
+  def social_links
+    @social_links ||= SocialLink::NETWORKS
+      .map { |e| SocialLink.new(e, public_send(e)) if public_send(e) }
+      .compact
   end
 end
