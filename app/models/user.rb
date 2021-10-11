@@ -37,6 +37,7 @@ class User < ApplicationRecord
   has_many :followed_users, dependent: false, through: :follows, source: :profile, class_name: "User"
   has_many :followings, dependent: :delete_all, class_name: "Follow", foreign_key: :profile_id
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :delete_all
 
   has_and_belongs_to_many :owned_events, class_name: "Event"
   has_and_belongs_to_many :owned_locations, class_name: "Location"

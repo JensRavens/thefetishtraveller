@@ -1,13 +1,19 @@
-.post
-  .post__meta
-    .post__avatar = image_tag post.user.avatar_image, class: "avatar", width: 32
-    .post__meta-text
-      .post__author = post.user.public_name
-      - if post.location_description.present?
-        .post__location = post.location_description
-    .post__meta-actions
-      - if policy(post).destroy?
-        = button_to "x", post_path(post), method: :delete, data: { confirm: t(".confirm_post_deletion") }
-  .post__content
-    img.post__image src=image_asset_url(post.image)
-    .post__description = simple_format post.description
+= turbo_frame_tag post
+  .post
+    .post__meta
+      .post__avatar = image_tag post.user.avatar_image, class: "avatar", width: 32
+      .post__meta-text
+        .post__author = post.user.public_name
+        - if post.location_description.present?
+          .post__location = post.location_description
+      .post__meta-actions
+        - if policy(post).destroy?
+          = button_to "x", post_path(post), method: :delete, data: { confirm: t(".confirm_post_deletion") }
+    .post__content
+      img.post__image src=image_asset_url(post.image)
+      .post__icon-bar
+        - if post.likes.where(user: current_user).any?
+          = link_to "unlike", like_path(post), method: :delete
+        - else
+          = link_to "like", likes_path(post_id: post.id), method: :post
+      .post__description = simple_format post.description

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_124307) do
+ActiveRecord::Schema.define(version: 2021_10_11_144531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -112,6 +112,16 @@ ActiveRecord::Schema.define(version: 2021_10_11_124307) do
     t.index ["user_id"], name: "index_follows_on_user_id"
   end
 
+  create_table "likes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "post_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["post_id"], name: "index_likes_on_post_id"
+    t.index ["user_id", "post_id"], name: "index_likes_on_user_id_and_post_id", unique: true
+    t.index ["user_id"], name: "index_likes_on_user_id"
+  end
+
   create_table "locations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.jsonb "properties", default: "{}", null: false
     t.string "slug"
@@ -194,6 +204,8 @@ ActiveRecord::Schema.define(version: 2021_10_11_124307) do
   add_foreign_key "events", "locations"
   add_foreign_key "follows", "users"
   add_foreign_key "follows", "users", column: "profile_id"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "travel_plans", "events"
