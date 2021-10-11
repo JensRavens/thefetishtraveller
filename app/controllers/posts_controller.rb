@@ -17,6 +17,12 @@ class PostsController < ApplicationController
     close_modal
   end
 
+  def destroy
+    @post = authorize Post.find(params[:id])
+    @post.destroy!
+    redirect_to current_user
+  end
+
   private
 
   def post_params

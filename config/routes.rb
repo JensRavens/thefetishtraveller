@@ -24,7 +24,7 @@ Rails.application.routes.draw do
       get :travel_plans, on: :member
     end
     resources :follows, only: [:create, :destroy]
-    resources :posts, only: [:new, :create, :index]
+    resources :posts, only: [:new, :create, :index, :destroy]
     root "pages#home"
     get "imprint", to: "pages#imprint"
   end

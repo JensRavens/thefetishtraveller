@@ -5,6 +5,9 @@
       .post__author = post.user.public_name
       - if post.location_description.present?
         .post__location = post.location_description
+    .post__meta-actions
+      - if policy(post).destroy?
+        = button_to "x", post_path(post), method: :delete, data: { confirm: t(".confirm_post_deletion") }
   .post__content
     img.post__image src=image_asset_url(post.image)
     .post__description = simple_format post.description
