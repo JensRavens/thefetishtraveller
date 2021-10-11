@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   before_action :load_profile
 
   def show
-
+    @posts = @profile.posts.reverse_chronologic.limit(20)
   end
 
   def travel_plans

@@ -1,0 +1,26 @@
+.post {
+  max-width: 400px;
+  margin: 0 auto;
+
+  &__meta {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  &__author {
+    font-weight: 600;
+  }
+
+  &__meta-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  &__image {
+    margin: 0 -8px 8px;
+    width: calc(100% + 16px);
+    max-width: unset;
+  }
+}

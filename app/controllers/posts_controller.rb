@@ -4,12 +4,13 @@ class PostsController < ApplicationController
   before_action :require_login
 
   def new
+    @post = current_user.posts.new
     render layout: false
   end
 
   def create
     current_user.posts.create! post_params
-    redirect_to profile_path(current_user)
+    close_modal
   end
 
   private
