@@ -8,4 +8,12 @@ module ComponentHelper
   def attends?(event:)
     current_user&.events&.include?(event)
   end
+
+  def modal_url(path)
+    "javascript:ui.modal.load('#{path}')"
+  end
+
+  def close_modal_path
+    "javascript:ui.modal.close()"
+  end
 end

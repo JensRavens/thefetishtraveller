@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_122219) do
+ActiveRecord::Schema.define(version: 2021_10_11_124307) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -137,6 +137,15 @@ ActiveRecord::Schema.define(version: 2021_10_11_122219) do
     t.uuid "user_id", null: false
   end
 
+  create_table "posts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "author_id", null: false
+    t.string "location_description"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["author_id"], name: "index_posts_on_author_id"
+  end
+
   create_table "sessions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id"
     t.text "user_agent"
@@ -185,6 +194,7 @@ ActiveRecord::Schema.define(version: 2021_10_11_122219) do
   add_foreign_key "events", "locations"
   add_foreign_key "follows", "users"
   add_foreign_key "follows", "users", column: "profile_id"
+  add_foreign_key "posts", "users", column: "author_id"
   add_foreign_key "sessions", "users"
   add_foreign_key "travel_plans", "events"
   add_foreign_key "travel_plans", "users"

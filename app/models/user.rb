@@ -34,6 +34,8 @@ class User < ApplicationRecord
   has_many :events, through: :travel_plans
   has_many :sessions, dependent: :destroy
   has_many :follows, dependent: :delete_all
+  has_many :followings, dependent: :delete_all, class_name: "Follow", foreign_key: :profile_id
+  has_many :posts, dependent: :destroy, foreign_key: :author
 
   has_and_belongs_to_many :owned_events, class_name: "Event"
   has_and_belongs_to_many :owned_locations, class_name: "Location"
