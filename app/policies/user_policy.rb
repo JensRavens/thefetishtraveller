@@ -2,7 +2,7 @@
 
 class UserPolicy < ApplicationPolicy
   def show?
-    logged_in? || record.public_profile?
+    logged_in? || record.public_profile? || admin?
   end
 
   def travel_plans?
