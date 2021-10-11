@@ -1,0 +1,5 @@
+.modal#modal data-controller="modal"
+  .modal__blind data-action="click->modal#close"
+  .container: .modal__window: .modal__content
+    .modal__close data-action="click->modal#close"
+    turbo-frame id="modal_frame" data-modal-target="content"
