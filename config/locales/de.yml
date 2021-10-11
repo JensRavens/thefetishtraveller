@@ -49,8 +49,17 @@ de:
       intro: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
       next_up: demnächst
   profiles:
+    edit:
+      profile: Profile
+      social: Social
+      your_account: Your account
     header:
       edit: Bearbeiten
+      follow: Follow
+      unfollow: Unfollow
+    navigation-bar:
+      posts: Posts
+      travel_plans: Travel plans
     show:
       next_travels: Nächste Reisen
   sessions:

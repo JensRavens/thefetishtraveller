@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :profiles, only: [:show, :edit, :update] do
       get :travel_plans, on: :member
     end
+    resources :follows, only: [:create, :destroy]
     root "pages#home"
     get "imprint", to: "pages#imprint"
   end
