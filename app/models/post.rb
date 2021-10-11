@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: posts
@@ -10,6 +12,7 @@
 #  updated_at           :datetime         not null
 #
 class Post < ApplicationRecord
+  has_many :likes
   belongs_to :user
 
   has_one_attached :image

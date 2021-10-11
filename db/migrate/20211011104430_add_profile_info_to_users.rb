@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddProfileInfoToUsers < ActiveRecord::Migration[6.1]
   def change
     add_column :users, :public_profile, :boolean, null: false, default: false
