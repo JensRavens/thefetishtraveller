@@ -1,7 +1,11 @@
 # frozen_string_literal: true
 
 class ProfilesController < ApplicationController
-  before_action :load_profile
+  before_action :load_profile, except: :index
+
+  def index
+    @profiles = User.public_profile.page(params[:page]).per(20)
+  end
 
   def show
     @posts = @profile.posts.reverse_chronologic.limit(20)

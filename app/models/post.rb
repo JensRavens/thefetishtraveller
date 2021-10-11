@@ -15,4 +15,5 @@ class Post < ApplicationRecord
   has_one_attached :image
 
   scope :reverse_chronologic, -> { order(created_at: :desc) }
+  scope :for_user, ->(user) { where(user_id: user.followed_users) }
 end

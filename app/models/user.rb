@@ -34,6 +34,7 @@ class User < ApplicationRecord
   has_many :events, through: :travel_plans
   has_many :sessions, dependent: :destroy
   has_many :follows, dependent: :delete_all
+  has_many :followed_users, dependent: false, through: :follows, source: :profile, class_name: "User"
   has_many :followings, dependent: :delete_all, class_name: "Follow", foreign_key: :profile_id
   has_many :posts, dependent: :destroy
 
@@ -44,6 +45,7 @@ class User < ApplicationRecord
   has_one_attached :hero
 
   scope :guest, -> { where(email: nil) }
+  scope :public_profile, -> { where(public_profile: true) }
 
   validates :slug, :email, presence: true, uniqueness: { case_sensitive: false }, on: :profile_edit
   validates :first_name, :last_name, presence: true, on: :profile_edit
