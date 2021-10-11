@@ -1,4 +1,7 @@
-= turbo_frame_tag post
+- like_previews = post.likes.order(created_at: :asc).limit(1).load
+- total_likes = post.likes.count
+
+= turbo_frame_tag post, target: "_top"
   .post
     .post__meta
       .post__avatar = image_tag post.user.avatar_image, class: "avatar", width: 32
@@ -13,7 +16,16 @@
       img.post__image src=image_asset_url(post.image)
       .post__icon-bar
         - if post.likes.where(user: current_user).any?
-          = link_to "unlike", like_path(post), method: :delete
+          = link_to "", like_path(post), method: :delete, class: "post__icon-bar__button heart-button active"
         - else
-          = link_to "like", likes_path(post_id: post.id), method: :post
+          = link_to "", likes_path(post_id: post.id), method: :post, class: "post__icon-bar__button heart-button"
+      - if like_previews.any?
+        .post__like-bar
+          - user = like_previews.first.user
+          - link = link_to user.public_name, profile_path(user), class: "link"
+          - if total_likes > 1
+            = t ".liked_by_many_html", name: link, count: total_likes - like_previews.size
+          - else
+            = t ".liked_by_html", name: link
+
       .post__description = simple_format post.description

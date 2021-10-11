@@ -55,6 +55,8 @@ de:
       cancel: Abbrechen
     post:
       confirm_post_deletion: Willst du diesen Post wirklich löschen?
+      liked_by_html: Geliked von %{name}.
+      liked_by_many_html: Geliked von %{name} und %{count} anderen.
   profiles:
     edit:
       profile: Profile

@@ -55,6 +55,8 @@ en:
       cancel: Cancel
     post:
       confirm_post_deletion: Are you sure you want to delete this post?
+      liked_by_html: Liked by %{name}.
+      liked_by_many_html: Liked by %{name} and %{count} others.
   profiles:
     edit:
       profile: Profile
