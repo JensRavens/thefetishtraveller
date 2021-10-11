@@ -33,6 +33,7 @@ class User < ApplicationRecord
   has_many :travel_plans, dependent: :destroy
   has_many :events, through: :travel_plans
   has_many :sessions, dependent: :destroy
+  has_many :follows, dependent: :delete_all
 
   has_and_belongs_to_many :owned_events, class_name: "Event"
   has_and_belongs_to_many :owned_locations, class_name: "Location"
@@ -109,5 +110,9 @@ class User < ApplicationRecord
     @social_links ||= SocialLink::NETWORKS
       .map { |e| SocialLink.new(e, public_send(e)) if public_send(e).present? }
       .compact
+  end
+
+  def follows?(user)
+    follows.where(profile: user).any?
   end
 end

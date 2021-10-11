@@ -18,6 +18,10 @@
           .profile-header__location = profile.location_description
         - if profile.bio.present?
           .profile-header__bio = simple_format profile.bio
+        - if current_user&.follows?(@profile)
+          = button_to t(".unfollow"), follow_path(user_id: @profile.id), method: :delete, class: "like-button active"
+        - else
+          = button_to t(".follow"), follows_path(user_id: @profile.id), class: "like-button"
       .profile-header__actions
         - if policy(profile).edit?
           a.button href=edit_profile_path(profile) = t ".edit"

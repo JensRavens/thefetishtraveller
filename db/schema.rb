@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_104430) do
+ActiveRecord::Schema.define(version: 2021_10_11_122219) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -102,6 +102,16 @@ ActiveRecord::Schema.define(version: 2021_10_11_104430) do
     t.uuid "user_id", null: false
   end
 
+  create_table "follows", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "profile_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["profile_id"], name: "index_follows_on_profile_id"
+    t.index ["user_id", "profile_id"], name: "index_follows_on_user_id_and_profile_id", unique: true
+    t.index ["user_id"], name: "index_follows_on_user_id"
+  end
+
   create_table "locations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.jsonb "properties", default: "{}", null: false
     t.string "slug"
@@ -173,6 +183,8 @@ ActiveRecord::Schema.define(version: 2021_10_11_104430) do
   add_foreign_key "activities", "users"
   add_foreign_key "events", "events"
   add_foreign_key "events", "locations"
+  add_foreign_key "follows", "users"
+  add_foreign_key "follows", "users", column: "profile_id"
   add_foreign_key "sessions", "users"
   add_foreign_key "travel_plans", "events"
   add_foreign_key "travel_plans", "users"

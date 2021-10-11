@@ -49,8 +49,17 @@ en:
       intro: Find fetish events all around the globe and connect with like-minded gear heads.
       next_up: next up
   profiles:
+    edit:
+      profile: Profile
+      social: Social
+      your_account: Your account
     header:
       edit: Edit
+      follow: Follow
+      unfollow: Unfollow
+    navigation-bar:
+      posts: Posts
+      travel_plans: Travel plans
     show:
       next_travels: Next travels
   sessions:
