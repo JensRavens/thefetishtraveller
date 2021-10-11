@@ -4,7 +4,11 @@ class ProfilesController < ApplicationController
   before_action :load_profile
 
   def show
-    @travel_plans = @profile.events.listed.load
+
+  end
+
+  def travel_plans
+    @travel_plans = @profile.events.listed
   end
 
   def edit

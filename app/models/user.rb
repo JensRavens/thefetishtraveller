@@ -107,7 +107,7 @@ class User < ApplicationRecord
 
   def social_links
     @social_links ||= SocialLink::NETWORKS
-      .map { |e| SocialLink.new(e, public_send(e)) if public_send(e) }
+      .map { |e| SocialLink.new(e, public_send(e)) if public_send(e).present? }
       .compact
   end
 end

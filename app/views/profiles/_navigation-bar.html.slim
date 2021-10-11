@@ -1,0 +1,3 @@
+.filter-bar.filter-bar--inverted
+  a.filter-bar__option href=profile_path(@profile) class=("filter-bar__option--selected" if params[:action] == "show") = t ".posts"
+  a.filter-bar__option href=travel_plans_profile_path(@profile) class=("filter-bar__option--selected" if params[:action] == "travel_plans") = t ".travel_plans"
