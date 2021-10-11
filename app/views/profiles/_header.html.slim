@@ -21,5 +21,3 @@
       .profile-header__actions
         - if policy(profile).edit?
           a.button href=edit_profile_path(profile) = t ".edit"
-        - if profile == current_user
-          a.button href=logout_path = t "components.menu.logout"

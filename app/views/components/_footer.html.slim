@@ -21,6 +21,9 @@ footer.footer
       a href=imprint_path = t ".imprint"
       br
       a href=new_event_path = t ".submit"
+      - if current_user
+        br
+        a href=logout_path = t "components.menu.logout"
       .footer__locales
         - I18n.available_locales.each do |locale|
           a class=('active' if I18n.locale == locale) href=url_for(locale: locale) = locale

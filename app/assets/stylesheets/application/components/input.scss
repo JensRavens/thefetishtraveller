@@ -46,6 +46,14 @@
     gap: 8px;
   }
 
+  &--text-area {
+    .input__input {
+      min-height: 140px;
+      line-height: 1.3;
+      padding-top: 11px;
+    }
+  }
+
   &--checkbox,
   &--radio {
     display: flex;
