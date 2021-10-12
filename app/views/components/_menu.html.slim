@@ -1,14 +1,8 @@
 header.header
-  nav.main-menu
+  nav.main-menu data-controller="toggle"
     .main-menu__category.logo
       a href=root_path == "The <em>Fetish</em> Traveller"
-    .main-menu__category.main-menu__category--additional
-      - if current_user
-        a class=("active" if params[:controller] == "posts") href=posts_path = t ".feed"
-      a class=("active" if params[:controller] == "events") href=events_path = t ".events"
-      - if current_user
-        a class=("active" if params[:controller] == "profiles") href=profiles_path = t ".profiles"
-        a class=("active" if params[:controller] == "conversations") href=conversations_path = t ".conversations"
+    .main-menu__category.main-menu__category--additional = render "components/menu_links"
     .main-menu__category.main-menu__category--additional
       - if current_user
         - if current_user.travel_plans.any?
@@ -17,3 +11,6 @@ header.header
           = image_tag current_user.avatar_image, width: 40
       - else
         a href=login_path = t ".login"
+    nav.main-menu__mobile = render "components/menu_links"
+    .main-menu__switch data-action="click->toggle#toggle"
+      .main-menu__switch-icon
