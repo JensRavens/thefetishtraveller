@@ -7,14 +7,11 @@
     a.chat__header href=profile_path(@profile)
       = image_tag @profile.avatar_image, width: 64, class: :avatar
       .chat__header-name = @profile.public_name
-    .chat__messages
+    .chat__messages.stack data-controller="chat" data-chat-conversation-value=@conversation.id
       - @messages.each do |message|
-        - message.mark_as_read! if message.user != current_user
         - if last_timestamp.nil? || (message.created_at - last_timestamp) > 30.minutes
           .chat__timestamp = l message.created_at, format: :short
-        .chat__message class=(message.user == current_user ? "chat__message--local" : "chat__message--remote")
-          a.chat__avatar href=profile_path(message.user) = image_tag message.user.avatar_image, width: 32, class: :avatar
-          .chat__message-text = simple_format message.text
+        = render "message", message: message
         - last_timestamp = message.created_at
   = form_with url: profile_messages_path, model: Message.new(user: current_user, conversation: @conversation), class: "chat__bar" do |f|
     .container
