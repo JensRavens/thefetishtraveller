@@ -2,6 +2,7 @@
 
 class ProfilesController < ApplicationController
   before_action :load_profile, except: :index
+  before_action :require_login, only: :index
 
   def index
     @profiles = User.public_profile.page(params[:page]).per(20)
