@@ -23,6 +23,10 @@ en:
     newsletter:
       cto: Subscribe now to our newsletter
       subscribe: subscribe
+  conversations:
+    index:
+      no_conversations_yet: No conversations yet
+      there_is_nothing_yet: You didn't start any conversations yet. Look at some profiles and talk to them!
   events:
     index:
       all: All
@@ -55,6 +59,9 @@ en:
       intro: Find fetish events all around the globe and connect with like-minded gear heads.
       next_up: next up
   posts:
+    index:
+      no_posts_yet: No posts yet
+      there_is_nothing_yet: Your followed profiles didn't post anything yet. Follow someone to get content here.
     new:
       cancel: Cancel
     post:
@@ -71,14 +78,14 @@ en:
       follow: Follow
       followers:
         one: 1 Follower
-        other: "%{count} Followers"
+        other: '%{count} Followers'
       following:
         one: 1 Following
-        other: "%{count} Following"
+        other: '%{count} Following'
       message: Message
       posts:
         one: 1 Post
-        other: "%{count} Posts"
+        other: '%{count} Posts'
       unfollow: Unfollow
     index:
       title: Profiles
@@ -98,7 +105,7 @@ en:
       why_explanation: If you log in, you can save events to a favorite list and make travel plans. A log in is needed to sync your travel plans across devices. Facebook is used for authentication purposes only - we will never post anything to your timeline without your permission.
   time:
     formats:
-      month: "%B"
+      month: '%B'
   travel_plans:
     show:
       heading: Travel Plans of %{name}

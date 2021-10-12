@@ -23,6 +23,10 @@ de:
     newsletter:
       cto: Jetzt für den Newsletter anmelden
       subscribe: anmelden
+  conversations:
+    index:
+      no_conversations_yet: No conversations yet
+      there_is_nothing_yet: There is nothing yet
   events:
     index:
       all: Alle
@@ -55,6 +59,9 @@ de:
       intro: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
       next_up: demnächst
   posts:
+    index:
+      no_posts_yet: No posts yet
+      there_is_nothing_yet: There is nothing yet
     new:
       cancel: Abbrechen
     post:
