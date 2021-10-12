@@ -12,4 +12,12 @@ class UserPolicy < ApplicationPolicy
   def update?
     user == record
   end
+
+  def follow?
+    true
+  end
+
+  def message?
+    true
+  end
 end

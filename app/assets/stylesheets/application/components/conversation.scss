@@ -1,0 +1,24 @@
+.conversation {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+
+  .avatar {
+    width: 64px;
+  }
+
+  &__text {
+    color: var(--color-text-muted);
+  }
+
+  &--unread {
+    .conversation__title {
+      font-weight: 600;
+    }
+
+    .conversation__text {
+      font-weight: 600;
+      color: var(--color-text);
+    }
+  }
+}
