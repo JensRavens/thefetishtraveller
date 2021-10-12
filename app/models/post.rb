@@ -31,6 +31,6 @@ class Post < ApplicationRecord
   private
 
   def parsed_tags
-    description.to_s.scan(HASHTAG_REGEX).map { |tag| tag.strip[1..] }
+    description.to_s.scan(HASHTAG_REGEX).flatten.map { |tag| tag.strip[1..] }
   end
 end
