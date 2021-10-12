@@ -74,6 +74,8 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
       zeitwerk (~> 2.3)
+    acts-as-taggable-on (8.1.0)
+      activerecord (>= 5.0, < 6.2)
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     annotate (3.1.1)
@@ -489,6 +491,7 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers
   activeadmin
+  acts-as-taggable-on
   annotate
   autoprefixer-rails
   aws-sdk-s3

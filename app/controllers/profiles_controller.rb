@@ -6,6 +6,8 @@ class ProfilesController < ApplicationController
 
   def index
     @profiles = User.order(created_at: :desc).page(params[:page]).per(20)
+    @tag = params[:tag].presence
+    @profiles = @profiles.tagged_with(@tag) if @tag
   end
 
   def show

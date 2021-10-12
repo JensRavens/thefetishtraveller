@@ -41,6 +41,7 @@ gem "nokogiri"
 gem "slim-rails"
 gem "jwt"
 gem "pundit"
+gem "acts-as-taggable-on"
 
 # Assets
 gem "webpacker"
