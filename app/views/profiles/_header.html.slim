@@ -12,8 +12,8 @@
         .profile-header__name = profile.public_name
         .profile-header__metrics
           div = t ".posts", count: profile.posts.count
-          div = t ".followers", count: profile.follows.count
-          div = t ".following", count: profile.followings.count
+          div = t ".followers", count: profile.followings.count
+          div = t ".following", count: profile.follows.count
         - profile.social_links.any?
           .profile-header__social
             - profile.social_links.map do |link|
@@ -22,11 +22,14 @@
           .profile-header__location = profile.location_description
         - if profile.bio.present?
           .profile-header__bio = simple_format profile.bio
-        - if current_user != @profile
-          - if current_user&.follows?(@profile)
-            = button_to t(".unfollow"), follow_path(user_id: @profile.id), method: :delete, class: "like-button active"
-          - else
-            = button_to t(".follow"), follows_path(user_id: @profile.id), class: "like-button"
+        .line
+          - if policy(@profile).follow?
+            - if current_user&.follows?(@profile)
+              = button_to t(".unfollow"), follow_path(user_id: @profile.id), method: :delete, class: "button"
+            - else
+              = button_to t(".follow"), follows_path(user_id: @profile.id), class: "button button--primary"
+          - if policy(@profile).message?
+            a.button href=profile_messages_path(@profile) = t(".message")
       .profile-header__actions
         - if policy(profile).edit?
           a.button href=edit_profile_path(profile) = t ".edit"

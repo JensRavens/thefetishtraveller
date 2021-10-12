@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_11_144531) do
+ActiveRecord::Schema.define(version: 2021_10_12_113030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -67,6 +67,25 @@ ActiveRecord::Schema.define(version: 2021_10_11_144531) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_activities_on_user_id"
+  end
+
+  create_table "conversation_members", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "conversation_id", null: false
+    t.uuid "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["conversation_id", "user_id"], name: "index_conversation_members_on_conversation_id_and_user_id", unique: true
+    t.index ["conversation_id"], name: "index_conversation_members_on_conversation_id"
+    t.index ["user_id"], name: "index_conversation_members_on_user_id"
+  end
+
+  create_table "conversations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "unread_count"
+    t.string "member_lookup"
+    t.datetime "last_message_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["member_lookup"], name: "index_conversations_on_member_lookup", unique: true
   end
 
   create_table "events", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -147,6 +166,18 @@ ActiveRecord::Schema.define(version: 2021_10_11_144531) do
     t.uuid "user_id", null: false
   end
 
+  create_table "messages", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "text"
+    t.datetime "read_at"
+    t.string "type"
+    t.uuid "conversation_id", null: false
+    t.uuid "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
+
   create_table "posts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.string "location_description"
@@ -200,12 +231,16 @@ ActiveRecord::Schema.define(version: 2021_10_11_144531) do
 
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "users"
+  add_foreign_key "conversation_members", "conversations"
+  add_foreign_key "conversation_members", "users"
   add_foreign_key "events", "events"
   add_foreign_key "events", "locations"
   add_foreign_key "follows", "users"
   add_foreign_key "follows", "users", column: "profile_id"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "messages", "conversations"
+  add_foreign_key "messages", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "travel_plans", "events"

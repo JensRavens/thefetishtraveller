@@ -13,6 +13,7 @@ de:
     head:
       default_description: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
     menu:
+      conversations: Chat
       events: Events
       feed: Feed
       login: Login
@@ -43,6 +44,9 @@ de:
       website: Website
   general:
     cancel: Abbrechen
+  messages:
+    index:
+      send: senden
   pages:
     home:
       claim: Die besten Fetisch Events Weltweit
@@ -71,6 +75,7 @@ de:
       following:
         one: 1 Following
         other: "%{count} Folge ich"
+      message: Chat
       posts:
         one: 1 Post
         other: "%{count} Posts"

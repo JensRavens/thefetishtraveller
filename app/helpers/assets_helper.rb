@@ -17,6 +17,7 @@ module AssetsHelper
 
   def image_asset_url(source, width: nil, height: nil)
     return if source.blank?
+    return source if source.is_a?(String)
 
     options = {}
     if width

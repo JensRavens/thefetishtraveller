@@ -5,9 +5,9 @@
       h5 = t ".intro"
       .spacer.spacer--tiny
       p.text-center
-        a.button href="/events" = t ".explore_events_now"
+        a.button.button--big href="/events" = t ".explore_events_now"
 .spacer
 h2 = t ".next_up"
 .listing.listing--single-line = render @events
-.button-line.button-line--dark: a.button href="/events" = t ".find_more_events"
+.button-line.button-line--dark: a.button.button--big href="/events" = t ".find_more_events"
 = render "components/newsletter"

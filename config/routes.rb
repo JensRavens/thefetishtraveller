@@ -22,7 +22,9 @@ Rails.application.routes.draw do
     resources :travel_plans, only: [:create, :destroy]
     resources :profiles, only: [:show, :edit, :update, :index] do
       get :travel_plans, on: :member
+      resources :messages, only: [:index, :create]
     end
+    resources :conversations, only: :index
     resources :follows, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
     resources :posts, only: [:new, :create, :index, :destroy]

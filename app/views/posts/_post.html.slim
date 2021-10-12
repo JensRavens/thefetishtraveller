@@ -4,9 +4,9 @@
 = turbo_frame_tag post, target: "_top"
   .post
     .post__meta
-      .post__avatar = image_tag post.user.avatar_image, class: "avatar", width: 32
+      a.post__avatar href=profile_path(post.user) = image_tag post.user.avatar_image, class: "avatar", width: 32
       .post__meta-text
-        .post__author = post.user.public_name
+        a.post__author href=profile_path(post.user) = post.user.public_name
         - if post.location_description.present?
           .post__location = post.location_description
       .post__meta-actions

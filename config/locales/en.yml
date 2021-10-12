@@ -13,6 +13,7 @@ en:
     head:
       default_description: Find fetish events all around the globe and connect with like-minded gear heads.
     menu:
+      conversations: Conversations
       events: Events
       feed: Feed
       login: Login
@@ -43,6 +44,9 @@ en:
       website: Website
   general:
     cancel: Cancel
+  messages:
+    index:
+      send: send
   pages:
     home:
       claim: The Best Fetish Events Worldwide
@@ -71,6 +75,7 @@ en:
       following:
         one: 1 Following
         other: "%{count} Following"
+      message: Message
       posts:
         one: 1 Post
         other: "%{count} Posts"

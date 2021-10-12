@@ -1,15 +1,20 @@
 .button {
+  appearance: none;
+  background-color: transparent;
   font-family: var(--font-heading-alternate);
-  display: inline-block;
+  display: inline-flex;
   position: relative;
   font-weight: 900;
   font-size: 1.3em;
-  padding: 16px 34px;
+  height: 32px;
+  line-height: 1;
+  padding: 0 10px;
   border: 2px solid var(--color-tint);
   cursor: pointer;
   z-index: 0;
   transition: color 0.3s;
-  text-align: center;
+  justify-content: center;
+  align-items: center;
 
   &::before {
     content: '';
@@ -32,7 +37,7 @@
     position: absolute;
     left: 34px;
     right: 34px;
-    bottom: 1em;
+    bottom: 3px;
     opacity: 0;
     height: 2px;
     background-color: white;
@@ -42,7 +47,9 @@
 
   .no-touch & {
     &:hover {
-      color: white;
+      :not(button) {
+        color: white;
+      }
       &::before {
         transform: none;
       }
@@ -52,5 +59,19 @@
         opacity: 1;
       }
     }
+  }
+
+  &--big {
+    height: 60px;
+    padding: 0 50px;
+
+    &::after {
+      bottom: 10px;
+    }
+  }
+
+  &--primary {
+    color: white;
+    background-color: var(--color-tint);
   }
 }
