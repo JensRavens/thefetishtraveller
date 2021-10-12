@@ -1,13 +1,24 @@
 .listing {
+  --min-listing-size: 350px;
   background-color: var(--color-background-dark);
   border: 1px solid white;
 
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(var(--min-listing-size), 1fr)
+  );
 
   > * {
     border: 1px solid white;
     position: relative;
+  }
+
+  &--small {
+    --min-listing-size: 150px;
+    @media (min-width: $tablet) {
+      --min-listing-size: 200px;
+    }
   }
 
   &--single-line {

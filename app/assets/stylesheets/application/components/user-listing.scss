@@ -1,0 +1,27 @@
+.user-listing {
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+  background-color: #191d2470;
+  background-blend-mode: multiply;
+  color: white;
+  padding: 8px;
+
+  display: flex;
+  flex-direction: column;
+
+  &__name {
+    flex: 1;
+    font-family: var(--font-heading);
+  }
+
+  &__location {
+    font-size: 12px;
+  }
+
+  .no-touch & {
+    &:hover {
+      background-color: #d0021b79;
+    }
+  }
+}

@@ -5,7 +5,7 @@ class ProfilesController < ApplicationController
   before_action :require_login, only: :index
 
   def index
-    @profiles = User.public_profile.page(params[:page]).per(20)
+    @profiles = User.public_profile.order(created_at: :desc).page(params[:page]).per(20)
   end
 
   def show
