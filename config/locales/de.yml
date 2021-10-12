@@ -13,20 +13,22 @@ de:
     head:
       default_description: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
     menu:
+      login: Login
+      logout: Logout
+      your_calendar: Dein Kalender
+    menu_links:
       conversations: Chat
       events: Events
       feed: Feed
-      login: Login
-      logout: Logout
       profiles: Profile
-      your_calendar: Dein Kalender
     newsletter:
       cto: Jetzt für den Newsletter anmelden
       subscribe: anmelden
   conversations:
     index:
-      no_conversations_yet: No conversations yet
-      there_is_nothing_yet: There is nothing yet
+      no_conversations_yet: Keine Chats
+      there_is_nothing_yet: Du hast noch keine Chats. Schreibe doch ein paar Profile an, dann ist hier bald mehr los.
+      title: Chat
   events:
     index:
       all: Alle
@@ -60,8 +62,8 @@ de:
       next_up: demnächst
   posts:
     index:
-      no_posts_yet: No posts yet
-      there_is_nothing_yet: There is nothing yet
+      no_posts_yet: Noch keine Posts
+      there_is_nothing_yet: Deine Kontakte haben noch nichts gepostet. Folge doch ein paar weiteren Profilen, dann ist hier bald mehr los.
     new:
       cancel: Abbrechen
     post:
@@ -94,7 +96,6 @@ de:
       travel_plans: Travel plans
     show:
       create_post: Post verfassen
-      next_travels: Nächste Reisen
   sessions:
     new:
       claim: Personalisiere deine Reiseerfahrung
@@ -106,7 +107,3 @@ de:
   time:
     formats:
       month: "%B"
-  travel_plans:
-    show:
-      heading: Reisepläne von %{name}
-      subscribe: Abonnieren

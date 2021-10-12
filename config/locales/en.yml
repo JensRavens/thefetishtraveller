@@ -13,13 +13,14 @@ en:
     head:
       default_description: Find fetish events all around the globe and connect with like-minded gear heads.
     menu:
+      login: Login
+      logout: Logout
+      your_calendar: Your calendar
+    menu_links:
       conversations: Conversations
       events: Events
       feed: Feed
-      login: Login
-      logout: Logout
       profiles: Profiles
-      your_calendar: Your calendar
     newsletter:
       cto: Subscribe now to our newsletter
       subscribe: subscribe
@@ -27,6 +28,7 @@ en:
     index:
       no_conversations_yet: No conversations yet
       there_is_nothing_yet: You didn't start any conversations yet. Look at some profiles and talk to them!
+      title: Conversations
   events:
     index:
       all: All
@@ -78,14 +80,14 @@ en:
       follow: Follow
       followers:
         one: 1 Follower
-        other: '%{count} Followers'
+        other: "%{count} Followers"
       following:
         one: 1 Following
-        other: '%{count} Following'
+        other: "%{count} Following"
       message: Message
       posts:
         one: 1 Post
-        other: '%{count} Posts'
+        other: "%{count} Posts"
       unfollow: Unfollow
     index:
       title: Profiles
@@ -94,7 +96,6 @@ en:
       travel_plans: Travel plans
     show:
       create_post: Create Post
-      next_travels: Next travels
   sessions:
     new:
       claim: Personalize your Travel Experience
@@ -105,8 +106,4 @@ en:
       why_explanation: If you log in, you can save events to a favorite list and make travel plans. A log in is needed to sync your travel plans across devices. Facebook is used for authentication purposes only - we will never post anything to your timeline without your permission.
   time:
     formats:
-      month: '%B'
-  travel_plans:
-    show:
-      heading: Travel Plans of %{name}
-      subscribe: Subscribe
+      month: "%B"
