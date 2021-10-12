@@ -1,0 +1,4 @@
+- message.mark_as_read! if message.user != current_user
+.chat__message class=(message.user == current_user ? "chat__message--local" : "chat__message--remote")
+  a.chat__avatar href=profile_path(message.user) = image_tag message.user.avatar_image, width: 32, class: :avatar
+  .chat__message-text = simple_format message.text

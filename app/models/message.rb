@@ -15,6 +15,10 @@ class Message < ApplicationRecord
   belongs_to :conversation
   belongs_to :user
 
+  after_create_commit do
+    ChatChannel.on_new_message(self)
+  end
+
   def unread?
     read_at.nil?
   end

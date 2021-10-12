@@ -4,6 +4,7 @@ require "sidekiq/web"
 require "sidekiq-scheduler/web"
 
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
   post "/graphql", to: "graphql#execute"
   mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   mount Sidekiq::Web => "/sidekiq" # move to admin once we have admin auth
