@@ -4,7 +4,7 @@
 = turbo_frame_tag post, target: "_top"
   .post
     .post__meta
-      a.post__avatar href=profile_path(post.user) = image_tag post.user.avatar_image, class: "avatar", width: 32
+      a.post__avatar href=profile_path(post.user) = image_tag post.user.avatar_image, class: "avatar", width: 40
       .post__meta-text
         a.post__author href=profile_path(post.user) = post.user.public_name
         - if post.location_description.present?
@@ -29,3 +29,4 @@
             = t ".liked_by_html", name: link
 
       .post__description = tagged_format post.description
+      .post__date = l post.created_at, format: :short

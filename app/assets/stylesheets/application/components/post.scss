@@ -28,6 +28,7 @@
   &__avatar {
     display: flex;
     align-items: center;
+    width: 40px;
   }
 
   &__icon-bar {
@@ -38,5 +39,10 @@
 
   &__like-bar {
     padding: 4px 0;
+  }
+
+  &__date {
+    font-size: 12px;
+    color: var(--color-text-label);
   }
 }
