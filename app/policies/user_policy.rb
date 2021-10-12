@@ -14,10 +14,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   def follow?
-    true
+    user != record
   end
 
   def message?
-    true
+    user != record
   end
 end

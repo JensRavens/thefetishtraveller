@@ -1,0 +1,15 @@
+.empty-box {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+  min-height: 50vh;
+
+  p {
+    max-width: 500px;
+    margin: 0 auto;
+    font-weight: 600;
+    font-size: 20px;
+    text-align: center;
+  }
+}

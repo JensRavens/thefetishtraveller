@@ -1,5 +1,10 @@
 .main-menu__spacer
 .spacer.spacer--small
 .container
-  .stack.stack--large
-    = render @posts
+  - if @posts.any?
+    .stack.stack--large
+      = render @posts
+  - else
+    .empty-box
+      h2 = t ".no_posts_yet"
+      p = t ".there_is_nothing_yet"
