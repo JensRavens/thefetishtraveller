@@ -27,7 +27,7 @@
 
 class User < ApplicationRecord
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :first_name, use: :slugged
   has_secure_password validations: false
 
   has_many :travel_plans, dependent: :destroy
