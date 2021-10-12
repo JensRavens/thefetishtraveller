@@ -1,6 +1,3 @@
-a.event-listing href=profile_path(user) style="background-image: url(#{image_asset_url(user.avatar_image, width: 500)})"
-  .event-listing__background
-  .event-listing__content
-    .event-listing__name = user.public_name
-    .event-listing__description
-    .event-listing__details = user.location_description
+a.user-listing href=profile_path(user) style="background-image: url(#{image_asset_url(user.avatar_image, width: 500)})"
+  .user-listing__name = user.public_name
+  .user-listing__location = user.location_description

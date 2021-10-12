@@ -110,7 +110,7 @@ class User < ApplicationRecord
     return avatar if avatar.attached?
 
     hash = Digest::MD5.hexdigest(email.to_s.downcase)
-    "https://www.gravatar.com/avatar/#{hash}?d=mm&s=200"
+    "https://www.gravatar.com/avatar/#{hash}?d=mm&s=400"
   end
 
   def social_links
