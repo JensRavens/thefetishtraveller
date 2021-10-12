@@ -2,7 +2,10 @@
 .main-menu__spacer
 = hero do
   .container
-    h1 = t ".title"
+    - if @tag
+      h1 ##{@tag}
+    - else
+      h1 = t ".title"
 .listing.listing--small = render @profiles
 .container = paginate @profiles
 

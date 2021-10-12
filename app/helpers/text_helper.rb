@@ -20,4 +20,11 @@ module TextHelper
 
     l date, format: :short
   end
+
+  def tagged_format(text, context: :posts)
+    text = simple_format(text)
+    text.gsub(Post::HASHTAG_REGEX) do |match|
+      link_to match, public_send("#{context}_path", tag: match[1..]), class: :link
+    end.html_safe
+  end
 end

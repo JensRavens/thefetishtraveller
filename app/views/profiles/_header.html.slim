@@ -21,7 +21,7 @@
         - if profile.location_description.present?
           .profile-header__location = profile.location_description
         - if profile.bio.present?
-          .profile-header__bio = simple_format profile.bio
+          .profile-header__bio = tagged_format profile.bio, context: :profiles
         .line
           - if policy(@profile).follow?
             - if current_user&.follows?(@profile)

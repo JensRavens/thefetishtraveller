@@ -29,6 +29,7 @@ class User < ApplicationRecord
   extend FriendlyId
   friendly_id :first_name, use: :slugged
   has_secure_password validations: false
+  acts_as_taggable_on :tags
 
   has_many :travel_plans, dependent: :destroy
   has_many :events, through: :travel_plans
@@ -52,6 +53,10 @@ class User < ApplicationRecord
 
   validates :slug, :email, presence: true, uniqueness: { case_sensitive: false }, on: :profile_edit
   validates :first_name, :last_name, presence: true, on: :profile_edit
+
+  before_save do
+    self.tag_list = parsed_tags if bio_changed?
+  end
 
   class << self
     def authenticate_facebook(token)
@@ -129,5 +134,11 @@ class User < ApplicationRecord
       conversation.conversation_members.build user: self
       conversation.conversation_members.build user: with
     end
+  end
+
+  private
+
+  def parsed_tags
+    bio.to_s.scan(Post::HASHTAG_REGEX).flatten.map { |tag| tag.strip[1..] }
   end
 end

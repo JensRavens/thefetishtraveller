@@ -4,7 +4,12 @@ class PostsController < ApplicationController
   before_action :require_login
 
   def index
-    @posts = Post.for_user(current_user).reverse_chronologic.page(params[:page]).per(20)
+    @posts = Post.reverse_chronologic.page(params[:page]).per(20)
+    if params[:tag]
+      @posts = @posts.tagged_with params[:tag]
+    else
+      @posts = @posts.for_user current_user
+    end
   end
 
   def new
