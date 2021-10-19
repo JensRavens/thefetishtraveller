@@ -55,8 +55,8 @@ de:
       send: senden
   notifications:
     notification:
-      type_liked: '%{sender} hat deinen Post geliked.'
-      type_commented: '%{sender} hat deinen Post kommentiert.'
+      type_commented: "%{sender} hat deinen Post kommentiert."
+      type_liked: "%{sender} hat deinen Post geliked."
   pages:
     home:
       claim: Die besten Fetisch Events Weltweit
@@ -105,12 +105,20 @@ de:
       travel_plans: Travel plans
     show:
       create_post: Post verfassen
+  session_mailer:
+    login:
+      login: Login
   sessions:
+    email:
+      login: Login
+    email_waiting:
+      open_link_in_email: Wir haben eine E-Mail mit einem Login-Link an %{email} gesendet. Bitte klicke auf den Link in dieser E-Mail, um fortzufahren.
     new:
       claim: Personalisiere deine Reiseerfahrung
       how: Wie kann ich mich einloggen?
       how_explanation: Derzeit unterstützt diese Seite nur den Login mit Apple. Klicke einfach den Login Button und fang an, Reisepläne zu erstellen.
       intro: Logge dich ein, um Favoritenlisten, Reisepläne oder neue Veranstaltungen zu erstellen.
+      or_login_via_email: oder per E-Mail einloggen
       why: Warum sollte ich mich einloggen?
       why_explanation: Wenn du dich einloggst, kannst du Veranstaltungen auf deine Favoritenliste setzen, Reisepläne verwalten oder Veranstaltunen einreichen und bearbeiten. Wir benötigen den Login, um deine Daten über mehrere Geräte hinweg zu synchronisieren.
   time:

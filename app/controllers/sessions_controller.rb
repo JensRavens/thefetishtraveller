@@ -3,12 +3,18 @@
 class SessionsController < ApplicationController
   def new
     redirect_to root_path if current_user
+    finish_email_login if params[:token].present?
   end
 
   def create
-    user = Rails.env.development? && params[:email].present? ? dev_login : apple_login
-    session[:user_id] = user.id
-    redirect_to root_path
+    if params[:email].present?
+      email_login
+      close_modal
+      replace :login_area, with: "email_waiting"
+    else
+      session[:user_id] = apple_login.id
+      redirect_to root_path
+    end
   end
 
   def destroy
@@ -16,10 +22,21 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  def email
+    render layout: false
+  end
+
   private
 
-  def dev_login
-    User.authenticate_email email: params[:email]
+  def email_login
+    user = User.authenticate_email email: params[:email]
+    SessionMailer.login(user).deliver_later
+  end
+
+  def finish_email_login
+    user = User.secure_find params[:token]
+    session[:user_id] = user.id
+    redirect_to root_path
   end
 
   def apple_login
