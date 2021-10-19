@@ -19,7 +19,7 @@
 
   &__window {
     position: relative;
-    height: 80vh;
+    max-height: 80vh;
     margin-top: 10vh;
     display: flex;
     align-items: center;

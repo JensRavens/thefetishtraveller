@@ -1,0 +1,4 @@
+= turbo_frame_tag "modal_frame"
+  = form_with url: sessions_path, method: :post, builder: AwesomeForm, class: "stack" do |f|
+    = f.email_field :email
+    = f.submit t(".login")

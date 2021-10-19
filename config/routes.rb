@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     ActiveAdmin.routes(self)
     get "login", to: "sessions#new"
     get "logout", to: "sessions#destroy"
-    resources :sessions, only: :create
+    resources :sessions, only: [:create] do
+      get "email", on: :collection
+    end
     resources :events, only: [:index, :show, :new, :create]
     resources :travel_plans, only: [:create, :destroy]
     resources :profiles, only: [:show, :edit, :update, :index] do

@@ -55,8 +55,8 @@ en:
       send: send
   notifications:
     notification:
-      type_liked: '%{sender} liked your post.'
-      type_commented: '%{sender} commented on your post.'
+      type_commented: "%{sender} commented on your post."
+      type_liked: "%{sender} liked your post."
   pages:
     home:
       claim: The Best Fetish Events Worldwide
@@ -105,12 +105,20 @@ en:
       travel_plans: Travel plans
     show:
       create_post: Create Post
+  session_mailer:
+    login:
+      login: Login
   sessions:
+    email:
+      login: Login
+    email_waiting:
+      open_link_in_email: We have sent an email with a login link to %{email}. Please click the link in the email to continue your login.
     new:
       claim: Personalize your Travel Experience
       how: How can I Login?
       how_explanation: Currently this site only supports login via facebook. There is no need for account creation, just click on the login button to start making travel plans.
       intro: Login to save your favorites list, travel plans or submit events.
+      or_login_via_email: or login via email
       why: Why Should I Login?
       why_explanation: If you log in, you can save events to a favorite list and make travel plans. A log in is needed to sync your travel plans across devices. Facebook is used for authentication purposes only - we will never post anything to your timeline without your permission.
   time:
