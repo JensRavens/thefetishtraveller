@@ -71,8 +71,10 @@ de:
     new:
       cancel: Abbrechen
     post:
+      add_a_comment: Kommentar verfassen
       liked_by_html: Geliked von %{name}.
       liked_by_many_html: Geliked von %{name} und %{count} anderen.
+      post_comment: Post
   profiles:
     edit:
       profile: Profile

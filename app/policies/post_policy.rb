@@ -8,4 +8,8 @@ class PostPolicy < ApplicationPolicy
   def report?
     record.user != user
   end
+
+  def comment?
+    user
+  end
 end

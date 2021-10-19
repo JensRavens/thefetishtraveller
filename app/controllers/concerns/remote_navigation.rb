@@ -17,7 +17,7 @@ module RemoteNavigation
     end
 
     def replace(id, with: nil, **locals)
-      queued_remote_updates.push turbo_stream.replace(dashed_dom_id(id), partial: with, locals: locals)
+      queued_remote_updates.push turbo_stream.replace(dashed_dom_id(id), partial: with || id, locals: locals)
     end
 
     def prepend(id, with: nil, **locals)
@@ -28,12 +28,15 @@ module RemoteNavigation
       queued_remote_updates.push turbo_stream.remove(dashed_dom_id(id))
     end
 
-    private
-
     def dashed_dom_id(id)
-      id = id.to_s.dasherize if id.is_a?(Symbol)
-      id
+      Array.wrap(id)
+        .map { |e| e.is_a?(Symbol) ? e.to_s.dasherize : e }
+        .map { |e| e.is_a?(ApplicationRecord) ? helpers.dom_id(e) : e.to_s }
+        .join("/")
     end
+    helper_method :dashed_dom_id
+
+    private
 
     def queued_remote_updates
       @queued_remote_updates ||= []

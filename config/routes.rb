@@ -30,6 +30,7 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
     resources :posts, only: [:new, :create, :index, :destroy] do
       get "context", on: :member
+      resources :comments, only: :create
     end
     root "pages#home"
     get "imprint", to: "pages#imprint"
