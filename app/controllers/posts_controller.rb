@@ -26,7 +26,12 @@ class PostsController < ApplicationController
   def destroy
     @post = authorize Post.find(params[:id])
     @post.destroy!
-    redirect_to current_user
+    remove(@post)
+  end
+
+  def context
+    @post = Post.find(params[:id])
+    render layout: false
   end
 
   private

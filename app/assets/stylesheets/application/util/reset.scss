@@ -7,6 +7,8 @@
   font-size: 1em;
   font-family: inherit;
   line-height: inherit;
+  background-color: transparent;
+  color: inherit;
 }
 
 img {
@@ -14,4 +16,9 @@ img {
   max-width: 100%;
   width: 100%;
   height: auto;
+}
+
+button,
+a {
+  cursor: pointer;
 }

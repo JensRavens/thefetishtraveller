@@ -61,13 +61,16 @@ de:
       intro: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
       next_up: demnächst
   posts:
+    context:
+      confirm_post_deletion: Willst du diesen Post wirklich löschen?
+      delete: Löschen
+      report: Melden
     index:
       no_posts_yet: Noch keine Posts
       there_is_nothing_yet: Deine Kontakte haben noch nichts gepostet. Folge doch ein paar weiteren Profilen, dann ist hier bald mehr los.
     new:
       cancel: Abbrechen
     post:
-      confirm_post_deletion: Willst du diesen Post wirklich löschen?
       liked_by_html: Geliked von %{name}.
       liked_by_many_html: Geliked von %{name} und %{count} anderen.
   profiles:
