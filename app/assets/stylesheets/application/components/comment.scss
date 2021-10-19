@@ -1,0 +1,25 @@
+.comment {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+
+  &__avatar {
+    width: 24px;
+    min-width: 24px;
+  }
+
+  &__author {
+    font-weight: 600;
+    display: inline;
+    margin-right: 5px;
+  }
+
+  &__text {
+    display: inline;
+  }
+
+  &__timestamp {
+    color: var(--color-text-label);
+    font-size: 0.8em;
+  }
+}

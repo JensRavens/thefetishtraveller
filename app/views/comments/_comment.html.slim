@@ -1,0 +1,6 @@
+.comment
+  a.comment__avatar href=profile_path(comment.user) = image_tag comment.user.avatar_image, width: 32, class: "avatar"
+  .comment__content
+    a.comment__author href=profile_path(comment.user) = comment.user.public_name
+    .comment__text = comment.text
+    .comment__timestamp = l comment.created_at, format: :short

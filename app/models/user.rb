@@ -41,6 +41,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :delete_all
   has_many :conversation_members, dependent: :destroy
   has_many :conversations, through: :conversation_members
+  has_many :comments, dependent: :delete_all
 
   has_and_belongs_to_many :owned_events, class_name: "Event"
   has_and_belongs_to_many :owned_locations, class_name: "Location"

@@ -15,6 +15,7 @@ class Post < ApplicationRecord
   HASHTAG_REGEX = /\B(\#[a-zA-Z0-9]+\b)(?!;)/.freeze
 
   has_many :likes, dependent: :delete_all
+  has_many :comments, dependent: :delete_all
   belongs_to :user
 
   has_one_attached :image

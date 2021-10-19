@@ -10,13 +10,15 @@
         - if post.location_description.present?
           .post__location = post.location_description
       .post__meta-actions: .context-menu data-controller="context" data-context-path-value=context_post_path(post) data-action="click->context#show"
-    .post__content
+    .post__content data-controller="hide"
       img.post__image src=image_asset_url(post.image)
       .post__icon-bar
         - if post.likes.where(user: current_user).any?
           = link_to "", like_path(post), method: :delete, class: "post__icon-bar__button heart-button active"
         - else
           = link_to "", likes_path(post_id: post.id), method: :post, class: "post__icon-bar__button heart-button"
+        - if policy(post).comment?
+          .post__icon-bar__button.comment-button data-action="click->hide#toggle"
       - if like_previews.any?
         .post__like-bar
           - user = like_previews.first.user
@@ -25,6 +27,11 @@
             = t ".liked_by_many_html", name: link, count: total_likes - like_previews.size
           - else
             = t ".liked_by_html", name: link
-
       .post__description = tagged_format post.description
       .post__date = l post.created_at, format: :short
+      - if policy(post).comment?
+        .post__comment-bar data-target="hide.target" hidden=true
+          = form_with model: current_user.comments.new, url: post_comments_path(post) do |f|
+            = f.text_area :text, placeholder: t(".add_a_comment")
+            = f.submit t(".post_comment")
+      .post__comments.stack = render post.comments.reverse_chronologic
