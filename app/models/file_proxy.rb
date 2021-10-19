@@ -13,9 +13,8 @@ class FileProxy
     end
   end
 
-  def url(resize: nil)
+  def url(resize: nil, protocol: Rails.env.production? ? :https : :http)
     message = [blob_id, resize]
-    protocol = Rails.env.production? ? :https : :http
-    Rails.application.routes.url_helpers.file_url(self.class.message_verifier.generate(message), locale: nil, protocol: protocol)
+    Rails.application.routes.url_helpers.file_path(self.class.message_verifier.generate(message), locale: nil, protocol: protocol)
   end
 end
