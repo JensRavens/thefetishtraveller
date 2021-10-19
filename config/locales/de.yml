@@ -53,6 +53,10 @@ de:
   messages:
     index:
       send: senden
+  notifications:
+    notification:
+      type_liked: '%{sender} hat deinen Post geliked.'
+      type_commented: '%{sender} hat deinen Post kommentiert.'
   pages:
     home:
       claim: Die besten Fetisch Events Weltweit

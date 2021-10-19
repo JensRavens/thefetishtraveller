@@ -9,6 +9,10 @@ class PostPolicy < ApplicationPolicy
     record.user != user
   end
 
+  def like?
+    user
+  end
+
   def comment?
     user
   end

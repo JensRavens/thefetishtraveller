@@ -1,0 +1,22 @@
+.notification {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &__sender {
+    width: 40px;
+    min-width: 40px;
+  }
+
+  &__text {
+    flex: 1;
+  }
+
+  &__post {
+    width: 80px;
+  }
+
+  &--unread {
+    font-weight: 600;
+  }
+}

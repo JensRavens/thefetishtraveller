@@ -42,6 +42,7 @@ class User < ApplicationRecord
   has_many :conversation_members, dependent: :destroy
   has_many :conversations, through: :conversation_members
   has_many :comments, dependent: :delete_all
+  has_many :notifications, dependent: :delete_all
 
   has_and_belongs_to_many :owned_events, class_name: "Event"
   has_and_belongs_to_many :owned_locations, class_name: "Location"
@@ -135,6 +136,24 @@ class User < ApplicationRecord
       conversation.conversation_members.build user: self
       conversation.conversation_members.build user: with
     end
+  end
+
+  def like!(post:)
+    likes.create!(post: post)
+    Notification.notifiy sender: self, user: post.user, subject: post, type: :liked
+  end
+
+  def unlike!(post:)
+    likes.where(post: post).delete_all
+  end
+
+  def unread_notifications_count
+    notifications.unread.size
+  end
+
+  def comment!(post:, text:)
+    comments.create!(post: post, text: text)
+    Notification.notifiy sender: self, user: post.user, subject: post, type: :commented
   end
 
   private

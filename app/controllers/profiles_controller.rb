@@ -11,7 +11,11 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @posts = @profile.posts.reverse_chronologic.limit(20)
+    if params[:post_id].present?
+      @posts = @profile.posts.where(id: params[:post_id])
+    else
+      @posts = @profile.posts.reverse_chronologic.limit(20)
+    end
   end
 
   def travel_plans
