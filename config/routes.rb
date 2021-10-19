@@ -28,7 +28,9 @@ Rails.application.routes.draw do
     resources :conversations, only: :index
     resources :follows, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
-    resources :posts, only: [:new, :create, :index, :destroy]
+    resources :posts, only: [:new, :create, :index, :destroy] do
+      get "context", on: :member
+    end
     root "pages#home"
     get "imprint", to: "pages#imprint"
   end

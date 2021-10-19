@@ -1,0 +1,25 @@
+.context-menu {
+  width: 24px;
+  height: 24px;
+  background-image: asset-url('icon/more.svg');
+  background-size: contain;
+  background-position: center;
+  cursor: pointer;
+
+  &__popover {
+    display: block;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    padding: 16px;
+    position: relative;
+  }
+
+  &__button {
+    font-weight: 600;
+  }
+
+  &__button-destructive {
+    color: var(--color-warning);
+  }
+}

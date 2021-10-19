@@ -4,4 +4,8 @@ class PostPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def report?
+    record.user != user
+  end
 end

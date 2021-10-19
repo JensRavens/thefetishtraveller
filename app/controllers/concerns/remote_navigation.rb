@@ -24,6 +24,10 @@ module RemoteNavigation
       queued_remote_updates.push turbo_stream.prepend(dashed_dom_id(id), partial: with, locals: locals)
     end
 
+    def remove(id)
+      queued_remote_updates.push turbo_stream.remove(dashed_dom_id(id))
+    end
+
     private
 
     def dashed_dom_id(id)
