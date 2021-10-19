@@ -1,5 +1,5 @@
 .header {
-  position: relative;
+  position: sticky;
   top: 0;
   height: 60px;
   z-index: var(--z-nav);
@@ -10,10 +10,7 @@
   justify-content: center;
 
   font-family: 'Bebas Neue';
-
-  &--detached {
-    background-color: var(--color-background-dark);
-  }
+  background-color: var(--color-footer);
 
   .logo {
     flex: 1 0 0;
