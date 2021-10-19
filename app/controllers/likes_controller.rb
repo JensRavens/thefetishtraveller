@@ -2,22 +2,21 @@
 
 class LikesController < ApplicationController
   before_action :require_login
+  before_action :assign_post
 
   def create
-    @post = Post.find(params[:post_id])
-    @post.likes.create!(user: current_user)
-    rerender_post
+    current_user.like! post: @post
+    replace @post
   end
 
   def destroy
-    @post = Post.find(params[:id])
-    @post.likes.where(user: current_user).delete_all
-    rerender_post
+    current_user.unlike! post: @post
+    replace @post
   end
 
   private
 
-  def rerender_post
-    render turbo_stream: turbo_stream.update(@post, partial: "posts/post", locals: { post: @post })
+  def assign_post
+    @post = authorize Post.find(params[:post_id].presence || params[:id]), :like?
   end
 end

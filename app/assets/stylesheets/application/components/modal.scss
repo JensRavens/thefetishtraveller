@@ -34,6 +34,12 @@
     padding: 1rem;
   }
 
+  &--small {
+    > .container {
+      max-width: 420px;
+    }
+  }
+
   &--open {
     .modal__blind {
       opacity: 1;

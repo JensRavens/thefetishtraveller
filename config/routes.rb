@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       get "context", on: :member
       resources :comments, only: :create
     end
+    resources :notifications, only: :index
     root "pages#home"
     get "imprint", to: "pages#imprint"
   end

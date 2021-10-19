@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_19_090629) do
+ActiveRecord::Schema.define(version: 2021_10_19_104208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -188,6 +188,20 @@ ActiveRecord::Schema.define(version: 2021_10_19_090629) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "sender_id", null: false
+    t.datetime "read_at"
+    t.string "notification_type"
+    t.string "subject_type"
+    t.uuid "subject_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["sender_id"], name: "index_notifications_on_sender_id"
+    t.index ["subject_type", "subject_id"], name: "index_notifications_on_subject"
+    t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
   create_table "posts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.string "location_description"
@@ -282,6 +296,8 @@ ActiveRecord::Schema.define(version: 2021_10_19_090629) do
   add_foreign_key "likes", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "messages", "users"
+  add_foreign_key "notifications", "users"
+  add_foreign_key "notifications", "users", column: "sender_id"
   add_foreign_key "posts", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "taggings", "tags"

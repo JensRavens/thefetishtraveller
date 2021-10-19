@@ -4,7 +4,7 @@ declare global {
   interface Window {
     ui: {
       modal: {
-        load(url: string): Promise<void>;
+        load(url: string, size: string): Promise<void>;
         close(): void;
       };
     };
@@ -25,9 +25,11 @@ export default class extends Controller {
     this.modal.classList.add('modal--enabled');
   }
 
-  load = async (url: string): Promise<void> => {
+  load = async (url: string, size: string): Promise<void> => {
     document.body.classList.add('modal-open');
     this.modal.classList.add('modal--open');
+    this.modal.classList.toggle('modal--small', size === 'small');
+    console.log('loading', url, size);
     this.contentTarget.src = url;
   };
 

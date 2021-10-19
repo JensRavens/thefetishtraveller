@@ -53,6 +53,10 @@ en:
   messages:
     index:
       send: send
+  notifications:
+    notification:
+      type_liked: '%{sender} liked your post.'
+      type_commented: '%{sender} commented on your post.'
   pages:
     home:
       claim: The Best Fetish Events Worldwide

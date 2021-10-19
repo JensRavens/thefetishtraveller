@@ -9,8 +9,8 @@ module ComponentHelper
     current_user&.events&.include?(event)
   end
 
-  def modal_url(path)
-    "javascript:ui.modal.load('#{path}')"
+  def modal_url(path, size: :regular)
+    "javascript:ui.modal.load('#{path}', '#{size}')"
   end
 
   def close_modal_path
