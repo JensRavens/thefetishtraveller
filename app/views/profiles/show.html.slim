@@ -9,4 +9,4 @@
   - if @profile == current_user
     .line.line--center: a.button href=modal_url(new_post_path) = t ".create_post"
     .spacer.spacer--small
-  .stack.stack--large = render @posts
+  = render "personal_feed", posts: @posts

@@ -18,8 +18,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    current_user.posts.create! post_params
+    @post = current_user.posts.create! post_params
     close_modal
+    prepend :personal_feed, with: @post
   end
 
   def destroy
