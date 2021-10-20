@@ -90,4 +90,13 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
   Rails.application.routes.default_url_options[:protocol] = "https"
   Rails.application.routes.default_url_options[:host] = ENV["HOST"]
+
+  ActionMailer::Base.smtp_settings = {
+    user_name: ENV["SMTP_USERNAME"],
+    password: ENV["SMTP_PASSWORD"],
+    address: ENV["SMTP_ADDRESS"],
+    port: 587,
+    authentication: :login,
+    enable_starttls_auto: true
+  }
 end
