@@ -30,8 +30,14 @@
   }
 
   &__error {
-    margin-top: 8px;
+    margin-top: 4px;
     color: var(--color-error);
+    font-size: 14px;
+  }
+
+  &__description {
+    margin-top: 4px;
+    color: var(--color-text-label);
     font-size: 14px;
   }
 
@@ -56,16 +62,17 @@
 
   &--checkbox,
   &--radio {
-    display: flex;
+    position: relative;
+    padding-left: 30px;
 
     input {
-      position: relative;
-      order: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
       border: 1px solid var(--color-text);
       border-radius: 2px;
       height: 18px;
       width: 18px;
-      margin-right: 12px;
 
       &:checked {
         &::before {
@@ -85,7 +92,6 @@
     }
 
     label {
-      order: 1;
       font-size: 14px;
       text-transform: inherit;
       color: inherit;

@@ -3,6 +3,7 @@
 class SessionsController < ApplicationController
   def new
     redirect_to root_path and return if current_user
+
     finish_email_login if params[:token].present?
   end
 
@@ -13,7 +14,7 @@ class SessionsController < ApplicationController
       replace :login_area, with: "email_waiting"
     else
       session[:user_id] = apple_login.id
-      redirect_to root_path
+      redirect_to posts_path
     end
   end
 
@@ -36,7 +37,7 @@ class SessionsController < ApplicationController
   def finish_email_login
     user = User.secure_find params[:token]
     session[:user_id] = user.id
-    redirect_to root_path
+    redirect_to posts_path
   end
 
   def apple_login

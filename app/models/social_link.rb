@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SocialLink
-  NETWORKS = [:twitter, :instagram, :recon, :romeo, :bluf].freeze
+  NETWORKS = [:twitter, :instagram, :recon, :romeo, :bluf, :onlyfans].freeze
 
   attr_accessor :network, :profile
 
@@ -22,6 +22,8 @@ class SocialLink
       "https://www.romeo.com/profile/#{profile}"
     when :bluf
       "https://bluf.com/profiles/#{profile}"
+    when :onlyfans
+      "https://onlyfans.com/#{profile}"
     end
   end
 end

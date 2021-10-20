@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register User do
-  permit_params :first_name, :last_name, :slug, :public_profile, :location_description, :bio, :twitter, :instagram, :recon, :romeo, :bluf, :avatar, :hero, roles: []
-  scope :public_profile
+  permit_params :first_name, :last_name, :slug, :visibility, :location_description, :bio, :avatar, :hero, *SocialLink::NETWORKS, roles: []
 
   index do
     selectable_column
@@ -12,7 +11,7 @@ ActiveAdmin.register User do
     column :public_name
     column :email
     column :location_description
-    column :public_profile
+    column :visibility
     actions
   end
 
@@ -22,7 +21,7 @@ ActiveAdmin.register User do
       row :email
       row :location_description
       row :bio
-      row :public_profile
+      row :visibility
       row :roles
     end
 
@@ -32,11 +31,9 @@ ActiveAdmin.register User do
   sidebar "Details", only: :show do
     div { image_tag user.avatar, width: 200 }
     attributes_table_for user do
-      row :twitter
-      row :instagram
-      row :recon
-      row :romeo
-      row :bluf
+      user.social_links.each do |link|
+        row link.network
+      end
     end
   end
 
@@ -46,14 +43,12 @@ ActiveAdmin.register User do
       input :first_name
       input :last_name
       input :slug
-      input :public_profile
+      input :visibility
       input :location_description
       input :bio, as: :text
-      input :twitter
-      input :instagram
-      input :recon
-      input :romeo
-      input :bluf
+      SocialLink::NETWORKS.each do |network|
+        input network
+      end
       input :avatar
       input :hero
       input :roles, as: :select, collection: [:admin]

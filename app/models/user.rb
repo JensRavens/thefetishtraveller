@@ -15,7 +15,6 @@
 #  facebook_id          :string
 #  apple_id             :string
 #  slug                 :string
-#  public_profile       :boolean          default(FALSE), not null
 #  location_description :string
 #  bio                  :string
 #  twitter              :string
@@ -23,6 +22,8 @@
 #  recon                :string
 #  romeo                :string
 #  bluf                 :string
+#  visibility           :string
+#  onlyfans             :string
 #
 
 class User < ApplicationRecord
@@ -52,10 +53,12 @@ class User < ApplicationRecord
   has_one_attached :hero
 
   scope :guest, -> { where(email: nil) }
-  scope :public_profile, -> { where(public_profile: true) }
+  scope :onboarded, -> { where.not(visibility: nil) }
 
   validates :slug, :email, presence: true, uniqueness: { case_sensitive: false }, on: :profile_edit
-  validates :first_name, :last_name, presence: true, on: :profile_edit
+  validates :slug, format: { with: /\A[a-zA-Z\d\-_]*\z/ }
+
+  enum visibility: [:public, :internal].index_with(&:to_s), _prefix: :visibility
 
   before_save do
     self.tag_list = parsed_tags if bio_changed?
@@ -155,6 +158,10 @@ class User < ApplicationRecord
   def comment!(post:, text:)
     comments.create!(post: post, text: text)
     Notification.notifiy sender: self, user: post.user, subject: post, type: :commented
+  end
+
+  def onboarded?
+    visibility.present?
   end
 
   private

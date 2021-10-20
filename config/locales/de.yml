@@ -15,7 +15,6 @@ de:
     menu:
       login: Login
       logout: Logout
-      your_calendar: Dein Kalender
     menu_links:
       conversations: Chat
       events: Events
@@ -50,6 +49,15 @@ de:
       website: Website
   general:
     cancel: Abbrechen
+  helpers:
+    label:
+      user:
+        avatar: Profilbild
+        bio: Profiltext
+        location_description: Ort
+        slug: Profilname
+        visibility_internal: Internes Profil
+        visibility_public: Öffentliches Profil
   messages:
     index:
       send: senden
@@ -57,6 +65,28 @@ de:
     notification:
       type_commented: "%{sender} hat deinen Post kommentiert."
       type_liked: "%{sender} hat deinen Post geliked."
+  onboardings:
+    form:
+      continue: Weiter
+    header:
+      guide: Während der nächsten Schritte helfen wir dir dabei, dein Profil einzurichten.
+      step: Schritt %{step}
+      welcome: Willkommen
+    step_1:
+      create_a_bio: 'Schreibe etwas über dich selbst. Du kannst Hashtags wie #biker oder #leather benutzen, damit andere dich finden können.'
+      lets_get_started: Lass uns mit deinem Profil beginnen. Wähle einen Nutzernamen aus und fülle dann dein Basisprofil aus.
+      location_description: Wo bist du? Andere Nutzer können dich über deinen Standort finden.
+      setup_profile: Dein Profil
+      show_yourself: Auch wenn ein Profilfoto nicht vorausgesetzt wird, werden andere Nutzer häufiger mit dir interagieren, wenn du ein Foto hochlädst.
+      this_is_your_handle: Andere werden dies als deinen Profilnamen sehen. Du kannst nur Buchstaben, Zahlen sowie Binde- und Unterstriche verwenden.
+    step_2:
+      setup_link: Teile anderen mit, wie sie dich erreichen können.
+      social_links: Soziale Netzwerke
+    step_3:
+      internal_description: Dein Profil, deine Posts und Reisepläne sind nur für andere Nutzer mit einem Account sichtbar.
+      profile_visibility: Profilsichtbarkeit
+      public_description: Dein Profil, deine Posts und Reisepläne sind für alle im Internet öffentlich sichtbar. Dadurch kannst du dein Profil und deine Reisepläne mit anderen über einen Link teilen.
+      your_choice: Erzähle uns, wer dein Profil sehen und damit interagieren kann.
   pages:
     home:
       claim: Die besten Fetisch Events Weltweit

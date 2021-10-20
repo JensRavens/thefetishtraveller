@@ -10,10 +10,10 @@ class PostPolicy < ApplicationPolicy
   end
 
   def like?
-    user
+    user&.onboarded?
   end
 
   def comment?
-    user
+    user&.onboarded?
   end
 end

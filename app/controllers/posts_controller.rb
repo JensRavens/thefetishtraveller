@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :require_login
+  before_action :require_profile
 
   def index
     @posts = Post.reverse_chronologic.page(params[:page]).per(20)
