@@ -5,6 +5,7 @@ export default class extends Controller {
   static values = { conversation: String };
   declare readonly conversationValue: string;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private subscription: any;
 
   connect(): void {

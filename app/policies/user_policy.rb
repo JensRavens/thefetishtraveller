@@ -2,7 +2,7 @@
 
 class UserPolicy < ApplicationPolicy
   def show?
-    logged_in? || record.public_profile? || admin?
+    logged_in? || record.visibility == "public" || admin?
   end
 
   def travel_plans?
@@ -14,10 +14,10 @@ class UserPolicy < ApplicationPolicy
   end
 
   def follow?
-    user != record
+    user != record && user&.onboarded?
   end
 
   def message?
-    user != record
+    user != record && user&.onboarded?
   end
 end

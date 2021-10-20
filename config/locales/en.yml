@@ -15,7 +15,6 @@ en:
     menu:
       login: Login
       logout: Logout
-      your_calendar: Your calendar
     menu_links:
       conversations: Conversations
       events: Events
@@ -50,6 +49,15 @@ en:
       website: Website
   general:
     cancel: Cancel
+  helpers:
+    label:
+      user:
+        avatar: Profile Picture
+        bio: Profile Text
+        location_description: Location
+        slug: Profile Name
+        visibility_internal: Internal Profile
+        visibility_public: Public Profile
   messages:
     index:
       send: send
@@ -57,6 +65,28 @@ en:
     notification:
       type_commented: "%{sender} commented on your post."
       type_liked: "%{sender} liked your post."
+  onboardings:
+    form:
+      continue: Continue
+    header:
+      guide: During the next few steps we will help you to setup your profile.
+      step: Step %{step}
+      welcome: Welcome
+    step_1:
+      create_a_bio: 'Write something about yourself. You can use hashtags here like #biker or #leather so others can find you.'
+      lets_get_started: Let's get started by selecting a user name and filling in your basic profile.
+      location_description: Where are you located? This will make it easier for others to find you.
+      setup_profile: Your Profile
+      show_yourself: Although a profile picture is not required, it will make it a lot easier for other users to contact you.
+      this_is_your_handle: Others will see this as your public profile name. It can only contain letters, numbers, dashes and underscores.
+    step_2:
+      setup_link: Tell others how they can reach you.
+      social_links: Social Links
+    step_3:
+      internal_description: Your profile, posts and travel plans are only visibile to other users that have an account.
+      profile_visibility: Profile Visibility
+      public_description: Your profile posts and travel plans are visible to everyone on the internet. This allows you to share a link to your travel plans to others that are not on this platform.
+      your_choice: Tell us who should be able to see and interact with your profile.
   pages:
     home:
       claim: The Best Fetish Events Worldwide

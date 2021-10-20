@@ -117,6 +117,10 @@
     &--bluf::before {
       background-image: asset-url('social/bluf.svg');
     }
+
+    &--onlyfans::before {
+      background-image: asset-url('social/onlyfans.svg');
+    }
   }
 
   @media (min-width: $tablet) {

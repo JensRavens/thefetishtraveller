@@ -5,21 +5,21 @@
   = form_with model: @profile, url: profile_path(@profile), builder: AwesomeForm, class: :stack do |f|
     h3.subheadline = t ".your_account"
     = f.text_field :slug
-    = f.check_box :public_profile
+    = f.radio_button :visibility, "public", required: true
+    = f.radio_button :visibility, "internal", required: true
     .line.line--stretch
       = f.text_field :first_name
       = f.text_field :last_name
     = f.email_field :email
+    .spacer.spacer--small
     h3.subheadline = t ".social"
-    .line.line--stretch
-      = f.text_field :twitter
-      = f.text_field :instagram
-    .line.line--stretch
-      = f.text_field :recon
-      = f.text_field :romeo
-    .line.line--stretch
-      = f.text_field :bluf
-      div
+    - SocialLink::NETWORKS.in_groups_of(2).each do |group|
+      .line.line--stretch
+        - group.each do |network|
+          = f.text_field network
+        - if group.size == 1
+          div
+    .spacer.spacer--small
     h3.subheadline = t ".profile"
     = f.text_field :location_description
     = f.text_area :bio

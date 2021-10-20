@@ -105,7 +105,8 @@ class AwesomeForm < ActionView::Helpers::FormBuilder
     end
     label = label(options.delete(:label_method) || method, options.delete(:label_text), class: "input__label")
     label = nil if options[:label] == false
-    content_tag(:div, safe_join([label, content, errors].compact), class: ["input"] + classes)
+    description = options.delete(:description).presence&.then { |e| content_tag(:div, e, class: "input__description") }
+    content_tag(:div, safe_join([label, content, description, errors].compact), class: ["input"] + classes)
   end
 
   def helper

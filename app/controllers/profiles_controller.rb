@@ -2,10 +2,10 @@
 
 class ProfilesController < ApplicationController
   before_action :load_profile, except: :index
-  before_action :require_login, only: :index
+  before_action :require_profile, only: :index
 
   def index
-    @profiles = User.order(created_at: :desc).page(params[:page]).per(20)
+    @profiles = User.onboarded.order(created_at: :desc).page(params[:page]).per(20)
     @tag = params[:tag].presence
     @profiles = @profiles.tagged_with(@tag) if @tag
   end
@@ -41,6 +41,6 @@ class ProfilesController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:slug, :first_name, :last_name, :email, :avatar, :hero, :location_description, :twitter, :instagram, :recon, :romeo, :bluf, :public_profile, :bio)
+    params.require(:user).permit(:slug, :first_name, :last_name, :email, :avatar, :hero, :location_description, :visibility, :bio, *SocialLink::NETWORKS)
   end
 end

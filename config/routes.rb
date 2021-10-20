@@ -4,7 +4,7 @@ require "sidekiq/web"
 require "sidekiq-scheduler/web"
 
 Rails.application.routes.draw do
-  mount ActionCable.server => '/cable'
+  mount ActionCable.server => "/cable"
   post "/graphql", to: "graphql#execute"
   mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   mount Sidekiq::Web => "/sidekiq" # move to admin once we have admin auth
@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     end
     resources :events, only: [:index, :show, :new, :create]
     resources :travel_plans, only: [:create, :destroy]
-    resources :profiles, only: [:show, :edit, :update, :index] do
+    resources :profiles, only: [:edit, :index] do
       get :travel_plans, on: :member
       resources :messages, only: [:index, :create]
     end
@@ -35,8 +35,11 @@ Rails.application.routes.draw do
       resources :comments, only: :create
     end
     resources :notifications, only: :index
+    resource :onboarding, only: [:show, :update]
     root "pages#home"
     get "imprint", to: "pages#imprint"
+    get ":id", to: "profiles#show", as: :profile
+    patch ":id", to: "profiles#update"
   end
 
   resources :files, only: :show

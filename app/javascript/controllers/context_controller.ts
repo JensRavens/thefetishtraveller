@@ -36,7 +36,7 @@ export default class extends Controller {
     document.removeEventListener('click', this.clickOutside);
   }
 
-  private clickOutside = (event: MouseEvent) => {
+  private clickOutside = (event: MouseEvent): void => {
     if (event.target === this.element) {
       event.preventDefault();
       return;

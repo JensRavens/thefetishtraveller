@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: notifications
@@ -21,7 +23,7 @@ class Notification < ApplicationRecord
   scope :unread, -> { where(read_at: nil) }
 
   class << self
-    def notifiy(sender: nil, subject:, user:, type:)
+    def notifiy(subject:, user:, type:, sender: nil)
       notification = Notification.create!(sender: sender, subject: subject, user: user, notification_type: type)
       notification.deliver!
     end

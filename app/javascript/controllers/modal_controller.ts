@@ -29,7 +29,6 @@ export default class extends Controller {
     document.body.classList.add('modal-open');
     this.modal.classList.add('modal--open');
     this.modal.classList.toggle('modal--small', size === 'small');
-    console.log('loading', url, size);
     this.contentTarget.src = url;
   };
 
