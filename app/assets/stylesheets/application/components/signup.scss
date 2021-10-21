@@ -5,10 +5,12 @@
   &__container {
     margin: 0 auto;
     max-width: 630px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
-  &__email,
-  &__button {
+  &__email {
     appearance: none;
     border-radius: 0;
     border: none;
@@ -29,17 +31,12 @@
   }
 
   &__button {
-    background-color: var(--color-tint);
-    line-height: 1;
-    padding: 16px 40px;
-    font-weight: bolder;
-    font-size: 13px;
-    text-transform: uppercase;
+    color: white;
   }
 
   @media (min-width: $tablet) {
     &__container {
-      display: flex;
+      flex-direction: row;
     }
 
     &__email {

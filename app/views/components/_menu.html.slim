@@ -1,11 +1,10 @@
 header.header
   nav.main-menu data-controller="toggle"
-    .main-menu__category.logo
-      a href=root_path == "The <em>Fetish</em> Traveller"
-    .main-menu__category.main-menu__category--additional = render "components/menu_links"
-    .main-menu__category.main-menu__category--additional
+    .main-menu__logo.logo: a href=root_path == "The <em>Fetish</em> Traveller"
+    .main-menu__links = render "components/menu_links"
+    .main-menu__user
       - if current_user
-        a.main-menu__bell href=modal_url(notifications_path, size: :small) data-count=current_user.unread_notifications_count data-controller="notification"
+        a.main-menu__bell href=modal_url(notifications_path, size: :small, title: t(".notifications"), close: true) data-count=current_user.unread_notifications_count data-controller="notification"
         a.main-menu__avatar href=profile_path(current_user)
           = image_tag current_user.avatar_image, width: 40
       - else

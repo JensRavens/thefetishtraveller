@@ -1,10 +1,17 @@
 import { Controller } from 'stimulus';
 
+interface ModalOptions {
+  url: string;
+  size: string;
+  title: string | null;
+  close: boolean | null;
+}
+
 declare global {
   interface Window {
     ui: {
       modal: {
-        load(url: string, size: string): Promise<void>;
+        load(options: ModalOptions): Promise<void>;
         close(): void;
       };
     };
@@ -12,8 +19,11 @@ declare global {
 }
 
 export default class extends Controller {
-  static targets = ['content'];
-  declare contentTarget: HTMLIFrameElement;
+  static targets = ['content', 'title', 'close'];
+  declare contentTarget: HTMLDivElement;
+  declare titleTarget: HTMLDivElement;
+  declare closeTarget: HTMLDivElement;
+  private frame?: HTMLIFrameElement;
 
   connect(): void {
     const modal = { load: this.load, close: this.close };
@@ -25,11 +35,20 @@ export default class extends Controller {
     this.modal.classList.add('modal--enabled');
   }
 
-  load = async (url: string, size: string): Promise<void> => {
+  load = async ({ size, url, title, close }: ModalOptions): Promise<void> => {
     document.body.classList.add('modal-open');
     this.modal.classList.add('modal--open');
     this.modal.classList.toggle('modal--small', size === 'small');
-    this.contentTarget.src = url;
+    this.frame?.remove();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const frame = document.createElement('turbo-frame') as any;
+    frame.id = 'modal_frame';
+    frame.target = '_top';
+    frame.src = url;
+    this.frame = frame;
+    this.contentTarget.appendChild(frame);
+    this.titleTarget.innerHTML = title;
+    this.closeTarget.hidden = !close;
   };
 
   close = (): void => {
