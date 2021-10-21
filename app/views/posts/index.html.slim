@@ -1,4 +1,6 @@
 .main-menu__spacer
+= hero
+  h1 = t ".your_timeline"
 .spacer.spacer--small
 .container
   - if @posts.any?
@@ -8,3 +10,4 @@
     .empty-box
       h2 = t ".no_posts_yet"
       p = t ".there_is_nothing_yet"
+.spacer

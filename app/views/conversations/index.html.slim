@@ -1,8 +1,10 @@
 - title t ".title"
 
 .main-menu__spacer
+= hero
+  h1 = t ".conversations"
 .container
-  .spacer
+  .spacer.spacer--small
   .stack
     - if @conversations.any?
       - @conversations.each do |conversation|
@@ -17,3 +19,4 @@
       .empty-box
         h2 = t ".no_conversations_yet"
         p = t ".there_is_nothing_yet"
+.spacer
