@@ -55,6 +55,9 @@ class User < ApplicationRecord
 
   scope :guest, -> { where(email: nil) }
   scope :onboarded, -> { where.not(visibility: nil) }
+  scope :onboarding, -> { where(visibility: nil) }
+  scope :public_profile, -> { where(visibility: "public") }
+  scope :internal_profile, -> { where(visibility: "internal") }
 
   validates :slug, :email, presence: true, uniqueness: { case_sensitive: false }, on: :profile_edit
   validates :slug, format: { with: /\A[a-zA-Z\d\-_]*\z/ }
