@@ -7,14 +7,7 @@
   .spacer.spacer--small
   .stack
     - if @conversations.any?
-      - @conversations.each do |conversation|
-        - user = (conversation.users - [current_user]).first
-        - next unless user
-        a.conversation href=profile_messages_path(user) class=("conversation--unread" if conversation.last_message.unread? && conversation.last_message.user_id != current_user.id)
-          = image_tag user.avatar_image, width: 64, class: :avatar
-          .conversation__content
-            .conversation__title = user.public_name
-            .conversation__text = conversation.last_message.text
+      = paginated @conversations, class: "stack stack--large"
     - else
       .empty-box
         h2 = t ".no_conversations_yet"

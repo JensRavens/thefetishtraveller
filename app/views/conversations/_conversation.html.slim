@@ -1,0 +1,6 @@
+- user = (conversation.users - [current_user]).first
+a.conversation href=profile_messages_path(user) target="_top" class=("conversation--unread" if conversation.last_message.unread? && conversation.last_message.user_id != current_user.id)
+  = image_tag user.avatar_image, width: 64, class: :avatar
+  .conversation__content
+    .conversation__title = user.public_name
+    .conversation__text = conversation.last_message.text
