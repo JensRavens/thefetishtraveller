@@ -70,6 +70,7 @@ de:
   notifications:
     notification:
       type_commented: "%{sender} hat deinen Post kommentiert."
+      type_followed: "%{sender} folgt dir nun."
       type_liked: "%{sender} hat deinen Post geliked."
   onboardings:
     form:

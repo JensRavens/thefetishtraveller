@@ -161,6 +161,11 @@ class User < ApplicationRecord
     Notification.notifiy sender: self, user: post.user, subject: post, type: :commented
   end
 
+  def follow!(user:)
+    Follow.create!(profile: user, user: self)
+    Notification.notifiy sender: self, user: user, type: :followed
+  end
+
   def onboarded?
     visibility.present?
   end
