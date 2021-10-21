@@ -42,7 +42,7 @@ en:
     new:
       create_event: Create event
     show:
-      add_to_calendar: Add to Calendar
+      add_to_calendar: Add to my Travel Plans
       date: Date
       happening_here: Happening here
       location: Location

@@ -42,7 +42,7 @@ de:
     new:
       create_event: Event übermitteln
     show:
-      add_to_calendar: Zum Kalender Hinzufügen
+      add_to_calendar: Zu meinen Reiseplänen hinzufügen
       date: Date
       happening_here: auch hier
       location: Ort
