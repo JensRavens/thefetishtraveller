@@ -5,7 +5,7 @@ class FollowsController < ApplicationController
 
   def create
     user = User.find(params[:user_id])
-    Follow.create!(profile: user, user: current_user)
+    current_user.follow!(user: user)
     redirect_to profile_path(user)
   end
 

@@ -15,7 +15,7 @@
 #  updated_at        :datetime         not null
 #
 class Notification < ApplicationRecord
-  belongs_to :subject, polymorphic: true
+  belongs_to :subject, polymorphic: true, optional: true
   belongs_to :user
   belongs_to :sender, class_name: "User"
 
@@ -23,7 +23,7 @@ class Notification < ApplicationRecord
   scope :unread, -> { where(read_at: nil) }
 
   class << self
-    def notifiy(subject:, user:, type:, sender: nil)
+    def notifiy(subject: nil, user:, type:, sender: nil)
       notification = Notification.create!(sender: sender, subject: subject, user: user, notification_type: type)
       notification.deliver!
     end
