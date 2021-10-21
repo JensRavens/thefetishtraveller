@@ -1,10 +1,10 @@
 - path = nil
 - if notification.subject.is_a? Post
-  - path = profile_path(notification.subject.user, post_id: notification.subject.id)
+  - path = profile_path(notification.subject.user, post_id: notification.subject.id, anchor: "feed")
 .notification class=("notification--unread" unless notification.read?)
-  a.notification__sender href=profile_path(notification.sender) = image_tag notification.sender&.avatar_image, width: 60, class: "avatar"
+  a.notification__sender href=profile_path(notification.sender) target="_top" = image_tag notification.sender&.avatar_image, width: 60, class: "avatar"
   / i18n-tasks-use t('.type_liked')
   / i18n-tasks-use t('.type_commented')
-  a.notification__text href=path = t ".type_#{notification.notification_type}", sender: notification.sender.public_name
+  a.notification__text href=path target="_top" = t ".type_#{notification.notification_type}", sender: notification.sender.public_name
   - if notification.subject.is_a? Post
     a.notification__post href=path = image_tag notification.subject.image, width: 80

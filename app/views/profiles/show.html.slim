@@ -4,7 +4,7 @@
 = render "header", profile: @profile
 .spacer.spacer--small
 = render "navigation-bar"
-.container
+.container#feed
   .spacer.spacer--small
   - if @profile == current_user
     .line.line--center: a.button href=modal_url(new_post_path, size: :small) = t ".create_post"
