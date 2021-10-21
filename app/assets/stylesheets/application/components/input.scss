@@ -102,6 +102,12 @@
     }
   }
 
+  &--radio {
+    input {
+      border-radius: 100%;
+    }
+  }
+
   &--select {
     select {
       color: var(--color-text);
