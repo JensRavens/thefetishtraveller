@@ -1,10 +1,10 @@
 .main-menu {
-  display: flex;
-  justify-content: space-between;
   font-size: 20px;
   font-weight: 600;
-  align-items: center;
   padding: 0 8px;
+  display: grid;
+  grid-template-columns: 36px 1fr auto;
+  align-items: center;
   line-height: 1;
 
   a.active {
@@ -59,7 +59,6 @@
   }
 
   &__switch {
-    flex: 0 0 36px;
     height: 30px;
     position: relative;
     z-index: var(--z-nav + 10);
@@ -69,6 +68,22 @@
     &::after {
       bottom: 0;
     }
+  }
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__links {
+    display: none;
+  }
+
+  &__user {
+    display: flex;
+    gap: 8px;
+    align-items: center;
   }
 
   &__switch::before,
@@ -86,10 +101,6 @@
 
   &__switch-icon {
     top: calc(50% - 2px);
-  }
-
-  &__category--additional {
-    display: none;
   }
 
   &__avatar {
@@ -126,6 +137,7 @@
   }
 
   @media (min-width: $tablet) {
+    grid-template-columns: auto 1fr auto;
     align-items: center;
     padding: 0 75px;
 
@@ -137,20 +149,10 @@
       display: none;
     }
 
-    &__category {
-      display: flex !important;
-      flex: 1 0 0;
-      gap: 1rem;
-      justify-content: center;
-      align-items: center;
-
-      &:first-child {
-        justify-content: flex-start;
-      }
-
-      &:last-child {
-        justify-content: flex-end;
-      }
+    &__links {
+      display: flex;
+      justify-self: center;
+      gap: 16px;
     }
   }
 }
