@@ -154,11 +154,11 @@ en:
       claim: Personalize your Travel Experience
       email_login: Email Login
       how: How can I Login?
-      how_explanation: Currently this site only supports login via facebook. There is no need for account creation, just click on the login button to start making travel plans.
+      how_explanation: Currently this site only supports login via apple. There is no need for account creation, just click on the login button to start making travel plans.
       intro: Login to save your favorites list, travel plans or submit events.
       or_login_via_email: or login via email
       why: Why Should I Login?
-      why_explanation: If you log in, you can save events to a favorite list and make travel plans. A log in is needed to sync your travel plans across devices. Facebook is used for authentication purposes only - we will never post anything to your timeline without your permission.
+      why_explanation: If you log in, you can save events to a favorite list and make travel plans. A log in is needed to sync your travel plans across devices.
   text_helper:
     formatted_year_date:
       now: now
