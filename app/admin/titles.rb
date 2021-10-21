@@ -13,7 +13,6 @@ ActiveAdmin.register Title do
   end
 
   show title: :name do
-
     active_admin_comments
   end
 

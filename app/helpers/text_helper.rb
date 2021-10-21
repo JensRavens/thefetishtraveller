@@ -12,6 +12,7 @@ module TextHelper
   def formatted_year_date(date)
     return t(".now") if date.nil?
     return date.year if date.day == 1 && date.month == 1
+
     l date
   end
 
