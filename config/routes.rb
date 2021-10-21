@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       get "context", on: :member
       resources :comments, only: :create
     end
+    resources :titleholders, only: [:index, :show]
     resources :notifications, only: :index
     resource :onboarding, only: [:show, :update]
     resource :manifest, only: :show

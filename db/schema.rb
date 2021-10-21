@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_20_100459) do
+ActiveRecord::Schema.define(version: 2021_10_21_135552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -248,6 +248,38 @@ ActiveRecord::Schema.define(version: 2021_10_20_100459) do
     t.index ["name"], name: "index_tags_on_name", unique: true
   end
 
+  create_table "titleholders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "slug", null: false
+    t.uuid "title_id", null: false
+    t.uuid "user_id"
+    t.string "full_title", null: false
+    t.string "name", null: false
+    t.date "start_on", null: false
+    t.date "end_on"
+    t.string "url"
+    t.string "abstract"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["end_on"], name: "index_titleholders_on_end_on"
+    t.index ["slug"], name: "index_titleholders_on_slug", unique: true
+    t.index ["start_on"], name: "index_titleholders_on_start_on"
+    t.index ["title_id"], name: "index_titleholders_on_title_id"
+    t.index ["user_id"], name: "index_titleholders_on_user_id"
+  end
+
+  create_table "titles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "slug", null: false
+    t.string "name", null: false
+    t.string "organisation_name"
+    t.string "country_code", null: false
+    t.uuid "location_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["country_code"], name: "index_titles_on_country_code"
+    t.index ["location_id"], name: "index_titles_on_location_id"
+    t.index ["slug"], name: "index_titles_on_slug", unique: true
+  end
+
   create_table "travel_plans", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "event_id", null: false
     t.uuid "user_id", null: false
@@ -303,6 +335,9 @@ ActiveRecord::Schema.define(version: 2021_10_20_100459) do
   add_foreign_key "posts", "users"
   add_foreign_key "sessions", "users"
   add_foreign_key "taggings", "tags"
+  add_foreign_key "titleholders", "titles"
+  add_foreign_key "titleholders", "users"
+  add_foreign_key "titles", "locations"
   add_foreign_key "travel_plans", "events"
   add_foreign_key "travel_plans", "users"
 end

@@ -1,0 +1,34 @@
+.titleholder-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  &__picture {
+    width: 200px;
+  }
+
+  &__content {
+    text-align: center;
+  }
+
+  &__title {
+    font-family: var(--font-heading);
+    font-size: 20px;
+  }
+
+  &__name {
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  @media (min-width: $tablet) {
+    flex-direction: row;
+    gap: 32px;
+
+    &__content {
+      text-align: left;
+    }
+  }
+}

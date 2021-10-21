@@ -1,0 +1,34 @@
+- title @titleholder.full_title
+
+.main-menu__spacer
+
+= hero
+  .titleholder-header
+    .titleholder-header__picture = image_tag @titleholder.picture, size: 200
+    .titleholder-header__content.stack.stack--small
+      .titleholder-header__title = @titleholder.full_title
+      .titleholder-header__organiser = @titleholder.title.organisation_name
+      .titleholder-header__name = @titleholder.name
+.spacer.spacer--medium
+- if @titleholder.abstract.present?
+  .container
+    .abstract-container.abstract = simple_format @titleholder.abstract
+    .spacer.spacer--medium
+- if @titleholder.user
+  .container
+    p.text-center.strong = t ".you_can_follow", name: @titleholder.name
+    a.inline-profile href=profile_path(@titleholder.user)
+      .inline-profile__avatar = image_tag @titleholder.user.avatar_image, size: 80, class: "avatar"
+      .inline-profile__content
+        .inline-profile__name = @titleholder.user.public_name
+    .spacer.spacer--medium
+- if @titleholder.gallery_images.any?
+  .listing.listing--small
+    - @titleholder.gallery_images.each do |image|
+      .gallery__image = image_tag image, width: 350
+  .spacer.spacer--medium
+- if @other_titleholders.any?
+  .container.container--small
+    h2 = @titleholder.title.name
+    .spacer.spacer--tiny
+  .listing.listing--medium = render @other_titleholders

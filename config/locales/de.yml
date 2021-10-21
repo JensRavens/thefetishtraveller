@@ -21,6 +21,7 @@ de:
       events: Events
       feed: Feed
       profiles: Profile
+      titleholders: Titelhalter
     newsletter:
       cto: Jetzt für den Newsletter anmelden
       subscribe: anmelden
@@ -158,6 +159,14 @@ de:
       or_login_via_email: oder per E-Mail einloggen
       why: Warum sollte ich mich einloggen?
       why_explanation: Wenn du dich einloggst, kannst du Veranstaltungen auf deine Favoritenliste setzen, Reisepläne verwalten oder Veranstaltunen einreichen und bearbeiten. Wir benötigen den Login, um deine Daten über mehrere Geräte hinweg zu synchronisieren.
+  text_helper:
+    formatted_year_date:
+      now: jetzt
   time:
     formats:
       month: "%B"
+  titleholders:
+    index:
+      title: Titelhalter
+    show:
+      you_can_follow: Du kannst %{name} hier folgen

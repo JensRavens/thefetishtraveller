@@ -1,0 +1,15 @@
+.inline-profile {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+
+  &__avatar {
+    width: 80px;
+  }
+
+  &__name {
+    font-family: var(--font-heading);
+    font-size: 20px;
+  }
+}

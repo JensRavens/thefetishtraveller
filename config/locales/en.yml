@@ -21,6 +21,7 @@ en:
       events: Events
       feed: Feed
       profiles: Profiles
+      titleholders: Titleholders
     newsletter:
       cto: Subscribe now to our newsletter
       subscribe: subscribe
@@ -158,6 +159,14 @@ en:
       or_login_via_email: or login via email
       why: Why Should I Login?
       why_explanation: If you log in, you can save events to a favorite list and make travel plans. A log in is needed to sync your travel plans across devices. Facebook is used for authentication purposes only - we will never post anything to your timeline without your permission.
+  text_helper:
+    formatted_year_date:
+      now: now
   time:
     formats:
       month: "%B"
+  titleholders:
+    index:
+      title: Titleholders
+    show:
+      you_can_follow: you can follow %{name} here
