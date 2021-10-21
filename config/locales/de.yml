@@ -24,14 +24,18 @@ de:
     newsletter:
       cto: Jetzt für den Newsletter anmelden
       subscribe: anmelden
+    pagination:
+      load_more: Mehr laden
   conversations:
     index:
+      conversations: Chats
       no_conversations_yet: Keine Chats
       there_is_nothing_yet: Du hast noch keine Chats. Schreibe doch ein paar Profile an, dann ist hier bald mehr los.
       title: Chat
   events:
     index:
       all: Alle
+      search: Suchen...
       subscribe_to_calendar_html: Du kannst diesen Kalender auch <a href="%{link}" class="link">hier</a> abonnieren.
       title: Events
     new:
@@ -103,6 +107,7 @@ de:
     index:
       no_posts_yet: Noch keine Posts
       there_is_nothing_yet: Deine Kontakte haben noch nichts gepostet. Folge doch ein paar weiteren Profilen, dann ist hier bald mehr los.
+      your_timeline: Deine Timeline
     new:
       cancel: Abbrechen
     post:

@@ -24,14 +24,18 @@ en:
     newsletter:
       cto: Subscribe now to our newsletter
       subscribe: subscribe
+    pagination:
+      load_more: Load more
   conversations:
     index:
+      conversations: Conversations
       no_conversations_yet: No conversations yet
       there_is_nothing_yet: You didn't start any conversations yet. Look at some profiles and talk to them!
       title: Conversations
   events:
     index:
       all: All
+      search: Search...
       subscribe_to_calendar_html: You can also subscribe to this calendar <a href="%{link}" class="link">here</a>.
       title: Events
     new:
@@ -103,6 +107,7 @@ en:
     index:
       no_posts_yet: No posts yet
       there_is_nothing_yet: Your followed profiles didn't post anything yet. Follow someone to get content here.
+      your_timeline: Your Timeline
     new:
       cancel: Cancel
     post:
