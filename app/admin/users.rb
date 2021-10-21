@@ -3,6 +3,11 @@
 ActiveAdmin.register User do
   permit_params :first_name, :last_name, :slug, :visibility, :location_description, :bio, :avatar, :hero, *SocialLink::NETWORKS, roles: []
 
+  scope :all, default: true
+  scope :onboarding
+  scope :internal_profile
+  scope :public_profile
+
   index do
     selectable_column
     column :avatar do |row|
