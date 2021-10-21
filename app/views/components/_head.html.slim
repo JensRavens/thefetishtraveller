@@ -3,8 +3,8 @@ head
 
   / WebApp
   meta name="viewport" content="width=device-width, initial-scale = 1.0, viewport-fit=cover"
-  / link rel="manifest" href=manifest_path
-  / link rel="apple-touch-icon" href=asset_path("app.png")
+  link rel="manifest" href=manifest_path
+  link rel="apple-touch-icon" href=asset_path("app-icon.png")
   meta name="theme-color" content="#191d24"
   / SEO
   - title = content_for?(:title) ? "#{yield(:title)} | The Fetish Traveller" : "The Fetish Traveller"
@@ -14,7 +14,7 @@ head
 
   title = title
   meta name="description" content=description
-  / / = favicon_link_tag asset_path('app.png')
+  = favicon_link_tag asset_path('favicon.svg')
 
   meta property="og:title" content=title
   meta property="og:description" content=description
