@@ -25,4 +25,8 @@ class Title < ApplicationRecord
   def country
     Country[country_code.to_sym]
   end
+
+  def country_name
+    Country[country_code.to_sym]&.name || country_code
+  end
 end
