@@ -1,0 +1,35 @@
+.titleholder-listing {
+  aspect-ratio: 1;
+  background-size: cover;
+  background-position: center;
+  background-color: #191d2470;
+  background-blend-mode: multiply;
+  color: white;
+  padding: 8px;
+
+  display: flex;
+  flex-direction: column;
+
+  &__country {
+    flex: 1;
+    font-weight: bold;
+    color: var(--color-tint);
+    font-family: var(--font-heading);
+  }
+
+  &__title {
+    font-family: var(--font-heading);
+    line-height: 1.2;
+  }
+
+  &__name {
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
+
+  .no-touch & {
+    &:hover {
+      background-color: #d0021b79;
+    }
+  }
+}

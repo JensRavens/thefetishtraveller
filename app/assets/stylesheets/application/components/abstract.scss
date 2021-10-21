@@ -1,0 +1,9 @@
+.abstract {
+  font-size: 19px;
+  color: var(--color-text-label);
+  font-weight: 600;
+
+  @media (min-width: $tablet) {
+    text-align: center;
+  }
+}

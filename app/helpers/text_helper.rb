@@ -5,6 +5,16 @@ module TextHelper
     url.gsub(/https?:\/\/(www\.)?/, "").split("/").first
   end
 
+  def formatted_date_range(start_on, end_on)
+    [formatted_year_date(start_on), formatted_year_date(end_on)].uniq.join(" - ")
+  end
+
+  def formatted_year_date(date)
+    return t(".now") if date.nil?
+    return date.year if date.day == 1 && date.month == 1
+    l date
+  end
+
   def formatted_event_date(event:)
     date = event.start_at
     date2 = event.end_at
