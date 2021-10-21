@@ -24,8 +24,8 @@ ActiveAdmin.register Titleholder do
       input :slug unless titleholder.new_record?
       input :full_title
       input :name
-      input :start_on
-      input :end_on
+      input :start_on, as: :date_picker
+      input :end_on, as: :date_picker
       input :url
       input :abstract, as: :text
       input :picture, as: :file, input_html: { accept: "image/*" }

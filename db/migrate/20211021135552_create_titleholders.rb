@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateTitleholders < ActiveRecord::Migration[6.1]
   def change
     create_table :titleholders, id: :uuid do |t|

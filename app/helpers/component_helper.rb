@@ -10,7 +10,7 @@ module ComponentHelper
   end
 
   def modal_url(url, size: :regular, title: nil, close: false)
-    "javascript:ui.modal.load(#{{url: url, size: size, title: title, close: close}.to_json})"
+    "javascript:ui.modal.load(#{{ url: url, size: size, title: title, close: close }.to_json})"
   end
 
   def close_modal_path

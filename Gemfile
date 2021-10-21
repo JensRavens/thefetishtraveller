@@ -80,5 +80,5 @@ group :development do
   gem "erd", require: false
   gem "rb-fsevent"
   gem "letter_opener"
-  gem 'guard-livereload', require: false
+  gem "guard-livereload", require: false
 end
