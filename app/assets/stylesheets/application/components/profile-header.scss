@@ -76,6 +76,11 @@
     justify-content: center;
   }
 
+  &__titles {
+    margin-bottom: 1rem;
+    color: var(--color-tint);
+  }
+
   &__metrics {
     display: flex;
     gap: 1rem;

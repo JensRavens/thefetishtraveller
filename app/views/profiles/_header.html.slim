@@ -1,4 +1,5 @@
 - edit ||= false
+- titles = profile.titleholders.order(start_on: :asc).load
 .profile-header
   .profile-header__backdrop: .container
     .profile-header__background.inline-upload__ref style="background-image:url(#{image_asset_url(@profile.hero, width: 800)});"
@@ -17,7 +18,11 @@
         - profile.social_links.any?
           .profile-header__social
             - profile.social_links.map do |link|
-              a class="profile-header__social-link profile-header__social-link--#{link.network}" href=link.url title=link.network.to_s.humanize target="_blank" rel="noopener noreferrer" = link.profile
+              a.profile-header__social-link class="profile-header__social-link--#{link.network}" href=link.url title=link.network.to_s.humanize target="_blank" rel="noopener noreferrer" = link.profile
+        - titles.any?
+          .profile-header__titles.stack
+            - titles.each do |title|
+              a href=titleholder_path(title) = title.full_title
         - if profile.location_description.present?
           .profile-header__location = profile.location_description
         - if profile.bio.present?
