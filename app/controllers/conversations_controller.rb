@@ -4,6 +4,6 @@ class ConversationsController < ApplicationController
   before_action :require_login
 
   def index
-    @conversations = current_user.conversations.with_messages.order(last_message_at: :desc)
+    @conversations = paginated current_user.conversations.with_messages.order(last_message_at: :desc), per: 1
   end
 end
