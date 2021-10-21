@@ -36,6 +36,7 @@ Rails.application.routes.draw do
     end
     resources :notifications, only: :index
     resource :onboarding, only: [:show, :update]
+    resource :manifest, only: :show
     root "pages#home"
     get "imprint", to: "pages#imprint"
     get ":id", to: "profiles#show", as: :profile
