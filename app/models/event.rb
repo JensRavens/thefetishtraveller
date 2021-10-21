@@ -44,7 +44,7 @@ class Event < ApplicationRecord
   scope :awaiting_review, -> { where(publish_at: nil).in_future }
   scope :chronologic, -> { order(start_at: :asc) }
   scope :happening_in_month, ->(month) { where("events.start_at > ? AND events.start_at < ?", month.beginning_of_month, month.end_of_month) }
-  scope :searched, ->(term) { where("events.name ILIKE ?", "%#{term}%") if term.present? }
+  scope :searched, ->(term) { left_joins(:location).where("events.name ILIKE :term OR locations.name ILIKE :term", { term: "%#{term}%" }) if term.present? }
   scope :listed, -> { published.in_future.chronologic }
 
   has_many :events, dependent: :destroy
