@@ -8,7 +8,7 @@ class ProfilesController < ApplicationController
     @profiles = User.onboarded.order(created_at: :desc)
     @tag = params[:tag].presence
     @profiles = @profiles.tagged_with(@tag) if @tag
-    @profiles = paginated @profiles, per: 10
+    @profiles = paginated @profiles, per: 23
   end
 
   def show
