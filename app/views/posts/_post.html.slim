@@ -11,7 +11,7 @@
           .post__location = post.location_description
       .post__meta-actions: .context-menu data-controller="context" data-context-path-value=context_post_path(post) data-action="click->context#show"
     .post__content data-controller="hide"
-      img.post__image src=image_asset_url(post.image)
+      img.post__image src=image_asset_url(post.image, width: 416)
       .post__icon-bar
         - if post.likes.where(user: current_user).any?
           = link_to "", like_path(post), method: :delete, class: "post__icon-bar__button heart-button active"
