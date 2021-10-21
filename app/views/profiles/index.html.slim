@@ -6,6 +6,4 @@
       h1 ##{@tag}
     - else
       h1 = t ".title"
-.listing.listing--small = render @profiles
-.container = paginate @profiles
-
+= paginated @profiles, class: "listing listing--small"

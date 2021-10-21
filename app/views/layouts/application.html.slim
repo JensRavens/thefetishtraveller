@@ -4,8 +4,8 @@ html lang=I18n.locale
   body
     - if Rails.env.development?
       script async=true src="#{request.protocol}#{request.host}:35729/livereload.js?snipver=1"
-    .page
+    .page-wrapper
       = render "components/menu"
       = render "components/modal"
-      main.page__main = yield
+      main.page-wrapper__main = yield
       = render "components/footer"

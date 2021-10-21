@@ -33,4 +33,10 @@ class ApplicationController < ActionController::Base
     require_login
     redirect_to onboarding_path if current_user && !current_user.onboarded?
   end
+
+  def paginated(scope, per: 10)
+    scope = scope.page(params[:page]).per(per)
+    replace "next-page-link", with: "components/pagination", items: scope if params[:page].to_i > 1
+    scope
+  end
 end

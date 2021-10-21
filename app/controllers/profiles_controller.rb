@@ -5,9 +5,10 @@ class ProfilesController < ApplicationController
   before_action :require_profile, only: :index
 
   def index
-    @profiles = User.onboarded.order(created_at: :desc).page(params[:page]).per(20)
+    @profiles = User.onboarded.order(created_at: :desc)
     @tag = params[:tag].presence
     @profiles = @profiles.tagged_with(@tag) if @tag
+    @profiles = paginated @profiles, per: 10
   end
 
   def show

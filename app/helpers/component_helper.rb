@@ -16,4 +16,10 @@ module ComponentHelper
   def close_modal_path
     "javascript:ui.modal.close()"
   end
+
+  def paginated(scope, **options)
+    turbo_frame_tag "pagination-frame", options do
+      render "components/pagination", items: scope
+    end
+  end
 end

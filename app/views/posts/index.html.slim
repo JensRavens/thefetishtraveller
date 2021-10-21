@@ -4,8 +4,7 @@
 .spacer.spacer--small
 .container
   - if @posts.any?
-    .stack.stack--large
-      = render @posts
+    = paginated @posts, class: "stack stack--large post-container"
   - else
     .empty-box
       h2 = t ".no_posts_yet"

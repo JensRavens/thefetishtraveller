@@ -2,6 +2,7 @@
   --min-listing-size: 350px;
   background-color: var(--color-background-dark);
   border: 1px solid white;
+  color: white;
 
   display: grid;
   grid-template-columns: repeat(
@@ -12,6 +13,12 @@
   > * {
     border: 1px solid white;
     position: relative;
+  }
+
+  .pagination-button {
+    width: 100%;
+    height: 100%;
+    border: none;
   }
 
   &--small {
