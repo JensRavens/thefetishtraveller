@@ -41,7 +41,7 @@
       p
         strong = t ".tickets"
         br
-        = @event.ticket_link
+        = link_to simple_url(@event.ticket_link), @event.ticket_link, class: "link"
     - if current_user && policy(@event).travel?
       turbo-frame#like-button
         - if attends? event: @event
