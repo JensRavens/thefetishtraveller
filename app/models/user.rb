@@ -67,7 +67,7 @@ class User < ApplicationRecord
 
   enum visibility: [:public, :internal].index_with(&:to_s), _prefix: :visibility
 
-  before_save do
+  before_validation do
     self.tag_list = parsed_tags if bio_changed?
   end
 

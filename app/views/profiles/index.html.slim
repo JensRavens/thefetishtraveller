@@ -6,4 +6,8 @@
       h1 ##{@tag}
     - else
       h1 = t ".title"
+    .hero__addon: .text-center: .taglist
+      = link_to t(".all"), profiles_path
+      - User.most_common_tags.each do |tag|
+        = link_to tag, profiles_path(tag: tag), class: ("active" if @tag == tag)
 = paginated @profiles, class: "listing listing--small"

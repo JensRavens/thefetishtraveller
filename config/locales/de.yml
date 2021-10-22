@@ -169,6 +169,7 @@ de:
         other: "%{count} Posts"
       unfollow: Entfolgen
     index:
+      all: alle
       title: Profile
     navigation-bar:
       posts: Posts
