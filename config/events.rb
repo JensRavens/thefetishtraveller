@@ -5,4 +5,5 @@ Yael::Bus.shared.routing do
   dispatch :commented_post, to: "notification"
   dispatch :followed_user, to: "notification"
   dispatch :event_created, to: "notification"
+  dispatch :posted, to: "notifications"
 end

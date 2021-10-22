@@ -73,6 +73,7 @@ de:
       type_event_created: "%{sender} hat ein Event erstellt."
       type_followed: "%{sender} folgt dir nun."
       type_liked: "%{sender} hat deinen Post geliked."
+      type_posted: "%{sender} hat einen neuen Post erstellt."
   onboardings:
     form:
       continue: Weiter

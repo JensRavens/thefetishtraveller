@@ -39,6 +39,7 @@ class User < ApplicationRecord
   has_many :follows, dependent: :delete_all
   has_many :followed_users, dependent: false, through: :follows, source: :profile, class_name: "User"
   has_many :followings, dependent: :delete_all, class_name: "Follow", foreign_key: :profile_id
+  has_many :followers, through: :followings, source: :user, class_name: "User"
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :delete_all
   has_many :conversation_members, dependent: :destroy
@@ -168,6 +169,12 @@ class User < ApplicationRecord
   def follow!(user:)
     Follow.create!(profile: user, user: self)
     publish :followed_user, id: user.id
+  end
+
+  def post!(post_params)
+    post = posts.create! post_params
+    publish :posted, id: post.id
+    post
   end
 
   def onboarded?
