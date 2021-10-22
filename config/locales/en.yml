@@ -165,6 +165,7 @@ en:
         other: "%{count} Posts"
       unfollow: Unfollow
     index:
+      all: all
       title: Profiles
     navigation-bar:
       posts: Posts

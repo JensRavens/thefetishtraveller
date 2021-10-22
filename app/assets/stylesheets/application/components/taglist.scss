@@ -1,0 +1,26 @@
+.taglist {
+  display: inline-flex;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 600;
+
+  > a {
+    position: relative;
+    color: var(--color-tint);
+
+    &::before {
+      content: '#';
+    }
+
+    &.active::after {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 20px;
+      height: 2px;
+      background-color: var(--color-tint);
+      bottom: 0;
+      left: calc(50% - 10px);
+    }
+  }
+}

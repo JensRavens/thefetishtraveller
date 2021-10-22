@@ -16,6 +16,10 @@ class ApplicationRecord < ActiveRecord::Base
         .flat_map(&:attributes)
         .uniq
     end
+
+    def most_common_tags(limit: 5)
+      ActsAsTaggableOn::Tag.where(id: ActsAsTaggableOn::Tagging.where(taggable_type: name).select(:tag_id)).most_used(limit).pluck(:name)
+    end
   end
 
   def audit_events
