@@ -54,6 +54,7 @@ class User < ApplicationRecord
   has_one_attached :hero
 
   scope :guest, -> { where(email: nil) }
+  scope :admin, -> { where("'admin' = ANY(users.roles)") }
   scope :onboarded, -> { where.not(visibility: nil) }
   scope :onboarding, -> { where(visibility: nil) }
   scope :public_profile, -> { where(visibility: "public") }
@@ -148,7 +149,7 @@ class User < ApplicationRecord
 
   def like!(post:)
     likes.create!(post: post)
-    Notification.notifiy sender: self, user: post.user, subject: post, type: :liked
+    publish :liked_post, id: post.id
   end
 
   def unlike!(post:)
@@ -161,12 +162,12 @@ class User < ApplicationRecord
 
   def comment!(post:, text:)
     comments.create!(post: post, text: text)
-    Notification.notifiy sender: self, user: post.user, subject: post, type: :commented
+    publish :commented_post, id: post.id, text: text
   end
 
   def follow!(user:)
     Follow.create!(profile: user, user: self)
-    Notification.notifiy sender: self, user: user, type: :followed
+    publish :followed_user, id: user.id
   end
 
   def onboarded?

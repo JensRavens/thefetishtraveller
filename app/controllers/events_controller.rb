@@ -23,8 +23,7 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new event_params
-    current_user && @event.owner_ids = [current_user.id]
+    @event = Event.build_submit event_params.merge(owners: [current_user])
     if @event.save
       redirect_to @event
     else

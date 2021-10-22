@@ -61,6 +61,17 @@ class Event < ApplicationRecord
 
   validates :name, :start_at, :end_at, presence: true
 
+  after_save do
+    publish :event_created, user_id: owners.first&.id, notify_admin: owners.any? && owners.none?(&:admin?)
+  end
+
+  class << self
+    def build_submit(params)
+      params[:end_at] ||= params[:start_at]
+      Event.new params
+    end
+  end
+
   [:start_at, :end_at].map do |attribute|
     define_method attribute do
       return self[attribute] unless location

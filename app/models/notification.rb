@@ -23,9 +23,33 @@ class Notification < ApplicationRecord
   scope :unread, -> { where(read_at: nil) }
 
   class << self
-    def notifiy(subject: nil, user:, type:, sender: nil)
+    def notify(subject: nil, user:, type:, sender: nil)
       notification = Notification.create!(sender: sender, subject: subject, user: user, notification_type: type)
       notification.deliver!
+    end
+
+    def on_liked_post(id:, publisher:)
+      post = Post.find id
+      notify subject: post, sender: publisher, user: post.user, type: :liked
+    end
+
+    def on_commented_post(id:, publisher:)
+      post = Post.find id
+      notify sender: publisher, user: post.user, subject: post, type: :commented
+    end
+
+    def on_followed_user(id:, publisher:)
+      user = User.find id
+      notify sender: publisher, user: user, type: :followed
+    end
+
+    def on_event_created(user_id:, publisher:, notify_admin:)
+      return unless notify_admin
+
+      user = User.find user_id
+      User.admin.find_each do |admin|
+        notify sender: user, user: admin, type: :event_created, subject: publisher
+      end
     end
   end
 
