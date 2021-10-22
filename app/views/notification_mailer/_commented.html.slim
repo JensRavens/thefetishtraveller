@@ -1,0 +1,4 @@
+- notifications.group_by(&:subject).each do |post, notifications|
+  .notification
+    .notification__text = t ".commented_html", users: to_sentence(notifications.map { |notification| link_to(notification.sender.public_name, profile_url(notification.sender, locale: I18n.locale)) }), count: notifications.size
+    a.notification__image href=profile_url(id: post.user, post_id:post.id, anchor: "feed") = image_tag post.image, width: 80, relative: false

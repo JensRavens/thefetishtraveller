@@ -1,0 +1,6 @@
+- notifications.each do |notification|
+  - post = notification.subject
+  .notification
+    .notification__avatar = image_tag notification.sender.avatar_image, relative: false, width: 40, class: "avatar"
+    .notification__text = t ".created_a_post_html", user: link_to(post.user.public_name, profile_url(post.user, locale: I18n.locale))
+    a.notification__image href=profile_url(id: post.user, post_id: post.id, anchor: "feed") = image_tag post.image, width: 80, relative: false

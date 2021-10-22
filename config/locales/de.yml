@@ -12,6 +12,14 @@ de:
       submit: Events übermitteln
     head:
       default_description: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
+    mail_footer:
+      email_reason: |
+        Du erhältst diese E-Mail weil du dich für die Beta von thefetishtraveller.com registriert hast.
+
+        Bitte anworte einfach auf diese E-Mail, wenn du Feedback für uns hast. Du kannst außerdem an der Diskussion neuer Features auf unserer <a href="https://github.com/JensRavens/thefetishtraveller/issues">Feature Roadmap</a> teilnehmen.
+
+        Danke für deine Hilfe,
+        das Team von thefetishtraveller.com
     menu:
       login: Login
       logout: Logout
@@ -67,6 +75,28 @@ de:
   messages:
     index:
       send: senden
+  notification_mailer:
+    commented:
+      commented_html:
+        one: "%{users} hat deinen Post kommentiert."
+        other: "%{users} haben deinen Post kommentiert."
+    followed:
+      followed_html:
+        one: "%{users} folgt dir jetzt."
+        other: "%{users} folgen dir jetzt."
+    liked:
+      liked_html: "%{users} gefällt dein Post."
+    notify:
+      daily_roundup: Manchmal ist es schwierig, den Überblick darüber zu behalten, was überall passiert - deswegen senden wir dir diese tägliche Zusammenfassung mit allem, was du noch nicht gesehen hast.
+      subject: Tägliche Übersicht
+      this_is_what_happened: Hey %{name}, es gibt etwas Neues!
+      type_commented: Jemant hat deine Posts kommentiert!
+      type_event_created: Neue Events!
+      type_followed: Jemand folgt dir!
+      type_liked: Anderen Nutzern gefällt dein Content!
+      type_posted: Deine Lieblingsaccounts haben neuen Content!
+    posted:
+      created_a_post_html: "%{user} hat einen neuen Post erstellt."
   notifications:
     notification:
       type_commented: "%{sender} hat deinen Post kommentiert."
