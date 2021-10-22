@@ -31,6 +31,16 @@ ActiveAdmin.register User do
     end
 
     active_admin_comments
+
+    panel "Events" do
+      paginated_collection user.audit_events.order(created_at: :desc).page(params[:event_page]).per(20), download_links: false, param_name: :event_page do
+        table_for collection do
+          column :name
+          column :created_at
+          column :payload
+        end
+      end
+    end
   end
 
   sidebar "Details", only: :show do
