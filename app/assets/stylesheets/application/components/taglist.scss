@@ -1,5 +1,7 @@
 .taglist {
   display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 12px;
   font-size: 18px;
   font-weight: 600;
