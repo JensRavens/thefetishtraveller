@@ -22,7 +22,7 @@
   &__name {
     font-family: var(--font-heading);
     font-size: 42px;
-    margin-bottom: 1rem;
+    word-break: break-all;
   }
 
   &__text {
@@ -55,8 +55,6 @@
   }
 
   &__location {
-    margin-bottom: 1rem;
-
     &::before {
       display: inline-block;
       content: '';
@@ -71,20 +69,17 @@
   &__social {
     display: flex;
     gap: 1rem;
-    margin-bottom: 1rem;
     flex-wrap: wrap;
     justify-content: center;
   }
 
   &__titles {
-    margin-bottom: 1rem;
     color: var(--color-tint);
   }
 
   &__metrics {
     display: flex;
     gap: 1rem;
-    margin-bottom: 1rem;
     justify-content: center;
   }
 
@@ -128,6 +123,12 @@
     }
   }
 
+  &__cta {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+  }
+
   @media (min-width: $tablet) {
     &__avatar {
       margin-top: -80px;
@@ -146,7 +147,8 @@
     }
 
     &__social,
-    &__metrics {
+    &__metrics,
+    &__cta {
       justify-content: flex-start;
     }
   }

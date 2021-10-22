@@ -9,7 +9,7 @@
       .profile-header__avatar.inline-upload__ref
         = render "components/inline_upload", model: @profile, url: profile_path(@profile), method: :avatar if edit
         = image_tag @profile.avatar_image, class: "avatar avatar--bordered", width: 160
-      .profile-header__text
+      .profile-header__text.stack
         .profile-header__name = profile.public_name
         .profile-header__metrics
           div = t ".posts", count: profile.posts.count
@@ -27,7 +27,7 @@
           .profile-header__location = profile.location_description
         - if profile.bio.present?
           .profile-header__bio = tagged_format profile.bio, context: :profiles
-        .line
+        .profile-header__cta
           - if policy(@profile).follow?
             - if current_user&.follows?(@profile)
               = button_to t(".unfollow"), follow_path(user_id: @profile.id), method: :delete, class: "button"
