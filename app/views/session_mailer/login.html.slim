@@ -1,1 +1,3 @@
-p = link_to t(".login"), login_url(locale: I18n.locale, token: @user.secure_id(expires_in: 1.hour))
+p = t ".you_requested_a_login", email: @user.email
+center = link_to(t(".login"), @url, class: "button")
+p = t ".this_link_will_expire"

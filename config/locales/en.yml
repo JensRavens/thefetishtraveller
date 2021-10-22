@@ -73,6 +73,7 @@ en:
       type_event_created: "%{sender} created a new post."
       type_followed: "%{sender} started following you."
       type_liked: "%{sender} liked your post."
+      type_posted: "%{sender} created a new post."
   onboardings:
     form:
       continue: Continue
@@ -147,6 +148,8 @@ en:
   session_mailer:
     login:
       login: Login
+      this_link_will_expire: This link will automatically expire within 60 minutes. If you did not request a login link, you can simply ignore this email.
+      you_requested_a_login: You requested a login via your email address %{email} to thefetishtraveller.com. Please click the login button to complete your login.
   sessions:
     email:
       login: Login
