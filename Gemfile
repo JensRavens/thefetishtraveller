@@ -42,6 +42,7 @@ gem "slim-rails"
 gem "jwt"
 gem "pundit"
 gem "acts-as-taggable-on"
+gem "yael"
 
 # Assets
 gem "webpacker"
@@ -51,7 +52,6 @@ gem "turbo-rails"
 
 # Seed Data
 gem "database_cleaner"
-gem "factory_bot_rails"
 gem "faker"
 
 # Services
@@ -66,7 +66,7 @@ group :development, :test do
   gem "webdrivers"
   gem "pry-rails"
   gem "guard"
-  gem "guard-minitest"
+  gem "guard-rspec"
   gem "i18n-tasks"
 end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_21_135552) do
+ActiveRecord::Schema.define(version: 2021_10_22_101435) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -314,6 +314,15 @@ ActiveRecord::Schema.define(version: 2021_10_21_135552) do
     t.index ["facebook_id"], name: "index_users_on_facebook_id"
     t.index ["slug"], name: "index_users_on_slug", unique: true
     t.index ["visibility"], name: "index_users_on_visibility"
+  end
+
+  create_table "yael_events", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "stream", null: false
+    t.jsonb "payload", null: false
+    t.datetime "created_at", null: false
+    t.index ["name"], name: "index_yael_events_on_name"
+    t.index ["stream"], name: "index_yael_events_on_stream"
   end
 
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"

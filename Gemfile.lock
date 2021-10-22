@@ -160,11 +160,6 @@ GEM
       tzinfo
     eventmachine (1.2.7)
     execjs (2.8.1)
-    factory_bot (6.2.0)
-      activesupport (>= 5.0.0)
-    factory_bot_rails (6.2.0)
-      factory_bot (~> 6.2.0)
-      railties (>= 5.0.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
     ffi (1.15.4)
@@ -203,9 +198,10 @@ GEM
       guard (~> 2.8)
       guard-compat (~> 1.0)
       multi_json (~> 1.8)
-    guard-minitest (2.4.6)
-      guard-compat (~> 1.2)
-      minitest (>= 3.0)
+    guard-rspec (4.7.3)
+      guard (~> 2.1)
+      guard-compat (~> 1.1)
+      rspec (>= 2.99.0, < 4.0)
     has_scope (0.8.0)
       actionpack (>= 5.2)
       activesupport (>= 5.2)
@@ -368,6 +364,10 @@ GEM
       actionpack (>= 5.0)
       railties (>= 5.0)
     rexml (3.2.5)
+    rspec (3.10.0)
+      rspec-core (~> 3.10.0)
+      rspec-expectations (~> 3.10.0)
+      rspec-mocks (~> 3.10.0)
     rspec-core (3.10.1)
       rspec-support (~> 3.10.0)
     rspec-expectations (3.10.1)
@@ -495,6 +495,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
+    yael (0.0.3)
     zeitwerk (2.5.1)
 
 PLATFORMS
@@ -515,7 +516,6 @@ DEPENDENCIES
   document_serializable
   dotenv-rails
   erd
-  factory_bot_rails
   faker
   friendly_id
   graphiql-rails
@@ -524,7 +524,7 @@ DEPENDENCIES
   groupdate
   guard
   guard-livereload
-  guard-minitest
+  guard-rspec
   httparty
   i18n-tasks
   icalendar (~> 2.4)
@@ -563,6 +563,7 @@ DEPENDENCIES
   web-console
   webdrivers
   webpacker
+  yael
 
 RUBY VERSION
    ruby 2.7.3p183

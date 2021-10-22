@@ -1,0 +1,18 @@
+john_doe:
+  first_name: John
+  last_name: Doe
+  email: john@example.com
+  slug: john_doe
+  location_description: Berlin, Germany
+  bio: Hello, here I am!
+  instagram: john_doe
+  visibility: public
+freddy:
+  email: freddy@example.com
+  slug: freddy
+  visibility: internal
+admin:
+  email: admin@example.com
+  slug: admin
+  visibility: public
+  roles: [admin]
