@@ -1,7 +1,10 @@
 :concurrency: 5
 :queues:
+  - dispatch
   - default
   - mailers
+  - active_storage_analysis
+  - active_storage_purge
 :schedule:
   daily_summary:
     cron: '0 0 16 * * * Europe/Berlin' # every day at 03:00, Berlin time
