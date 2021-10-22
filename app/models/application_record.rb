@@ -17,4 +17,8 @@ class ApplicationRecord < ActiveRecord::Base
         .uniq
     end
   end
+
+  def audit_events
+    @audit_events ||= Yael::Event.where stream: Yael::Event.stream_for(self)
+  end
 end
