@@ -70,7 +70,7 @@ en:
   notifications:
     notification:
       type_commented: "%{sender} commented on your post."
-      type_event_created: "%{sender} created an event."
+      type_event_created: "%{sender} created a new post."
       type_followed: "%{sender} started following you."
       type_liked: "%{sender} liked your post."
   onboardings:

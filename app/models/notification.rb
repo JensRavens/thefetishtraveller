@@ -23,7 +23,7 @@ class Notification < ApplicationRecord
   scope :unread, -> { where(read_at: nil) }
 
   class << self
-    def notify(subject: nil, user:, type:, sender: nil)
+    def notify(user:, type:, subject: nil, sender: nil)
       notification = Notification.create!(sender: sender, subject: subject, user: user, notification_type: type)
       notification.deliver!
     end
@@ -49,6 +49,13 @@ class Notification < ApplicationRecord
       user = User.find user_id
       User.admin.find_each do |admin|
         notify sender: user, user: admin, type: :event_created, subject: publisher
+      end
+    end
+
+    def on_posted(id:, publisher:)
+      post = Post.find id
+      publisher.followers.find_each do |user|
+        notify sender: publisher, user: user, type: :posted, subject: post
       end
     end
   end
