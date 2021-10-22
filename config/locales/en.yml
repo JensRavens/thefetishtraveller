@@ -12,6 +12,14 @@ en:
       submit: Submit Events
     head:
       default_description: Find fetish events all around the globe and connect with like-minded gear heads.
+    mail_footer:
+      email_reason: |
+        You are receiving this email because you signed up for the public beta of thefetishtraveller.com.
+
+        Please reply to this email with any feedback you might have. You can also join the discussion on new features and bugs on our <a href="https://github.com/JensRavens/thefetishtraveller/issues">feature roadmap</a>.
+
+        Thank you for helping us,
+        the team of thefetishtraveller.com
     menu:
       login: Login
       logout: Logout
@@ -67,6 +75,24 @@ en:
   messages:
     index:
       send: send
+  notification_mailer:
+    commented:
+      commented_html: "%{users} commented on your post."
+    followed:
+      followed_html: "%{users} started following you."
+    liked:
+      liked_html: "%{users} liked your post."
+    notify:
+      daily_roundup: Sometimes it's hard to keep an overview of what has happened everywhere, that's why we send you this daily overview of everything that you have not seen yet.
+      subject: Daily Summary
+      this_is_what_happened: Hey %{name}, there is something new!
+      type_commented: Someone has commented on your Posts!
+      type_event_created: New Events!
+      type_followed: Someone followed you!
+      type_liked: Other Users like your Content!
+      type_posted: Your followed Accounts posted new Content!
+    posted:
+      created_a_post_html: "%{user} created a new post."
   notifications:
     notification:
       type_commented: "%{sender} commented on your post."

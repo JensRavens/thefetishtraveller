@@ -60,6 +60,7 @@ class User < ApplicationRecord
   scope :onboarding, -> { where(visibility: nil) }
   scope :public_profile, -> { where(visibility: "public") }
   scope :internal_profile, -> { where(visibility: "internal") }
+  scope :with_pending_notifications, -> { where(id: Notification.pending.select(:user_id)) }
 
   validates :slug, :email, presence: true, uniqueness: { case_sensitive: false }, on: :profile_edit
   validates :slug, format: { with: /\A[a-zA-Z\d\-_]*\z/ }
@@ -179,6 +180,11 @@ class User < ApplicationRecord
 
   def onboarded?
     visibility.present?
+  end
+
+  def send_daily_notifications!
+    NotificationMailer.notify(self).deliver_later
+    publish :daily_notification
   end
 
   private

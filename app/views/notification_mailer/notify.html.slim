@@ -1,0 +1,24 @@
+css:
+  .notification {
+    display: flex;
+    gap: 16px;
+  }
+  .notification + .notification {
+    margin-top: 16px;
+  }
+  .notification__text {
+    flex: 1;
+  }
+h2 = t ".this_is_what_happened", name: @user.public_name
+p = t ".daily_roundup"
+- @notifications.group_by(&:notification_type).each do |type, notifications|
+  / i18n-tasks-use t('.type_liked')
+  / i18n-tasks-use t('.type_commented')
+  / i18n-tasks-use t('.type_followed')
+  / i18n-tasks-use t('.type_event_created')
+  / i18n-tasks-use t('.type_posted')
+  h3 = t ".type_#{type}"
+  - if lookup_context.template_exists?(type, "notification_mailer", true)
+    = render type, notifications: notifications
+  - elsif Rails.env.development?
+    span missing template for #{type}

@@ -21,6 +21,7 @@ class Notification < ApplicationRecord
 
   scope :reverse_chronologic, -> { order(created_at: :desc) }
   scope :unread, -> { where(read_at: nil) }
+  scope :pending, -> { unread.where(created_at: 1.day.ago..) }
 
   class << self
     def notify(user:, type:, subject: nil, sender: nil)

@@ -2,3 +2,7 @@
 :queues:
   - default
   - mailers
+:schedule:
+  daily_summary:
+    cron: '0 0 16 * * * Europe/Berlin' # every day at 03:00, Berlin time
+    class: DailySummaryJob
