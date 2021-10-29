@@ -11,6 +11,7 @@
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.0.0-beta.8",
     "@popperjs/core": "^2.10.2",
+    "@rails/ujs": "^6.1.4",
     "esbuild": "^0.13.10",
     "flatpickr": "^4.6.9",
     "form-request-submit-polyfill": "^2.0.0",
