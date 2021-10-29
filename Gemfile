@@ -45,7 +45,7 @@ gem "acts-as-taggable-on"
 gem "yael"
 
 # Assets
-gem "webpacker"
+gem "jsbundling-rails"
 gem "sass-rails"
 gem "autoprefixer-rails"
 gem "turbo-rails"
