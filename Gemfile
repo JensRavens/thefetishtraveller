@@ -46,6 +46,7 @@ gem "yael"
 
 # Assets
 gem "jsbundling-rails"
+gem "stimulus-rails"
 gem "sass-rails"
 gem "autoprefixer-rails"
 gem "turbo-rails"

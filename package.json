@@ -8,6 +8,7 @@
     "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds"
   },
   "dependencies": {
+    "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.0.0-beta.8",
     "@popperjs/core": "^2.10.2",
     "esbuild": "^0.13.10",
