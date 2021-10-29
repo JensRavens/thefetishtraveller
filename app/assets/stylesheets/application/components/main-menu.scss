@@ -108,6 +108,16 @@
     display: flex;
   }
 
+  &__plus {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    background-image: asset-url('icon/plus.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
   &__bell {
     width: 24px;
     height: 24px;
@@ -134,7 +144,7 @@
     }
   }
 
-  @media (min-width: $tablet) {
+  @media (min-width: 900px) {
     grid-template-columns: auto 1fr auto;
     align-items: center;
     padding: 0 75px;
