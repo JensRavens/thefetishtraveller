@@ -3,6 +3,7 @@
   background-color: var(--color-footer);
   color: white;
   position: relative;
+  padding-bottom: calc(2rem + 49px + var(--safe-size-bottom)); // tab bar
 
   p {
     color: var(--color-text-muted-dark-background);

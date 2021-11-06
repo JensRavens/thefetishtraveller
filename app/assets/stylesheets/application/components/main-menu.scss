@@ -28,8 +28,9 @@
     flex: 1;
     justify-self: center;
     background-color: var(--color-footer);
-    height: 49px;
+    height: calc(49px + var(--safe-size-bottom));
     align-items: center;
+    padding-bottom: var(--safe-size-bottom);
   }
 
   &__link {
@@ -63,6 +64,7 @@
     gap: 8px;
     align-items: center;
     justify-content: flex-end;
+    font-family: var(--font-heading-alternate);
   }
 
   &__avatar {

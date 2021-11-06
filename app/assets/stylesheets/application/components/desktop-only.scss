@@ -1,0 +1,7 @@
+.desktop-only {
+  display: none;
+
+  @media (min-width: $desktop) {
+    display: inherit;
+  }
+}

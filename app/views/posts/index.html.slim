@@ -1,6 +1,7 @@
 .main-menu__spacer
-= hero
-  h1 = t ".your_timeline"
+.desktop-only
+  = hero
+    h1 = t ".your_timeline"
 .spacer.spacer--small
 .container
   - if @posts.any?

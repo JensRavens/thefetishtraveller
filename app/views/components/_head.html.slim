@@ -7,12 +7,12 @@ head
   link rel="apple-touch-icon" href=asset_path("app-icon.png")
   meta name="theme-color" content="#191d24"
   / SEO
-  - title = content_for?(:title) ? "#{yield(:title)} | The Fetish Traveller" : "The Fetish Traveller"
+  - title = content_for?(:title) ? yield(:title) : "The Fetish Traveller"
   - description = content_for?(:description) ? yield(:description) : t(".default_description")
   - thumbnail_url = content_for?(:thumbnail_url) ? yield(:thumbnail_url) : nil
   - url = content_for?(:canonical_url) ? yield(:canonical_url) : url_for(only_path: false)
 
-  title = title
+  title = [title, "The Fetish Traveller"].uniq.join(" | ")
   meta name="description" content=description
   = favicon_link_tag asset_path('favicon.svg')
 

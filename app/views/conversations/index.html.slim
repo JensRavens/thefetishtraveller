@@ -1,10 +1,11 @@
 - title t ".title"
 
 .main-menu__spacer
-= hero
-  h1 = t ".conversations"
+.desktop-only
+  = hero
+    h1 = t ".conversations"
+.spacer.spacer--small
 .container
-  .spacer.spacer--small
   .stack
     - if @conversations.any?
       = paginated @conversations, class: "stack stack--large"
