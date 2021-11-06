@@ -6,10 +6,4 @@
 = render "header", profile: @profile
 .spacer.spacer--small
 = render "navigation-bar"
-.container#feed
-  .spacer.spacer--small
-  - if @profile == current_user
-    .line.line--center: a.button href=modal_url(new_post_path, size: :small) = t ".create_post"
-    .spacer.spacer--small
-  = render "personal_feed", posts: @posts
-.spacer
+#feed.listing.listing--small = render partial: "posts/grid_post", collection: @posts
