@@ -5,3 +5,15 @@ document.addEventListener('turbo:load', () => {
     document.body.classList.add('no-touch');
   }
 });
+
+document.addEventListener('focusin', (event) => {
+  const input = event.target as HTMLElement;
+  if (input.tagName === 'INPUT' || input.tagName === 'TEXTAREA') {
+    document.body.classList.add('keyboard-visible');
+  }
+  console.log(event.target);
+});
+
+document.addEventListener('focusout', () => {
+  document.body.classList.remove('keyboard-visible');
+});

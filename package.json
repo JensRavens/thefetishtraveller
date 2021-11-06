@@ -5,7 +5,8 @@
     "lint:types": "tsc --noEmit",
     "lint:style": "eslint app/javascript/**/*.ts --max-warnings 0",
     "lint:format": "prettier --list-different \"app/**/*.{ts,scss,json}\"",
-    "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds"
+    "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds",
+    "start": "yarn build --watch"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",

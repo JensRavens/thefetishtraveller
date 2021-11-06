@@ -30,6 +30,11 @@
   --z-modal: 1000;
 }
 
+.keyboard-visible {
+  --size-tab-bar: 0px;
+  --size-safe-bottom: 0px;
+}
+
 @media (min-width: 900px) {
   :root {
     --size-tab-bar: 0px;

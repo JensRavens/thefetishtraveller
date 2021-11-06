@@ -125,4 +125,15 @@
       }
     }
   }
+
+  @media (max-width: 899px) {
+    .keyboard-visible & {
+      &__links {
+        display: none;
+        &-spacer {
+          display: none;
+        }
+      }
+    }
+  }
 }
