@@ -5,5 +5,6 @@
 .main-menu__spacer
 = render "header", profile: @profile
 .spacer.spacer--small
-= render "navigation-bar"
-= paginated @posts, id: "feed", class: "listing listing--small", partial: "posts/grid_post"
+- if @profile.posts.any? || @profile.travel_plans.any?
+  = render "navigation-bar"
+  = paginated @posts, id: "feed", class: "listing listing--small", partial: "posts/grid_post"
