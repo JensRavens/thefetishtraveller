@@ -6,4 +6,4 @@
 = render "header", profile: @profile
 .spacer.spacer--small
 = render "navigation-bar"
-#feed.listing.listing--small = render partial: "posts/grid_post", collection: @posts
+= paginated @posts, id: "feed", class: "listing listing--small", partial: "posts/grid_post"

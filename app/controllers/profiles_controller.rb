@@ -12,7 +12,7 @@ class ProfilesController < ApplicationController
   end
 
   def show
-    @posts = @profile.posts.reverse_chronologic.limit(20)
+    @posts = paginated @profile.posts.reverse_chronologic, per: 20
   end
 
   def travel_plans

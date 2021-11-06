@@ -17,9 +17,9 @@ module ComponentHelper
     "javascript:ui.modal.close()"
   end
 
-  def paginated(scope, **options)
+  def paginated(scope, partial: nil, **options)
     turbo_frame_tag "pagination-frame", options do
-      render "components/pagination", items: scope
+      render "components/pagination", items: scope, partial: partial
     end
   end
 end
