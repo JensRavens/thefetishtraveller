@@ -42,6 +42,10 @@ en:
       no_conversations_yet: No conversations yet
       there_is_nothing_yet: You didn't start any conversations yet. Look at some profiles and talk to them!
       title: Conversations
+  errors:
+    messages:
+      at_not_allowed: should not contain a leading @
+      no_url_allowed: please only enter your profile name, not the full url
   events:
     index:
       all: All
