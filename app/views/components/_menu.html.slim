@@ -1,6 +1,6 @@
 header.header
   nav.main-menu data-controller="toggle"
-    .main-menu__logo.logo: a href=root_path == "The <em>Fetish</em> Traveller"
+    .main-menu__logo.logo: a href=(current_user ? posts_path : root_path) == "The <em>Fetish</em> Traveller"
     .main-menu__links = render "components/menu_links"
     .main-menu__user
       - if current_user
