@@ -18,6 +18,7 @@
   --size-text: 14px;
   --size-safe-padding: 8px;
   --size-safe-padding: max(env(safe-area-inset-right), 8px);
+  --safe-size-bottom: env(safe-area-inset-bottom);
 
   --font-heading: 'Uni Sans', 'Open Sans', sans-serif;
   --font-heading-alternate: 'Bebas Neue', 'Open Sans', sans-serif;
