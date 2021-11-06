@@ -8,4 +8,6 @@ html lang=I18n.locale
       = render "components/menu"
       = render "components/modal"
       main.page-wrapper__main = yield
-      = render "components/footer"
+      - if @show_footer
+        = render "components/footer"
+      .main-menu__links-spacer
