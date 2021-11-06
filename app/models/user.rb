@@ -63,6 +63,7 @@ class User < ApplicationRecord
   scope :with_pending_notifications, -> { where(id: Notification.pending.select(:user_id)) }
 
   validates :slug, :email, presence: true, uniqueness: { case_sensitive: false }, on: :profile_edit
+  validates :twitter, social_network: true, presence: true
   validates :slug, format: { with: /\A[a-zA-Z\d\-_]*\z/ }
 
   enum visibility: [:public, :internal].index_with(&:to_s), _prefix: :visibility
