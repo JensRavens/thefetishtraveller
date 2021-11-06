@@ -28,9 +28,14 @@
     flex: 1;
     justify-self: center;
     background-color: var(--color-footer);
-    height: calc(49px + var(--safe-size-bottom));
+    height: var(--size-tab-bar);
     align-items: center;
-    padding-bottom: var(--safe-size-bottom);
+    padding-bottom: var(--size-safe-bottom);
+
+    &-spacer {
+      height: var(--size-tab-bar);
+      background-color: var(--color-footer);
+    }
   }
 
   &__link {
@@ -114,6 +119,10 @@
     &__links {
       position: relative;
       gap: 16px;
+
+      &-spacer {
+        display: none;
+      }
     }
   }
 }

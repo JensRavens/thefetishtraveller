@@ -1,5 +1,8 @@
 .chat {
   padding-top: 30px;
+  min-height: calc(100vh - 60px - var(--size-tab-bar));
+  display: flex;
+  flex-direction: column;
 
   &__header {
     display: flex;
@@ -19,7 +22,6 @@
 
   &__messages {
     padding: 20px 0;
-    min-height: 70vh;
   }
 
   &__message {
@@ -88,5 +90,9 @@
     font-size: 12px;
     color: var(--color-text-label);
     text-align: center;
+  }
+
+  &__canvas {
+    flex: 1;
   }
 }

@@ -18,7 +18,9 @@
   --size-text: 14px;
   --size-safe-padding: 8px;
   --size-safe-padding: max(env(safe-area-inset-right), 8px);
-  --safe-size-bottom: env(safe-area-inset-bottom);
+  --size-safe-bottom: 0px;
+  --size-safe-bottom: max(env(safe-area-inset-bottom), 0px);
+  --size-tab-bar: calc(49px + var(--size-safe-bottom));
 
   --font-heading: 'Uni Sans', 'Open Sans', sans-serif;
   --font-heading-alternate: 'Bebas Neue', 'Open Sans', sans-serif;
@@ -26,4 +28,10 @@
 
   --z-nav: 900;
   --z-modal: 1000;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --size-tab-bar: 0px;
+  }
 }
