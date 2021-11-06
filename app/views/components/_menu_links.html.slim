@@ -1,5 +1,4 @@
-a class=("active" if params[:controller] == "posts") href=posts_path = t ".feed"
-a class=("active" if params[:controller] == "events") href=events_path = t ".events"
-a class=("active" if params[:controller] == "profiles") href=profiles_path = t ".profiles"
-a class=("active" if params[:controller] == "conversations") href=conversations_path = t ".conversations"
-a class=("active" if params[:controller] == "titleholders") href=titleholders_path = t ".titleholders"
+- { posts: posts_path, events: events_path, profiles: profiles_path, conversations: conversations_path, titleholders: titleholders_path  }.each do |id, path|
+  a.main-menu__link class=("active" if params[:controller] == id.to_s) href=path
+    .main-menu__link-icon style="-webkit-mask-image: url(#{asset_path("icon/#{id}.svg")});"
+    .main-menu__link-text = t ".#{id}"
