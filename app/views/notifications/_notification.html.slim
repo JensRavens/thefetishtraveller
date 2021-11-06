@@ -1,6 +1,6 @@
 - path = nil
 - if notification.subject.is_a? Post
-  - path = profile_path(notification.subject.user, post_id: notification.subject.id, anchor: "feed")
+  - path = post_path(notification.subject)
 - if notification.notification_type == "followed"
   - path = profile_path(notification.sender)
 - if notification.subject.is_a? Event

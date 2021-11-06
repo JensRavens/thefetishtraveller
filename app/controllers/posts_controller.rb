@@ -21,7 +21,10 @@ class PostsController < ApplicationController
   def create
     @post = current_user.post! post_params
     close_modal
-    prepend :personal_feed, with: @post
+  end
+
+  def show
+    @post = Post.find params[:id]
   end
 
   def destroy
