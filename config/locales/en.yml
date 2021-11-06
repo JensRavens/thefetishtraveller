@@ -49,7 +49,9 @@ en:
   events:
     index:
       all: All
+      event_missing: Your favorite event is missing?
       search: Search...
+      submit_event: Add it now to the List
       subscribe_to_calendar_html: You can also subscribe to this calendar <a href="%{link}" class="link">here</a>.
       title: Events
     new:
@@ -175,8 +177,6 @@ en:
     navigation-bar:
       posts: Posts
       travel_plans: Travel plans
-    show:
-      create_post: Create Post
   session_mailer:
     login:
       login: Login

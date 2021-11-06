@@ -13,3 +13,6 @@
     a.filter-bar__option href=url_for(month: option.first) class=("filter-bar__option--selected" if option.first == params["month"]) = option.second
 = turbo_frame_tag "event-result", target: "_top"
   .listing = render @events
+.listing-footer: .container
+  h4 = t ".event_missing"
+  .center: a.button href=new_event_path = t ".submit_event"
