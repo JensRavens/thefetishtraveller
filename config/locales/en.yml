@@ -204,6 +204,8 @@ en:
       month: "%B"
   titleholders:
     index:
+      submit_titleholder: Add Titleholder
       title: Titleholders
+      titleholder_missing: You are missing in this list?
     show:
       you_can_follow: you can follow %{name} here
