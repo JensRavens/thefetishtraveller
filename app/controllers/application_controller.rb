@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
 
   def paginated(scope, per: 10)
     scope = scope.page(params[:page]).per(per)
-    replace "next-page-link", with: "components/pagination", items: scope if params[:page].to_i > 1
+    replace "next-page-link", with: "components/pagination", items: scope, partial: params[:partial] if params[:page].to_i > 1
     scope
   end
 end

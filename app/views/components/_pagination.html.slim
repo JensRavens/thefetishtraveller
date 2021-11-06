@@ -1,3 +1,6 @@
-= render items
+- if partial
+  = render partial: partial, collection: items
+- else
+  = render items
 - unless items.last_page?
-  #next-page-link = link_to_next_page items, t(".load_more"), class: "button pagination-button"
+  #next-page-link = link_to_next_page items, t(".load_more"), class: "button pagination-button", params: { partial: partial }
