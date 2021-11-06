@@ -208,6 +208,8 @@ de:
       month: "%B"
   titleholders:
     index:
+      submit_titleholder: Eintrag hinzufügen
       title: Titelhalter
+      titleholder_missing: Du fehlst noch in der Liste?
     show:
       you_can_follow: Du kannst %{name} hier folgen
