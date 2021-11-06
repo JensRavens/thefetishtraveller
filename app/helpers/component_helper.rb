@@ -18,7 +18,7 @@ module ComponentHelper
   end
 
   def paginated(scope, partial: nil, **options)
-    turbo_frame_tag "pagination-frame", options do
+    turbo_frame_tag "pagination-frame", options.reverse_merge(target: "_top") do
       render "components/pagination", items: scope, partial: partial
     end
   end
