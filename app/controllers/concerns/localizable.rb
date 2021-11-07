@@ -14,7 +14,7 @@ module Localizable
     end
 
     def request_locale
-      request.env["HTTP_ACCEPT_LANGUAGE"].to_s[0..1].downcase.presence.yield_self { |e| e if I18n.available_locales.include?(e.to_sym) }
+      request.env["HTTP_ACCEPT_LANGUAGE"].to_s[0..1].downcase.presence&.then { |e| e if I18n.available_locales.include?(e.to_sym) }
     end
 
     def set_locale
