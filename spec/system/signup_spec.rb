@@ -4,14 +4,14 @@ require "system_helper"
 
 RSpec.describe "signup" do
   it "allows signing up via email" do
-    visit root_path(locale: :en, debug: true)
+    visit root_path
     click_on "login"
     click_on "login_via_email"
     fill_in "email", with: "new-user@example.com"
     click_on "email.login"
     expect(page).to have_content "link_in_email"
 
-    visit "#{last_mail!.button_link}&debug=true"
+    visit last_mail!.button_link
     expect(page).to have_content ".welcome"
 
     fill_in "slug", with: "onboarding-user"
@@ -28,5 +28,20 @@ RSpec.describe "signup" do
     expect(page).to have_content "onboarding-user"
     expect(page).to have_content "insta-profile-name"
     expect(page).to have_content "Hello #world"
+  end
+
+  it "rejects the login link if it is expired" do
+    visit root_path
+    click_on "login"
+    click_on "login_via_email"
+    fill_in "email", with: "new-user@example.com"
+    click_on "email.login"
+    expect(page).to have_content "link_in_email"
+    link = last_mail!.button_link
+
+    travel 2.hours # force the link to expire
+
+    visit link
+    expect(page).to have_content ".link_expired"
   end
 end

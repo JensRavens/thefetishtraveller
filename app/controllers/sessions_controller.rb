@@ -35,9 +35,12 @@ class SessionsController < ApplicationController
   end
 
   def finish_email_login
-    user = User.secure_find params[:token]
+    user = User.find_signed! params[:token]
     session[:user_id] = user.id
     redirect_to posts_path
+  rescue ActiveSupport::MessageVerifier::InvalidSignature
+    @email_login_error = true
+    render :new
   end
 
   def apple_login

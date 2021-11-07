@@ -93,6 +93,11 @@
   }
 }
 
+.test .modal__blind,
+.test .modal__content {
+  transition: none !important;
+}
+
 body.modal-open {
   overflow: hidden;
 }

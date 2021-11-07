@@ -1,7 +1,7 @@
 doctype html
 html lang=I18n.locale
   = render "components/head"
-  body data-controller="analytics"
+  body data-controller="analytics" class=('test' if Rails.env.test?)
     - if Rails.env.development?
       script async=true src="#{request.protocol}#{request.host}:35729/livereload.js?snipver=1"
     .page-wrapper
