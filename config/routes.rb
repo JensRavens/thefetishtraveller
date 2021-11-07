@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   get "sitemaps/*path", to: "pages#sitemap"
   scope "/(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     ActiveAdmin.routes(self)
+    match "404", to: "errors#not_found", via: :all
+    match "422", to: "errors#unprocessable", via: :all
+    match "500", to: "errors#internal_server_error", via: :all
     get "login", to: "sessions#new"
     get "logout", to: "sessions#destroy"
     resources :sessions, only: [:create] do

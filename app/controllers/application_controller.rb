@@ -8,6 +8,14 @@ class ApplicationController < ActionController::Base
   skip_forgery_protection
   layout "application"
 
+  rescue_from StandardError do |error|
+    raise error unless request.format.turbo_stream?
+
+    close_modal
+    replace :main, with: "errors/error", error: error
+    default_render
+  end
+
   def authenticate_admin_user!
     redirect_to root_path unless current_user&.admin?
   end

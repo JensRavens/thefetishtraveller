@@ -1,0 +1,10 @@
+- status ||= 500
+.main-menu__spacer
+= hero do
+  h2 = status
+.spacer
+.post-container
+  / i18n-tasks-use t('.description_404')
+  / i18n-tasks-use t('.description_422')
+  / i18n-tasks-use t('.description_500')
+  h5 = t ".description_#{status}"
