@@ -69,6 +69,8 @@ group :development, :test do
   gem "guard"
   gem "guard-rspec"
   gem "i18n-tasks"
+  gem "debase"
+  gem "ruby-debug-ide"
 end
 
 group :development do
