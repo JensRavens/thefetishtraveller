@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   def current_user
-    @current_user ||= session[:user_id].presence.then { |id| User.find_by(id: id) }
+    @current_user ||= session[:user_id].presence.then { |id| User.find_by(id: id) }.tap { |user| Sentry.set_user(user ? { username: user.slug } : {}) }
   end
 
   def message_verifier

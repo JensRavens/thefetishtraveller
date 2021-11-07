@@ -58,6 +58,8 @@ gem "faker"
 # Services
 gem "newrelic_rpm"
 gem "aws-sdk-s3"
+gem "sentry-ruby"
+gem "sentry-rails"
 
 group :development, :test do
   gem "rspec-rails"
