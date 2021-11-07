@@ -63,7 +63,7 @@ class User < ApplicationRecord
   scope :with_pending_notifications, -> { where(id: Notification.pending.select(:user_id)) }
 
   validates :slug, :email, presence: true, uniqueness: { case_sensitive: false }, on: :profile_edit
-  validates :twitter, social_network: true, presence: true
+  validates :twitter, :instagram, :recon, :romeo, :bluf, :onlyfans, social_network: true, on: :profile_edit
   validates :slug, format: { with: /\A[a-zA-Z\d\-_]*\z/ }
 
   enum visibility: [:public, :internal].index_with(&:to_s), _prefix: :visibility
@@ -95,7 +95,7 @@ class User < ApplicationRecord
     end
 
     def authenticate_email(email:)
-      User.find_or_create_by(email: email)
+      User.find_or_create_by!(email: email)
     end
   end
 
