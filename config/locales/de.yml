@@ -43,6 +43,10 @@ de:
       there_is_nothing_yet: Du hast noch keine Chats. Schreibe doch ein paar Profile an, dann ist hier bald mehr los.
       title: Chat
   errors:
+    error:
+      description_404: Diese Seite wurde nicht gefunden.
+      description_422: Das war ein ungültiger Request.
+      description_500: Da ist etwas schief gegangen. Wir wurden darüber in Kenntnis gesetzt und versuchen uns so schnell es geht darum zu kümmern.
     messages:
       at_not_allowed: sollte nicht mit @ anfangen
       no_url_allowed: bitte gib nur deinen Profilnamen, nicht den gesamten Link an

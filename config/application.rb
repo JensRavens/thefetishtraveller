@@ -25,5 +25,6 @@ module Thefetishtraveller
 
     config.autoload_paths << Rails.root.join("app/form_builders")
     config.assets.paths << Rails.root.join("node_modules")
+    config.exceptions_app = routes
   end
 end

@@ -43,6 +43,10 @@ en:
       there_is_nothing_yet: You didn't start any conversations yet. Look at some profiles and talk to them!
       title: Conversations
   errors:
+    error:
+      description_404: This page does not exist.
+      description_422: This request was invalid.
+      description_500: Something went wrong while processing your request. We were notified of this and try to fix this issue as soon as possible.
     messages:
       at_not_allowed: should not contain a leading @
       no_url_allowed: please only enter your profile name, not the full url
