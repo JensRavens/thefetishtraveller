@@ -48,7 +48,7 @@ jobs:
       - name: Rubocop
         run: bundle exec rubocop
       - name: Translations Lint
-        run: i18n-tasks health
+        run: bundle exec i18n-tasks health
       - name: JS Lint
         run: yarn lint
       - name: Build Assets
