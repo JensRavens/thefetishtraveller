@@ -142,6 +142,9 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0.0)
     database_cleaner-core (2.0.1)
+    debase (0.2.4.1)
+      debase-ruby_core_source (>= 0.10.2)
+    debase-ruby_core_source (0.10.12)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     diff-lcs (1.4.4)
@@ -410,6 +413,8 @@ GEM
       activesupport (>= 4.2.0)
       rack (>= 1.1)
       rubocop (>= 1.7.0, < 2.0)
+    ruby-debug-ide (0.7.3)
+      rake (>= 0.8.1)
     ruby-graphviz (1.2.5)
       rexml
     ruby-progressbar (1.11.0)
@@ -511,6 +516,7 @@ DEPENDENCIES
   countries
   cuprite
   database_cleaner
+  debase
   document_serializable
   dotenv-rails
   erd
@@ -550,6 +556,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-rails
+  ruby-debug-ide
   sass-rails
   sidekiq
   sidekiq-scheduler
