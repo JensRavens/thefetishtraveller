@@ -49,8 +49,16 @@ jobs:
         run: bundle exec rubocop
       - name: JS Lint
         run: yarn lint
+      - name: Build Assets
+        run: yarn build
       - name: Create PG Database
         run: bundle exec rake db:create db:migrate
         env:
           DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/tft
+          RAILS_ENV: test
+      - name: Build and test with Rake
+        run: bundle exec rspec --format documentation
+        env:
+          DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/tft
+          REDIS_URL: redis://127.0.0.1:6379
           RAILS_ENV: test

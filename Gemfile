@@ -64,7 +64,7 @@ group :development, :test do
   gem "rubocop", require: false
   gem "rubocop-rails", require: false
   gem "capybara"
-  gem "webdrivers"
+  gem "cuprite"
   gem "pry-rails"
   gem "guard"
   gem "guard-rspec"
