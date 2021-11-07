@@ -11,7 +11,6 @@ document.addEventListener('focusin', (event) => {
   if (input.tagName === 'INPUT' || input.tagName === 'TEXTAREA') {
     document.body.classList.add('keyboard-visible');
   }
-  console.log(event.target);
 });
 
 document.addEventListener('focusout', () => {
