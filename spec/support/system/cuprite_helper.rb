@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CupriteHelper
   def pause
     page.driver.pause

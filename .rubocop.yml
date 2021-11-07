@@ -35,6 +35,9 @@ Rails/BulkChangeTable:
 Rails/RakeEnvironment:
   Enabled: false
 
+Rails/HelperInstanceVariable:
+  Enabled: false
+
 Metrics:
   Enabled: false
 

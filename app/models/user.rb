@@ -38,7 +38,7 @@ class User < ApplicationRecord
   has_many :sessions, dependent: :destroy
   has_many :follows, dependent: :delete_all
   has_many :followed_users, dependent: false, through: :follows, source: :profile, class_name: "User"
-  has_many :followings, dependent: :delete_all, class_name: "Follow", foreign_key: :profile_id
+  has_many :followings, dependent: :delete_all, class_name: "Follow", foreign_key: :profile_id, inverse_of: :profile
   has_many :followers, through: :followings, source: :user, class_name: "User"
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :delete_all

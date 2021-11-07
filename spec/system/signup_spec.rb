@@ -11,7 +11,7 @@ RSpec.describe "signup" do
     click_on "email.login"
     expect(page).to have_content "link_in_email"
 
-    visit last_mail!.button_link + "&debug=true"
+    visit "#{last_mail!.button_link}&debug=true"
     expect(page).to have_content ".welcome"
 
     fill_in "slug", with: "onboarding-user"

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "capybara/cuprite"
 
 # Then, we need to register our driver to be able to use it later
@@ -15,7 +17,7 @@ Capybara.register_driver(:cuprite) do |app|
       inspector: true,
       # Allow running Chrome in a headful mode by setting HEADLESS env
       # var to a falsey value
-      headless: !ENV["HEADLESS"].in?(%w[n 0 no false])
+      headless: !ENV["HEADLESS"].in?(["n", "0", "no", "false"])
     }
   )
 end
