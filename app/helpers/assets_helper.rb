@@ -21,7 +21,7 @@ module AssetsHelper
 
     options = { relative: relative }
     if width
-      options[:resize] = "#{width}x#{height || width}>"
+      options[:resize] = "#{width}x#{height || width * 2}>"
     elsif source.try :variation
       options[:resize] = source.variation.transformations[:resize]
     end
