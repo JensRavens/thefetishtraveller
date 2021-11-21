@@ -1,6 +1,6 @@
 = turbo_frame_tag "modal_frame"
   = form_with model: @post, builder: AwesomeForm, class: :stack do |f|
-    = f.image_field :image
+    = f.post_image_field :image
     = f.text_field :location_description
     = f.text_area :description
     .line.line--stretch

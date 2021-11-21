@@ -42,6 +42,10 @@
     font-size: 14px;
   }
 
+  &__preview {
+    object-fit: contain;
+  }
+
   &--error {
     .input__input {
       border-color: var(--color-error);

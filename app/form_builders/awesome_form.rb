@@ -21,6 +21,19 @@ class AwesomeForm < ActionView::Helpers::FormBuilder
     wrap method, file_field(method, options), "input--image", options
   end
 
+  def post_image_field(method, options = {})
+    prepare_options method, options
+    options[:accept] = "image/*"
+    options[:data] = { action: "image-preview#change" }
+    content = content_tag :div, data: { controller: "image-preview" } do
+      safe_join [
+        content_tag(:img, "", class: "input__preview", data: { "image-preview_target": "preview" }),
+        file_field(method, options)
+      ]
+    end
+    wrap method, content, "input--image input--image-post", options
+  end
+
   def search_field(method, options = {})
     prepare_options method, options
     wrap method, super(method, options), "input--text", options
