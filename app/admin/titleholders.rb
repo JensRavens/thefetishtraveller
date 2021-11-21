@@ -19,8 +19,8 @@ ActiveAdmin.register Titleholder do
   form do |f|
     inputs titleholder.name do
       f.semantic_errors
-      input :title
-      input :user
+      input :title, collection: Title.order(name: :asc)
+      input :user, collection: User.onboarded.order(slug: :asc).pluck(:slug, :id)
       input :slug unless titleholder.new_record?
       input :full_title
       input :name
