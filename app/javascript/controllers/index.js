@@ -21,6 +21,9 @@ application.register('datepicker', DatepickerController);
 import HideController from './hide_controller.ts';
 application.register('hide', HideController);
 
+import ImagePreviewController from './image_preview_controller.ts';
+application.register('image-preview', ImagePreviewController);
+
 import MapController from './map_controller.ts';
 application.register('map', MapController);
 
