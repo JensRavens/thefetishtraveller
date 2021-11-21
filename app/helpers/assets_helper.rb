@@ -10,7 +10,7 @@ module AssetsHelper
       height = options[:height]
       source = image_asset_url(source, width: width, height: height, relative: relative)
       options[:loading] = :lazy
-      options[:srcset] = "#{source} 1x, #{image_asset_url(attachment, width: width.to_i * 2, height: (height || width).to_i * 2, relative: relative)} 2x" if options[:width]
+      options[:srcset] = "#{source} 1x, #{image_asset_url(attachment, width: width.to_i * 2, height: height ? height.to_i * 2 : nil, relative: relative)} 2x" if options[:width]
     end
     super source, options
   end
@@ -21,7 +21,11 @@ module AssetsHelper
 
     options = { relative: relative }
     if width
-      options[:resize] = "#{width}x#{height || width * 2}>"
+      if height
+        options[:resize] = "#{width}x#{height}>"
+      else
+        options[:resize] = "#{width}x"
+      end
     elsif source.try :variation
       options[:resize] = source.variation.transformations[:resize]
     end
