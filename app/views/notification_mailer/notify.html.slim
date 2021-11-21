@@ -17,6 +17,7 @@ p = t ".daily_roundup"
   / i18n-tasks-use t('.type_followed')
   / i18n-tasks-use t('.type_event_created')
   / i18n-tasks-use t('.type_posted')
+  / i18n-tasks-use t('.type_message_received')
   h3 = t ".type_#{type}"
   - if lookup_context.template_exists?(type, "notification_mailer", true)
     = render type, notifications: notifications

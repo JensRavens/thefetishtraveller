@@ -19,10 +19,11 @@ class Conversation < ApplicationRecord
   scope :with_messages, -> { where.not(last_message_at: nil) }
 
   def send_message(user:, text:)
-    transaction do
-      messages.create!(text: text, user: user)
+    message = transaction do
       update! last_message_at: DateTime.current
+      messages.create!(text: text, user: user)
     end
+    publish :message_sent, on: message, user_id: user.id
   end
 
   def last_message
