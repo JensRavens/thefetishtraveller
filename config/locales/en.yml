@@ -62,6 +62,7 @@ en:
       create_event: Create event
     show:
       add_to_calendar: Add to my Travel Plans
+      also_going: Also Going
       date: Date
       happening_here: Happening here
       location: Location

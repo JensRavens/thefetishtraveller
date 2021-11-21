@@ -71,7 +71,11 @@
     h2 = t ".happening_here", location: @event.location.name
     .spacer.spacer--small
   .listing = render @subevents
-.spacer.spacer--small
+.spacer
+- if @attending_friends.any?
+  h2 = t ".also_going"
+  .listing.listing--small = render @attending_friends
+  .spacer
 - if @other_events.any?
   .container.container--small
     h2 = t ".other_events_in", location: @event.location.name

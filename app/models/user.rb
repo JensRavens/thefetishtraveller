@@ -60,6 +60,7 @@ class User < ApplicationRecord
   scope :public_profile, -> { where(visibility: "public") }
   scope :internal_profile, -> { where(visibility: "internal") }
   scope :with_pending_notifications, -> { where(id: Notification.pending.select(:user_id)) }
+  scope :attending, ->(event) { where(id: event.travel_plans.select(:user_id)) }
 
   validates :slug, :email, presence: true, uniqueness: { case_sensitive: false }, on: :profile_edit
   validates :twitter, :instagram, :recon, :romeo, :bluf, :onlyfans, social_network: true, on: :profile_edit
