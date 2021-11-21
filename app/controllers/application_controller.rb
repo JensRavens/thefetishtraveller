@@ -16,6 +16,12 @@ class ApplicationController < ActionController::Base
     default_render
   end
 
+  rescue_from Pundit::NotAuthorizedError do
+    raise error if current_user
+
+    redirect_to login_path
+  end
+
   def authenticate_admin_user!
     redirect_to root_path unless current_user&.admin?
   end
