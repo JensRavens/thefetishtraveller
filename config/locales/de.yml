@@ -97,6 +97,8 @@ de:
         other: "%{users} folgen dir jetzt."
     liked:
       liked_html: "%{users} gefällt dein Post."
+    message_received:
+      send_you_a_message_html: "%{user} hat dir eine Nachricht gesendet."
     notify:
       daily_roundup: Manchmal ist es schwierig, den Überblick darüber zu behalten, was überall passiert - deswegen senden wir dir diese tägliche Zusammenfassung mit allem, was du noch nicht gesehen hast.
       subject: Tägliche Übersicht
@@ -105,6 +107,7 @@ de:
       type_event_created: Neue Events!
       type_followed: Jemand folgt dir!
       type_liked: Anderen Nutzern gefällt dein Content!
+      type_message_received: Du hast neue Nachrichten erhalten!
       type_posted: Deine Lieblingsaccounts haben neuen Content!
     posted:
       created_a_post_html: "%{user} hat einen neuen Post erstellt."
@@ -114,6 +117,7 @@ de:
       type_event_created: "%{sender} hat ein Event erstellt."
       type_followed: "%{sender} folgt dir nun."
       type_liked: "%{sender} hat deinen Post geliked."
+      type_message_received: "%{sender} hat dir eine Nachricht gesendet."
       type_posted: "%{sender} hat einen neuen Post erstellt."
   onboardings:
     form:

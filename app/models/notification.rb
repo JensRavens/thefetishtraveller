@@ -59,6 +59,13 @@ class Notification < ApplicationRecord
         notify sender: publisher, user: user, type: :posted, subject: post
       end
     end
+
+    def on_message_sent(user_id:, publisher:)
+      sender = User.find user_id
+      publisher.conversation.users.where.not(id: user_id).find_each do |user|
+        notify sender: sender, user: user, type: :message_received, subject: publisher
+      end
+    end
   end
 
   def deliver!
