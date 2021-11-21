@@ -16,6 +16,7 @@ class EventsController < ApplicationController
     @event = Event.friendly.find(params[:id])
     @subevents = @event.events.chronologic
     @other_events = @event.location.events.listed
+    @attending_friends = current_user ? current_user.followed_users.attending(@event) : User.none
   end
 
   def new
