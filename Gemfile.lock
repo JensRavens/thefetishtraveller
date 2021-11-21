@@ -508,6 +508,7 @@ GEM
     thwait (0.2.0)
       e2mmap
     tilt (2.0.10)
+    translate_client (0.0.1)
     turbo-rails (0.8.2)
       rails (>= 6.0.0)
     tzinfo (2.0.4)
@@ -598,6 +599,7 @@ DEPENDENCIES
   spring-commands-rspec
   spring-watcher-listen
   stimulus-rails
+  translate_client
   turbo-rails
   web-console
   yael

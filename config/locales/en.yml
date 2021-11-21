@@ -88,9 +88,13 @@ en:
       send: send
   notification_mailer:
     commented:
-      commented_html: "%{users} commented on your post."
+      commented_html:
+        one: "%{users} commented on your post."
+        other: "%{users} commented on your post."
     followed:
-      followed_html: "%{users} started following you."
+      followed_html:
+        one: "%{users} started following you."
+        other: "%{users} started following you."
     liked:
       liked_html: "%{users} liked your post."
     notify:

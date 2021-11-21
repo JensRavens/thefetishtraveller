@@ -43,6 +43,7 @@ gem "jwt"
 gem "pundit"
 gem "acts-as-taggable-on"
 gem "yael"
+gem "translate_client"
 
 # Assets
 gem "jsbundling-rails"
