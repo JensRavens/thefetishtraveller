@@ -187,6 +187,10 @@ class User < ApplicationRecord
     publish :daily_notification
   end
 
+  def onboarding_finished!
+    publish :onboarding_finished
+  end
+
   private
 
   def parsed_tags

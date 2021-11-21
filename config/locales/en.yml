@@ -99,6 +99,8 @@ en:
       liked_html: "%{users} liked your post."
     message_received:
       send_you_a_message_html: "%{user} has sent you a message."
+    new_user:
+      joined_html: "%{user} has joined TheFetishTraveller."
     notify:
       daily_roundup: Sometimes it's hard to keep an overview of what has happened everywhere, that's why we send you this daily overview of everything that you have not seen yet.
       subject: Daily Summary
@@ -108,6 +110,7 @@ en:
       type_followed: Someone followed you!
       type_liked: Other Users like your Content!
       type_message_received: You have received new messages!
+      type_new_user: New users have signed up!
       type_posted: Your followed Accounts posted new Content!
     posted:
       created_a_post_html: "%{user} created a new post."
@@ -118,6 +121,7 @@ en:
       type_followed: "%{sender} started following you."
       type_liked: "%{sender} liked your post."
       type_message_received: "%{sender} sent you a message."
+      type_new_user: "%{sender} has joined TheFetishTraveller."
       type_posted: "%{sender} created a new post."
   onboardings:
     form:

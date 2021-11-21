@@ -66,6 +66,14 @@ class Notification < ApplicationRecord
         notify sender: sender, user: user, type: :message_received, subject: publisher
       end
     end
+
+    def on_onboarding_finished(publisher:)
+      return if publisher.avatar.blank?
+
+      User.onboarded.where.not(id: publisher.id).find_each do |user|
+        notify sender: publisher, user: user, type: :new_user, subject: publisher
+      end
+    end
   end
 
   def deliver!
