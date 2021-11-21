@@ -30,6 +30,9 @@ application.register('modal', ModalController);
 import NotificationController from './notification_controller.ts';
 application.register('notification', NotificationController);
 
+import RedirectInteractionController from './redirect_interaction_controller';
+application.register('redirect-interaction', RedirectInteractionController);
+
 import RemoteNavigationController from './remote_navigation_controller.ts';
 application.register('remote-navigation', RemoteNavigationController);
 
