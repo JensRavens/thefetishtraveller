@@ -48,4 +48,23 @@ RSpec.describe User do
       end.to change { other_user.notifications.count }.by 1
     end
   end
+
+  context "finishing registration" do
+    it "notifies other users of the platform" do
+      user.update! avatar: fixture_file_upload("picture.jpg")
+      expect do
+        perform_enqueued_jobs do
+          user.onboarding_finished!
+        end
+      end.to change { other_user.notifications.count }.by 1
+    end
+
+    it "does not tell others if there is no avatar" do
+      expect do
+        perform_enqueued_jobs do
+          user.onboarding_finished!
+        end
+      end.not_to change { other_user.notifications.count }
+    end
+  end
 end

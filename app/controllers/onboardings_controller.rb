@@ -12,6 +12,7 @@ class OnboardingsController < ApplicationController
       if @step < 3
         redirect_to onboarding_path(step: @step + 1)
       else
+        @profile.onboarding_finished!
         redirect_to profile_path(@profile)
       end
     else

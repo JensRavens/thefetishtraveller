@@ -7,4 +7,5 @@ Yael::Bus.shared.routing do
   dispatch :event_created, to: "notification"
   dispatch :posted, to: "notifications"
   dispatch :message_sent, to: "notifications"
+  dispatch :onboarding_finished, to: "notifications"
 end
