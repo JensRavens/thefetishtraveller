@@ -19,6 +19,7 @@
           = link_to "", likes_path(post_id: post.id), method: :post, class: "post__icon-bar__button heart-button", data: { "redirect-interaction-target": "target" }
         - if policy(post).comment?
           .post__icon-bar__button.comment-button data-action="click->hide#toggle"
+        .post__icon-bar__button.share-button data-controller="share" data-share-url-value=post_url(post) data-action="click->share#share"
       - if like_previews.any?
         .post__like-bar
           - user = like_previews.first.user
