@@ -39,5 +39,8 @@ application.register('redirect-interaction', RedirectInteractionController);
 import RemoteNavigationController from './remote_navigation_controller.ts';
 application.register('remote-navigation', RemoteNavigationController);
 
+import ShareController from './share_controller.ts';
+application.register('share', ShareController);
+
 import ToggleController from './toggle_controller.ts';
 application.register('toggle', ToggleController);

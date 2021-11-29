@@ -1,8 +1,5 @@
 .main-menu__spacer
-.desktop-only
-  = hero
-    h1 = t ".your_timeline"
-.spacer.spacer--small
+.spacer.spacer--margin
 .container
   - if @posts.any?
     = paginated @posts, class: "stack stack--large post-container"
