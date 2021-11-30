@@ -1,5 +1,18 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: messages
+#
+#  id              :uuid             not null, primary key
+#  text            :string
+#  read_at         :datetime
+#  type            :string
+#  conversation_id :uuid             not null
+#  user_id         :uuid             not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
 require "rails_helper"
 
 RSpec.describe Message do

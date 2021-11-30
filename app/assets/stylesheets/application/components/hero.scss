@@ -1,6 +1,5 @@
 .hero {
-  margin: -60px 0 0;
-  padding: calc(60px + 2rem) 0 2rem;
+  padding: 2rem 0;
   color: white;
   position: relative;
   background-color: var(--color-footer);
@@ -13,14 +12,15 @@
   }
 
   &__background {
-    background-size: cover;
+    background-size: 800px auto;
+    background-repeat: no-repeat;
     background-position: center;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    opacity: 0.3;
+    // opacity: 0.3;
   }
 
   &__content {

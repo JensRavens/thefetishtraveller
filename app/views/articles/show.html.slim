@@ -1,0 +1,14 @@
+- title @article.title
+
+.main-menu__spacer
+- if @article.pending_review?
+  .status-banner: .container: .stack.stack--small
+    strong = t ".pending_review"
+    div = t ".pending_review_explanation"
+= hero background_image: @article.hero do
+  h1.article__heading = @article.title
+.spacer.spacer--small
+.container.container--article: .stack: article.article
+  .article__content == @article.content.body
+  - if policy(@article).edit?
+    = link_to t(".edit"), edit_article_path(@article), class: "button"

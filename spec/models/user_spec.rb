@@ -1,5 +1,30 @@
 # frozen_string_literal: true
 
+# == Schema Information
+#
+# Table name: users
+#
+#  id                   :uuid             not null, primary key
+#  email                :string
+#  first_name           :string
+#  last_name            :string
+#  password_digest      :string
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#  roles                :string           default([]), not null, is an Array
+#  facebook_id          :string
+#  apple_id             :string
+#  slug                 :string
+#  location_description :string
+#  bio                  :string
+#  twitter              :string
+#  instagram            :string
+#  recon                :string
+#  romeo                :string
+#  bluf                 :string
+#  visibility           :string
+#  onlyfans             :string
+#
 require "rails_helper"
 
 RSpec.describe User do

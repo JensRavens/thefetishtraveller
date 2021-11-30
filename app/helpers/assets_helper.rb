@@ -32,3 +32,5 @@ module AssetsHelper
     FileProxy.new(blob_id: source.blob.id).url(options)
   end
 end
+
+ActionText::ContentHelper.allowed_tags << "aside"

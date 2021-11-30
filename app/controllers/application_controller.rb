@@ -8,12 +8,14 @@ class ApplicationController < ActionController::Base
   skip_forgery_protection
   layout "application"
 
-  rescue_from StandardError do |error|
-    raise error unless request.format.turbo_stream?
+  unless Rails.env.development?
+    rescue_from StandardError do |error|
+      raise error unless request.format.turbo_stream?
 
-    close_modal
-    replace :main, with: "errors/error", error: error
-    default_render
+      close_modal
+      replace :main, with: "errors/error", error: error
+      default_render
+    end
   end
 
   rescue_from Pundit::NotAuthorizedError do

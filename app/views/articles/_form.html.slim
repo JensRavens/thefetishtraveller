@@ -1,0 +1,8 @@
+= form_with model: @article, builder: AwesomeForm do |f|
+  .container.container--small: .article
+    .stack
+      = f.image_field :hero
+      = f.text_field :title
+      = f.datetime_field :publish_at
+      = f.rich_text_area :content
+      = f.submit
