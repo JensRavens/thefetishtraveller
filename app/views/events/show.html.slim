@@ -2,11 +2,11 @@
 - title @event.name
 - description @event.abstract
 - thumbnail @event.hero
+- review_status @event
 - content_for :additional_head_tags do
   script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqKALdkIndBLVLReuQHzhcXjghXpS5SoE"
 - hero = @event.header.presence || @event.hero.presence
 
-= render "components/review_status", object: @event
 .spacer
 .container
   h1.subheading = @event.name

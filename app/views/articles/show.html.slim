@@ -1,7 +1,7 @@
 - title @article.title
 - show_footer
+- review_status @article
 
-= render "components/review_status", object: @article
 = hero background_image: @article.hero, style: :editorial, background_color: @article.hero_background_color do
   .stack
     h1.heading.article__heading = safe_format @article.title
