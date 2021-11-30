@@ -1,4 +1,9 @@
 .status-banner {
   background-color: var(--color-warn);
   padding: 16px 0;
+
+  &--toolbar {
+    color: white;
+    background-color: var(--color-footer);
+  }
 }

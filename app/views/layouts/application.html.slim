@@ -7,7 +7,9 @@ html lang=I18n.locale
     .page-wrapper
       = render "components/menu"
       = render "components/modal"
-      = render "components/review_status", object: @review_object if @review_object
+      - if @review_object
+        = render "components/review_status", object: @review_object
+        = render "components/edit_banner", object: @review_object
       main.page-wrapper__main#main = yield
       - if @show_footer
         = render "components/footer"

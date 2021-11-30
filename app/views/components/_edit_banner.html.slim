@@ -1,0 +1,3 @@
+- if policy(object).try(:edit?)
+  .status-banner.status-banner--toolbar: .container
+    .button-line: a.button href=url_for([:edit, object]) = t ".edit"

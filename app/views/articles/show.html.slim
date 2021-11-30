@@ -10,6 +10,4 @@
 .spacer.spacer--small
 .container.container--article: .stack: article.article
   .article__content == @article.content
-  - if policy(@article).edit?
-    = link_to t(".edit"), edit_article_path(@article), class: "button"
 .spacer.spacer--small
