@@ -2,7 +2,11 @@
 / i18n-tasks-use t('.profiles')
 / i18n-tasks-use t('.conversations')
 / i18n-tasks-use t('.magazine')
-- { posts: posts_path, profiles: profiles_path, conversations: conversations_path, magazine: magazine_path  }.each do |id, path|
-  a.main-menu__link class=("active" if params[:controller] == id.to_s) href=path
+- menu_links = [ { id: :posts }, { id: :profiles }, { id: :conversations, controllers: [:conversations, :messages] }, { id: :magazine, controllers: [:magazines, :events, :titleholders] } ]
+- menu_links.each do |link|
+  - id = link[:id]
+  - path = link[:path] || public_send("#{id}_path")
+  - controllers = (link[:controllers] || [id]).map(&:to_s)
+  a.main-menu__link class=("active" if controllers.include?(params[:controller])) href=path
     .main-menu__link-icon style="-webkit-mask-image: url(#{asset_path("icon/#{id}.svg")});"
     .main-menu__link-text = t ".#{id}"

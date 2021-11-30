@@ -14,7 +14,6 @@ en:
       home: Home
       imprint: Imprint
       quick_navigation: Quick Navigation
-      submit: Submit Events
     head:
       default_description: Find fetish events all around the globe and connect with like-minded gear heads.
     mail_footer:
@@ -28,7 +27,6 @@ en:
     menu:
       create_a_post: Create a Post
       login: Login
-      logout: Logout
       notifications: Notifications
     menu_links:
       conversations: Conversations

@@ -14,7 +14,6 @@ de:
       home: Home
       imprint: Impressum
       quick_navigation: Schnellnavigation
-      submit: Events übermitteln
     head:
       default_description: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
     mail_footer:
@@ -28,7 +27,6 @@ de:
     menu:
       create_a_post: Post erstellen
       login: Login
-      logout: Logout
       notifications: Notifications
     menu_links:
       conversations: Chat
