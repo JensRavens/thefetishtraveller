@@ -58,6 +58,18 @@
     }
   }
 
+  &__category {
+    color: var(--color-tint);
+    margin-bottom: 1em;
+    font-size: 1.3em;
+    font-family: var(--font-heading-alternate);
+  }
+
+  .trix-content > div,
+  trix-editor > div {
+    margin-bottom: 1em;
+  }
+
   @media (min-width: 768px) {
     font-size: 20px;
 
@@ -105,9 +117,4 @@ trix-toolbar {
   top: 60px;
   z-index: 1;
   background-color: var(--color-background);
-}
-
-.trix-content > div,
-trix-editor > div {
-  margin-bottom: 1em;
 }

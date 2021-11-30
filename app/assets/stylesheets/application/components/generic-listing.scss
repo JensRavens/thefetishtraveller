@@ -1,10 +1,12 @@
-.event-listing {
+.generic-listing {
   display: block;
   color: white;
   position: relative;
   background-size: cover;
   background-position: center;
   background-color: var(--color-background-dark);
+  background-repeat: no-repeat;
+  aspect-ratio: 1;
 
   &__content {
     position: relative;
@@ -24,46 +26,50 @@
   }
 
   &__category {
-    font-weight: bold;
+    font-family: var(--font-heading-alternate);
+    font-size: 16px;
     color: var(--color-tint);
-    margin-bottom: 1em;
-    text-transform: uppercase;
   }
 
   &__name {
     font-family: var(--font-heading-alternate);
-    font-weight: bold;
     font-size: 40px;
     line-height: 1;
   }
 
   &__description {
+    font-weight: 600;
+  }
+
+  &__flex {
     flex: 1;
   }
 
   &__details {
-    font-style: italic;
+    font-family: var(--font-heading-alternate);
   }
 
-  &__marker {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    color: var(--color-text-muted-dark-background);
-    font-weight: bold;
-    font-size: 12px;
-  }
   .no-touch & {
-    &:hover .event-listing__background {
+    &:hover .generic-listing__background {
       background-color: var(--color-tint);
     }
   }
 
-  @media (min-width: $desktop) {
-    aspect-ratio: 1;
+  @media (min-width: 901px) {
+    aspect-ratio: 0.7606;
+
     &__content {
-      min-height: 322px;
       padding: 50px 40px;
+    }
+
+    &--prominent {
+      aspect-ratio: initial;
+      grid-column: span 2;
+    }
+
+    &--editorial {
+      background-size: contain;
+      background-position: right center;
     }
   }
 }

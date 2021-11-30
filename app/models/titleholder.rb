@@ -30,4 +30,8 @@ class Titleholder < ApplicationRecord
 
   has_one_attached :picture
   has_many_attached :gallery_images
+
+  def magazine_relevancy
+    Time.current - start_on.to_time
+  end
 end

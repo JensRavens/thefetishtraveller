@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_30_152555) do
+ActiveRecord::Schema.define(version: 2021_11_30_225217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -143,6 +143,7 @@ ActiveRecord::Schema.define(version: 2021_11_30_152555) do
     t.string "series"
     t.boolean "full_day", default: false, null: false
     t.string "bluf_id"
+    t.boolean "featured", default: false, null: false
     t.index ["bluf_id"], name: "index_events_on_bluf_id", unique: true
     t.index ["event_id"], name: "index_events_on_event_id"
     t.index ["location_id"], name: "index_events_on_location_id"

@@ -5,22 +5,9 @@
   h1.heading
     .logo == "The <em>Fetish</em> Traveller"
     = t ".title"
-.spacer
-
-.stack
-  - if @articles.any?
-    .container: h2.subheading = t ".articles"
-    = paginated @articles, class: "listing"
-    .spacer.spacer--small
-  - if @events.any?
-    .container: h2.subheading = t ".next_up"
-    div
-      .listing = render @events
-      .button-line.button-line--dark: a.button.button--big href=events_path = t ".find_more_events"
-    .spacer.spacer--small
-  - if @titleholders.any?
-    .container: h2.subheading = t ".new_titleholders"
-    div
-      .listing.listing--medium
-        = render @titleholders
-      .button-line.button-line--dark: a.button.button--big href=titleholders_path = t ".find_more_titleholders"
+.filter-bar
+  a.filter-bar__option href=magazine_path class=("filter-bar__option--selected" if params["filter"].blank?) = t ".all"
+  a.filter-bar__option href=magazine_path(filter: :articles) class=("filter-bar__option--selected" if params["filter"] == "articles") = t ".articles"
+  a.filter-bar__option href=events_path = t ".events"
+  a.filter-bar__option href=titleholders_path = t ".titleholders"
+.listing.listing--magazine = render @items

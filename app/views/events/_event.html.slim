@@ -1,10 +1,7 @@
-a.event-listing href=event_path(event) style="background-image: url(#{image_asset_url(event.hero, width: 500)})"
-  .event-listing__background
-  .event-listing__content
-    .event-listing__category = event.categories.join(", ")
-    .event-listing__name = event.name
-    .event-listing__description
-    .event-listing__details
-      = event.location.description
-      br
-      = formatted_event_date event: event
+a.generic-listing class=("generic-listing--prominent" if event.featured?) href=event_path(event) style="background-image: url(#{image_asset_url(event.hero, width: 500)})"
+  .generic-listing__background
+  .generic-listing__content
+    .generic-listing__category = event.categories.join(", ")
+    .generic-listing__name = event.name
+    .generic-listing__flex
+    .generic-listing__details = [event.location.description, formatted_event_date(event: event)].join(" / ")

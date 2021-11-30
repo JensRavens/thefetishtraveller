@@ -111,4 +111,8 @@ class Event < ApplicationRecord
   def main_event
     event || self
   end
+
+  def magazine_relevancy
+    start_at - Time.current
+  end
 end

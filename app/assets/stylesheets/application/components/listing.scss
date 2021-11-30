@@ -13,6 +13,8 @@
   > * {
     border: 1px solid white;
     position: relative;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .pagination-button {
@@ -35,5 +37,9 @@
     @media (min-width: $tablet) {
       --min-listing-size: 250px;
     }
+  }
+
+  &--magazine {
+    --min-listing-size: 300px;
   }
 }

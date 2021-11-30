@@ -22,4 +22,9 @@ class Article < ApplicationRecord
   friendly_id :title, use: :slugged
   has_one_attached :hero
   store_accessor :layout_options, :hero_background_color
+  acts_as_taggable_on :categories
+
+  def magazine_relevancy
+    Time.current - (publish_at || Time.current)
+  end
 end

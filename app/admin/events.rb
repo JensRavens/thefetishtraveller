@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 ActiveAdmin.register Event do
-  permit_params :publish_at, :publish_until, :slug, :location_id, :event_id, :name, :start_at, :end_at, :website, :official, :abstract, :description, :ticket_link, :organizer_name, :series, :full_day, :hero, :header, :flyer, categories: [], gallery_images: []
+  permit_params :publish_at, :publish_until, :slug, :location_id, :event_id, :name, :start_at, :end_at, :website, :official, :abstract, :description, :ticket_link, :organizer_name, :series, :full_day, :hero, :header, :flyer, :featured, categories: [], gallery_images: []
   scope :published
   scope :in_future, default: true
   scope :awaiting_review
@@ -149,6 +149,7 @@ ActiveAdmin.register Event do
           input :organizer_name
           input :website
           input :official
+          input :featured
         end
       end
       column do

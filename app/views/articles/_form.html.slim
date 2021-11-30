@@ -3,8 +3,11 @@
     .stack
       = f.image_field :hero
       = f.text_field :title
-      = f.datetime_field :publish_at
-      = f.text_field :hero_background_color, type: :color
+      - if current_user.admin?
+        = f.text_field :slug
+        = f.datetime_field :publish_at
+        = f.text_field :hero_background_color, type: :color
+        = f.text_field :category_list
       = f.rich_text_area :abstract
       = f.rich_text_area :content
       = f.submit

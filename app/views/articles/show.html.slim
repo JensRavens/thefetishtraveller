@@ -4,6 +4,7 @@
 
 = hero background_image: @article.hero, style: :editorial, background_color: @article.hero_background_color do
   .stack
+    .article__category = @article.categories.map(&:name).to_sentence
     h1.heading.article__heading = safe_format @article.title
     .article__abstract == @article.abstract
     .article__author = t ".by_html", user: link_to(@article.user.public_name, profile_path(@article.user))
