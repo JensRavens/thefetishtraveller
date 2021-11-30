@@ -2,8 +2,8 @@
 .main-menu__spacer
 .desktop-only
   = hero do
-    h1 = t ".title"
+    h1.heading = t ".title"
 = paginated @titleholders, class: "listing listing--medium"
-.listing-footer: .container
+.listing-footer: .container: .stack
   h4 = t ".titleholder_missing"
   .center = mail_to "support@thefetishtraveller.com", t(".submit_titleholder"), class: :button, subject: "[Missing Titleholder]", body: "I would like to add the following titleholder to the titleholders archive:\nName:\nTitle:\nOrganizer/Sponsor/Club:\nShort Bio (optional):\n\nI am attaching some picture here:"

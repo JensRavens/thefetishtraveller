@@ -11,16 +11,15 @@
 #
 class Article < ApplicationRecord
   extend FriendlyId
+  include Reviewable
 
   belongs_to :user
 
   scope :published, -> { where(published_at: ..DateTime.current) }
 
   has_rich_text :content
+  has_rich_text :abstract
   friendly_id :title, use: :slugged
   has_one_attached :hero
-
-  def pending_review?
-    publish_at.nil?
-  end
+  store_accessor :layout_options, :hero_background_color
 end

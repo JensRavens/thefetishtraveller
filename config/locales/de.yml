@@ -1,5 +1,9 @@
 ---
 de:
+  articles:
+    show:
+      by_html: von %{user}
+      edit: bearbeiten
   components:
     calendar:
       show_history: Vergangenheit anzeigen
@@ -36,6 +40,9 @@ de:
       subscribe: anmelden
     pagination:
       load_more: Mehr laden
+    review_status:
+      pending_review: Review ausstehend
+      pending_review_explanation: Dein Eintrag wird gerade überprüft und demnächst in die Liste übernommen.
   conversations:
     index:
       conversations: Chats
@@ -69,8 +76,6 @@ de:
       on_my_calendar: Auf meinem Kalendar
       organizer: Veranstalter
       other_events_in: Andere Events in %{location}
-      pending_review: Review ausstehend
-      pending_review_explanation: Deine Veranstaltung wird gerade überprüft und demnächst in die Liste übernommen.
       tickets: Tickets
       website: Website
   general:
@@ -161,7 +166,6 @@ de:
     index:
       no_posts_yet: Noch keine Posts
       there_is_nothing_yet: Deine Kontakte haben noch nichts gepostet. Folge doch ein paar weiteren Profilen, dann ist hier bald mehr los.
-      your_timeline: Deine Timeline
     new:
       cancel: Abbrechen
     post:
@@ -183,6 +187,7 @@ de:
       following:
         one: 1 Following
         other: "%{count} Folge ich"
+      logout: Logout
       message: Chat
       posts:
         one: 1 Post

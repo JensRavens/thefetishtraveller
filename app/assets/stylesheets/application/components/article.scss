@@ -29,6 +29,35 @@
     }
   }
 
+  h2 {
+    margin: 0 0 24px;
+    clear: none;
+    hyphens: none;
+    font-family: var(--font-heading-alternate);
+    font-size: 1.3em;
+    line-height: 1.2;
+  }
+
+  &__heading {
+    text-align: left !important;
+  }
+
+  &__abstract {
+    font-size: 20px;
+    opacity: 0.8;
+    font-weight: 600;
+  }
+
+  &__author {
+    font-size: 16px;
+    font-weight: 600;
+    opacity: 0.8;
+
+    a {
+      color: var(--color-tint);
+    }
+  }
+
   @media (min-width: 768px) {
     font-size: 20px;
 
@@ -67,20 +96,6 @@
 
     aside {
       width: 55%;
-    }
-  }
-
-  h2 {
-    text-align: left;
-    font-size: 1em;
-    line-height: 1.5;
-
-    margin: 0 0 24px;
-    clear: none;
-    hyphens: none;
-
-    &::after {
-      display: none;
     }
   }
 }

@@ -3,9 +3,9 @@
 = hero do
   .container
     - if @tag
-      h1 ##{@tag}
+      h1.heading ##{@tag}
     - else
-      h1 = t ".title"
+      h1.heading = t ".title"
     .hero__addon: .text-center: .taglist
       = link_to t(".all"), profiles_path
       - User.most_common_tags.each do |tag|

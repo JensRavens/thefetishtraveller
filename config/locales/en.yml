@@ -1,5 +1,9 @@
 ---
 en:
+  articles:
+    show:
+      by_html: by %{user}
+      edit: Edit
   components:
     calendar:
       show_history: Show history
@@ -36,6 +40,9 @@ en:
       subscribe: subscribe
     pagination:
       load_more: Load more
+    review_status:
+      pending_review: Pending Review
+      pending_review_explanation: Your page was succesfully submitted and is currently pending review.
   conversations:
     index:
       conversations: Conversations
@@ -69,8 +76,6 @@ en:
       on_my_calendar: On my Calendar
       organizer: Organizer
       other_events_in: Other Events in %{location}
-      pending_review: Pending Review
-      pending_review_explanation: Your event was succesfully submitted and is currently pending review.
       tickets: Tickets
       website: Website
   general:
@@ -161,7 +166,6 @@ en:
     index:
       no_posts_yet: No posts yet
       there_is_nothing_yet: Your followed profiles didn't post anything yet. Follow someone to get content here.
-      your_timeline: Your Timeline
     new:
       cancel: Cancel
     post:
@@ -183,6 +187,7 @@ en:
       following:
         one: 1 Following
         other: "%{count} Following"
+      logout: Logout
       message: Message
       posts:
         one: 1 Post

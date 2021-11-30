@@ -1,7 +1,7 @@
 - title t(".title")
 = hero do
   .container
-    h1 = t ".title"
+    h1.heading = t ".title"
     .hero__addon.stack
       .event-search = form_with method: :get, builder: AwesomeForm, data: { "turbo-frame": "event-result" } do |f|
         = f.hidden_field :month, value: params[:month]
@@ -13,6 +13,6 @@
     a.filter-bar__option href=url_for(month: option.first) class=("filter-bar__option--selected" if option.first == params["month"]) = option.second
 = turbo_frame_tag "event-result", target: "_top"
   .listing = render @events
-.listing-footer: .container
+.listing-footer: .container: .stack
   h4 = t ".event_missing"
   .center: a.button href=new_event_path = t ".submit_event"

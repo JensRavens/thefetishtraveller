@@ -16,6 +16,8 @@
   --color-shadow: rgba(--color-text, 0.3);
 
   --size-text: 14px;
+  --size-safe-inset: 0px;
+  --size-safe-inset: env(safe-area-inset-left);
   --size-safe-padding: 8px;
   --size-safe-padding: max(env(safe-area-inset-right), 8px);
   --size-safe-bottom: 0px;

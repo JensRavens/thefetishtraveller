@@ -33,7 +33,7 @@ class ArticlesController < ApplicationController
   private
 
   def article_attributes
-    params.require(:article).permit(:title, :publish_at, :content, :hero)
+    params.require(:article).permit(:title, :publish_at, :content, :hero, :abstract, :hero_background_color)
   end
 
   def assign_article

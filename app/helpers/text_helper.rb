@@ -38,4 +38,8 @@ module TextHelper
     end
     simple_format text
   end
+
+  def safe_format(text)
+    sanitize text
+  end
 end

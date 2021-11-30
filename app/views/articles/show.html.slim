@@ -1,14 +1,16 @@
 - title @article.title
+- show_footer
 
 .main-menu__spacer
-- if @article.pending_review?
-  .status-banner: .container: .stack.stack--small
-    strong = t ".pending_review"
-    div = t ".pending_review_explanation"
-= hero background_image: @article.hero do
-  h1.article__heading = @article.title
+= render "components/review_status", object: @article
+= hero background_image: @article.hero, style: :editorial, background_color: @article.hero_background_color do
+  .stack
+    h1.heading.article__heading = safe_format @article.title
+    .article__abstract == @article.abstract
+    .article__author = t ".by_html", user: link_to(@article.user.public_name, profile_path(@article.user))
 .spacer.spacer--small
 .container.container--article: .stack: article.article
-  .article__content == @article.content.body
+  .article__content == @article.content
   - if policy(@article).edit?
     = link_to t(".edit"), edit_article_path(@article), class: "button"
+.spacer.spacer--small

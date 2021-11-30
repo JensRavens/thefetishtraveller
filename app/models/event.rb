@@ -30,8 +30,10 @@
 
 class Event < ApplicationRecord
   extend FriendlyId
-  friendly_id :name, use: :slugged
   include DocumentSerializable
+  include Reviewable
+
+  friendly_id :name, use: :slugged
   CATEGORIES = ["bluf", "csd", "culture", "election", "festival", "party", "social"].freeze
 
   has_many :travel_plans, dependent: :delete_all
@@ -78,18 +80,6 @@ class Event < ApplicationRecord
 
       self[attribute].in_time_zone(location.timezone)
     end
-  end
-
-  def pending_review?
-    publish_at.nil?
-  end
-
-  def published?
-    publish_at&.past?
-  end
-
-  def publish!
-    update! publish_at: DateTime.now
   end
 
   def categories=(values)
