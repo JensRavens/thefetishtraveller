@@ -1,14 +1,17 @@
 - show_footer
-= hero style: :expanded do
-  .container
-    h1.with-dash = t ".claim"
+= hero do
+  .stack
+    .spacer.spacer--tiny
+    h1.heading.with-dash = t ".claim"
     .hero__addon
-      h5 = t ".intro"
+      .abstract = t ".intro"
       .spacer.spacer--tiny
       p.text-center
-        a.button.button--big href="/events" = t ".explore_events_now"
+        a.button.button--big href=events_path = t ".explore_events_now"
+    .spacer.spacer--tiny
 .spacer
-h2 = t ".next_up"
+h2.subheading = t ".next_up"
+.spacer.spacer--tiny
 .listing = render @events
-.button-line.button-line--dark: a.button.button--big href="/events" = t ".find_more_events"
+.button-line.button-line--dark: a.button.button--big href=events_path = t ".find_more_events"
 = render "components/newsletter"

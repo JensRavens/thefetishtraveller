@@ -1,9 +1,8 @@
 / i18n-tasks-use t('.posts')
-/ i18n-tasks-use t('.events')
 / i18n-tasks-use t('.profiles')
 / i18n-tasks-use t('.conversations')
-/ i18n-tasks-use t('.titleholders')
-- { posts: posts_path, events: events_path, profiles: profiles_path, conversations: conversations_path, titleholders: titleholders_path  }.each do |id, path|
+/ i18n-tasks-use t('.magazine')
+- { posts: posts_path, profiles: profiles_path, conversations: conversations_path, magazine: magazine_path  }.each do |id, path|
   a.main-menu__link class=("active" if params[:controller] == id.to_s) href=path
     .main-menu__link-icon style="-webkit-mask-image: url(#{asset_path("icon/#{id}.svg")});"
     .main-menu__link-text = t ".#{id}"

@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :articles, only: [:show, :new, :create, :edit, :update]
     resources :titleholders, only: [:index, :show]
     resources :notifications, only: :index
+    resource :magazine, only: :show
     resource :onboarding, only: [:show, :update]
     resource :manifest, only: :show
     root "pages#home"

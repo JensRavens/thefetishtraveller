@@ -15,7 +15,7 @@ class Article < ApplicationRecord
 
   belongs_to :user
 
-  scope :published, -> { where(published_at: ..DateTime.current) }
+  scope :listed, -> { published.order(publish_at: :desc) }
 
   has_rich_text :content
   has_rich_text :abstract

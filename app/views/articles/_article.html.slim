@@ -1,0 +1,6 @@
+a.event-listing href=article_path(article) style="background-image: url(#{image_asset_url(article.hero, width: 500)})"
+  .event-listing__background
+  .event-listing__content
+    .event-listing__name = safe_format article.title
+    .event-listing__description = article.user.public_name
+    .event-listing__details == article.abstract

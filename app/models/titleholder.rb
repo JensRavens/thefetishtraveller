@@ -23,6 +23,8 @@ class Titleholder < ApplicationRecord
   belongs_to :title
   belongs_to :user, optional: true
 
+  scope :listed, -> { order(start_on: :desc) }
+
   friendly_id :full_title, use: :slugged
   validates :full_title, :name, :start_on, presence: true
 

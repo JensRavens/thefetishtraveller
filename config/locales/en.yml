@@ -32,6 +32,7 @@ en:
     menu_links:
       conversations: Conversations
       events: Events
+      magazine: Magazine
       posts: Feed
       profiles: Profiles
       titleholders: Titleholders
@@ -89,6 +90,14 @@ en:
         slug: Profile Name
         visibility_internal: Internal Profile
         visibility_public: Public Profile
+  magazines:
+    show:
+      articles: New Articles
+      find_more_events: Find more Events
+      find_more_titleholders: Find more Titleholders
+      new_titleholders: Recent Titles
+      next_up: Next up
+      title: Magazine
   messages:
     index:
       send: send

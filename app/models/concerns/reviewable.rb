@@ -4,6 +4,8 @@ module Reviewable
   extend ActiveSupport::Concern
 
   included do
+    scope :published, -> { where(publish_at: ..DateTime.current) }
+
     def pending_review?
       publish_at.nil?
     end
