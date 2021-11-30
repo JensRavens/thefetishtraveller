@@ -2,7 +2,7 @@
 
 class TitleholdersController < ApplicationController
   def index
-    @titleholders = paginated Titleholder.listed, per: 10
+    @titleholders = paginated Titleholder.listed
   end
 
   def show

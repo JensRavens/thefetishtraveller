@@ -70,6 +70,10 @@
     &--editorial {
       background-size: contain;
       background-position: right center;
+
+      .generic-listing__content {
+        max-width: 50%;
+      }
     }
   }
 }

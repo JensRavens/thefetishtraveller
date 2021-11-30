@@ -51,8 +51,12 @@ class ApplicationController < ActionController::Base
   end
 
   def paginated(scope, per: 10)
-    scope = scope.page(params[:page]).per(per)
-    replace "next-page-link", with: "components/pagination", items: scope, partial: params[:partial] if params[:page].to_i > 1
+    @current_page = params[:page]&.to_i || 1
+    scope = scope.page(@current_page).per(per)
+    if @current_page > 1
+      remove "next-page-link"
+      append "pagination-frame", with: "components/pagination", items: scope, partial: params[:partial]
+    end
     scope
   end
 end

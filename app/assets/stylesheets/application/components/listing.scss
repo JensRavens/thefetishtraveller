@@ -5,6 +5,7 @@
   color: white;
 
   display: grid;
+  grid-auto-flow: dense;
   grid-template-columns: repeat(
     auto-fill,
     minmax(var(--min-listing-size), 1fr)
@@ -41,5 +42,11 @@
 
   &--magazine {
     --min-listing-size: 300px;
+
+    @media (min-width: 901px) {
+      .pagination-button {
+        aspect-ratio: 0.7606;
+      }
+    }
   }
 }

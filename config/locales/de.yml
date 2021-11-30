@@ -3,10 +3,11 @@ de:
   articles:
     show:
       by_html: von %{user}
-      edit: bearbeiten
   components:
     calendar:
       show_history: Vergangenheit anzeigen
+    edit_banner:
+      edit: bearbeiten
     footer:
       about_us: Über uns
       about_us_text: Diese Webseite ist ein unabhängiges non-profit Projekt des Mister Leather Berlin 2018. Kontaktiere mich unter contact@thefetishtraveller.com, um mehr zu erfahren.
@@ -91,12 +92,13 @@ de:
         visibility_internal: Internes Profil
         visibility_public: Öffentliches Profil
   magazines:
+    header:
+      all: Alle
+      articles: Artikel
+      events: Events
+      title: Magazin
+      titleholders: Titelträger
     show:
-      articles: Neue Artikel
-      find_more_events: Noch mehr Events
-      find_more_titleholders: Weitere Titelträger
-      new_titleholders: Neue Titelträger
-      next_up: Demnächst
       title: Magazin
   messages:
     index:
