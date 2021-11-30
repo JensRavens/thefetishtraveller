@@ -2,11 +2,11 @@ footer.footer
   .container: .footer__container
     .footer__category
       .logo == "The<em>Fetish</em>Traveller"
-      .footer__social
-        a href="https://twitter.com/thefetishtrave1" target="_blank" rel="noopener"
-          img src=asset_path("social/twitter.svg")
-        a href="https://www.facebook.com/thefetishtraveller" target="_blank" rel="noopener"
-          img src=asset_path("social/facebook.svg")
+      / .footer__social
+      /   a href="https://twitter.com/thefetishtrave1" target="_blank" rel="noopener"
+      /     img src=asset_path("social/twitter.svg")
+      /   a href="https://www.facebook.com/thefetishtraveller" target="_blank" rel="noopener"
+      /     img src=asset_path("social/facebook.svg")
       .footer__copyright
         | © 2018 - #{Date.today.year} Jens Ravens
         br
@@ -19,11 +19,6 @@ footer.footer
       a href=root_path = t ".home"
       br
       a href=imprint_path = t ".imprint"
-      br
-      a href=new_event_path = t ".submit"
-      - if current_user
-        br
-        a href=logout_path = t "components.menu.logout"
       .footer__locales
         - I18n.available_locales.each do |locale|
           a class=('active' if I18n.locale == locale) href=url_for(locale: locale) = locale
