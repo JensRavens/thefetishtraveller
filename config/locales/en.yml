@@ -49,6 +49,9 @@ en:
       no_conversations_yet: No conversations yet
       there_is_nothing_yet: You didn't start any conversations yet. Look at some profiles and talk to them!
       title: Conversations
+  date:
+    formats:
+      default_no_year: "%m-%d"
   errors:
     error:
       description_404: This page does not exist.
@@ -233,6 +236,7 @@ en:
       now: now
   time:
     formats:
+      default: "%d %b %Y %H:%M"
       month: "%B"
   titleholders:
     index:

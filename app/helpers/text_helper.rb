@@ -23,13 +23,12 @@ module TextHelper
 
     return formatted_date(date, full_day: full_day) if date2.nil? || date.to_date == date2.to_date
 
-    [formatted_date(date, full_day: true), formatted_date(date2, full_day: true)].join(" - ")
+    [formatted_date(date, full_day: true, skip_year: true), formatted_date(date2, full_day: true)].join(" - ")
   end
 
-  def formatted_date(date, full_day:)
-    return l date.to_date if full_day
-
-    l date, format: :short
+  def formatted_date(date, full_day:, skip_year: false)
+    date = date.to_date if full_day
+    l date, format: skip_year ? :default_no_year : :default
   end
 
   def tagged_format(text, context: :posts)

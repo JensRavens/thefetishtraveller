@@ -49,6 +49,9 @@ de:
       no_conversations_yet: Keine Chats
       there_is_nothing_yet: Du hast noch keine Chats. Schreibe doch ein paar Profile an, dann ist hier bald mehr los.
       title: Chat
+  date:
+    formats:
+      default_no_year: "%d.%m."
   errors:
     error:
       description_404: Diese Seite wurde nicht gefunden.
@@ -233,6 +236,7 @@ de:
       now: jetzt
   time:
     formats:
+      default: "%d.%m.%Y %H:%M"
       month: "%B"
   titleholders:
     index:
