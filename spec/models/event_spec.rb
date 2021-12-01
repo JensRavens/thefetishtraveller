@@ -26,6 +26,7 @@
 #  series         :string
 #  full_day       :boolean          default(FALSE), not null
 #  bluf_id        :string
+#  featured       :boolean          default(FALSE), not null
 #
 require "rails_helper"
 

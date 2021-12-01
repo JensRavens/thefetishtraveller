@@ -1,13 +1,17 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: articles
 #
-#  id           :uuid             not null, primary key
-#  title        :string           not null
-#  user_id      :uuid             not null
-#  published_at :datetime
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id             :uuid             not null, primary key
+#  slug           :string           not null
+#  title          :string           not null
+#  user_id        :uuid             not null
+#  publish_at     :datetime
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  layout_options :jsonb            not null
 #
 class Article < ApplicationRecord
   extend FriendlyId
