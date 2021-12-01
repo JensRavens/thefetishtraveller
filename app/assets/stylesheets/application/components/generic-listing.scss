@@ -55,19 +55,20 @@
     }
   }
 
-  @media (min-width: 901px) {
+  @media (min-width: 768px) {
     aspect-ratio: 0.7606;
 
     &__content {
       padding: 50px 40px;
     }
 
-    &--prominent {
+    &--prominent,
+    &--huge {
       aspect-ratio: initial;
       grid-column: span 2;
 
-      &:only-child {
-        aspect-ratio: 2 * 0.7606;
+      @media (max-width: 900px) {
+        aspect-ratio: 2 * 0.7606; // if it's the only element in the row
       }
     }
 
@@ -78,6 +79,13 @@
       .generic-listing__content {
         max-width: 50%;
       }
+    }
+  }
+
+  @media (min-width: 1024px) and (min-height: 800px) {
+    &--huge {
+      aspect-ratio: 0.7606;
+      grid-row: span 2;
     }
   }
 }
