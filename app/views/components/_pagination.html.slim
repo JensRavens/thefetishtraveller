@@ -2,6 +2,6 @@
   = render partial: partial, collection: items
 - else
   = render items
-- unless items.try(:last_page?)
+- if @has_more_pages
   - url = Kaminari::Helpers::NextPage.new(self, { current_page: @current_page, params: { partial: partial } }).url
   a#next-page-link.button.pagination-button data-turbo-frame="pagination-frame" href=url = t(".load_more")
