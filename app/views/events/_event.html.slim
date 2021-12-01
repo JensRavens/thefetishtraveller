@@ -2,6 +2,6 @@ a.generic-listing class=("generic-listing--huge" if event.featured?) href=event_
   .generic-listing__background
   .generic-listing__content
     .generic-listing__category = event.categories.join(", ")
-    .generic-listing__name = event.name
     .generic-listing__flex
+    .generic-listing__name = event.name
     .generic-listing__details = [event.location.description, formatted_event_date(event: event)].join(" / ")

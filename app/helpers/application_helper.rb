@@ -5,7 +5,7 @@ module ApplicationHelper
     @show_footer = true
   end
 
-  def review_status(object)
+  def edit_bar(object)
     @review_object = object
   end
 end
