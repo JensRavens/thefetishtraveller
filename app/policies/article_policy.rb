@@ -6,6 +6,6 @@ class ArticlePolicy < ApplicationPolicy
   end
 
   def update?
-    record.user_id == user&.id
+    admin? || record.user_id == user&.id
   end
 end
