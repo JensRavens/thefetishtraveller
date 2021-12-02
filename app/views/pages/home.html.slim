@@ -6,12 +6,7 @@
     .hero__addon
       .abstract = t ".intro"
       .spacer.spacer--tiny
-      p.text-center
-        a.button.button--big href=events_path = t ".explore_events_now"
+      - unless current_user
+        p.text-center
+          a.button.button--big href=login_path = t ".join_us"
     .spacer.spacer--tiny
-.spacer
-h2.subheading = t ".next_up"
-.spacer.spacer--tiny
-.listing = render @events
-.button-line.button-line--dark: a.button.button--big href=events_path = t ".find_more_events"
-= render "components/newsletter"
