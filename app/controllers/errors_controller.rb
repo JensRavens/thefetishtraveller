@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 
 class ErrorsController < ApplicationController
-  before_action :capture_exception
+  before_action :capture_exception, except: :offline
+  skip_before_action :check_locale, only: :offline
 
   def not_found
     render status: :not_found
@@ -13,6 +14,9 @@ class ErrorsController < ApplicationController
 
   def internal_server_error
     render status: :internal_server_error
+  end
+
+  def offline
   end
 
   private

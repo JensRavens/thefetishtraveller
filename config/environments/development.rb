@@ -31,7 +31,7 @@ Rails.application.configure do
   end
 
   config.assets.quiet = true
-  config.assets.debug = true
+  config.assets.debug = false
   config.assets.digest = false
 
   config.action_controller.asset_host = proc { |source| "//webpack.thefetishtraveller.test" if source.starts_with?("/packs") }

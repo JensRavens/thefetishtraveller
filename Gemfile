@@ -51,6 +51,7 @@ gem "stimulus-rails"
 gem "sass-rails"
 gem "autoprefixer-rails"
 gem "turbo-rails"
+gem "serviceworker-rails"
 
 # Seed Data
 gem "database_cleaner"

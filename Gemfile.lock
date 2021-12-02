@@ -463,6 +463,8 @@ GEM
     sentry-ruby-core (4.7.3)
       concurrent-ruby
       faraday
+    serviceworker-rails (0.6.0)
+      railties (>= 3.1)
     shellany (0.0.1)
     sidekiq (6.3.0)
       connection_pool (>= 2.2.2)
@@ -591,6 +593,7 @@ DEPENDENCIES
   sass-rails
   sentry-rails
   sentry-ruby
+  serviceworker-rails
   sidekiq
   sidekiq-scheduler
   sitemap_generator

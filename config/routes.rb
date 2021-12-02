@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     match "404", to: "errors#not_found", via: :all
     match "422", to: "errors#unprocessable", via: :all
     match "500", to: "errors#internal_server_error", via: :all
+    get "offline", to: "errors#offline"
     get "login", to: "sessions#new"
     get "logout", to: "sessions#destroy"
     resources :sessions, only: [:create] do
