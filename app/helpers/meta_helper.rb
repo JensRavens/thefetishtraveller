@@ -11,7 +11,7 @@ module MetaHelper
   def description(description_text)
     return if description_text.blank?
 
-    content_for :description, strip_tags(description_text).squish, flush: true
+    content_for :description, strip_tags(description_text.to_s).squish, flush: true
     description_text
   end
 
