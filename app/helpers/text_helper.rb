@@ -41,4 +41,10 @@ module TextHelper
   def safe_format(text)
     sanitize text
   end
+
+  def light_color?(color)
+    return false if color.blank?
+
+    color.match(/^#(..)(..)(..)$/).captures.map(&:hex).any? { |channel| channel > 150 }
+  end
 end

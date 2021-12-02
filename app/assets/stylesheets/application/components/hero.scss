@@ -11,6 +11,7 @@
   &--editorial {
     min-height: 60vh;
     overflow: hidden;
+    padding: 2rem 0;
 
     @media (min-width: 768px) {
       min-height: 80vh;

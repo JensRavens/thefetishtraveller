@@ -6,8 +6,6 @@ en:
   components:
     calendar:
       show_history: Show history
-    edit_banner:
-      edit: Edit
     footer:
       about_us: about us
       about_us_text: This website is an independent non-profit project by Mister Leather Berlin 2018. Contact me at contact@thefetishtraveller.com to learn more.
@@ -26,6 +24,7 @@ en:
         the team of thefetishtraveller.com
     menu:
       create_a_post: Create a Post
+      edit: Edit
       login: Login
       notifications: Notifications
     menu_links:
@@ -95,7 +94,6 @@ en:
   magazines:
     header:
       all: All
-      articles: Articles
       events: Events
       title: Magazine
       titleholders: Titleholders

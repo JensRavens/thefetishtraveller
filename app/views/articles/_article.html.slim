@@ -1,4 +1,4 @@
-a.generic-listing class="generic-listing--#{article.listing_layout}" href=article_path(article) style="background-image: url(#{image_asset_url(article.hero, width: 500)}); background-color: #{article.hero_background_color}"
+a.generic-listing class="generic-listing--#{article.listing_layout}" class=("inverted" if light_color?(article.hero_background_color)) href=article_path(article) style="background-image: url(#{image_asset_url(article.hero, width: 500)}); background-color: #{article.hero_background_color}"
   .generic-listing__background
   .generic-listing__content
     .generic-listing__category = article.article_format_list.to_sentence
