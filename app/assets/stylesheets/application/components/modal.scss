@@ -25,7 +25,7 @@
     transform: translate(0, 80px);
     padding: 1rem 1rem 0;
     height: calc(100vh - 40px);
-    margin-top: 40px;
+    margin: 40px auto 0;
     display: flex;
     flex-direction: column;
 
@@ -58,21 +58,20 @@
     background-position: center;
   }
 
-  > .container {
-    margin: 0 auto;
-  }
-
   &__frame {
     flex: 1;
     overflow: auto;
     scroll-behavior: smooth;
     padding-bottom: calc(var(--size-safe-bottom) + 2rem);
+
+    @media (min-width: $tablet) {
+      padding-bottom: 1rem;
+    }
   }
 
   &--small {
-    > .container {
+    .modal__content {
       max-width: 420px;
-      margin: 0 auto;
     }
   }
 
