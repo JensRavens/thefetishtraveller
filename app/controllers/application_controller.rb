@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
+require "action_text" # force load action text. for some reason otherwise the view helpers are not there in prod
+
 class ApplicationController < ActionController::Base
+  helper ActionText::Engine.helpers
   include Pundit
   include Localizable
   include RemoteNavigation
