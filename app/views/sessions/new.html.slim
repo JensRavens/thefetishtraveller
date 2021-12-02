@@ -3,24 +3,25 @@
   meta name="appleid-signin-scope" content="name email"
   meta name="appleid-signin-redirect-uri" content=sessions_url(locale: :en)
 
-= hero do
-  h1.with-dash = t ".claim"
+= hero style: :article do
+  h1.heading.with-dash = t ".claim"
+  = spacer :tiny
   .hero__addon
     #login-area
-      h5 = t ".intro"
-      .spacer.spacer--tiny
+      .abstract = t ".intro"
+      = spacer :tiny
       .line.line--center
         #appleid-signin data-color="white" data-border="true" data-type="sign in" style="width: 220px;height: 40px"
         script type="text/javascript" src="https://appleid.cdn-apple.com/appleauth/static/jsapi/appleid/1/en_US/appleid.auth.js"
       - if @email_login_error
-        .spacer.spacer--tiny
+        = spacer :tiny
         h5.text-error = t(".link_expired")
-      .spacer.spacer--tiny
-      .line.line--center = link_to t(".or_login_via_email"), modal_url(email_sessions_path, size: :small, title: t(".email_login"), close: true), class: "link"
+      = spacer :tiny
+      .line.line--center = link_to t(".or_login_via_email"), modal_url(email_sessions_path, size: :small, title: t(".email_login"), close: true), class: "button"
 .container.container--small
-  .spacer
+  = spacer
   h3 = t ".why"
   p = t ".why_explanation"
   h3 = t ".how"
   p = t ".how_explanation"
-  .spacer
+  = spacer
