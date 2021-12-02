@@ -9,7 +9,9 @@ html lang=I18n.locale
       = render "components/modal"
       - if @review_object
         = render "components/review_status", object: @review_object
-      main.page-wrapper__main#main = yield
+      main.page-wrapper__main#main
+        = debug session.to_h if params.key?(:debug_session)
+        = yield
       - if @show_footer
         = render "components/footer"
       .main-menu__links-spacer
