@@ -10,8 +10,8 @@ module ComponentHelper
     render "magazines/header", content: content
   end
 
-  def spacer(size = nil)
-    content_tag(:div, nil, class: "spacer spacer--#{size}")
+  def spacer(size = nil, only: nil)
+    content_tag(:div, nil, class: ["spacer", ("spacer--#{size}" if size.present?), ("desktop-only" if only == :desktop)])
   end
 
   def attends?(event:)

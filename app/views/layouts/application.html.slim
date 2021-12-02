@@ -9,7 +9,6 @@ html lang=I18n.locale
       = render "components/modal"
       - if @review_object
         = render "components/review_status", object: @review_object
-        = render "components/edit_banner", object: @review_object
       main.page-wrapper__main#main = yield
       - if @show_footer
         = render "components/footer"

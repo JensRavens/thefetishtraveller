@@ -1,11 +1,15 @@
-= hero style: :padded do
+- article_formats = Article.most_common_tags
+= hero do
+  = spacer(:small, only: :desktop)
   h1.heading
     .logo == "The <em>Fetish</em> Traveller"
     = t ".title"
-  .spacer.spacer--small
+  = spacer(:small)
   .filter-bar.filter-bar--hero
     a.filter-bar__option href=magazine_path class=("filter-bar__option--selected" if params["filter"].blank? && params[:controller] == "magazines") = t ".all"
-    a.filter-bar__option href=magazine_path(filter: :articles) class=("filter-bar__option--selected" if params["filter"] == "articles") = t ".articles"
+    - article_formats.each do |format|
+      a.filter-bar__option href=magazine_path(filter: format) class=("filter-bar__option--selected" if params["filter"] == format) = format.pluralize
     a.filter-bar__option href=events_path class=("filter-bar__option--selected" if params[:controller] == "events") = t ".events"
     a.filter-bar__option href=titleholders_path class=("filter-bar__option--selected" if params[:controller] == "titleholders") = t ".titleholders"
   = content if defined? content
+  = spacer(:small, only: :desktop)

@@ -2,7 +2,7 @@
 / i18n-tasks-use t('.profiles')
 / i18n-tasks-use t('.conversations')
 / i18n-tasks-use t('.magazine')
-- menu_links = [ { id: :posts }, { id: :profiles }, { id: :conversations, controllers: [:conversations, :messages] }, { id: :magazine, controllers: [:magazines, :events, :titleholders] } ]
+- menu_links = [ { id: :posts }, { id: :profiles }, { id: :conversations, controllers: [:conversations, :messages] }, { id: :magazine, controllers: [:magazines, :events, :titleholders, :articles] } ]
 - menu_links.each do |link|
   - id = link[:id]
   - path = link[:path] || public_send("#{id}_path")

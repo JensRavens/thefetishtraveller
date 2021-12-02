@@ -2,8 +2,10 @@
 
 class MagazinesController < ApplicationController
   def show
-    scopes = [paginated(Article.listed)]
-    unless params[:filter] == "articles"
+    articles = Article.listed
+    articles = articles.tagged_with(params[:filter], on: :article_formats) if params[:filter].present?
+    scopes = [paginated(articles)]
+    if params[:filter].blank?
       scopes << paginated(Titleholder.listed)
       scopes << paginated(Event.listed)
     end

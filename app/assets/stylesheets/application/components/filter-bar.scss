@@ -10,16 +10,13 @@
   -webkit-overflow-scrolling: touch;
   text-transform: uppercase;
   padding: 0 50px;
+  gap: 55px;
 
   &__option {
     line-height: var(--height);
     white-space: nowrap;
     cursor: pointer;
     position: relative;
-
-    + .filter-bar__option {
-      margin-left: 55px;
-    }
 
     &--selected {
       color: var(--color-tint);
@@ -49,5 +46,8 @@
 
   &--hero {
     --height: 40px;
+    padding: 0;
+    gap: 20px;
+    justify-content: center;
   }
 }
