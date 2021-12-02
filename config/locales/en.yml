@@ -1,5 +1,8 @@
 ---
 en:
+  articles:
+    show:
+      by_html: by %{user}
   components:
     calendar:
       show_history: Show history
@@ -9,7 +12,6 @@ en:
       home: Home
       imprint: Imprint
       quick_navigation: Quick Navigation
-      submit: Submit Events
     head:
       default_description: Find fetish events all around the globe and connect with like-minded gear heads.
     mail_footer:
@@ -22,12 +24,13 @@ en:
         the team of thefetishtraveller.com
     menu:
       create_a_post: Create a Post
+      edit: Edit
       login: Login
-      logout: Logout
       notifications: Notifications
     menu_links:
       conversations: Conversations
       events: Events
+      magazine: Magazine
       posts: Feed
       profiles: Profiles
       titleholders: Titleholders
@@ -36,12 +39,18 @@ en:
       subscribe: subscribe
     pagination:
       load_more: Load more
+    review_status:
+      pending_review: Pending Review
+      pending_review_explanation: Your page was succesfully submitted and is currently pending review.
   conversations:
     index:
       conversations: Conversations
       no_conversations_yet: No conversations yet
       there_is_nothing_yet: You didn't start any conversations yet. Look at some profiles and talk to them!
       title: Conversations
+  date:
+    formats:
+      default_no_year: "%m-%d"
   errors:
     error:
       description_404: This page does not exist.
@@ -69,8 +78,6 @@ en:
       on_my_calendar: On my Calendar
       organizer: Organizer
       other_events_in: Other Events in %{location}
-      pending_review: Pending Review
-      pending_review_explanation: Your event was succesfully submitted and is currently pending review.
       tickets: Tickets
       website: Website
   general:
@@ -84,6 +91,14 @@ en:
         slug: Profile Name
         visibility_internal: Internal Profile
         visibility_public: Public Profile
+  magazines:
+    header:
+      all: All
+      events: Events
+      title: Magazine
+      titleholders: Titleholders
+    show:
+      title: Magazine
   messages:
     index:
       send: send
@@ -148,11 +163,9 @@ en:
       your_choice: Tell us who should be able to see and interact with your profile.
   pages:
     home:
-      claim: The Best Fetish Events Worldwide
-      explore_events_now: Explore events now
-      find_more_events: Find more events
-      intro: Find fetish events all around the globe and connect with like-minded gear heads.
-      next_up: next up
+      claim: A home for your fetish
+      intro: It's time for a new social network for your fetish. No big corporates, just a big community.
+      join_us: Join us
   posts:
     context:
       confirm_post_deletion: Are you sure you want to delete this post?
@@ -161,7 +174,6 @@ en:
     index:
       no_posts_yet: No posts yet
       there_is_nothing_yet: Your followed profiles didn't post anything yet. Follow someone to get content here.
-      your_timeline: Your Timeline
     new:
       cancel: Cancel
     post:
@@ -183,6 +195,7 @@ en:
       following:
         one: 1 Following
         other: "%{count} Following"
+      logout: Logout
       message: Message
       posts:
         one: 1 Post
@@ -219,6 +232,7 @@ en:
       now: now
   time:
     formats:
+      default: "%d %b %Y %H:%M"
       month: "%B"
   titleholders:
     index:

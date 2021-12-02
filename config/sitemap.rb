@@ -5,14 +5,16 @@ SitemapGenerator::Sitemap.default_host = "https://thefetishtraveller.com"
 SitemapGenerator::Sitemap.public_path = "tmp/sitemaps/"
 
 SitemapGenerator::Sitemap.create do
-  add "/", changefreq: :daily, priority: 1
-  add "/events", changefreq: :daily, priority: 1
+  I18n.available_locales.each do |locale|
+    add root_path(locale: locale), changefreq: :weekly, priority: 0.5
+    add events_path(locale: locale), changefreq: :daily, priority: 0.8
+    add magazine_path(locale: locale), changefreq: :daily, priority: 0.8
+    add titleholders_path(locale: locale), changefreq: :daily, priority: 0.8
 
-  Event.published.find_each do |event|
-    add "/events/#{event.slug}", changefreq: :daily, priority: 0.9
-  end
-
-  Location.find_each do |location|
-    add "/location/#{location.slug}", changefreq: :weekly, priority: 0.6
+    [Event, Titleholder, Article].each do |resource|
+      resource.listed.find_each do |record|
+        add polymorphic_path(id: record, locale: locale), lastmod: record.updated_at
+      end
+    end
   end
 end

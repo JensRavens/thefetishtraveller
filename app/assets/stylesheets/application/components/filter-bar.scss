@@ -1,5 +1,6 @@
 .filter-bar {
-  height: 80px;
+  --height: 80px;
+  height: var(--height);
   display: flex;
   justify-content: flex-start;
   position: relative;
@@ -9,16 +10,13 @@
   -webkit-overflow-scrolling: touch;
   text-transform: uppercase;
   padding: 0 50px;
+  gap: 55px;
 
   &__option {
-    line-height: 80px;
+    line-height: var(--height);
     white-space: nowrap;
     cursor: pointer;
     position: relative;
-
-    + .filter-bar__option {
-      margin-left: 55px;
-    }
 
     &--selected {
       color: var(--color-tint);
@@ -44,5 +42,11 @@
   &--inverted {
     background-color: var(--color-background-dark);
     color: white;
+  }
+
+  &--hero {
+    --height: 40px;
+    padding: 0 10px;
+    gap: 20px;
   }
 }

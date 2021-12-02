@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     match "404", to: "errors#not_found", via: :all
     match "422", to: "errors#unprocessable", via: :all
     match "500", to: "errors#internal_server_error", via: :all
+    get "offline", to: "errors#offline"
     get "login", to: "sessions#new"
     get "logout", to: "sessions#destroy"
     resources :sessions, only: [:create] do
@@ -37,8 +38,10 @@ Rails.application.routes.draw do
       get "context", on: :member
       resources :comments, only: :create
     end
+    resources :articles, only: [:show, :new, :create, :edit, :update]
     resources :titleholders, only: [:index, :show]
     resources :notifications, only: :index
+    resource :magazine, only: :show
     resource :onboarding, only: [:show, :update]
     resource :manifest, only: :show
     root "pages#home"

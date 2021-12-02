@@ -1,0 +1,24 @@
+.subheading {
+  font-family: var(--font-heading);
+  font-size: 36px;
+  padding-bottom: 20px;
+  line-height: 1;
+  text-align: center;
+  position: relative;
+
+  @media (min-width: $tablet) {
+    font-size: 72px;
+  }
+
+  &::after {
+    display: block;
+    position: absolute;
+    content: '';
+    width: 72px;
+    height: 6px;
+    background-color: var(--color-tint);
+    bottom: 0;
+    left: 50%;
+    margin-left: -36px;
+  }
+}

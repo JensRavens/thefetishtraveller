@@ -18,6 +18,11 @@
     justify-content: center;
   }
 
+  &__meta-actions {
+    display: flex;
+    align-items: center;
+  }
+
   &__image {
     margin: 0 -8px;
     width: calc(100% + 16px);

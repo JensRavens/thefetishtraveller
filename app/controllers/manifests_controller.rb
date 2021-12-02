@@ -3,6 +3,7 @@
 class ManifestsController < ApplicationController
   def show
     render json: {
+      id: "/",
       name: "The Fetish Traveller",
       short_name: "FetishTraveller",
       start_url: "/",
@@ -14,7 +15,13 @@ class ManifestsController < ApplicationController
           src: asset_path("app-icon.png"),
           sizes: "144x144",
           type: "image/png",
-          purpose: "any maskable"
+          purpose: "any"
+        },
+        {
+          src: asset_path("app-icon.png"),
+          sizes: "144x144",
+          type: "image/png",
+          purpose: "maskable"
         }
       ]
     }

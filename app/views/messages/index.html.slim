@@ -1,9 +1,8 @@
 - title @profile.public_name
 - last_timestamp = nil
 
-.main-menu__spacer
 .chat
-  .chat__canvas: .abstract-container: .stack
+  .chat__canvas: .container.container--small: .stack
     a.chat__header href=profile_path(@profile)
       = image_tag @profile.avatar_image, width: 64, class: :avatar
       .chat__header-name = @profile.public_name
@@ -14,7 +13,7 @@
         = render "message", message: message
         - last_timestamp = message.created_at
   = form_with url: profile_messages_path, model: Message.new(user: current_user, conversation: @conversation), class: "chat__bar" do |f|
-    .abstract-container
+    .container.container--small
       .chat__bar-field
         = f.text_area :text, class: "chat__input"
         = f.submit t(".send"), class: "chat__send"

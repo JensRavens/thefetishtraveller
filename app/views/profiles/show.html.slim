@@ -2,7 +2,6 @@
 - description @profile.bio
 - thumbnail @profile.avatar_image
 
-.main-menu__spacer
 = render "header", profile: @profile
 .spacer.spacer--small
 - if @profile.posts.any? || @profile.travel_plans.any?

@@ -5,6 +5,7 @@
   color: white;
 
   display: grid;
+  grid-auto-flow: dense;
   grid-template-columns: repeat(
     auto-fill,
     minmax(var(--min-listing-size), 1fr)
@@ -13,12 +14,14 @@
   > * {
     border: 1px solid white;
     position: relative;
+    min-width: 0;
+    overflow: hidden;
   }
 
   .pagination-button {
     width: 100%;
     height: 100%;
-    border: none;
+    border: 1px solid white;
     overflow: hidden;
     aspect-ratio: 1;
   }
@@ -34,6 +37,16 @@
     --min-listing-size: 150px;
     @media (min-width: $tablet) {
       --min-listing-size: 250px;
+    }
+  }
+
+  &--magazine {
+    --min-listing-size: 300px;
+
+    @media (min-width: 901px) {
+      .pagination-button {
+        aspect-ratio: 0.7606;
+      }
     }
   }
 }

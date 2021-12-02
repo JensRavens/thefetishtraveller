@@ -4,14 +4,14 @@ module MetaHelper
   def title(page_title)
     return if page_title.blank?
 
-    content_for :title, page_title, flush: true
+    content_for :title, strip_tags(page_title), flush: true
     page_title
   end
 
   def description(description_text)
     return if description_text.blank?
 
-    content_for :description, description_text, flush: true
+    content_for :description, strip_tags(description_text), flush: true
     description_text
   end
 

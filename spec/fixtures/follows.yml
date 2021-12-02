@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: follows
+#
+#  id         :uuid             not null, primary key
+#  user_id    :uuid             not null
+#  profile_id :uuid             not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
 freddy_to_john_doe:
   user: freddy
   profile: john_doe

@@ -10,11 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_22_101435) do
+ActiveRecord::Schema.define(version: 2021_11_30_225217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.uuid "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
 
   create_table "active_admin_comments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "namespace"
@@ -69,6 +79,19 @@ ActiveRecord::Schema.define(version: 2021_10_22_101435) do
     t.index ["user_id"], name: "index_activities_on_user_id"
   end
 
+  create_table "articles", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "slug", null: false
+    t.string "title", null: false
+    t.uuid "user_id", null: false
+    t.datetime "publish_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.jsonb "layout_options", default: {}, null: false
+    t.index ["publish_at"], name: "index_articles_on_publish_at"
+    t.index ["slug"], name: "index_articles_on_slug", unique: true
+    t.index ["user_id"], name: "index_articles_on_user_id"
+  end
+
   create_table "comments", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "post_id", null: false
     t.uuid "user_id", null: false
@@ -120,6 +143,7 @@ ActiveRecord::Schema.define(version: 2021_10_22_101435) do
     t.string "series"
     t.boolean "full_day", default: false, null: false
     t.string "bluf_id"
+    t.boolean "featured", default: false, null: false
     t.index ["bluf_id"], name: "index_events_on_bluf_id", unique: true
     t.index ["event_id"], name: "index_events_on_event_id"
     t.index ["location_id"], name: "index_events_on_location_id"
@@ -327,6 +351,7 @@ ActiveRecord::Schema.define(version: 2021_10_22_101435) do
 
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "activities", "users"
+  add_foreign_key "articles", "users"
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "conversation_members", "conversations"

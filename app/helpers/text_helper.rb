@@ -23,13 +23,12 @@ module TextHelper
 
     return formatted_date(date, full_day: full_day) if date2.nil? || date.to_date == date2.to_date
 
-    [formatted_date(date, full_day: true), formatted_date(date2, full_day: true)].join(" - ")
+    [formatted_date(date, full_day: true, skip_year: true), formatted_date(date2, full_day: true)].join(" - ")
   end
 
-  def formatted_date(date, full_day:)
-    return l date.to_date if full_day
-
-    l date, format: :short
+  def formatted_date(date, full_day:, skip_year: false)
+    date = date.to_date if full_day
+    l date, format: skip_year ? :default_no_year : :default
   end
 
   def tagged_format(text, context: :posts)
@@ -37,5 +36,15 @@ module TextHelper
       link_to match, public_send("#{context}_path", tag: match[1..]), class: :link
     end
     simple_format text
+  end
+
+  def safe_format(text)
+    sanitize text
+  end
+
+  def light_color?(color)
+    return false if color.blank?
+
+    color.match(/^#(..)(..)(..)$/).captures.map(&:hex).any? { |channel| channel > 150 }
   end
 end

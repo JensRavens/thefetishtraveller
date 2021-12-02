@@ -1,0 +1,30 @@
+{
+  "addons": ["newrelic", "heroku-postgresql", "heroku-redis"],
+  "buildpacks": [
+    {
+      "url": "https://github.com/brandoncc/heroku-buildpack-vips.git"
+    },
+    {
+      "url": "heroku/nodejs"
+    },
+    {
+      "url": "heroku/ruby"
+    }
+  ],
+  "env": {
+    "SECRET_KEY_BASE": {
+      "generator": "secret"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "worker": 1
+    }
+  },
+  "name": "tft",
+  "scripts": {
+    "postdeploy": "pg_dump --clean --no-owner --no-acl $SOURCE_DATABASE_URL | psql $DATABASE_URL && bin/rails db:migrate"
+  },
+  "stack": "heroku-20"
+}

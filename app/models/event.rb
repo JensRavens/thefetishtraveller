@@ -26,19 +26,21 @@
 #  series         :string
 #  full_day       :boolean          default(FALSE), not null
 #  bluf_id        :string
+#  featured       :boolean          default(FALSE), not null
 #
 
 class Event < ApplicationRecord
   extend FriendlyId
-  friendly_id :name, use: :slugged
   include DocumentSerializable
+  include Reviewable
+
+  friendly_id :name, use: :slugged
   CATEGORIES = ["bluf", "csd", "culture", "election", "festival", "party", "social"].freeze
 
   has_many :travel_plans, dependent: :delete_all
   has_many :events, dependent: :destroy
   belongs_to :location
 
-  scope :published, -> { where("events.publish_at <= NOW()") }
   scope :with_attachments, -> { with_attached_hero.with_attached_header.with_attached_logo.with_attached_flyer.with_attached_gallery_images }
   scope :in_future, -> { where("events.end_at >= NOW()") }
   scope :awaiting_review, -> { where(publish_at: nil).in_future }
@@ -80,18 +82,6 @@ class Event < ApplicationRecord
     end
   end
 
-  def pending_review?
-    publish_at.nil?
-  end
-
-  def published?
-    publish_at&.past?
-  end
-
-  def publish!
-    update! publish_at: DateTime.now
-  end
-
   def categories=(values)
     self[:categories] = Array.wrap(values).select { |e| Event::CATEGORIES.include?(e) }
   end
@@ -121,5 +111,9 @@ class Event < ApplicationRecord
 
   def main_event
     event || self
+  end
+
+  def magazine_relevancy
+    start_at - Time.current
   end
 end

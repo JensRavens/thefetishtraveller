@@ -1,4 +1,5 @@
-.hero class="hero--#{style}"
-  - if background_image
-    .hero__background style="backgroundImage: url('#{background_image}')"
-  .hero__content = content
+.hero class="hero--#{style}" class=("inverted" if light_color?(background_color)) style=("background-color: #{background_color}" if background_color)
+  .container
+    - if background_image
+      .hero__background style="background-image: url('#{image_asset_url(background_image, width: 1024)}')"
+    .hero__content = content

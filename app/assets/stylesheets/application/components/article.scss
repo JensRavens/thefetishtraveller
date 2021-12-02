@@ -1,0 +1,120 @@
+.article {
+  --image-overflow: 60px;
+  --image-margin: 24px;
+
+  font-size: 16px;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+
+  action-text-attachment {
+    margin: 0 -8px;
+    display: flex;
+    max-width: calc(100% + 16px);
+    justify-content: center;
+
+    img {
+      width: auto !important;
+      max-height: 60vh;
+    }
+  }
+
+  &__content {
+    hyphens: auto;
+  }
+
+  aside {
+    margin-bottom: 1em;
+    img {
+      height: auto;
+    }
+  }
+
+  h2 {
+    margin: 0 0 24px;
+    clear: none;
+    hyphens: none;
+    font-family: var(--font-heading-alternate);
+    font-size: 1.3em;
+    line-height: 1.2;
+  }
+
+  &__heading {
+    text-align: left !important;
+  }
+
+  &__abstract {
+    font-size: 20px;
+    opacity: 0.8;
+    font-weight: 600;
+  }
+
+  &__author {
+    font-size: 16px;
+    font-weight: 600;
+    opacity: 0.8;
+
+    a {
+      color: var(--color-tint);
+    }
+  }
+
+  &__category {
+    color: var(--color-tint);
+    margin-bottom: 1em;
+    font-size: 1.3em;
+    font-family: var(--font-heading-alternate);
+  }
+
+  .trix-content > div,
+  trix-editor > div {
+    margin-bottom: 1em;
+  }
+
+  @media (min-width: 768px) {
+    font-size: 20px;
+
+    action-text-attachment {
+      margin: 0 calc(-1 * var(--image-overflow));
+      max-width: calc(100% + 2 * var(--image-overflow));
+      width: calc(100% + 2 * var(--image-overflow));
+    }
+
+    aside {
+      float: right;
+      width: 50%;
+      margin: 0 calc(-1 * var(--image-overflow)) 16px var(--image-margin);
+
+      &:nth-of-type(2n) {
+        float: left;
+        margin-left: calc(-1 * var(--image-overflow));
+        margin-right: var(--image-margin);
+      }
+
+      action-text-attachment {
+        margin: 0;
+        max-width: 100%;
+      }
+
+      img {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+      }
+    }
+  }
+
+  @media (min-width: 900px) {
+    --image-overflow: 100px;
+
+    aside {
+      width: 55%;
+    }
+  }
+}
+
+trix-toolbar {
+  position: sticky;
+  top: 60px;
+  z-index: 1;
+  background-color: var(--color-background);
+}

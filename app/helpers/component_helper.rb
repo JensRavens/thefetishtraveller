@@ -1,8 +1,17 @@
 # frozen_string_literal: true
 
 module ComponentHelper
-  def hero(style: "normal", background_image: nil, &block)
-    render "components/hero", style: style, background_image: background_image, content: capture(&block)
+  def hero(style: "normal", background_image: nil, background_color: nil, &block)
+    render "components/hero", style: style, background_image: background_image, background_color: background_color, content: capture(&block)
+  end
+
+  def magazine_header(&block)
+    content = capture(&block) if block
+    render "magazines/header", content: content
+  end
+
+  def spacer(size = nil, only: nil)
+    content_tag(:div, nil, class: ["spacer", ("spacer--#{size}" if size.present?), ("desktop-only" if only == :desktop)])
   end
 
   def attends?(event:)

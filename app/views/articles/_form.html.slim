@@ -1,0 +1,15 @@
+= form_with model: @article, builder: AwesomeForm do |f|
+  .container.container--small: .article
+    .stack
+      = f.image_field :hero
+      = f.text_field :title
+      - if current_user.admin?
+        = f.text_field :slug
+        = f.datetime_field :publish_at
+        = f.text_field :hero_background_color, type: :color
+        = f.collection_select :layout, [:article, :editorial], :to_s, :to_s
+        = f.collection_select :listing_layout, [:article, :editorial, :prominent, :huge], :to_s, :to_s
+        = f.text_field :article_format_list
+      = f.rich_text_area :abstract
+      = f.rich_text_area :content
+      = f.submit

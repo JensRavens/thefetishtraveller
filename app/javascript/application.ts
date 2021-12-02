@@ -1,8 +1,9 @@
-import * as Rails from '@rails/ujs';
 import '@hotwired/turbo-rails';
-import 'form-request-submit-polyfill';
+import '@rails/actiontext';
+import { registerServiceWorker } from 'lib/serviceworker';
 
-Rails.start();
+registerServiceWorker();
 
 import './sprinkles/touch';
+import './sprinkles/trix';
 import './controllers';

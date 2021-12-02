@@ -46,6 +46,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :delete_all
   has_many :notifications, dependent: :delete_all
   has_many :titleholders, dependent: :nullify
+  has_many :articles, dependent: :destroy
 
   has_and_belongs_to_many :owned_events, class_name: "Event"
   has_and_belongs_to_many :owned_locations, class_name: "Location"

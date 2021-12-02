@@ -38,3 +38,4 @@
       .profile-header__actions
         - if policy(profile).edit?
           a.button href=edit_profile_path(profile) = t ".edit"
+          a.button href=logout_path = t ".logout"

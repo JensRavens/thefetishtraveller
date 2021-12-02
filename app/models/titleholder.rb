@@ -23,9 +23,33 @@ class Titleholder < ApplicationRecord
   belongs_to :title
   belongs_to :user, optional: true
 
+  scope :listed, -> { order(start_on: :desc) }
+
   friendly_id :full_title, use: :slugged
   validates :full_title, :name, :start_on, presence: true
 
   has_one_attached :picture
   has_many_attached :gallery_images
+
+  class << self
+    def submit_email(user:)
+      <<~TXT
+        I would like to add the following titleholder to the titleholders archive:
+
+        Name:
+        Title:
+        Organizer/Sponsor/Club:
+        My Profile Name: #{user&.public_name}
+        Election Date (optional):
+        Stepdown Date (optional):
+        Short Bio (optional):
+
+        I am attaching some picture here:
+      TXT
+    end
+  end
+
+  def magazine_relevancy
+    Time.current - start_on.to_time
+  end
 end

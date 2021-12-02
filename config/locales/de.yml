@@ -1,5 +1,8 @@
 ---
 de:
+  articles:
+    show:
+      by_html: von %{user}
   components:
     calendar:
       show_history: Vergangenheit anzeigen
@@ -9,7 +12,6 @@ de:
       home: Home
       imprint: Impressum
       quick_navigation: Schnellnavigation
-      submit: Events übermitteln
     head:
       default_description: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
     mail_footer:
@@ -22,12 +24,13 @@ de:
         das Team von thefetishtraveller.com
     menu:
       create_a_post: Post erstellen
+      edit: bearbeiten
       login: Login
-      logout: Logout
       notifications: Notifications
     menu_links:
       conversations: Chat
       events: Events
+      magazine: Magazin
       posts: Feed
       profiles: Profile
       titleholders: Titelhalter
@@ -36,12 +39,18 @@ de:
       subscribe: anmelden
     pagination:
       load_more: Mehr laden
+    review_status:
+      pending_review: Review ausstehend
+      pending_review_explanation: Dein Eintrag wird gerade überprüft und demnächst in die Liste übernommen.
   conversations:
     index:
       conversations: Chats
       no_conversations_yet: Keine Chats
       there_is_nothing_yet: Du hast noch keine Chats. Schreibe doch ein paar Profile an, dann ist hier bald mehr los.
       title: Chat
+  date:
+    formats:
+      default_no_year: "%d.%m."
   errors:
     error:
       description_404: Diese Seite wurde nicht gefunden.
@@ -69,8 +78,6 @@ de:
       on_my_calendar: Auf meinem Kalendar
       organizer: Veranstalter
       other_events_in: Andere Events in %{location}
-      pending_review: Review ausstehend
-      pending_review_explanation: Deine Veranstaltung wird gerade überprüft und demnächst in die Liste übernommen.
       tickets: Tickets
       website: Website
   general:
@@ -84,6 +91,14 @@ de:
         slug: Profilname
         visibility_internal: Internes Profil
         visibility_public: Öffentliches Profil
+  magazines:
+    header:
+      all: Alle
+      events: Events
+      title: Magazin
+      titleholders: Titelträger
+    show:
+      title: Magazin
   messages:
     index:
       send: senden
@@ -148,11 +163,9 @@ de:
       your_choice: Erzähle uns, wer dein Profil sehen und damit interagieren kann.
   pages:
     home:
-      claim: Die besten Fetisch Events Weltweit
-      explore_events_now: Jetzt Veranstaltungen erkunden
-      find_more_events: Finde mehr Veranstaltungen
-      intro: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
-      next_up: demnächst
+      claim: Ein Zuhause für deinen Fetisch
+      intro: Es ist ein Zeit für ein Soziales Netzwerk für deinen Fetisch. Ohne große Firmen, dafür aber mit einer großen Community.
+      join_us: Jetzt mitmachen
   posts:
     context:
       confirm_post_deletion: Willst du diesen Post wirklich löschen?
@@ -161,7 +174,6 @@ de:
     index:
       no_posts_yet: Noch keine Posts
       there_is_nothing_yet: Deine Kontakte haben noch nichts gepostet. Folge doch ein paar weiteren Profilen, dann ist hier bald mehr los.
-      your_timeline: Deine Timeline
     new:
       cancel: Abbrechen
     post:
@@ -183,6 +195,7 @@ de:
       following:
         one: 1 Following
         other: "%{count} Folge ich"
+      logout: Logout
       message: Chat
       posts:
         one: 1 Post
@@ -219,11 +232,12 @@ de:
       now: jetzt
   time:
     formats:
+      default: "%d.%m.%Y %H:%M"
       month: "%B"
   titleholders:
     index:
       submit_titleholder: Eintrag hinzufügen
-      title: Titelhalter
+      title: Titelträger
       titleholder_missing: Du fehlst noch in der Liste?
     show:
       you_can_follow: Du kannst %{name} hier folgen
