@@ -29,6 +29,14 @@
     }
   }
 
+  &--article {
+    padding: 2rem 1rem;
+
+    @media (min-width: 768px) {
+      padding: 4rem 0;
+    }
+  }
+
   &__background {
     background-size: contain;
     background-repeat: no-repeat;

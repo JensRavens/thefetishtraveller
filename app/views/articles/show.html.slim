@@ -2,7 +2,7 @@
 - show_footer
 - edit_bar @article
 
-= hero background_image: @article.hero, style: :editorial, background_color: @article.hero_background_color do
+= hero background_image: @article.hero, style: @article.layout, background_color: @article.hero_background_color do
   .stack
     .article__category = @article.article_format_list.to_sentence
     h1.heading.article__heading = safe_format @article.title

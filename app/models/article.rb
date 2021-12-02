@@ -25,7 +25,7 @@ class Article < ApplicationRecord
   has_rich_text :abstract
   friendly_id :title, use: :slugged
   has_one_attached :hero
-  store_accessor :layout_options, :hero_background_color
+  store_accessor :layout_options, :hero_background_color, :layout, :listing_layout
   acts_as_taggable_on :article_formats
 
   def magazine_relevancy
