@@ -32,6 +32,12 @@ module RemoteNavigation
       queued_remote_updates.push turbo_stream.remove(dashed_dom_id(id))
     end
 
+    def navigate_to(path)
+      close_modal
+      path = polymorphic_path(path) unless path.is_a?(String)
+      run_javascript "Turbo.visit('#{path}')"
+    end
+
     def dashed_dom_id(id)
       Array.wrap(id)
         .map { |e| e.is_a?(Symbol) ? e.to_s.dasherize : e }

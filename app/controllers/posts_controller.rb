@@ -20,7 +20,7 @@ class PostsController < ApplicationController
 
   def create
     @post = current_user.post! post_params
-    close_modal
+    navigate_to @post
   end
 
   def show
