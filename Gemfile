@@ -69,12 +69,7 @@ group :development, :test do
   gem "rubocop-rails", require: false
   gem "capybara"
   gem "cuprite"
-  gem "pry-rails"
-  gem "guard"
-  gem "guard-rspec"
   gem "i18n-tasks"
-  gem "debase"
-  gem "ruby-debug-ide"
 end
 
 group :development do
@@ -84,8 +79,12 @@ group :development do
   gem "spring-commands-rspec"
   gem "web-console"
   gem "annotate"
-  gem "erd", require: false
   gem "rb-fsevent"
   gem "letter_opener"
   gem "guard-livereload", require: false
+  gem "debase"
+  gem "ruby-debug-ide"
+  gem "pry-rails"
+  gem "guard"
+  gem "guard-rspec"
 end

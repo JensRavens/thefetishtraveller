@@ -49,6 +49,12 @@
     font-family: var(--font-heading-alternate);
   }
 
+  &.inverted {
+    .generic-listing__background {
+      background-color: transparent;
+    }
+  }
+
   .no-touch & {
     &:hover .generic-listing__background {
       background-color: var(--color-tint);
