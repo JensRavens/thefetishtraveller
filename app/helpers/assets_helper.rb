@@ -4,7 +4,7 @@ module AssetsHelper
   def image_tag(source, relative: true, **options)
     return nil if source.blank?
 
-    if source.is_a?(ActiveStorage::Variant) || source.is_a?(ActiveStorage::Attached) || source.is_a?(ActiveStorage::Attachment)
+    if source.is_a?(ActiveStorage::Variant) || source.is_a?(ActiveStorage::Attached) || source.is_a?(ActiveStorage::Attachment) || source.is_a?(ActionText::Attachment)
       attachment = source
       width = options[:width]
       height = options[:height]
@@ -19,6 +19,7 @@ module AssetsHelper
     return if source.blank?
     return source if source.is_a?(String)
 
+    blob = source.try(:blob) || source
     options = { relative: relative }
     if width
       if height
@@ -29,6 +30,6 @@ module AssetsHelper
     elsif source.try :variation
       options[:resize] = source.variation.transformations[:resize]
     end
-    FileProxy.new(blob_id: source.blob.id).url(options)
+    FileProxy.new(blob_id: blob.id).url(options)
   end
 end
