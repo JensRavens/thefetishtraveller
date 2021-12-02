@@ -1,9 +1,11 @@
-= hero do
+= hero style: :padded do
   h1.heading
     .logo == "The <em>Fetish</em> Traveller"
     = t ".title"
-.filter-bar
-  a.filter-bar__option href=magazine_path class=("filter-bar__option--selected" if params["filter"].blank? && params[:controller] == "magazines") = t ".all"
-  a.filter-bar__option href=magazine_path(filter: :articles) class=("filter-bar__option--selected" if params["filter"] == "articles") = t ".articles"
-  a.filter-bar__option href=events_path = t ".events"
-  a.filter-bar__option href=titleholders_path class=("filter-bar__option--selected" if params["filter"].blank? && params[:controller] == "titleholders") = t ".titleholders"
+  .spacer.spacer--small
+  .filter-bar.filter-bar--hero
+    a.filter-bar__option href=magazine_path class=("filter-bar__option--selected" if params["filter"].blank? && params[:controller] == "magazines") = t ".all"
+    a.filter-bar__option href=magazine_path(filter: :articles) class=("filter-bar__option--selected" if params["filter"] == "articles") = t ".articles"
+    a.filter-bar__option href=events_path class=("filter-bar__option--selected" if params[:controller] == "events") = t ".events"
+    a.filter-bar__option href=titleholders_path class=("filter-bar__option--selected" if params[:controller] == "titleholders") = t ".titleholders"
+  = content if defined? content

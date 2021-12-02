@@ -1,5 +1,6 @@
 .filter-bar {
-  height: 80px;
+  --height: 80px;
+  height: var(--height);
   display: flex;
   justify-content: flex-start;
   position: relative;
@@ -11,7 +12,7 @@
   padding: 0 50px;
 
   &__option {
-    line-height: 80px;
+    line-height: var(--height);
     white-space: nowrap;
     cursor: pointer;
     position: relative;
@@ -44,5 +45,9 @@
   &--inverted {
     background-color: var(--color-background-dark);
     color: white;
+  }
+
+  &--hero {
+    --height: 40px;
   }
 }

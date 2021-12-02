@@ -5,6 +5,15 @@ module ComponentHelper
     render "components/hero", style: style, background_image: background_image, background_color: background_color, content: capture(&block)
   end
 
+  def magazine_header(&block)
+    content = capture(&block) if block
+    render "magazines/header", content: content
+  end
+
+  def spacer(size = nil)
+    content_tag(:div, nil, class: "spacer spacer--#{size}")
+  end
+
   def attends?(event:)
     current_user&.events&.include?(event)
   end
