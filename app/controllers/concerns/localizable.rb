@@ -23,7 +23,7 @@ module Localizable
     end
 
     def check_locale
-      redirect_to url_for(locale: I18n.locale) if !active_admin? && params[:locale].blank? && request.get?
+      redirect_to url_for(locale: I18n.locale) if !active_admin? && params[:locale].blank? && request.get? && request.format.html?
     end
 
     def url_locale

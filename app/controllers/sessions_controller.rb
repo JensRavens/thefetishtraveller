@@ -1,10 +1,16 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+  skip_forgery_protection only: :apple
+
   def new
     redirect_to root_path and return if current_user
 
     finish_email_login if params[:token].present?
+  end
+
+  def apple
+    session[:user_id] = apple_login.id
   end
 
   def create
@@ -12,9 +18,6 @@ class SessionsController < ApplicationController
       email_login
       close_modal
       replace :login_area, with: "email_waiting"
-    else
-      session[:user_id] = apple_login.id
-      redirect_to posts_path
     end
   end
 

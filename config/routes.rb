@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     get "logout", to: "sessions#destroy"
     resources :sessions, only: [:create] do
       get "email", on: :collection
+      post "apple", on: :collection
     end
     resources :events, only: [:index, :show, :new, :create]
     resources :travel_plans, only: [:create, :destroy]
@@ -46,7 +47,7 @@ Rails.application.routes.draw do
     resource :manifest, only: :show
     root "pages#home"
     get "imprint", to: "pages#imprint"
-    get ":id", to: "profiles#show", as: :profile
+    get ":id", to: "profiles#show", as: :profile, constraints: ->(req) { req.format.html? }
     patch ":id", to: "profiles#update"
   end
 

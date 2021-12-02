@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
   include Localizable
   include RemoteNavigation
 
-  skip_forgery_protection
   layout "application"
 
   unless Rails.env.development?

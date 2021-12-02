@@ -1,8 +1,8 @@
 - content_for :additional_head_tags do
   meta name="appleid-signin-client-id" content="com.thefetishtraveller.web"
   meta name="appleid-signin-scope" content="name email"
-  meta name="appleid-signin-redirect-uri" content=sessions_url(locale: :en)
-
+  meta name="appleid-signin-redirect-uri" content=apple_sessions_url(locale: I18n.locale)
+= debug session.to_h
 = hero style: :article do
   h1.heading.with-dash = t ".claim"
   = spacer :tiny
