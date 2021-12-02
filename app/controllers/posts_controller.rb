@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class PostsController < ApplicationController
-  before_action :require_profile
+  before_action :require_profile, except: :show
 
   def index
     @posts = Post.reverse_chronologic
@@ -25,6 +25,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find params[:id]
+    authorize @post.user
   end
 
   def destroy

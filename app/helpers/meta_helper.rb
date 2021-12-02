@@ -11,14 +11,14 @@ module MetaHelper
   def description(description_text)
     return if description_text.blank?
 
-    content_for :description, strip_tags(description_text), flush: true
+    content_for :description, strip_tags(description_text).squish, flush: true
     description_text
   end
 
   def thumbnail(image)
     return if image.blank?
 
-    content_for :thumbnail_url, image_asset_url(image, width: 200), flush: true
+    content_for :thumbnail_url, image_asset_url(image, width: 1200), flush: true
     image
   end
 
