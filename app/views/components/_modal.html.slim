@@ -1,5 +1,6 @@
 .modal#modal data-controller="modal"
   .modal__blind data-action="click->modal#close"
-  .container: .modal__content data-modal-target="content"
+  .container: .modal__content
     .modal__close data-modal-target="close" data-action="click->modal#close"
     .modal__title data-modal-target="title"
+    .modal__frame data-modal-target="content"
