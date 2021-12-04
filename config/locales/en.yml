@@ -178,9 +178,12 @@ en:
       cancel: Cancel
     post:
       add_a_comment: Add a comment
+      comment: Comment
+      like: Like
       liked_by_html: Liked by %{name}.
       liked_by_many_html: Liked by %{name} and %{count} others.
       post_comment: Post
+      unlike: Unlike
   profiles:
     edit:
       profile: Profile
