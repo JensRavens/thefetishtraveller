@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
     rescue_from StandardError do |error|
       raise error unless request.format.turbo_stream?
 
+      Sentry.capture_exception(error)
       close_modal
       replace :main, with: "errors/error", error: error
       default_render

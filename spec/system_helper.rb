@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "rails_helper"
+require "rack_session_access/capybara"
 
 Dir[File.join(__dir__, "system/support/**/*.rb")].sort.each { |file| require file }
 

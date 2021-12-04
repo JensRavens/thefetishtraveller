@@ -14,11 +14,11 @@
       img.post__image data-action="dblclick->redirect-interaction#trigger" src=image_asset_url(post.image, width: 416)
       .post__icon-bar
         - if post.likes.where(user: current_user).any?
-          = link_to "", like_path(post), method: :delete, class: "post__icon-bar__button heart-button active"
+          = button_to "", like_path(post), method: :delete, class: "post__icon-bar__button heart-button active", title: t(".unlike")
         - else
-          = link_to "", likes_path(post_id: post.id), method: :post, class: "post__icon-bar__button heart-button", data: { "redirect-interaction-target": "target" }
+          = button_to "", likes_path(post_id: post.id), method: :post, class: "post__icon-bar__button heart-button", data: { "redirect-interaction-target": "target" }, title: t(".like")
         - if policy(post).comment?
-          .post__icon-bar__button.comment-button data-action="click->hide#toggle"
+          a.post__icon-bar__button.comment-button data-action="click->hide#toggle" title=t(".comment") href="#"
         .post__icon-bar__button.share-button data-controller="share" data-share-url-value=post_url(post) data-action="click->share#share"
       - if like_previews.any?
         .post__like-bar
@@ -33,6 +33,7 @@
       - if policy(post).comment?
         .post__comment-bar data-hide-target="target" hidden=true
           = form_with model: current_user.comments.new, url: post_comments_path(post) do |f|
+            = f.label :text, t(".add_a_comment"), class: "hidden"
             = f.text_area :text, placeholder: t(".add_a_comment")
             = f.submit t(".post_comment")
       .post__comments.stack = render post.comments.reverse_chronologic
