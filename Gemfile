@@ -70,6 +70,7 @@ group :development, :test do
   gem "capybara"
   gem "cuprite"
   gem "i18n-tasks"
+  gem "rack_session_access"
 end
 
 group :development do

@@ -14,11 +14,11 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if params[:email].present?
-      email_login
-      close_modal
-      replace :login_area, with: "email_waiting"
-    end
+    return if params[:email].blank?
+
+    email_login
+    close_modal
+    replace :login_area, with: "email_waiting"
   end
 
   def destroy
