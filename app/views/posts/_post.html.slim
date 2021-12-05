@@ -1,5 +1,5 @@
-- like_previews = post.likes.order(created_at: :asc).limit(1).load
-- total_likes = post.likes.count
+- like_previews = post.likes.sort_by(&:created_at).take(1)
+- total_likes = post.likes.size
 
 = turbo_frame_tag post, target: "_top"
   .post
@@ -13,7 +13,7 @@
     .post__content data-controller="hide redirect-interaction"
       img.post__image data-action="dblclick->redirect-interaction#trigger" src=image_asset_url(post.image, width: 416)
       .post__icon-bar
-        - if post.likes.where(user: current_user).any?
+        - if post.likes.any? { |e| e.user_id == current_user&.id }
           = button_to "", like_path(post), method: :delete, class: "post__icon-bar__button heart-button active", title: t(".unlike")
         - else
           = button_to "", likes_path(post_id: post.id), method: :post, class: "post__icon-bar__button heart-button", data: { "redirect-interaction-target": "target" }, title: t(".like")

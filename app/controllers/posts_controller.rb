@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :require_profile, except: :show
 
   def index
-    @posts = Post.reverse_chronologic
+    @posts = Post.reverse_chronologic.with_attached_image.includes(:user, :likes)
     if params[:tag]
       @posts = @posts.tagged_with params[:tag]
     else
