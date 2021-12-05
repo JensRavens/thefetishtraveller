@@ -5,14 +5,14 @@ class ProfilesController < ApplicationController
   before_action :require_profile, only: :index
 
   def index
-    @profiles = User.onboarded.order(created_at: :desc).with_attached_avatar
+    @profiles = User.onboarded.order(created_at: :desc)
     @tag = params[:tag].presence
     @profiles = @profiles.tagged_with(@tag) if @tag
     @profiles = paginated @profiles, per: 23
   end
 
   def show
-    @posts = paginated @profile.posts.reverse_chronologic.with_attached_image, per: 20
+    @posts = paginated @profile.posts.reverse_chronologic, per: 20
   end
 
   def travel_plans

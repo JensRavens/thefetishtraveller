@@ -1,40 +1,42 @@
 - edit ||= false
-- titles = profile.titleholders.order(start_on: :asc).load
 .profile-header
   .profile-header__backdrop: .container
-    .profile-header__background.inline-upload__ref style="background-image:url(#{image_asset_url(@profile.hero, width: 800)});"
-      = render "components/inline_upload", model: @profile, url: profile_path(@profile), method: :hero if edit
+    .profile-header__background.inline-upload__ref style="background-image:url(#{image_asset_url(profile.hero, width: 800)});"
+      = render "components/inline_upload", model: profile, url: profile_path(profile), method: :hero if edit
   .container
     .profile-header__content
       .profile-header__avatar.inline-upload__ref
-        = render "components/inline_upload", model: @profile, url: profile_path(@profile), method: :avatar if edit
-        = image_tag @profile.avatar_image, class: "avatar avatar--bordered", width: 160
+        = render "components/inline_upload", model: profile, url: profile_path(profile), method: :avatar if edit
+        = image_tag profile.avatar_image, class: "avatar avatar--bordered", width: 160
       .profile-header__text.stack
         .profile-header__name = profile.public_name
-        .profile-header__metrics
-          div = t ".posts", count: profile.posts.count
-          div = t ".followers", count: profile.followings.count
-          div = t ".following", count: profile.follows.count
+        = cache [I18n.locale, profile, :metrics]
+          .profile-header__metrics
+            div = t ".posts", count: profile.posts.count
+            div = t ".followers", count: profile.followings.count
+            div = t ".following", count: profile.follows.count
         - profile.social_links.any?
           .profile-header__social
             - profile.social_links.map do |link|
               a.profile-header__social-link class="profile-header__social-link--#{link.network}" href=link.url title=link.network.to_s.humanize target="_blank" rel="noopener noreferrer" = link.profile
-        - titles.any?
-          .profile-header__titles.stack
-            - titles.each do |title|
-              a href=titleholder_path(title) = title.full_title
+        = cache [I18n.locale, profile, :titles]
+          - titles = profile.titleholders.order(start_on: :asc).load
+          - titles.any?
+            .profile-header__titles.stack
+              - titles.each do |title|
+                a href=titleholder_path(title) = title.full_title
         - if profile.location_description.present?
           .profile-header__location = profile.location_description
         - if profile.bio.present?
           .profile-header__bio = tagged_format profile.bio, context: :profiles
         .profile-header__cta
-          - if policy(@profile).follow?
-            - if current_user&.follows?(@profile)
-              = button_to t(".unfollow"), follow_path(user_id: @profile.id), method: :delete, class: "button"
+          - if policy(profile).follow?
+            - if current_user&.follows?(profile)
+              = button_to t(".unfollow"), follow_path(user_id: profile.id), method: :delete, class: "button"
             - else
-              = button_to t(".follow"), follows_path(user_id: @profile.id), class: "button button--primary"
-          - if policy(@profile).message?
-            a.button href=profile_messages_path(@profile) = t(".message")
+              = button_to t(".follow"), follows_path(user_id: profile.id), class: "button button--primary"
+          - if policy(profile).message?
+            a.button href=profile_messages_path(profile) = t(".message")
       .profile-header__actions
         - if policy(profile).edit?
           a.button href=edit_profile_path(profile) = t ".edit"

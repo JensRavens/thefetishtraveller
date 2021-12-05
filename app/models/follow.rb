@@ -11,6 +11,6 @@
 #  updated_at :datetime         not null
 #
 class Follow < ApplicationRecord
-  belongs_to :user
-  belongs_to :profile, class_name: "User"
+  belongs_to :user, touch: true
+  belongs_to :profile, class_name: "User", touch: true
 end

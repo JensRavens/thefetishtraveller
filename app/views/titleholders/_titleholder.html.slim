@@ -1,7 +1,8 @@
-a.generic-listing href=titleholder_path(titleholder) target="_top" style="background-image: url(#{image_asset_url(titleholder.picture, width: 500)})"
-  .generic-listing__background
-  .generic-listing__content
-    .generic-listing__category = titleholder.title.country_name
-    .generic-listing__flex
-    .generic-listing__name = titleholder.full_title
-    .generic-listing__details = titleholder.name
+= cache [I18n.locale, titleholder]
+  a.generic-listing href=titleholder_path(titleholder) target="_top" style="background-image: url(#{image_asset_url(titleholder.picture, width: 500)})"
+    .generic-listing__background
+    .generic-listing__content
+      .generic-listing__category = titleholder.title.country_name
+      .generic-listing__flex
+      .generic-listing__name = titleholder.full_title
+      .generic-listing__details = titleholder.name

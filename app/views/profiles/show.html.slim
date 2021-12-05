@@ -4,6 +4,6 @@
 
 = render "header", profile: @profile
 .spacer.spacer--small
-- if @profile.posts.any? || @profile.travel_plans.any?
+- if @profile.posts.load.any? || @profile.travel_plans.any?
   = render "navigation-bar"
   = paginated @posts, id: "feed", class: "listing listing--small", partial: "posts/grid_post"

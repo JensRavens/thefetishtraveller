@@ -21,7 +21,7 @@ class Titleholder < ApplicationRecord
   extend FriendlyId
 
   belongs_to :title
-  belongs_to :user, optional: true
+  belongs_to :user, optional: true, touch: true
 
   scope :listed, -> { order(start_on: :desc) }
 
