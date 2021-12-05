@@ -35,6 +35,11 @@ head
 
   = yield :additional_head_tags if content_for? :additional_head_tags
 
+  - if @review_object
+    - json_ld = try("#{@review_object.class.model_name.singular}_json_ld", @review_object)
+    - if json_ld
+      script type="application/ld+json" == json_ld.to_json
+
   - if Rails.env.production?
     script async=true src="https://www.googletagmanager.com/gtag/js?id=G-L7RLRCKFT9"
     javascript:
