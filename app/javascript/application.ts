@@ -1,10 +1,8 @@
 import '@hotwired/turbo-rails';
 import '@rails/actiontext';
-import { registerServiceWorker } from 'lib/serviceworker';
+import { registerServiceWorker } from '@nerdgeschoss/shimmer';
 
 registerServiceWorker();
 
-import './sprinkles/touch';
 import './sprinkles/trix';
-import './sprinkles/ui';
 import './controllers';

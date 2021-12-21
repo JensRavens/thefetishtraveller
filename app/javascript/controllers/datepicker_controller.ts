@@ -1,7 +1,7 @@
 import { Controller } from 'stimulus';
 import flatpickr from 'flatpickr';
 import { German } from 'flatpickr/dist/l10n/de';
-import { currentLocale } from 'lib/locale';
+import { currentLocale } from '@nerdgeschoss/shimmer';
 
 export default class extends Controller {
   connect(): void {

@@ -2,8 +2,10 @@
 
 class ApplicationController < ActionController::Base
   include Pundit
-  include Localizable
+  include Shimmer::Localizable
   include Shimmer::RemoteNavigation
+
+  before_action :check_locale
 
   layout "application"
 
