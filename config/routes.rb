@@ -51,5 +51,5 @@ Rails.application.routes.draw do
     patch ":id", to: "profiles#update"
   end
 
-  resources :files, only: :show
+  resources :files, only: :show, controller: "shimmer/files"
 end
