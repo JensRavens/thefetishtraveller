@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :events, only: [:index]
   end
 
-  get "sitemaps/*path", to: "pages#sitemap"
+  get "sitemaps/*path", to: "shimmer/sitemaps#show"
   scope "/(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     ActiveAdmin.routes(self)
     match "404", to: "errors#not_found", via: :all

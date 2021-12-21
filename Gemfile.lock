@@ -1,3 +1,8 @@
+PATH
+  remote: ../shimmer
+  specs:
+    shimmer (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -592,6 +597,7 @@ DEPENDENCIES
   sentry-rails
   sentry-ruby
   serviceworker-rails
+  shimmer!
   sidekiq
   sidekiq-scheduler
   sitemap_generator

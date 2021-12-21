@@ -10,14 +10,12 @@ Bundler.require(*Rails.groups)
 
 Dotenv::Railtie.load
 
-require_relative "../lib/middleware/cloudflare_proxy"
-
 module Thefetishtraveller
   class Application < Rails::Application
     config.load_defaults 6.1
     config.time_zone = "Berlin"
 
-    config.middleware.use CloudflareProxy
+    config.middleware.use Shimmer::CloudflareProxy
 
     config.action_mailer.default_url_options = { host: ENV["HOST"] } if ENV["HOST"].present?
     config.active_job.queue_adapter = :sidekiq

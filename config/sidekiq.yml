@@ -7,5 +7,8 @@
   - active_storage_purge
 :schedule:
   daily_summary:
-    cron: '0 0 16 * * * Europe/Berlin' # every day at 03:00, Berlin time
+    cron: '0 0 16 * * * Europe/Berlin' # every day at 16:00, Berlin time
     class: DailySummaryJob
+  sitemap:
+    cron: '0 0 12 * * * Europe/Berlin' # every day at 16:00, Berlin time
+    class: Shimmer::SitemapJob

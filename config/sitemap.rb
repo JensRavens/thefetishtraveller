@@ -2,7 +2,8 @@
 
 # Set the host name for URL creation
 SitemapGenerator::Sitemap.default_host = "https://thefetishtraveller.com"
-SitemapGenerator::Sitemap.public_path = "tmp/sitemaps/"
+SitemapGenerator::Sitemap.public_path = "tmp/"
+SitemapGenerator::Sitemap.adapter = Shimmer::SitemapAdapter.new
 
 SitemapGenerator::Sitemap.create do
   I18n.available_locales.each do |locale|

@@ -13,6 +13,7 @@ gem "redis"
 
 # Extensions
 gem "bootsnap", require: false
+gem "shimmer", path: "../shimmer"
 gem "mini_magick"
 gem "dotenv-rails"
 gem "rails-i18n"
