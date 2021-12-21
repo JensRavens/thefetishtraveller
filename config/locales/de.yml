@@ -26,7 +26,6 @@ de:
       create_a_post: Post erstellen
       edit: bearbeiten
       login: Login
-      notifications: Notifications
     menu_links:
       conversations: Chat
       events: Events
@@ -131,6 +130,8 @@ de:
     posted:
       created_a_post_html: "%{user} hat einen neuen Post erstellt."
   notifications:
+    index:
+      notifications: Notifications
     notification:
       type_commented: "%{sender} hat deinen Post kommentiert."
       type_event_created: "%{sender} hat ein Event erstellt."
@@ -176,6 +177,7 @@ de:
       there_is_nothing_yet: Deine Kontakte haben noch nichts gepostet. Folge doch ein paar weiteren Profilen, dann ist hier bald mehr los.
     new:
       cancel: Abbrechen
+      create_a_post: Post erstellen
     post:
       add_a_comment: Kommentar verfassen
       comment: Kommentieren

@@ -26,7 +26,6 @@ en:
       create_a_post: Create a Post
       edit: Edit
       login: Login
-      notifications: Notifications
     menu_links:
       conversations: Conversations
       events: Events
@@ -131,6 +130,8 @@ en:
     posted:
       created_a_post_html: "%{user} created a new post."
   notifications:
+    index:
+      notifications: Notifications
     notification:
       type_commented: "%{sender} commented on your post."
       type_event_created: "%{sender} created a new post."
@@ -176,6 +177,7 @@ en:
       there_is_nothing_yet: Your followed profiles didn't post anything yet. Follow someone to get content here.
     new:
       cancel: Cancel
+      create_a_post: Create a Post
     post:
       add_a_comment: Add a comment
       comment: Comment
