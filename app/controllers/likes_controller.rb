@@ -6,12 +6,12 @@ class LikesController < ApplicationController
 
   def create
     current_user.like! post: @post
-    replace @post
+    ui.replace @post
   end
 
   def destroy
     current_user.unlike! post: @post
-    replace @post
+    ui.replace @post
   end
 
   private

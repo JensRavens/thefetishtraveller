@@ -2,6 +2,7 @@
 
 class PostsController < ApplicationController
   before_action :require_profile, except: :show
+  before_action :enforce_modal, only: :new
 
   def index
     @posts = Post.reverse_chronologic.with_attached_image.includes(:user, :likes)
@@ -15,12 +16,11 @@ class PostsController < ApplicationController
 
   def new
     @post = current_user.posts.new
-    render layout: false
   end
 
   def create
     @post = current_user.post! post_params
-    navigate_to @post
+    ui.navigate_to @post
   end
 
   def show
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
   def destroy
     @post = authorize Post.find(params[:id])
     @post.destroy!
-    remove(@post)
+    ui.remove(@post)
   end
 
   def context

@@ -6,4 +6,5 @@ registerServiceWorker();
 
 import './sprinkles/touch';
 import './sprinkles/trix';
+import './sprinkles/ui';
 import './controllers';

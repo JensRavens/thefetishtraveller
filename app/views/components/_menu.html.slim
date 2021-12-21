@@ -7,8 +7,8 @@ header.header
         - if @review_object && policy(@review_object).try(:edit?)
           - url = url_for([:edit, @review_object]) rescue url_for([:edit, :admin, @review_object])
           a.button href=url = t ".edit"
-        a.main-menu__plus href=modal_url(new_post_path, size: :small, title: t(".create_a_post")) title=t(".create_a_post")
-        a.main-menu__bell href=modal_url(notifications_path, size: :small, title: t(".notifications"), close: true) data-count=current_user.unread_notifications_count data-controller="notification"
+        a.main-menu__plus href=modal_path(new_post_path, size: :small) title=t(".create_a_post")
+        a.main-menu__bell href=modal_path(notifications_path, size: :small, close: true) data-count=current_user.unread_notifications_count data-controller="notification"
         = cache [I18n.locale, current_user]
           a.main-menu__avatar href=profile_path(current_user)
             = image_tag current_user.avatar_image, width: 40, class: "avatar"

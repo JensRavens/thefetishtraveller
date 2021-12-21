@@ -1,8 +1,8 @@
-= turbo_frame_tag "modal_frame"
-  = form_with model: @post, builder: AwesomeForm, class: :stack do |f|
-    = f.post_image_field :image
-    = f.text_field :location_description
-    = f.text_area :description
-    .line.line--stretch
-      a.button href=close_modal_path = t ".cancel"
-      = f.submit
+.modal__title = t(".create_a_post")
+= form_with model: @post, builder: AwesomeForm, class: :stack do |f|
+  = f.post_image_field :image
+  = f.text_field :location_description
+  = f.text_area :description
+  .line.line--stretch
+    a.button href=close_modal_path = t ".cancel"
+    = f.submit

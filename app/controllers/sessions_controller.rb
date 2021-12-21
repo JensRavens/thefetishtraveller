@@ -17,8 +17,8 @@ class SessionsController < ApplicationController
     return if params[:email].blank?
 
     email_login
-    close_modal
-    replace :login_area, with: "email_waiting"
+    ui.close_modal
+    ui.replace "login-area", with: "email_waiting"
   end
 
   def destroy

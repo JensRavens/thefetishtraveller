@@ -6,7 +6,6 @@ html lang=I18n.locale
       script async=true src="http://localhost:35729/livereload.js?snipver=1"
     .page-wrapper
       = render "components/menu"
-      = render "components/modal"
       - if @review_object
         = render "components/review_status", object: @review_object
       main.page-wrapper__main#main

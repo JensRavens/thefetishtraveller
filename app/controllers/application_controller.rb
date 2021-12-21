@@ -3,7 +3,7 @@
 class ApplicationController < ActionController::Base
   include Pundit
   include Localizable
-  include RemoteNavigation
+  include Shimmer::RemoteNavigation
 
   layout "application"
 
@@ -35,10 +35,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   def current_user
     @current_user ||= session[:user_id].presence.then { |id| User.find_by(id: id) }.tap { |user| Sentry.set_user(user ? { username: user.slug } : {}) }
-  end
-
-  def message_verifier
-    @message_verifier ||= ActiveSupport::MessageVerifier.new(Rails.application.secrets.secret_key_base)
   end
 
   def require_login

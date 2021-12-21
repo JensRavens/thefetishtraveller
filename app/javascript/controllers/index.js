@@ -27,13 +27,10 @@ application.register('image-preview', ImagePreviewController);
 import MapController from './map_controller.ts';
 application.register('map', MapController);
 
-import ModalController from './modal_controller.ts';
-application.register('modal', ModalController);
-
 import NotificationController from './notification_controller.ts';
 application.register('notification', NotificationController);
 
-import RedirectInteractionController from './redirect_interaction_controller';
+import RedirectInteractionController from './redirect_interaction_controller.ts';
 application.register('redirect-interaction', RedirectInteractionController);
 
 import RemoteNavigationController from './remote_navigation_controller.ts';
