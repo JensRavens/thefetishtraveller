@@ -6,15 +6,6 @@
   background-position: center;
   cursor: pointer;
 
-  &__popover {
-    display: block;
-    background-color: var(--color-background);
-    border: 1px solid var(--color-border);
-    border-radius: 5px;
-    padding: 16px;
-    position: relative;
-  }
-
   &__button {
     font-weight: 600;
   }

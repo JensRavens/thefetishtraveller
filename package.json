@@ -5,18 +5,18 @@
     "lint:types": "tsc --noEmit",
     "lint:style": "eslint app/javascript/**/*.ts --max-warnings 0",
     "lint:format": "prettier --list-different \"app/**/*.{ts,scss,json}\"",
-    "build": "esbuild app/javascript/*.* --bundle --outdir=app/assets/builds",
+    "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
+    "bundle-size": "npx source-map-explorer app/assets/builds/application.js app/assets/builds/application.js.map --no-border-checks",
     "start": "yarn build --watch"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.0",
-    "@nerdgeschoss/shimmer": "0.0.4",
+    "@nerdgeschoss/shimmer": "0.0.5",
     "@popperjs/core": "^2.11.0",
     "@rails/actiontext": "^6.1.4-1",
     "esbuild": "^0.14.1",
     "flatpickr": "^4.6.9",
-    "stimulus": "^3.0.1",
     "trix": "^1.2.0",
     "typescript": "^4.5.2"
   },

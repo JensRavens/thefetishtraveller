@@ -12,9 +12,6 @@ application.register('autosubmit', AutosubmitController);
 import ChatController from './chat_controller.ts';
 application.register('chat', ChatController);
 
-import ContextController from './context_controller.ts';
-application.register('context', ContextController);
-
 import DatepickerController from './datepicker_controller.ts';
 application.register('datepicker', DatepickerController);
 
@@ -32,9 +29,6 @@ application.register('notification', NotificationController);
 
 import RedirectInteractionController from './redirect_interaction_controller.ts';
 application.register('redirect-interaction', RedirectInteractionController);
-
-import RemoteNavigationController from './remote_navigation_controller.ts';
-application.register('remote-navigation', RemoteNavigationController);
 
 import ShareController from './share_controller.ts';
 application.register('share', ShareController);

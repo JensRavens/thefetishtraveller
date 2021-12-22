@@ -32,6 +32,7 @@ class PostsController < ApplicationController
     @post = authorize Post.find(params[:id])
     @post.destroy!
     ui.remove(@post)
+    ui.close_popover
   end
 
   def context
