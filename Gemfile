@@ -13,11 +13,10 @@ gem "redis"
 
 # Extensions
 gem "bootsnap", require: false
-gem "shimmer"
+gem "shimmer", path: "../shimmer"
 gem "mini_magick"
 gem "dotenv-rails"
 gem "rails-i18n"
-gem "active_model_serializers"
 gem "rack-cors", require: "rack/cors"
 gem "rack-cache"
 gem "redis-rack-cache"
