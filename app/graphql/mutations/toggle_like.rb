@@ -15,7 +15,7 @@ module Mutations
       else
         current_user.likes.where(event_id: event_id).destroy_all
       end
-      { event: event }
+      {event: event}
     end
   end
 end

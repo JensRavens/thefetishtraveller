@@ -161,10 +161,10 @@ ActiveAdmin.register Event do
           input :categories, as: :check_boxes, collection: Event::CATEGORIES.map { |e| [e.humanize, e] }
         end
         inputs "Media" do
-          input :hero, as: :file, hint: f.object.hero.attached? ? image_tag(f.object.hero.variant(resize_to_limit: [100, 100])) : nil, input_html: { accept: "image/*" }
-          input :header, as: :file, hint: f.object.header.attached? ? image_tag(f.object.header.variant(resize_to_limit: [100, 100])) : nil, input_html: { accept: "image/*" }
-          input :flyer, as: :file, hint: f.object.flyer.attached? ? image_tag(f.object.flyer.variant(resize_to_limit: [100, 100])) : nil, input_html: { accept: "image/*" }
-          input :gallery_images, as: :file, input_html: { accept: "image/*", multiple: true }
+          input :hero, as: :file, hint: f.object.hero.attached? ? image_tag(f.object.hero.variant(resize_to_limit: [100, 100])) : nil, input_html: {accept: "image/*"}
+          input :header, as: :file, hint: f.object.header.attached? ? image_tag(f.object.header.variant(resize_to_limit: [100, 100])) : nil, input_html: {accept: "image/*"}
+          input :flyer, as: :file, hint: f.object.flyer.attached? ? image_tag(f.object.flyer.variant(resize_to_limit: [100, 100])) : nil, input_html: {accept: "image/*"}
+          input :gallery_images, as: :file, input_html: {accept: "image/*", multiple: true}
           div class: "gallery" do
             safe_join(event.gallery_images.map do |image|
               link_to image_tag(image), url_for(image), target: "_blank", rel: "noopener"

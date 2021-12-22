@@ -17,7 +17,7 @@ module Thefetishtraveller
 
     config.middleware.use Shimmer::CloudflareProxy
 
-    config.action_mailer.default_url_options = { host: ENV["HOST"] } if ENV["HOST"].present?
+    config.action_mailer.default_url_options = {host: ENV["HOST"]} if ENV["HOST"].present?
     config.active_job.queue_adapter = :sidekiq
     config.action_view.form_with_generates_remote_forms = false
 

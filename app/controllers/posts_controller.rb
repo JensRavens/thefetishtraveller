@@ -6,10 +6,10 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.reverse_chronologic.with_attached_image.includes(:user, :likes)
-    if params[:tag]
-      @posts = @posts.tagged_with params[:tag]
+    @posts = if params[:tag]
+      @posts.tagged_with params[:tag]
     else
-      @posts = @posts.for_user current_user
+      @posts.for_user current_user
     end
     @posts = paginated @posts, per: 5
   end

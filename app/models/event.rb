@@ -46,7 +46,7 @@ class Event < ApplicationRecord
   scope :awaiting_review, -> { where(publish_at: nil).in_future }
   scope :chronologic, -> { order(start_at: :asc) }
   scope :happening_in_month, ->(month) { where("events.start_at > ? AND events.start_at < ?", month.beginning_of_month, month.end_of_month) }
-  scope :searched, ->(term) { left_joins(:location).where("events.name ILIKE :term OR locations.name ILIKE :term", { term: "%#{term}%" }) if term.present? }
+  scope :searched, ->(term) { left_joins(:location).where("events.name ILIKE :term OR locations.name ILIKE :term", {term: "%#{term}%"}) if term.present? }
   scope :listed, -> { published.in_future.chronologic }
 
   has_many :events, dependent: :destroy
@@ -90,16 +90,16 @@ class Event < ApplicationRecord
     event = Icalendar::Event.new
     if full_day
       event.dtstart = Icalendar::Values::Date.new start_at
-      event.dtstart.ical_params = { "VALUE" => "DATE" }
+      event.dtstart.ical_params = {"VALUE" => "DATE"}
       event.dtend = Icalendar::Values::Date.new end_at + 1.day
-      event.dtend.ical_params = { "VALUE" => "DATE" }
+      event.dtend.ical_params = {"VALUE" => "DATE"}
     else
       event.dtstart = start_at
       event.dtend = end_at
     end
     event.summary = name
     event.description = abstract if abstract.present?
-    event.url = "https://#{ENV.fetch('HOST', 'thefetishtraveller.com')}/events/#{slug}"
+    event.url = "https://#{ENV.fetch("HOST", "thefetishtraveller.com")}/events/#{slug}"
     event.geo = [location.lat, location.lon] if location&.lat && location&.lon
     event.location = location&.description
     event

@@ -63,9 +63,9 @@ class User < ApplicationRecord
   scope :with_pending_notifications, -> { where(id: Notification.pending.select(:user_id)) }
   scope :attending, ->(event) { where(id: event.travel_plans.select(:user_id)) }
 
-  validates :slug, :email, presence: true, uniqueness: { case_sensitive: false }, on: :profile_edit
+  validates :slug, :email, presence: true, uniqueness: {case_sensitive: false}, on: :profile_edit
   validates :twitter, :instagram, :recon, :romeo, :bluf, :onlyfans, social_network: true, on: :profile_edit
-  validates :slug, format: { with: /\A[a-zA-Z\d\-_]*\z/ }
+  validates :slug, format: {with: /\A[a-zA-Z\d\-_]*\z/}
 
   enum visibility: [:public, :internal].index_with(&:to_s), _prefix: :visibility
 
@@ -75,7 +75,7 @@ class User < ApplicationRecord
 
   class << self
     def authenticate_facebook(token)
-      response = HTTParty.get "https://graph.facebook.com/me", query: { fields: "id,first_name,last_name,email", access_token: token }
+      response = HTTParty.get "https://graph.facebook.com/me", query: {fields: "id,first_name,last_name,email", access_token: token}
       raise "facebook request error: #{response.code}" unless response.code == 200
 
       data = OpenStruct.new JSON.parse(response.body).symbolize_keys

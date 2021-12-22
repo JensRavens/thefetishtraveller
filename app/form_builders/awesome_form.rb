@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class AwesomeForm < ActionView::Helpers::FormBuilder
-  alias original_text_field text_field
+  alias_method :original_text_field, :text_field
 
   delegate :model, to: :form, allow_nil: true
 
@@ -24,10 +24,10 @@ class AwesomeForm < ActionView::Helpers::FormBuilder
   def post_image_field(method, options = {})
     prepare_options method, options
     options[:accept] = "image/*"
-    options[:data] = { action: "image-preview#change" }
-    content = content_tag :div, data: { controller: "image-preview" } do
+    options[:data] = {action: "image-preview#change"}
+    content = content_tag :div, data: {controller: "image-preview"} do
       safe_join [
-        content_tag(:img, "", class: "input__preview", data: { "image-preview_target": "preview" }),
+        content_tag(:img, "", class: "input__preview", data: {"image-preview_target": "preview"}),
         file_field(method, options)
       ]
     end

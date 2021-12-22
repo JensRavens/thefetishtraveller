@@ -11,7 +11,7 @@ class GraphqlController < ApplicationController
     }
     result = ThefetishtravellerSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
-  rescue StandardError => e
+  rescue => e
     raise e unless Rails.env.development?
 
     handle_error_in_development e
@@ -41,6 +41,6 @@ class GraphqlController < ApplicationController
     logger.error error.message
     logger.error error.backtrace.join("\n")
 
-    render json: { error: { message: error.message, backtrace: error.backtrace }, data: {} }, status: :internal_server_error
+    render json: {error: {message: error.message, backtrace: error.backtrace}, data: {}}, status: :internal_server_error
   end
 end

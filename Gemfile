@@ -65,8 +65,7 @@ gem "sentry-rails"
 
 group :development, :test do
   gem "rspec-rails"
-  gem "rubocop", require: false
-  gem "rubocop-rails", require: false
+  gem "standard"
   gem "capybara"
   gem "cuprite"
   gem "i18n-tasks"
@@ -88,4 +87,5 @@ group :development do
   gem "pry-rails"
   gem "guard"
   gem "guard-rspec"
+  gem "solargraph-standardrb"
 end
