@@ -219,12 +219,12 @@ de:
       you_requested_a_login: You requested a login via your email address %{email} to thefetishtraveller.com. Please click the login button to complete your login.
   sessions:
     email:
+      email_login: E-Mail Login
       login: Login
     email_waiting:
       open_link_in_email: Wir haben eine E-Mail mit einem Login-Link an %{email} gesendet. Bitte klicke auf den Link in dieser E-Mail, um fortzufahren.
     new:
       claim: Personalisiere deine Reiseerfahrung
-      email_login: E-Mail Login
       how: Wie kann ich mich einloggen?
       how_explanation: Derzeit unterstützt diese Seite nur den Login mit Apple. Klicke einfach den Login Button und fang an, Reisepläne zu erstellen.
       intro: Logge dich ein, um Favoritenlisten, Reisepläne oder neue Veranstaltungen zu erstellen.

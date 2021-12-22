@@ -235,7 +235,7 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
-    i18n-tasks (0.9.36)
+    i18n-tasks (0.9.35)
       activesupport (>= 4.0.2)
       ast (>= 2.1.0)
       erubi
@@ -587,7 +587,7 @@ DEPENDENCIES
   guard-livereload
   guard-rspec
   httparty
-  i18n-tasks
+  i18n-tasks (= 0.9.35)
   icalendar (~> 2.4)
   image_processing
   jsbundling-rails
