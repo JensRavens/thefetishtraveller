@@ -42,6 +42,10 @@ module TextHelper
     sanitize text
   end
 
+  def simple_user_format(text)
+    auto_link(simple_format(text), html: { target: "_blank" } )
+  end
+
   def light_color?(color)
     return false if color.blank?
 

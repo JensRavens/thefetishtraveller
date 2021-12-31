@@ -44,6 +44,7 @@ gem "pundit"
 gem "acts-as-taggable-on"
 gem "yael"
 gem "translate_client"
+gem "rinku", require: "rails_rinku"
 
 # Assets
 gem "jsbundling-rails"
