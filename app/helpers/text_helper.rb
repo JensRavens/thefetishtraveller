@@ -35,7 +35,7 @@ module TextHelper
     text = text.gsub(Post::HASHTAG_REGEX) do |match|
       link_to match, public_send("#{context}_path", tag: match[1..]), class: :link
     end
-    simple_format text
+    simple_user_format text
   end
 
   def safe_format(text)
