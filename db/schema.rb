@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_30_225217) do
+ActiveRecord::Schema.define(version: 2021_12_31_123315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -333,8 +333,10 @@ ActiveRecord::Schema.define(version: 2021_11_30_225217) do
     t.string "bluf"
     t.string "visibility"
     t.string "onlyfans"
+    t.string "email_preferences"
     t.index ["apple_id"], name: "index_users_on_apple_id", unique: true
     t.index ["email"], name: "index_users_on_email"
+    t.index ["email_preferences"], name: "index_users_on_email_preferences"
     t.index ["facebook_id"], name: "index_users_on_facebook_id"
     t.index ["slug"], name: "index_users_on_slug", unique: true
     t.index ["visibility"], name: "index_users_on_visibility"

@@ -1,2 +1,4 @@
 p --
 div = simple_format t ".email_reason"
+- if @user
+  div: small = simple_format t ".change_email_preferences_html", url: edit_profile_url(id: @user)

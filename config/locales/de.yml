@@ -15,6 +15,7 @@ de:
     head:
       default_description: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
     mail_footer:
+      change_email_preferences_html: Du kannst die Benachrichtigungseinstellungen in deinem <a href=%{url}>Nutzerprofil</a> ändern.
       email_reason: |
         Du erhältst diese E-Mail weil du dich für die Beta von thefetishtraveller.com registriert hast.
 
@@ -186,6 +187,7 @@ de:
       unlike: Unlike
   profiles:
     edit:
+      notifications: Notifications
       profile: Profile
       social: Social
       your_account: Your account

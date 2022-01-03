@@ -20,6 +20,7 @@ class ProfilesController < ApplicationController
   end
 
   def edit
+    @profile.email_preferences = :daily if @profile.email_preferences.nil?
   end
 
   def update
@@ -38,6 +39,6 @@ class ProfilesController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:slug, :first_name, :last_name, :email, :avatar, :hero, :location_description, :visibility, :bio, *SocialLink::NETWORKS)
+    params.require(:user).permit(:slug, :first_name, :last_name, :email, :avatar, :hero, :location_description, :visibility, :bio, :email_preferences, *SocialLink::NETWORKS)
   end
 end

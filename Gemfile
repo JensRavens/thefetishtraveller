@@ -70,7 +70,7 @@ group :development, :test do
   gem "rubocop-rails", require: false
   gem "capybara"
   gem "cuprite"
-  gem "i18n-tasks"
+  gem "i18n-tasks", "0.9.35"
   gem "rack_session_access"
 end
 
