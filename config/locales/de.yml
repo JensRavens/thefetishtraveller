@@ -88,6 +88,8 @@ de:
       user:
         avatar: Profilbild
         bio: Profiltext
+        email_preferences_daily: Sende mir eine tägliche Zusammenfassung, was auf thefetishtraveller.com passiert ist.
+        email_preferences_none: Sende mir keine Zusammenfassung.
         location_description: Ort
         slug: Profilname
         visibility_internal: Internes Profil

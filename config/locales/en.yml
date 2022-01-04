@@ -88,6 +88,8 @@ en:
       user:
         avatar: Profile Picture
         bio: Profile Text
+        email_preferences_daily: Send me a daily summary of what has happened on thefetishtraveller.com
+        email_preferences_none: Do not send me summaries.
         location_description: Location
         slug: Profile Name
         visibility_internal: Internal Profile
