@@ -15,6 +15,7 @@ de:
     head:
       default_description: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
     mail_footer:
+      change_email_preferences_html: Du kannst die Benachrichtigungseinstellungen in deinem <a href=%{url}>Nutzerprofil</a> ändern.
       email_reason: |
         Du erhältst diese E-Mail weil du dich für die Beta von thefetishtraveller.com registriert hast.
 
@@ -87,6 +88,8 @@ de:
       user:
         avatar: Profilbild
         bio: Profiltext
+        email_preferences_daily: Sende mir eine tägliche Zusammenfassung, was auf thefetishtraveller.com passiert ist.
+        email_preferences_none: Sende mir keine Zusammenfassung.
         location_description: Ort
         slug: Profilname
         visibility_internal: Internes Profil
@@ -166,7 +169,7 @@ de:
   pages:
     home:
       claim: Ein Zuhause für deinen Fetisch
-      intro: Es ist ein Zeit für ein Soziales Netzwerk für deinen Fetisch. Ohne große Firmen, dafür aber mit einer großen Community.
+      intro: Es ist Zeit für ein Soziales Netzwerk für deinen Fetisch. Ohne große Firmen, dafür aber mit einer großen Community.
       join_us: Jetzt mitmachen
   posts:
     context:
@@ -189,6 +192,7 @@ de:
       unlike: Unlike
   profiles:
     edit:
+      notifications: Notifications
       profile: Profile
       social: Social
       your_account: Your account

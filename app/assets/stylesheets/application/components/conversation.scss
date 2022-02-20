@@ -9,6 +9,13 @@
 
   &__text {
     color: var(--color-text-muted);
+    text-overflow: ellipsis;
+    max-width: 100%;
+    --webkit-line-clamp: 3;
+  }
+
+  &__content {
+    overflow: hidden;
   }
 
   &--unread {

@@ -22,6 +22,9 @@
     h3.subheadline = t ".profile"
     = f.text_field :location_description
     = f.text_area :bio
+    h3.subheadline = t ".notifications"
+    = f.radio_button :email_preferences, "none"
+    = f.radio_button :email_preferences, "daily"
     .line.line--stretch
       a.button href=profile_path(@profile) = t "general.cancel"
       = f.submit

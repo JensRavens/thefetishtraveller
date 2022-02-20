@@ -15,6 +15,7 @@ en:
     head:
       default_description: Find fetish events all around the globe and connect with like-minded gear heads.
     mail_footer:
+      change_email_preferences_html: You can unsubscribe from this email in your <a href=%{url}>user profile</a>.
       email_reason: |
         You are receiving this email because you signed up for the public beta of thefetishtraveller.com.
 
@@ -87,6 +88,8 @@ en:
       user:
         avatar: Profile Picture
         bio: Profile Text
+        email_preferences_daily: Send me a daily summary of what has happened on thefetishtraveller.com
+        email_preferences_none: Do not send me summaries.
         location_description: Location
         slug: Profile Name
         visibility_internal: Internal Profile
@@ -189,6 +192,7 @@ en:
       unlike: Unlike
   profiles:
     edit:
+      notifications: Notifications
       profile: Profile
       social: Social
       your_account: Your account

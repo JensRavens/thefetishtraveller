@@ -70,6 +70,7 @@ class User < ApplicationRecord
   validates :slug, format: {with: /\A[a-zA-Z\d\-_]*\z/}
 
   enum visibility: [:public, :internal].index_with(&:to_s), _prefix: :visibility
+  enum email_preferences: [:none, :daily].index_with(&:to_s), _prefix: :email_preferences
 
   before_validation do
     self.tag_list = parsed_tags if bio_changed?
@@ -187,6 +188,8 @@ class User < ApplicationRecord
   end
 
   def send_daily_notifications!
+    return if email_preferences_none?
+
     NotificationMailer.notify(self).deliver_later
     publish :daily_notification
   end

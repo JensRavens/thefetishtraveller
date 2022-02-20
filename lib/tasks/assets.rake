@@ -9,7 +9,7 @@ namespace :assets do
     claims = {
       "iss" => "B49Y347BCU",
       "iat" => Time.now.to_i,
-      "exp" => Time.now.to_i + 86400 * 180,
+      "exp" => 180.days.from_now.to_i,
       "aud" => "https://appleid.apple.com",
       "sub" => "com.thefetishtraveller.web"
     }
