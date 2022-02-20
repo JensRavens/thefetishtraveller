@@ -7,7 +7,8 @@
     "lint:format": "prettier --list-different \"app/**/*.{ts,scss,json}\"",
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",
     "bundle-size": "npx source-map-explorer app/assets/builds/application.js app/assets/builds/application.js.map --no-border-checks",
-    "start": "yarn build --watch"
+    "start": "yarn build --watch",
+    "live": "yarn livereload -e scss app/assets"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
@@ -26,6 +27,7 @@
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "livereload": "^0.9.3",
     "prettier": "^2.5.0"
   },
   "license": "MIT"
