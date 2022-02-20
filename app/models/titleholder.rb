@@ -39,12 +39,12 @@ class Titleholder < ApplicationRecord
         Name:
         Title:
         Organizer/Sponsor/Club:
-        My Profile Name: #{user&.public_name}
-        Election Date (optional):
-        Stepdown Date (optional):
+        #{"My Profile Name: #{user.public_name}" if user}
+        Election Date:
+        Stepdown Date (if happened already):
         Short Bio (optional):
 
-        I am attaching some picture here:
+        I am attaching a picture with my sash here:
       TXT
     end
   end
