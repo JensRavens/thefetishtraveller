@@ -63,7 +63,7 @@ class Event < ApplicationRecord
 
   validates :name, :start_at, :end_at, presence: true
 
-  after_save do
+  after_create do
     publish :event_created, user_id: owners.first&.id, notify_admin: owners.any? && owners.none?(&:admin?)
   end
 
