@@ -43,7 +43,7 @@ module TextHelper
   end
 
   def simple_user_format(text)
-    auto_link(simple_format(text), html: { target: "_blank" })
+    auto_link(simple_format(text), html: {target: "_blank"})
   end
 
   def light_color?(color)
