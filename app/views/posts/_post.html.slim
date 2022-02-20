@@ -31,7 +31,7 @@
       .post__description = tagged_format post.description
       .post__date = l post.created_at, format: :short
       - if policy(post).comment?
-        .post__comment-bar data-hide-target="target" hidden=true
+        .post__comment-bar.hidden data-hide-target="target"
           = form_with model: current_user.comments.new, url: post_comments_path(post) do |f|
             = f.label :text, t(".add_a_comment"), class: "hidden"
             = f.text_area :text, placeholder: t(".add_a_comment")

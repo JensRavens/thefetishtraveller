@@ -15,6 +15,6 @@ header.header
             = image_tag current_user.avatar_image, width: 40, class: "avatar"
       - else
         a href=login_path = t ".login"
-form.search-bar data-hide-target="target" method="GET" action=search_path
+form.search-bar.hidden data-hide-target="target" method="GET" action=search_path
   input.search-bar__input type="search" data-controller="autosubmit" name="q" autocomplete="none" placeholder=t(".search_for")
   #search-results.search-bar__results

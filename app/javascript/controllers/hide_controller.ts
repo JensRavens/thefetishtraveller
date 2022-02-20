@@ -4,11 +4,8 @@ export default class extends Controller {
   static targets = ['target'];
   declare targetTarget: HTMLDivElement;
 
-  connect(): void {
-    this.targetTarget.classList.add('hidden');
-  }
-
-  toggle(): void {
+  toggle(event: Event): void {
+    event.preventDefault();
     this.targetTarget.classList.toggle('hidden');
   }
 }

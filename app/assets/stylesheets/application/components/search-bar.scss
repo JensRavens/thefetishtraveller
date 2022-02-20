@@ -1,13 +1,15 @@
 .search-bar {
-  position: fixed;
+  position: sticky;
   top: var(--size-navbar);
-  left: 0;
-  right: 0;
   color: white;
   background-color: var(--color-footer);
   display: flex;
   flex-direction: column;
   max-height: calc(100vh - var(--size-tab-bar) - var(--size-navbar));
+  width: 100vw;
+  max-width: 500px;
+  margin: auto;
+  z-index: 999;
 
   &:hidden {
     display: none;
@@ -22,7 +24,6 @@
   }
 
   &__results {
-    z-index: var(--z-search);
     border-bottom: 1px solid white;
     overflow: auto;
   }
