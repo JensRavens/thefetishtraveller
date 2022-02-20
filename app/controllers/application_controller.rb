@@ -53,8 +53,8 @@ class ApplicationController < ActionController::Base
     scope = scope.page(@current_page).per(per)
     @has_more_pages = !scope.next_page.nil? unless @has_more_pages == true
     if @current_page > 1
-      remove "next-page-link"
-      append "pagination-frame", with: "components/pagination", items: scope, partial: params[:partial]
+      ui.remove "next-page-link"
+      ui.append "pagination-frame", with: "components/pagination", items: scope, partial: params[:partial]
     end
     scope
   end
