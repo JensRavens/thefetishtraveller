@@ -24,6 +24,7 @@ class Titleholder < ApplicationRecord
   belongs_to :user, optional: true, touch: true
 
   scope :listed, -> { order(start_on: :desc) }
+  scope :searched, ->(term) { where("titleholders.full_title ILIKE :term OR titleholders.name ILIKE :term", term: "%#{term}%") }
 
   friendly_id :full_title, use: :slugged
   validates :full_title, :name, :start_on, presence: true
@@ -39,12 +40,12 @@ class Titleholder < ApplicationRecord
         Name:
         Title:
         Organizer/Sponsor/Club:
-        My Profile Name: #{user&.public_name}
-        Election Date (optional):
-        Stepdown Date (optional):
+        #{"My Profile Name: #{user.public_name}" if user}
+        Election Date:
+        Stepdown Date (if happened already):
         Short Bio (optional):
 
-        I am attaching some picture here:
+        I am attaching a picture with my sash here:
       TXT
     end
   end

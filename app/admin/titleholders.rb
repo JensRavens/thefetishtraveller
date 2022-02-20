@@ -28,8 +28,8 @@ ActiveAdmin.register Titleholder do
       input :end_on, as: :date_picker
       input :url
       input :abstract, as: :text
-      input :picture, as: :file, input_html: { accept: "image/*" }
-      input :gallery_images, as: :file, input_html: { multiple: true, accept: "image/*" }
+      input :picture, as: :file, input_html: {accept: "image/*"}
+      input :gallery_images, as: :file, input_html: {multiple: true, accept: "image/*"}
     end
     actions
   end

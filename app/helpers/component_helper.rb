@@ -18,14 +18,6 @@ module ComponentHelper
     current_user&.events&.include?(event)
   end
 
-  def modal_url(url, size: :regular, title: nil, close: false)
-    "javascript:ui.modal.load(#{{ url: url, size: size, title: title, close: close }.to_json})"
-  end
-
-  def close_modal_path
-    "javascript:ui.modal.close()"
-  end
-
   def paginated(scope, partial: nil, **options)
     turbo_frame_tag "pagination-frame", options.reverse_merge(target: "_top") do
       render "components/pagination", items: scope, partial: partial

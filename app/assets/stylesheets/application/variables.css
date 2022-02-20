@@ -22,12 +22,14 @@
   --size-safe-padding: max(env(safe-area-inset-right), 8px);
   --size-safe-bottom: 0px;
   --size-safe-bottom: max(env(safe-area-inset-bottom), 0px);
+  --size-navbar: 60px;
   --size-tab-bar: calc(49px + var(--size-safe-bottom));
 
   --font-heading: 'Uni Sans', 'Open Sans', sans-serif;
   --font-heading-alternate: 'Bebas Neue', 'Open Sans', sans-serif;
   --font-text: 'Open Sans', sans-serif;
 
+  --z-search: 800;
   --z-nav: 900;
   --z-modal: 1000;
 }

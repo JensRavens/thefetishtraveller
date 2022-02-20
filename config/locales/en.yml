@@ -27,7 +27,7 @@ en:
       create_a_post: Create a Post
       edit: Edit
       login: Login
-      notifications: Notifications
+      search_for: Search for Profiles, Events or Articles...
     menu_links:
       conversations: Conversations
       events: Events
@@ -134,6 +134,8 @@ en:
     posted:
       created_a_post_html: "%{user} created a new post."
   notifications:
+    index:
+      notifications: Notifications
     notification:
       type_commented: "%{sender} commented on your post."
       type_event_created: "%{sender} created a new post."
@@ -179,6 +181,7 @@ en:
       there_is_nothing_yet: Your followed profiles didn't post anything yet. Follow someone to get content here.
     new:
       cancel: Cancel
+      create_a_post: Create a Post
     post:
       add_a_comment: Add a comment
       comment: Comment
@@ -221,12 +224,12 @@ en:
       you_requested_a_login: You requested a login via your email address %{email} to thefetishtraveller.com. Please click the login button to complete your login.
   sessions:
     email:
+      email_login: Email Login
       login: Login
     email_waiting:
       open_link_in_email: We have sent an email with a login link to %{email}. Please click the link in the email to continue your login.
     new:
       claim: Personalize your Travel Experience
-      email_login: Email Login
       how: How can I Login?
       how_explanation: Currently this site only supports login via apple. There is no need for account creation, just click on the login button to start making travel plans.
       intro: Login to save your favorites list, travel plans or submit events.

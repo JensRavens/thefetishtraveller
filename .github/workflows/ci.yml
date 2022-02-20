@@ -34,8 +34,8 @@ jobs:
         uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Rubocop
-        run: bundle exec rubocop
+      - name: Lint
+        run: bundle exec standardrb
       - name: Translations Lint
         run: bundle exec i18n-tasks health
       - name: JS Lint

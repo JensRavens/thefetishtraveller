@@ -1,9 +1,11 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  include Pundit
-  include Localizable
-  include RemoteNavigation
+  include Pundit::Authorization
+  include Shimmer::Localizable
+  include Shimmer::RemoteNavigation
+
+  before_action :check_locale
 
   layout "application"
 
@@ -12,7 +14,7 @@ class ApplicationController < ActionController::Base
       raise error unless request.format.turbo_stream?
 
       Sentry.capture_exception(error)
-      close_modal
+      ui.close_modal
       replace :main, with: "errors/error", error: error
       default_render
     end
@@ -34,11 +36,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user
   def current_user
-    @current_user ||= session[:user_id].presence.then { |id| User.find_by(id: id) }.tap { |user| Sentry.set_user(user ? { username: user.slug } : {}) }
-  end
-
-  def message_verifier
-    @message_verifier ||= ActiveSupport::MessageVerifier.new(Rails.application.secrets.secret_key_base)
+    @current_user ||= session[:user_id].presence.then { |id| User.find_by(id: id) }.tap { |user| Sentry.set_user(user ? {username: user.slug} : {}) }
   end
 
   def require_login

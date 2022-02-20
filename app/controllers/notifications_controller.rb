@@ -2,6 +2,7 @@
 
 class NotificationsController < ApplicationController
   before_action :require_login
+  before_action :enforce_modal
 
   def index
     @notifications = current_user.notifications.reverse_chronologic.limit(20)

@@ -1,5 +1,5 @@
 = cache [I18n.locale, titleholder]
-  a.generic-listing href=titleholder_path(titleholder) target="_top" style="background-image: url(#{image_asset_url(titleholder.picture, width: 500)})"
+  a.generic-listing href=titleholder_path(titleholder) target="_top" style="background-image: url(#{image_file_url(titleholder.picture, width: 500)})"
     .generic-listing__background
     .generic-listing__content
       .generic-listing__category = titleholder.title.country_name

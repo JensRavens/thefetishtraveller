@@ -4,8 +4,8 @@ class ChatChannel < ApplicationCable::Channel
   class << self
     def on_new_message(message)
       message.conversation.users.each do |user|
-        html = ApplicationController.renderer.render(partial: "messages/message", locals: { message: message, current_user: user })
-        ActionCable.server.broadcast(id_for(conversation: message.conversation, user: user), { html: html })
+        html = ApplicationController.renderer.render(partial: "messages/message", locals: {message: message, current_user: user})
+        ActionCable.server.broadcast(id_for(conversation: message.conversation, user: user), {html: html})
       end
     end
 

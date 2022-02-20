@@ -78,7 +78,7 @@ class Notification < ApplicationRecord
 
   def deliver!
     title = I18n.t("notifications.notification.type_#{notification_type}", sender: sender.public_name)
-    image = ApplicationController.helpers.image_asset_url(subject.image, width: 128) if subject.is_a? Post
+    image = ApplicationController.helpers.image_file_url(subject.image, width: 128) if subject.is_a? Post
     NotificationChannel.broadcast_to(user, title: title, image: image, unread_count: user.unread_notifications_count)
   end
 

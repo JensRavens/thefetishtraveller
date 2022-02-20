@@ -87,6 +87,16 @@
     background-repeat: no-repeat;
   }
 
+  &__search {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    background-image: asset-url('icon/search.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
   &__bell {
     width: 24px;
     height: 24px;

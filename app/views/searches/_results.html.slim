@@ -1,0 +1,27 @@
+#search-results.search-bar__results
+  - if search
+    - search.results.each do |result|
+      - if result.is_a? User
+        a.search-bar__result href=profile_path(result)
+          = image_tag result.avatar_image, width: 60, class: "avatar search-bar__result-image"
+          .search-bar__result-details
+            .search-bar__result-title = result.public_name
+            .search-bar__result-subtitle = result.location_description
+      - if result.is_a? Event
+        a.search-bar__result href=event_path(result)
+          = image_tag result.hero, width: 60, class: "search-bar__result-image"
+          .search-bar__result-details
+            .search-bar__result-title = result.name
+            .search-bar__result-subtitle #{result.location.description} / #{formatted_event_date(event: result)}
+      - if result.is_a? Titleholder
+        a.search-bar__result href=titleholder_path(result)
+          = image_tag result.picture, width: 60, class: "search-bar__result-image"
+          .search-bar__result-details
+            .search-bar__result-title = result.full_title
+            .search-bar__result-subtitle = result.name
+      - if result.is_a? Article
+        a.search-bar__result href=article_path(result)
+          = image_tag result.hero, width: 60, class: "search-bar__result-image"
+          .search-bar__result-details
+            .search-bar__result-title = strip_tags result.title
+            .search-bar__result-subtitle = result.user.public_name

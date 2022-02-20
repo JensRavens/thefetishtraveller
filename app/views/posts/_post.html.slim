@@ -9,9 +9,9 @@
         a.post__author href=profile_path(post.user) = post.user.public_name
         - if post.location_description.present?
           .post__location = post.location_description
-      .post__meta-actions: .context-menu data-controller="context" data-context-path-value=context_post_path(post) data-action="click->context#show"
+      .post__meta-actions: a.context-menu#post-context href=popover_path(context_post_path(post), placement: "left")
     .post__content data-controller="hide redirect-interaction"
-      img.post__image data-action="dblclick->redirect-interaction#trigger" src=image_asset_url(post.image, width: 416)
+      img.post__image data-action="dblclick->redirect-interaction#trigger" src=image_file_url(post.image, width: 416)
       .post__icon-bar
         - if post.likes.any? { |e| e.user_id == current_user&.id }
           = button_to "", like_path(post), method: :delete, class: "post__icon-bar__button heart-button active", title: t(".unlike")
@@ -31,7 +31,7 @@
       .post__description = tagged_format post.description
       .post__date = l post.created_at, format: :short
       - if policy(post).comment?
-        .post__comment-bar data-hide-target="target" hidden=true
+        .post__comment-bar.hidden data-hide-target="target"
           = form_with model: current_user.comments.new, url: post_comments_path(post) do |f|
             = f.label :text, t(".add_a_comment"), class: "hidden"
             = f.text_area :text, placeholder: t(".add_a_comment")

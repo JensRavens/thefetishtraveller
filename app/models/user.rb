@@ -62,10 +62,12 @@ class User < ApplicationRecord
   scope :internal_profile, -> { where(visibility: "internal") }
   scope :with_pending_notifications, -> { where(id: Notification.pending.select(:user_id)) }
   scope :attending, ->(event) { where(id: event.travel_plans.select(:user_id)) }
+  scope :searched, ->(term) { onboarded.where("users.slug ILIKE :term OR users.location_description ILIKE :term OR users.bio ILIKE :term", term: "%#{term}%") }
+  scope :least_recently_active, -> { order(updated_at: :desc) }
 
-  validates :slug, :email, presence: true, uniqueness: { case_sensitive: false }, on: :profile_edit
+  validates :slug, :email, presence: true, uniqueness: {case_sensitive: false}, on: :profile_edit
   validates :twitter, :instagram, :recon, :romeo, :bluf, :onlyfans, social_network: true, on: :profile_edit
-  validates :slug, format: { with: /\A[a-zA-Z\d\-_]*\z/ }
+  validates :slug, format: {with: /\A[a-zA-Z\d\-_]*\z/}
 
   enum visibility: [:public, :internal].index_with(&:to_s), _prefix: :visibility
   enum email_preferences: [:none, :daily].index_with(&:to_s), _prefix: :email_preferences
@@ -76,7 +78,7 @@ class User < ApplicationRecord
 
   class << self
     def authenticate_facebook(token)
-      response = HTTParty.get "https://graph.facebook.com/me", query: { fields: "id,first_name,last_name,email", access_token: token }
+      response = HTTParty.get "https://graph.facebook.com/me", query: {fields: "id,first_name,last_name,email", access_token: token}
       raise "facebook request error: #{response.code}" unless response.code == 200
 
       data = OpenStruct.new JSON.parse(response.body).symbolize_keys

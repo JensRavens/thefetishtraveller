@@ -27,7 +27,7 @@ de:
       create_a_post: Post erstellen
       edit: bearbeiten
       login: Login
-      notifications: Notifications
+      search_for: Suche nach Profilen, Events oder Artikeln...
     menu_links:
       conversations: Chat
       events: Events
@@ -134,6 +134,8 @@ de:
     posted:
       created_a_post_html: "%{user} hat einen neuen Post erstellt."
   notifications:
+    index:
+      notifications: Notifications
     notification:
       type_commented: "%{sender} hat deinen Post kommentiert."
       type_event_created: "%{sender} hat ein Event erstellt."
@@ -179,6 +181,7 @@ de:
       there_is_nothing_yet: Deine Kontakte haben noch nichts gepostet. Folge doch ein paar weiteren Profilen, dann ist hier bald mehr los.
     new:
       cancel: Abbrechen
+      create_a_post: Post erstellen
     post:
       add_a_comment: Kommentar verfassen
       comment: Kommentieren
@@ -221,12 +224,12 @@ de:
       you_requested_a_login: You requested a login via your email address %{email} to thefetishtraveller.com. Please click the login button to complete your login.
   sessions:
     email:
+      email_login: E-Mail Login
       login: Login
     email_waiting:
       open_link_in_email: Wir haben eine E-Mail mit einem Login-Link an %{email} gesendet. Bitte klicke auf den Link in dieser E-Mail, um fortzufahren.
     new:
       claim: Personalisiere deine Reiseerfahrung
-      email_login: E-Mail Login
       how: Wie kann ich mich einloggen?
       how_explanation: Derzeit unterstützt diese Seite nur den Login mit Apple. Klicke einfach den Login Button und fang an, Reisepläne zu erstellen.
       intro: Logge dich ein, um Favoritenlisten, Reisepläne oder neue Veranstaltungen zu erstellen.

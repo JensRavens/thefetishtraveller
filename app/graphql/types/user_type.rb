@@ -18,7 +18,7 @@ module Types
       AssociationLoader.for(User, :events).load(object)
     end
 
-    def has_events # rubocop:disable Naming/PredicateName
+    def has_events
       events.then(&:any?)
     end
   end

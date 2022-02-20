@@ -18,7 +18,7 @@ module MetaHelper
   def thumbnail(image)
     return if image.blank?
 
-    content_for :thumbnail_url, image_asset_url(image, width: 1200), flush: true
+    content_for :thumbnail_url, image_file_url(image, width: 1200), flush: true
     image
   end
 
@@ -31,7 +31,7 @@ module MetaHelper
       "@context": "https://schema.org",
       "@type": "NewsArticle",
       headline: strip_tags(article.title),
-      image: [image_asset_url(article.hero, relative: false)].compact,
+      image: [image_file_url(article.hero)].compact,
       datePublished: article.publish_at,
       dateModified: article.updated_at,
       author: [{
@@ -62,7 +62,7 @@ module MetaHelper
           addressCountry: event.location.country_code
         }
       },
-      image: [image_asset_url(event.hero, relative: false), image_asset_url(event.header, relative: false), image_asset_url(event.flyer, relative: false)].compact,
+      image: [image_file_url(event.hero), image_file_url(event.header), image_file_url(event.flyer)].compact,
       description: event.abstract,
       organizer: {
         "@type": "Organization",

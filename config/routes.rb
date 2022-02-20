@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     resources :events, only: [:index]
   end
 
-  get "sitemaps/*path", to: "pages#sitemap"
+  get "sitemaps/*path", to: "shimmer/sitemaps#show"
   scope "/(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     ActiveAdmin.routes(self)
     match "404", to: "errors#not_found", via: :all
@@ -45,11 +45,12 @@ Rails.application.routes.draw do
     resource :magazine, only: :show
     resource :onboarding, only: [:show, :update]
     resource :manifest, only: :show
+    resource :search, only: :show
     root "pages#home"
     get "imprint", to: "pages#imprint"
     get ":id", to: "profiles#show", as: :profile, constraints: ->(req) { req.format.html? }
     patch ":id", to: "profiles#update"
   end
 
-  resources :files, only: :show
+  resources :files, only: :show, controller: "shimmer/files"
 end

@@ -6,7 +6,7 @@ class CommentsController < ApplicationController
   def create
     @post = authorize Post.find(params[:post_id]), :comment?
     @comment = current_user.comment! post: @post, text: comment_params[:text]
-    replace @post
+    ui.replace @post
   end
 
   private

@@ -4,7 +4,7 @@ source "https://rubygems.org"
 ruby File.read(".ruby-version").strip
 
 # Core
-gem "rails", "6.1.4.1"
+gem "rails", "6.1.4.6"
 gem "puma"
 
 # Database
@@ -13,10 +13,10 @@ gem "redis"
 
 # Extensions
 gem "bootsnap", require: false
+gem "shimmer"
 gem "mini_magick"
 gem "dotenv-rails"
 gem "rails-i18n"
-gem "active_model_serializers"
 gem "rack-cors", require: "rack/cors"
 gem "rack-cache"
 gem "redis-rack-cache"
@@ -66,8 +66,7 @@ gem "sentry-rails"
 
 group :development, :test do
   gem "rspec-rails"
-  gem "rubocop", require: false
-  gem "rubocop-rails", require: false
+  gem "standard"
   gem "capybara"
   gem "cuprite"
   gem "i18n-tasks", "0.9.35"
@@ -89,4 +88,5 @@ group :development do
   gem "pry-rails"
   gem "guard"
   gem "guard-rspec"
+  gem "solargraph-standardrb"
 end

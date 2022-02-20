@@ -9,7 +9,7 @@
   - if notification.subject.is_a? Message
     - path = profile_messages_path(notification.sender)
   .notification class=("notification--unread" unless notification.read?) id=dom_id(notification)
-    a.notification__sender href=profile_path(notification.sender) target="_top" = image_tag notification.sender&.avatar_image, width: 60, class: "avatar"
+    a.notification__sender href=profile_path(notification.sender) = image_tag notification.sender&.avatar_image, width: 60, class: "avatar"
     / i18n-tasks-use t('.type_liked')
     / i18n-tasks-use t('.type_commented')
     / i18n-tasks-use t('.type_followed')
@@ -17,6 +17,6 @@
     / i18n-tasks-use t('.type_posted')
     / i18n-tasks-use t('.type_message_received')
     / i18n-tasks-use t('.type_new_user')
-    a.notification__text href=path target="_top" = t ".type_#{notification.notification_type}", sender: notification.sender.public_name
+    a.notification__text href=path = t ".type_#{notification.notification_type}", sender: notification.sender.public_name
     - if notification.subject.is_a? Post
-      a.notification__post href=path target="_top" = image_tag notification.subject.image, width: 80
+      a.notification__post href=path = image_tag notification.subject.image, width: 80

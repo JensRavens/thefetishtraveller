@@ -16,6 +16,11 @@
   justify-content: center;
   align-items: center;
 
+  &:disabled {
+    border-color: var(--color-text-muted);
+    color: var(--color-text-muted);
+  }
+
   &::before {
     content: '';
     display: block;

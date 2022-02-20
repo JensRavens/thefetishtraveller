@@ -1,5 +1,5 @@
 = cache [I18n.locale, event]
-  a.generic-listing class=("generic-listing--huge" if event.featured?) href=event_path(event) style="background-image: url(#{image_asset_url(event.hero, width: event.featured? ? 1000 : 500)})"
+  a.generic-listing class=("generic-listing--huge" if event.featured?) href=event_path(event) style="background-image: url(#{image_file_url(event.hero, width: event.featured? ? 1000 : 500)})"
     .generic-listing__background
     .generic-listing__content
       .generic-listing__category = event.categories.join(", ")

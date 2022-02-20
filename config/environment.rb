@@ -7,11 +7,11 @@ require File.expand_path("application", __dir__)
 Rails.application.initialize!
 
 host = if ENV["HOST"].present?
-         ENV["HOST"]
-       elsif ENV["HEROKU_APP_NAME"].present?
-         "https://#{ENV['HEROKU_APP_NAME']}.herokuapp.com"
-       else
-         "http://localhost:3000"
-       end
+  ENV["HOST"]
+elsif ENV["HEROKU_APP_NAME"].present?
+  "https://#{ENV["HEROKU_APP_NAME"]}.herokuapp.com"
+else
+  "http://localhost:3000"
+end
 
 Rails.application.routes.default_url_options[:host] = host
