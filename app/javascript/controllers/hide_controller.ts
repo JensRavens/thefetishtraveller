@@ -5,10 +5,10 @@ export default class extends Controller {
   declare targetTarget: HTMLDivElement;
 
   connect(): void {
-    this.targetTarget.hidden = true;
+    this.targetTarget.classList.add('hidden');
   }
 
   toggle(): void {
-    this.targetTarget.hidden = !this.targetTarget.hidden;
+    this.targetTarget.classList.toggle('hidden');
   }
 }
