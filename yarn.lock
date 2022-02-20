@@ -49,10 +49,10 @@
   resolved "https://registry.yarnpkg.com/@humanwhocodes/object-schema/-/object-schema-1.2.1.tgz#b520529ec21d8e5945a1851dfd1c32e94e39ff45"
   integrity sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==
 
-"@nerdgeschoss/shimmer@0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@nerdgeschoss/shimmer/-/shimmer-0.0.5.tgz#5e2b71677e30c5472d54d877d1451e5b9b87fd5a"
-  integrity sha512-WvJLevcJmuW5EdVDzuUYRePhmh6ml9VwVzINwyzs664ucPRRRDeUQYOdtLlbp6RtCfgNeUxm+LilsbbfTQyQnQ==
+"@nerdgeschoss/shimmer@0.0.10":
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/@nerdgeschoss/shimmer/-/shimmer-0.0.10.tgz#80914925b2939a040600583f473720c2dcb0d344"
+  integrity sha512-U26L/Xdl9O9q/tXN3/4atpuBNZyRqRceOx9m+ciQSTND6j5fM+ud3V5Hh7sK1qw3Si1zEbn1z2Z8THblFDx/pg==
   dependencies:
     "@hotwired/stimulus" "^3.0.1"
     "@popperjs/core" "^2.11.0"

@@ -4,7 +4,7 @@ source "https://rubygems.org"
 ruby File.read(".ruby-version").strip
 
 # Core
-gem "rails", "6.1.4.1"
+gem "rails", "6.1.4.6"
 gem "puma"
 
 # Database

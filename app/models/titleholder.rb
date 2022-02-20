@@ -24,6 +24,7 @@ class Titleholder < ApplicationRecord
   belongs_to :user, optional: true, touch: true
 
   scope :listed, -> { order(start_on: :desc) }
+  scope :searched, ->(term) { where("titleholders.full_title ILIKE :term OR titleholders.name ILIKE :term", term: "%#{term}%") }
 
   friendly_id :full_title, use: :slugged
   validates :full_title, :name, :start_on, presence: true

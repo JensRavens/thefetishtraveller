@@ -20,6 +20,7 @@ class Article < ApplicationRecord
   belongs_to :user
 
   scope :listed, -> { published.order(publish_at: :desc) }
+  scope :searched, ->(term) { where("articles.title ILIKE :term", term: "%#{term}%") }
 
   has_rich_text :content
   has_rich_text :abstract

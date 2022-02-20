@@ -13,7 +13,7 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.0.1",
     "@hotwired/turbo-rails": "^7.1.0",
-    "@nerdgeschoss/shimmer": "0.0.5",
+    "@nerdgeschoss/shimmer": "0.0.10",
     "@popperjs/core": "^2.11.0",
     "@rails/actiontext": "^6.1.4-1",
     "esbuild": "^0.14.1",

@@ -3,7 +3,7 @@ import { Controller } from '@hotwired/stimulus';
 export default class extends Controller {
   static values = { event: String };
 
-  declare readonly eventValue: string;
+  declare readonly eventValue?: string;
 
   connect(): void {
     this.element.addEventListener(this.eventName, this.onChange);

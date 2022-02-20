@@ -28,6 +28,7 @@
   --font-heading-alternate: 'Bebas Neue', 'Open Sans', sans-serif;
   --font-text: 'Open Sans', sans-serif;
 
+  --z-search: 800;
   --z-nav: 900;
   --z-modal: 1000;
 }
