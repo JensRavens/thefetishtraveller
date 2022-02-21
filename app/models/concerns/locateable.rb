@@ -17,7 +17,6 @@ module Locateable
         timezone = (timezone.to_i * 60).then { |offset| ActiveSupport::TimeZone.all.find { |e| e.utc_offset == offset } }&.name
       end
 
-
       self.location = Location.find_by(name: value[:name], country_code: value[:country_code])
       if location
         location.google_id = value[:id]
