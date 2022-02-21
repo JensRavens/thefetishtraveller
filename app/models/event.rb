@@ -33,13 +33,13 @@ class Event < ApplicationRecord
   extend FriendlyId
   include DocumentSerializable
   include Reviewable
+  include Locateable
 
   friendly_id :name, use: :slugged
   CATEGORIES = ["bluf", "csd", "culture", "election", "festival", "party", "social"].freeze
 
   has_many :travel_plans, dependent: :delete_all
   has_many :events, dependent: :destroy
-  belongs_to :location
 
   scope :with_attachments, -> { with_attached_hero.with_attached_header.with_attached_logo.with_attached_flyer.with_attached_gallery_images }
   scope :in_future, -> { where("events.end_at >= NOW()") }
@@ -79,7 +79,7 @@ class Event < ApplicationRecord
     define_method attribute do
       return self[attribute] unless location
 
-      self[attribute].in_time_zone(location.timezone)
+      self[attribute]&.in_time_zone(location.timezone.presence || "Berlin")
     end
   end
 

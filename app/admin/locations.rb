@@ -57,7 +57,7 @@ ActiveAdmin.register Location do
       input :lat
       input :lon
       input :category, collection: [:region, :city, :hotel, :shop, :bar, :venue].map { |e| [e.to_s.humanize, e] }, include_blank: false
-      input :timezone, as: :select, collection: ActiveSupport::TimeZone.all.map { |e| [e.name, e.tzinfo.identifier] }.sort_by(&:first), include_blank: false
+      input :timezone, as: :select, collection: ActiveSupport::TimeZone.all.map { |e| [e.name, e.tzinfo.identifier] }.sort_by(&:first), include_blank: true
     end
     actions
   end

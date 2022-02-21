@@ -5,7 +5,7 @@
   .container.container--small
     .stack
       = f.text_field :name
-      = f.collection_select :location_id, Location.alphabetic.uniq(&:description), :id, :description
+      = f.location_field :location_id
       .line
         = f.datetime_field :start_at
         = f.datetime_field :end_at
