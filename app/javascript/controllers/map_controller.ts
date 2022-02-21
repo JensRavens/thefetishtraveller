@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
+import { mapsReady } from '../lib/map';
 
 export default class extends Controller {
   static values = { coordinates: Object, title: String };
@@ -6,6 +7,7 @@ export default class extends Controller {
   declare readonly titleValue: string;
 
   async connect(): Promise<void> {
+    await mapsReady;
     const map = new google.maps.Map(this.element as HTMLElement, {
       center: this.coordinatesValue,
       zoom: 12,

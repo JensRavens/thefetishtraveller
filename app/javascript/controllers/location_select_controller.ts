@@ -1,4 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
+import { mapsReady } from '../lib/map';
 
 export default class extends Controller {
   private autocomplete: google.maps.places.Autocomplete;
@@ -25,7 +26,8 @@ export default class extends Controller {
   declare lonTarget: HTMLInputElement;
   declare timezoneTarget: HTMLInputElement;
 
-  connect(): void {
+  async connect(): Promise<void> {
+    await mapsReady;
     const options = {
       fields: [
         'place_id',
