@@ -1,7 +1,5 @@
 import { Controller } from '@hotwired/stimulus';
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-declare const google: any;
+import { mapsReady } from '../lib/map';
 
 export default class extends Controller {
   static values = { coordinates: Object, title: String };
@@ -9,7 +7,8 @@ export default class extends Controller {
   declare readonly titleValue: string;
 
   async connect(): Promise<void> {
-    const map = new google.maps.Map(this.element, {
+    await mapsReady;
+    const map = new google.maps.Map(this.element as HTMLElement, {
       center: this.coordinatesValue,
       zoom: 12,
     });

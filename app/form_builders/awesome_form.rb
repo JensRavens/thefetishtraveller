@@ -39,6 +39,30 @@ class AwesomeForm < ActionView::Helpers::FormBuilder
     wrap method, super(method, options), "input--text", options
   end
 
+  def location_field(method, options = {})
+    location = object.try(:location)
+    prepare_options method, options
+    options[:name] = ""
+    options[:value] ||= location&.name
+    fields = fields_for :location_details do |f|
+      safe_join [
+        f.hidden_field(:id, "data-location-select-target": "id", value: location&.google_id),
+        f.hidden_field(:name, "data-location-select-target": "name"),
+        f.hidden_field(:country_code, "data-location-select-target": "countryCode"),
+        f.hidden_field(:address, "data-location-select-target": "address"),
+        f.hidden_field(:zip, "data-location-select-target": "zip"),
+        f.hidden_field(:city, "data-location-select-target": "city"),
+        f.hidden_field(:lat, "data-location-select-target": "lat"),
+        f.hidden_field(:lon, "data-location-select-target": "lon"),
+        f.hidden_field(:timezone, "data-location-select-target": "timezone")
+      ]
+    end
+    wrap method, [
+      original_text_field(method, options.merge("data-location-select-target": "select")),
+      fields
+    ], "input--text", options.merge(controller: "location-select")
+  end
+
   def password_field(method, options = {})
     prepare_options method, options
     wrap method, super(method, options), "input--text", options
@@ -119,7 +143,8 @@ class AwesomeForm < ActionView::Helpers::FormBuilder
     label = label(options.delete(:label_method) || method, options.delete(:label_text), class: "input__label")
     label = nil if options[:label] == false
     description = options.delete(:description).presence&.then { |e| content_tag(:div, e, class: "input__description") }
-    content_tag(:div, safe_join([label, content, description, errors].compact), class: ["input"] + classes)
+    controller = options.delete(:controller)
+    content_tag(:div, safe_join([label, content, description, errors].compact), class: ["input"] + classes, "data-controller": controller)
   end
 
   def helper

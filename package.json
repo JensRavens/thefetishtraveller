@@ -16,6 +16,7 @@
     "@nerdgeschoss/shimmer": "0.0.10",
     "@popperjs/core": "^2.11.0",
     "@rails/actiontext": "^6.1.4-1",
+    "@types/google.maps": "^3.47.4",
     "esbuild": "^0.14.1",
     "flatpickr": "^4.6.9",
     "trix": "^1.2.0",

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_31_123315) do
+ActiveRecord::Schema.define(version: 2022_02_21_090423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -190,8 +190,10 @@ ActiveRecord::Schema.define(version: 2021_12_31_123315) do
     t.string "category"
     t.string "timezone"
     t.string "bluf_id"
+    t.string "google_id"
     t.index ["bluf_id"], name: "index_locations_on_bluf_id", unique: true
     t.index ["category"], name: "index_locations_on_category"
+    t.index ["google_id"], name: "index_locations_on_google_id"
     t.index ["slug"], name: "index_locations_on_slug"
   end
 
