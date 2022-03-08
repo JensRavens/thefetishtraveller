@@ -1,0 +1,7 @@
+.modal__title = t(".edit_post")
+= form_with model: @post, builder: AwesomeForm, class: :stack do |f|
+  = f.text_field :location_description, required: true
+  = f.text_area :description, required: true
+  .line.line--stretch
+    a.button href=close_modal_path = t ".cancel"
+    = f.submit t(".save")

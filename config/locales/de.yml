@@ -175,7 +175,11 @@ de:
     context:
       confirm_post_deletion: Willst du diesen Post wirklich löschen?
       delete: Löschen
+      edit: Bearbeiten
       report: Melden
+    edit:
+      cancel: Abbrechen
+      edit_post: Post bearbeiten
     index:
       no_posts_yet: Noch keine Posts
       there_is_nothing_yet: Deine Kontakte haben noch nichts gepostet. Folge doch ein paar weiteren Profilen, dann ist hier bald mehr los.

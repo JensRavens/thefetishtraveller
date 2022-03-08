@@ -5,6 +5,10 @@ class PostPolicy < ApplicationPolicy
     record.user == user
   end
 
+  def update?
+    record.user == user
+  end
+
   def report?
     record.user != user
   end

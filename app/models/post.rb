@@ -25,7 +25,8 @@ class Post < ApplicationRecord
   scope :reverse_chronologic, -> { order(created_at: :desc) }
   scope :for_user, ->(user) { where(user_id: user.followed_users).or(where(user: user)) }
 
-  validates :image, :description, presence: true
+  validates :image, presence: true, on: :create
+  validates :description, presence: true
 
   before_save do
     self.tag_list = parsed_tags if description_changed?

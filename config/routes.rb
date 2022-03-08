@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resources :conversations, only: :index
     resources :follows, only: [:create, :destroy]
     resources :likes, only: [:create, :destroy]
-    resources :posts, only: [:new, :create, :index, :show, :destroy] do
+    resources :posts do
       get "context", on: :member
       resources :comments, only: :create
     end
