@@ -33,7 +33,6 @@ head
   = stylesheet_link_tag "application", media: 'all', 'data-turbo-track': 'reload'
   = javascript_include_tag 'application', 'data-turbo-track': 'reload', defer: true
   script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDqKALdkIndBLVLReuQHzhcXjghXpS5SoE&libraries=places&callback=_mapsReady" defer=true
-  script src="https://accounts.google.com/gsi/client" async=true defer=true
 
   = yield :additional_head_tags if content_for? :additional_head_tags
 
