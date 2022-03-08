@@ -180,6 +180,7 @@ en:
     edit:
       cancel: Cancel
       edit_post: Edit Post
+      save: Save
     index:
       no_posts_yet: No posts yet
       there_is_nothing_yet: Your followed profiles didn't post anything yet. Follow someone to get content here.
