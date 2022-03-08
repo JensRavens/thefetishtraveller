@@ -22,6 +22,8 @@
 #  bluf                 :string
 #  visibility           :string
 #  onlyfans             :string
+#  email_preferences    :string
+#  google_id            :string
 #
 john_doe:
   first_name: John

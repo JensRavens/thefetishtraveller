@@ -178,6 +178,8 @@ GEM
       raabro (~> 1.4)
     globalid (1.0.0)
       activesupport (>= 5.0)
+    google-id-token (1.4.2)
+      jwt (>= 1)
     graphiql-rails (1.8.0)
       railties
       sprockets-rails
@@ -558,6 +560,7 @@ DEPENDENCIES
   dotenv-rails
   faker
   friendly_id
+  google-id-token
   graphiql-rails
   graphql
   graphql-batch

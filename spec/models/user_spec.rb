@@ -24,6 +24,8 @@
 #  bluf                 :string
 #  visibility           :string
 #  onlyfans             :string
+#  email_preferences    :string
+#  google_id            :string
 #
 require "rails_helper"
 

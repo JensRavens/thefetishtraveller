@@ -19,6 +19,7 @@
 #  category     :string
 #  timezone     :string
 #  bluf_id      :string
+#  google_id    :string
 #
 
 class Location < ApplicationRecord
