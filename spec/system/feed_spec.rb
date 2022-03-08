@@ -42,4 +42,13 @@ RSpec.describe "user in the feed" do
     click_on "post_comment"
     expect(page).to have_content "nice pic!"
   end
+
+  it "updates a posts" do
+    login post.user
+    visit post_path(post)
+    open_context
+    click_on "edit"
+    fill_in "location_description", with: "updated description"
+    click_on "posts.edit.save"
+  end
 end

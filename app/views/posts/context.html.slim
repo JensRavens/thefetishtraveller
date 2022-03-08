@@ -1,4 +1,7 @@
-- if policy(@post).destroy?
-  = button_to t(".delete"), post_path(@post), method: :delete, data: { confirm: t(".confirm_post_deletion") }, class: "context-menu__button context-menu__button-destructive"
-- if policy(@post).report?
-  a href="mailto:report@thefetishtraveller.com?subject=reporting:post-#{@post.id}/#{current_user&.id || 'anon'}" = t ".report"
+.stack
+  - if policy(@post).destroy?
+    = button_to t(".delete"), post_path(@post), method: :delete, data: { confirm: t(".confirm_post_deletion") }, class: "context-menu__button context-menu__button-destructive"
+  - if policy(@post).edit?
+    a.context-menu__button href=modal_path(edit_post_path(@post), size: :small, close: false) = t ".edit"
+  - if policy(@post).report?
+    a.context-menu__button href="mailto:report@thefetishtraveller.com?subject=reporting:post-#{@post.id}/#{current_user&.id || 'anon'}" = t ".report"
