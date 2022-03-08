@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_21_090423) do
+ActiveRecord::Schema.define(version: 2022_03_08_140652) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -336,10 +336,12 @@ ActiveRecord::Schema.define(version: 2022_02_21_090423) do
     t.string "visibility"
     t.string "onlyfans"
     t.string "email_preferences"
+    t.string "google_id"
     t.index ["apple_id"], name: "index_users_on_apple_id", unique: true
     t.index ["email"], name: "index_users_on_email"
     t.index ["email_preferences"], name: "index_users_on_email_preferences"
     t.index ["facebook_id"], name: "index_users_on_facebook_id"
+    t.index ["google_id"], name: "index_users_on_google_id", unique: true
     t.index ["slug"], name: "index_users_on_slug", unique: true
     t.index ["visibility"], name: "index_users_on_visibility"
   end

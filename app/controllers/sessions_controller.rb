@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
-  skip_forgery_protection only: :apple
+  skip_forgery_protection only: [:apple, :google]
 
   def new
     redirect_to root_path and return if current_user
@@ -11,6 +11,14 @@ class SessionsController < ApplicationController
 
   def apple
     session[:user_id] = apple_login.id
+  end
+
+  def google
+    payload = GoogleIDToken::Validator.new.check(params[:credential], ENV.fetch("GOOGLE_CLIENT_ID"))
+    session[:user_id] = User.authenticate_google(id: payload["sub"], email: payload["email"], first_name: payload["given_name"].presence, last_name: payload["family_name"].presence).id
+    render :apple
+  rescue GoogleIDToken::ValidationError
+    render :new
   end
 
   def create

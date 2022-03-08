@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :sessions, only: [:create] do
       get "email", on: :collection
       post "apple", on: :collection
+      post "google", on: :collection
     end
     resources :events, only: [:index, :show, :new, :create]
     resources :travel_plans, only: [:create, :destroy]

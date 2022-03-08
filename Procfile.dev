@@ -1,0 +1,4 @@
+web: bundle exec rails s -p ${PORT:-3000}
+worker: DB_POOL=3 bundle exec sidekiq -C config/sidekiq.yml
+js: yarn build --watch
+livereload: yarn live

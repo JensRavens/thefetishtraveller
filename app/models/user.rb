@@ -24,6 +24,8 @@
 #  bluf                 :string
 #  visibility           :string
 #  onlyfans             :string
+#  email_preferences    :string
+#  google_id            :string
 #
 
 class User < ApplicationRecord
@@ -89,8 +91,18 @@ class User < ApplicationRecord
     end
 
     def authenticate_apple(id:, email:, first_name: nil, last_name: nil)
-      user = User.find_by(apple_id: id) || User.find_by(email: email) || User.new(id: id)
+      user = User.find_by(apple_id: id) || User.find_by(email: email) || User.new
       user.apple_id ||= id
+      user.email ||= email
+      user.first_name ||= first_name
+      user.last_name ||= last_name
+      user.save! if user.changed?
+      user
+    end
+
+    def authenticate_google(id:, email:, first_name: nil, last_name: nil)
+      user = User.find_by(google_id: id) || User.find_by(email: email) || User.new
+      user.google_id ||= id
       user.email ||= email
       user.first_name ||= first_name
       user.last_name ||= last_name
