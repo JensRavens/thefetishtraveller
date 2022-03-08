@@ -1,3 +1,4 @@
+- show_footer
 #g_id_onload data-client_id=ENV.fetch("GOOGLE_CLIENT_ID") data-login_uri=google_sessions_url data-auto_prompt="false"
 - content_for :additional_head_tags do
   meta name="appleid-signin-client-id" content="com.thefetishtraveller.web"
@@ -26,6 +27,4 @@
   = spacer
   h3 = t ".why"
   p = t ".why_explanation"
-  h3 = t ".how"
-  p = t ".how_explanation"
   = spacer

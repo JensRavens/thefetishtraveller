@@ -230,8 +230,6 @@ de:
       open_link_in_email: Wir haben eine E-Mail mit einem Login-Link an %{email} gesendet. Bitte klicke auf den Link in dieser E-Mail, um fortzufahren.
     new:
       claim: Personalisiere deine Reiseerfahrung
-      how: Wie kann ich mich einloggen?
-      how_explanation: Derzeit unterstützt diese Seite nur den Login mit Apple. Klicke einfach den Login Button und fang an, Reisepläne zu erstellen.
       intro: Logge dich ein, um Favoritenlisten, Reisepläne oder neue Veranstaltungen zu erstellen.
       link_expired: Dein Login Link ist abgelaufen. Bitte versuche es erneut.
       or_login_via_email: oder per E-Mail einloggen
