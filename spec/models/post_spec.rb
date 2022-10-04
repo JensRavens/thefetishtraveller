@@ -27,5 +27,14 @@ RSpec.describe Post do
         end
       end.to change { follower.notifications.count }.by 1
     end
+
+    it "deletes notifications if the post is deleted" do
+      post = nil
+      perform_enqueued_jobs do
+        post = user.post! image: fixture_file_upload("picture.jpg"), description: "hello world"
+      end
+      post.destroy!
+      expect(follower.notifications.count).to eq 0
+    end
   end
 end
