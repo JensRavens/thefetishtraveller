@@ -63,8 +63,6 @@ de:
   events:
     index:
       all: Alle
-      event_missing: Dein Lieblingsevent fehlt noch?
-      search: Suchen...
       submit_event: Jetzt zur Liste hinzufügen
       subscribe_to_calendar_html: Du kannst diesen Kalender auch <a href="%{link}" class="link">hier</a> abonnieren.
       title: Events

@@ -12,6 +12,11 @@
   padding: 0 50px;
   gap: 55px;
 
+  &__group {
+    display: flex;
+    gap: 55px;
+  }
+
   &__option {
     line-height: var(--height);
     white-space: nowrap;
@@ -48,5 +53,9 @@
     --height: 40px;
     padding: 0 10px;
     gap: 20px;
+  }
+
+  &--grouped {
+    justify-content: space-between;
   }
 }

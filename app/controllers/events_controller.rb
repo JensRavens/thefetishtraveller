@@ -4,7 +4,7 @@ class EventsController < ApplicationController
   before_action :require_login, only: [:new, :create]
 
   def index
-    @events = Event.listed.searched(params[:s])
+    @events = Event.listed
     @months = @events.pluck(:start_at)
       .map { |e| [[e.year, e.month].join("-"), e.strftime("%b %y")] }
       .uniq(&:first).sort_by(&:first)
