@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   before_action :check_locale
 
+  default_form_builder Shimmer::Form::Builder
+
   layout "application"
 
   unless Rails.env.development?
@@ -15,7 +17,7 @@ class ApplicationController < ActionController::Base
 
       Sentry.capture_exception(error)
       ui.close_modal
-      replace :main, with: "errors/error", error: error
+      ui.replace :main, with: "errors/error", error: error
       default_render
     end
   end

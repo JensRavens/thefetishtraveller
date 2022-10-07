@@ -1,22 +1,7 @@
-= hero do
-  h1 = t ".create_event"
-.spacer
-= form_with model: @event, builder: AwesomeForm do |f|
-  .container.container--small
-    .stack
-      = f.text_field :name
-      = f.location_field :location_id
-      .line
-        = f.datetime_field :start_at
-        = f.datetime_field :end_at
-      = f.text_area :abstract
-      = f.text_area :description
-      = f.text_field :organizer_name
-      = f.collection_check_boxes :categories, Event::CATEGORIES, :to_s, ->(e) { t("events.categories.#{e}") }
-      = f.text_field :ticket_link
-      = f.text_field :website
-      = f.image_field :hero
-      = f.image_field :flyer
-      = f.image_field :gallery_images, multiple: true
-      = f.submit
-.spacer
+= turbo_frame_tag :new_event
+  = form_with model: @event, class: :stack do |f|
+    = f.input :name
+    = f.input :location_id, as: :location
+    = f.input :start_at, as: :datetime
+    = f.input :festival, as: :checkbox, description: t(".festival_description")
+    = f.submit class: "button"

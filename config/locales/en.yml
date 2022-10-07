@@ -12,8 +12,6 @@ en:
       home: Home
       imprint: Imprint
       quick_navigation: Quick Navigation
-    head:
-      default_description: Find fetish events all around the globe and connect with like-minded gear heads.
     mail_footer:
       change_email_preferences_html: You can unsubscribe from this email in your <a href=%{url}>user profile</a>.
       email_reason: |
@@ -63,17 +61,17 @@ en:
   events:
     index:
       all: All
-      event_missing: Your favorite event is missing?
-      search: Search...
-      submit_event: Add it now to the List
+      submit_event: add your event
       subscribe_to_calendar_html: You can also subscribe to this calendar <a href="%{link}" class="link">here</a>.
       title: Events
     new:
-      create_event: Create event
+      festival_description: Festivals are events that span multiple days and can host other events. Examples would be Folsom, Darklands or a fetish weekend with multiple parties.
     show:
       add_to_calendar: Add to my Travel Plans
       also_going: Also Going
       date: Date
+      edit_details: Edit Event
+      event_managed_by_html: This event is managed by %{names}. You can change details at all times.
       happening_here: Happening here
       location: Location
       on_my_calendar: On my Calendar

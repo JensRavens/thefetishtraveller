@@ -1,0 +1,15 @@
+= turbo_frame_tag "edit_event"
+  = form_with model: @event, class: :stack do |f|
+    = f.input :name
+    = f.input :location_id, as: :location
+    = f.input :start_at, as: :datetime
+    - if @event.full_day
+      = f.input :end_at, as: :datetime
+    = f.input :abstract, as: :text
+    = f.input :description, as: :text
+    = f.input :website
+    = f.input :ticket_link
+    = f.input :organizer_name
+    = f.input :hero, as: :image
+    = f.input :flyer, as: :image
+    = f.submit class: "button"

@@ -12,8 +12,6 @@ de:
       home: Home
       imprint: Impressum
       quick_navigation: Schnellnavigation
-    head:
-      default_description: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
     mail_footer:
       change_email_preferences_html: Du kannst die Benachrichtigungseinstellungen in deinem <a href=%{url}>Nutzerprofil</a> ändern.
       email_reason: |
@@ -63,17 +61,17 @@ de:
   events:
     index:
       all: Alle
-      event_missing: Dein Lieblingsevent fehlt noch?
-      search: Suchen...
-      submit_event: Jetzt zur Liste hinzufügen
+      submit_event: neues Event hinzufügen
       subscribe_to_calendar_html: Du kannst diesen Kalender auch <a href="%{link}" class="link">hier</a> abonnieren.
       title: Events
     new:
-      create_event: Event übermitteln
+      festival_description: Festivals sind events, die mehrere Tage umfassen und andere Events beinhalten können. Beispiele wären Folsom, Darklands oder ein Fetischwochenende mit mehreren Parties.
     show:
       add_to_calendar: Zu meinen Reiseplänen hinzufügen
       also_going: Auch dort
       date: Date
+      edit_details: Event bearbeiten
+      event_managed_by_html: verwaltet von %{names}
       happening_here: auch hier
       location: Ort
       on_my_calendar: Auf meinem Kalendar

@@ -4,7 +4,7 @@ header.header
     .main-menu__links = render "components/menu_links"
     .main-menu__user
       - if current_user
-        - if @review_object && policy(@review_object).try(:edit?)
+        - if @review_object && policy(@review_object).try(:edit?) && current_user&.admin?
           - url = url_for([:edit, @review_object]) rescue url_for([:edit, :admin, @review_object])
           a.button href=url = t ".edit"
         a.main-menu__plus href=modal_path(new_post_path, size: :small, close: false) title=t(".create_a_post")
