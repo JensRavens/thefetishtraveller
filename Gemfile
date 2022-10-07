@@ -72,6 +72,7 @@ group :development, :test do
   gem "cuprite"
   gem "i18n-tasks", "0.9.35"
   gem "rack_session_access"
+  gem "capybara-screenshot-diff"
 end
 
 group :development do

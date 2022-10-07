@@ -7,12 +7,12 @@ class AwesomeForm < ActionView::Helpers::FormBuilder
 
   def text_field(method, options = {})
     prepare_options method, options
-    wrap method, super(method, options), "input--text", options
+    wrap method, super(method, options), "input--string", options
   end
 
   def text_area(method, options = {})
     prepare_options method, options
-    wrap method, super(method, options), "input--text input--text-area", options
+    wrap method, super(method, options), "input--string input--text", options
   end
 
   def image_field(method, options = {})
@@ -36,7 +36,7 @@ class AwesomeForm < ActionView::Helpers::FormBuilder
 
   def search_field(method, options = {})
     prepare_options method, options
-    wrap method, super(method, options), "input--text", options
+    wrap method, super(method, options), "input--string", options
   end
 
   def location_field(method, options = {})
@@ -60,17 +60,17 @@ class AwesomeForm < ActionView::Helpers::FormBuilder
     wrap method, [
       original_text_field(method, options.merge("data-location-select-target": "select")),
       fields
-    ], "input--text", options.merge(controller: "location-select")
+    ], "input--string", options.merge(controller: "location-select")
   end
 
   def password_field(method, options = {})
     prepare_options method, options
-    wrap method, super(method, options), "input--text", options
+    wrap method, super(method, options), "input--string", options
   end
 
   def number_field(method, options = {})
     prepare_options method, options
-    wrap method, super(method, options), "input--text", options
+    wrap method, super(method, options), "input--string", options
   end
 
   def email_field(method, options = {})

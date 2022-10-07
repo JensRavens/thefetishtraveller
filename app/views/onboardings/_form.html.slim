@@ -1,4 +1,4 @@
-.container = form_with url: onboarding_path(step: @step), model: @profile, builder: AwesomeForm, class: "stack" do |f|
+.container = form_with url: onboarding_path(step: @step), model: @profile, class: "stack" do |f|
   = yield f
-  = f.submit t(".continue")
+  = f.submit t(".continue"), class: "button"
 .spacer

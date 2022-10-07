@@ -1,7 +1,7 @@
 h3 = t ".setup_profile"
 p = t ".lets_get_started"
-= f.text_field :slug, description: t(".this_is_your_handle")
-= f.image_field :avatar, description: t(".show_yourself")
-= f.text_field :location_description, description: t(".location_description")
+= f.input :slug, description: t(".this_is_your_handle")
+= f.input :avatar, as: :image, description: t(".show_yourself")
+= f.input :location_description, description: t(".location_description")
 p = t ".create_a_bio"
-= f.text_area :bio
+= f.input :bio, as: :text

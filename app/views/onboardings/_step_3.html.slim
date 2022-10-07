@@ -1,4 +1,4 @@
 h3 = t ".profile_visibility"
 p = t ".your_choice"
-= f.radio_button :visibility, "public", required: true, description: t(".public_description")
-= f.radio_button :visibility, "internal", required: true, description: t(".internal_description")
+= f.input :visibility, as: :radio, value: "public", required: true, description: t(".public_description")
+= f.input :visibility, as: :radio, value: "internal", required: true, description: t(".internal_description")

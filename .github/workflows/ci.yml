@@ -47,9 +47,15 @@ jobs:
         env:
           DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/tft
           RAILS_ENV: test
-      - name: Build and test with Rake
+      - name: Build and test
         run: bundle exec rspec --format documentation
         env:
           DATABASE_URL: postgres://postgres:postgres@127.0.0.1:5432/tft
           REDIS_URL: redis://127.0.0.1:6379
           RAILS_ENV: test
+          SCREENSHOTS: '1'
+      - name: Upload Screenshots
+        if: always()
+        run: |
+          (cd doc/screenshots; zip -r ../../screenshots.zip .)
+          curl -X POST "https://screamshot.nerdgeschoss.de/projects/x8RSKynwLYKP8hXaNFZPb4gH/versions" -F "name=\"$GITHUB_REF\"" -F "file=@screenshots.zip" -F "iteration=\"$GITHUB_SHA\""
