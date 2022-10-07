@@ -12,8 +12,6 @@ de:
       home: Home
       imprint: Impressum
       quick_navigation: Schnellnavigation
-    head:
-      default_description: Finde Fetish Events auf der ganzen Welt und lerne andere Gear Heads wie dich kennen.
     mail_footer:
       change_email_preferences_html: Du kannst die Benachrichtigungseinstellungen in deinem <a href=%{url}>Nutzerprofil</a> ändern.
       email_reason: |
