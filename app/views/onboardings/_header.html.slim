@@ -1,8 +1,8 @@
 = hero
   .container
-    h1 = t ".welcome"
+    h1.heading = t ".welcome"
     .hero__addon
-      h5 = t ".guide"
+      h5.text-center = t ".guide"
 .filter-bar
   - 3.times do |step|
     a.filter-bar__option href=(onboarding_path(step: step + 1) if @step > step) class=("filter-bar__option--selected" if step + 1 == @step) = t ".step", step: step + 1
