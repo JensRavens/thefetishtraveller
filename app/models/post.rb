@@ -16,6 +16,7 @@ class Post < ApplicationRecord
 
   has_many :likes, dependent: :delete_all
   has_many :comments, dependent: :delete_all
+  has_many :notifications, as: :subject, dependent: :delete_all
   belongs_to :user, touch: true
 
   has_one_attached :image
