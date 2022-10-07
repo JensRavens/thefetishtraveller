@@ -40,6 +40,9 @@ class Event < ApplicationRecord
 
   has_many :travel_plans, dependent: :delete_all
   has_many :events, dependent: :destroy
+  belongs_to :event, optional: true
+
+  has_and_belongs_to_many :owners, class_name: "User"
 
   scope :with_attachments, -> { with_attached_hero.with_attached_header.with_attached_logo.with_attached_flyer.with_attached_gallery_images }
   scope :in_future, -> { where("events.end_at >= NOW()") }
@@ -49,11 +52,6 @@ class Event < ApplicationRecord
   scope :happening_in_month, ->(month) { where("events.start_at > ? AND events.start_at < ?", month.beginning_of_month, month.end_of_month) }
   scope :searched, ->(term) { left_joins(:location).where("events.name ILIKE :term OR locations.name ILIKE :term", {term: "%#{term}%"}) if term.present? }
   scope :listed, -> { published.in_future.chronologic }
-
-  has_many :events, dependent: :destroy
-  belongs_to :event, optional: true
-
-  has_and_belongs_to_many :owners, class_name: "User"
 
   has_one_attached :hero
   has_one_attached :header
@@ -85,6 +83,16 @@ class Event < ApplicationRecord
 
   def categories=(values)
     self[:categories] = Array.wrap(values).select { |e| Event::CATEGORIES.include?(e) }
+  end
+
+  def festival
+    categories.include?("festival")
+  end
+
+  def festival=(value)
+    self.full_day = value
+    categories.push "festival" if !categories.include?("festival") && value
+    categories.delete "festival" if categories.include?("festival") && !value
   end
 
   def to_ics

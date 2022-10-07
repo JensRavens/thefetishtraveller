@@ -27,7 +27,7 @@ Rails.application.routes.draw do
       post "apple", on: :collection
       post "google", on: :collection
     end
-    resources :events, only: [:index, :show, :new, :create]
+    resources :events
     resources :travel_plans, only: [:create, :destroy]
     resources :profiles, only: [:edit, :index] do
       get :travel_plans, on: :member

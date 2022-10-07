@@ -5,6 +5,11 @@
 - edit_bar @event
 - hero = @event.header.presence || @event.hero.presence
 
+- content_for :toolbar_extension do
+  .status-banner.status-banner--toolbar: .container: .stack.stack--small
+    div = t ".event_managed_by_html", names: to_sentence(@event.owners.pluck(:slug).map { |e| tag.a(e, href: profile_path(e), class: :link) })
+    div: a.button href=modal_path(edit_event_path(@event), size: :small) = t ".edit_details"
+
 .spacer
 .container
   h1.subheading = @event.name
@@ -44,17 +49,16 @@
           = button_to t(".on_my_calendar"), travel_plan_path(event_id: @event.id), method: :delete, class: "like-button active"
         - else
           = button_to t(".add_to_calendar"), travel_plans_path(event_id: @event.id), class: "like-button"
-    - if policy(@event).edit?
-      = link_to "edit", admin_event_path(@event), class: "link"
 .container.container--article
   - if @event.description.present?
     = simple_format @event.description
   - if @event.flyer.attached?
     .flyer = image_tag @event.flyer, width: 800
 - if @event.gallery_images.any?
-  .listing.listing--small
+  .spacer
+  .gallery
     - @event.gallery_images.each do |image|
-      .gallery__image = image_tag image, width: 350
+      = image_tag image, width: 350
 .spacer
 .container
   h2.subheading = @event.location.description

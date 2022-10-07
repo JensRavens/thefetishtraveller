@@ -72,6 +72,7 @@ en:
       add_to_calendar: Add to my Travel Plans
       also_going: Also Going
       date: Date
+      event_managed_by_html: This event is managed by %{names}. You can change details at all times.
       happening_here: Happening here
       location: Location
       on_my_calendar: On my Calendar

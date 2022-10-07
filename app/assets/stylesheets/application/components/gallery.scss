@@ -1,0 +1,12 @@
+.gallery {
+  display: grid;
+  padding: 4px;
+  gap: 4px;
+  background-color: var(--color-background-dark);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+
+  > * {
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+}

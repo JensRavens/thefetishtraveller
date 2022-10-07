@@ -6,6 +6,12 @@ class EventPolicy < ApplicationPolicy
   end
 
   def update?
-    user&.admin?
+    admin? || owner?
+  end
+
+  private
+
+  def owner?
+    user && record.owner_ids.include?(user.id)
   end
 end
