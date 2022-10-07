@@ -76,9 +76,6 @@ end
 
 group :development do
   gem "listen"
-  gem "spring"
-  gem "spring-watcher-listen"
-  gem "spring-commands-rspec"
   gem "web-console"
   gem "annotate"
   gem "rb-fsevent"

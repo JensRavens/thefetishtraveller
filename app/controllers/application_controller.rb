@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
       Sentry.capture_exception(error)
       ui.close_modal
-      replace :main, with: "errors/error", error: error
+      ui.replace :main, with: "errors/error", error: error
       default_render
     end
   end
