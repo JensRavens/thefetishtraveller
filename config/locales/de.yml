@@ -68,12 +68,13 @@ de:
       title: Events
     new:
       create_event: Event übermitteln
+      festival_description: Festivals sind events, die mehrere Tage umfassen und andere Events beinhalten können. Beispiele wären Folsom, Darklands oder ein Fetischwochenende mit mehreren Parties.
     show:
       add_to_calendar: Zu meinen Reiseplänen hinzufügen
       also_going: Auch dort
       date: Date
-      event_managed_by_html: verwaltet von %{names}
       edit_details: Event bearbeiten
+      event_managed_by_html: verwaltet von %{names}
       happening_here: auch hier
       location: Ort
       on_my_calendar: Auf meinem Kalendar

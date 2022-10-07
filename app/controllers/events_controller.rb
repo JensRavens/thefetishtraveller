@@ -26,7 +26,7 @@ class EventsController < ApplicationController
   def create
     @event = Event.build_submit event_params.merge(owners: [current_user])
     if @event.save
-      redirect_to @event
+      ui.navigate_to @event
     else
       render :new, status: :unprocessable_entity
     end

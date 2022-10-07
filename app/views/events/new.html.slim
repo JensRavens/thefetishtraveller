@@ -1,6 +1,7 @@
-= form_with model: @event, builder: AwesomeForm, class: :stack do |f|
-  = f.text_field :name
-  = f.location_field :location_id
-  = f.datetime_field :start_at
-  = f.check_box :festival
-  = f.submit
+= turbo_frame_tag :new_event
+  = form_with model: @event, class: :stack do |f|
+    = f.input :name
+    = f.input :location_id, as: :location
+    = f.input :start_at, as: :datetime
+    = f.input :festival, as: :checkbox, description: t(".festival_description")
+    = f.submit class: "button"

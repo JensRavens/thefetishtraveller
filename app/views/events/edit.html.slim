@@ -1,13 +1,15 @@
 = turbo_frame_tag "edit_event"
-  = form_with model: @event, builder: AwesomeForm, class: :stack do |f|
-    = f.text_field :name
-    = f.location_field :location_id
-    = f.datetime_field :start_at
-    = f.text_area :abstract
-    = f.text_area :description
-    = f.text_field :website
-    = f.text_field :ticket_link
-    = f.text_field :organizer_name
-    = f.image_field :hero
-    = f.image_field :flyer
-    = f.submit
+  = form_with model: @event, class: :stack do |f|
+    = f.input :name
+    = f.input :location_id, as: :location
+    = f.input :start_at, as: :datetime
+    - if @event.full_day
+      = f.input :end_at, as: :datetime
+    = f.input :abstract, as: :text
+    = f.input :description, as: :text
+    = f.input :website
+    = f.input :ticket_link
+    = f.input :organizer_name
+    = f.input :hero, as: :image
+    = f.input :flyer, as: :image
+    = f.submit class: "button"

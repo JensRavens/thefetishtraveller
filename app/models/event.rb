@@ -60,7 +60,8 @@ class Event < ApplicationRecord
 
   has_many_attached :gallery_images
 
-  validates :name, :start_at, :end_at, presence: true
+  validates :name, :start_at, :end_at, :location, presence: true
+  validates_associated :location
 
   after_create do
     publish :event_created, user_id: owners.first&.id, notify_admin: owners.any? && owners.none?(&:admin?)
@@ -90,6 +91,7 @@ class Event < ApplicationRecord
   end
 
   def festival=(value)
+    value = ActiveModel::Type::Boolean.new.cast(value)
     self.full_day = value
     categories.push "festival" if !categories.include?("festival") && value
     categories.delete "festival" if categories.include?("festival") && !value

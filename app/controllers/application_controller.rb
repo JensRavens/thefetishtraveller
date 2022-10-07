@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
 
   before_action :check_locale
 
+  default_form_builder Shimmer::Form::Builder
+
   layout "application"
 
   unless Rails.env.development?
