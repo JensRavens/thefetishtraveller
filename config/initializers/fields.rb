@@ -31,12 +31,3 @@ class LocationField < Shimmer::Form::Field
   end
 end
 Shimmer::Form::Builder.register(LocationField)
-
-class RadioField < Shimmer::Form::Field
-  self.type = :radio
-
-  def render
-    builder.radio_button method, options.delete(:value), options
-  end
-end
-Shimmer::Form::Builder.register(RadioField)
