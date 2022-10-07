@@ -49,3 +49,4 @@ yarn-debug.log*
 !/app/assets/builds/.keep
 /config/translate.yml
 /.env.local
+/doc

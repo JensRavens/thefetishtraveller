@@ -16,6 +16,7 @@ RSpec.describe "user in the feed" do
     attach_file "image", "picture.jpg"
     fill_in "location_description", with: "Berlin, Germany"
     fill_in "post.description", with: "Hello World #fyp"
+    screenshot "post_create"
     click_on "Create"
 
     expect(page).to have_content "Berlin, Germany"
@@ -26,6 +27,7 @@ RSpec.describe "user in the feed" do
     visit post_path(post)
     click_on "like"
     expect(page).to have_content "liked_by_html name=freddy"
+    screenshot "liked_post"
   end
 
   it "unlikes a post" do
@@ -41,6 +43,7 @@ RSpec.describe "user in the feed" do
     fill_in "add_a_comment", with: "nice pic!"
     click_on "post_comment"
     expect(page).to have_content "nice pic!"
+    screenshot "commented_post"
   end
 
   it "updates a posts" do

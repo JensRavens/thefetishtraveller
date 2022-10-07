@@ -5,9 +5,12 @@ require "system_helper"
 RSpec.describe "signup" do
   it "allows signing up via email" do
     visit root_path
+    screenshot "home"
     click_on "login"
+    screenshot "login"
     click_on "login_via_email"
     fill_in "email", with: "new-user@example.com"
+    screenshot "email_login"
     click_on "email.login"
     expect(page).to have_content "link_in_email"
 
@@ -17,12 +20,15 @@ RSpec.describe "signup" do
     fill_in "slug", with: "onboarding-user"
     fill_in "location_description", with: "Berlin, Germany"
     fill_in "bio", with: "Hello #world"
+    screenshot "onboarding"
     click_on "continue"
 
     fill_in "instagram", with: "insta-profile-name"
+    screenshot "onboarding_social"
     click_on "continue"
 
     choose "visibility_public"
+    screenshot "onboarding_public"
     click_on "continue"
 
     expect(page).to have_content "onboarding-user"
