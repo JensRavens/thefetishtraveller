@@ -87,6 +87,10 @@ de:
     cancel: Abbrechen
   helpers:
     label:
+      event:
+        location_id: Ort
+        official: offiziell
+        start_at: Beginn
       user:
         avatar: Profilbild
         bio: Profiltext
@@ -96,10 +100,6 @@ de:
         slug: Profilname
         visibility_internal: Internes Profil
         visibility_public: Öffentliches Profil
-      event:
-        official: offiziell
-        start_at: Beginn
-        location_id: Ort
   magazines:
     header:
       all: Alle
