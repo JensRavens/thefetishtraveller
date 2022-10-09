@@ -60,6 +60,7 @@ class User < ApplicationRecord
   scope :admin, -> { where("'admin' = ANY(users.roles)") }
   scope :onboarded, -> { where.not(visibility: nil) }
   scope :onboarding, -> { where(visibility: nil) }
+  scope :with_profile_picture, -> { joins(:avatar_attachment) }
   scope :public_profile, -> { where(visibility: "public") }
   scope :internal_profile, -> { where(visibility: "internal") }
   scope :with_pending_notifications, -> { where(id: Notification.pending.select(:user_id)) }
