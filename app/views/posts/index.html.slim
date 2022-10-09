@@ -1,7 +1,7 @@
 .spacer.spacer--margin
 .container
   - if @posts.any?
-    = paginated @posts, class: "stack stack--large post-container"
+    = paginated @posts, class: "stack stack--large stack--tablet-xl post-container"
   - else
     .empty-box
       h2 = t ".no_posts_yet"

@@ -18,4 +18,10 @@
   &--large {
     gap: 32px;
   }
+
+  @media (min-width: $tablet) {
+    &--tablet-xl {
+      gap: 64px;
+    }
+  }
 }

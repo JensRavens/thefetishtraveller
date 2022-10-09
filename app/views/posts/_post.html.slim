@@ -2,7 +2,7 @@
 - total_likes = post.likes.size
 
 = turbo_frame_tag post, target: "_top"
-  .post
+  .post data-controller="hide redirect-interaction"
     .post__meta
       a.post__avatar href=profile_path(post.user) = image_tag post.user.avatar_image, class: "avatar", width: 40
       .post__meta-text
@@ -10,8 +10,8 @@
         - if post.location_description.present?
           .post__location = post.location_description
       .post__meta-actions: a.context-menu#post-context href=popover_path(context_post_path(post), placement: "left")
-    .post__content data-controller="hide redirect-interaction"
-      img.post__image data-action="dblclick->redirect-interaction#trigger" src=image_file_url(post.image, width: 416)
+    img.post__image data-action="dblclick->redirect-interaction#trigger" src=image_file_url(post.image, width: 416)
+    .post__content
       .post__icon-bar
         - if post.likes.any? { |e| e.user_id == current_user&.id }
           = button_to "", like_path(post), method: :delete, class: "post__icon-bar__button heart-button active", title: t(".unlike")
