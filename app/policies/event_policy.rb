@@ -9,6 +9,10 @@ class EventPolicy < ApplicationPolicy
     admin? || owner?
   end
 
+  def add_subevent?
+    admin? || owner?
+  end
+
   private
 
   def owner?

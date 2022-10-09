@@ -66,19 +66,23 @@ de:
       title: Events
     new:
       festival_description: Festivals sind events, die mehrere Tage umfassen und andere Events beinhalten können. Beispiele wären Folsom, Darklands oder ein Fetischwochenende mit mehreren Parties.
+      official_description: Offizielle Events werden durch eine größere Vorschau beworben.
     show:
-      add_to_calendar: Zu meinen Reiseplänen hinzufügen
       also_going: Auch dort
       date: Date
       edit_details: Event bearbeiten
       event_managed_by_html: verwaltet von %{names}
-      happening_here: auch hier
+      festival: Festival
       location: Ort
-      on_my_calendar: Auf meinem Kalendar
       organizer: Veranstalter
       other_events_in: Andere Events in %{location}
       tickets: Tickets
       website: Website
+    timeline:
+      add_event: Add event
+    travel_button:
+      add_to_calendar: Zu meinen Reiseplänen hinzufügen
+      on_my_calendar: in meinem Kalendar
   general:
     cancel: Abbrechen
   helpers:
@@ -92,6 +96,10 @@ de:
         slug: Profilname
         visibility_internal: Internes Profil
         visibility_public: Öffentliches Profil
+      event:
+        official: offiziell
+        start_at: Beginn
+        location_id: Ort
   magazines:
     header:
       all: Alle
@@ -245,6 +253,8 @@ de:
     formats:
       default: "%d.%m.%Y %H:%M"
       month: "%B"
+      time: "%H:%M"
+      weekday: "%A"
   titleholders:
     index:
       submit_titleholder: Eintrag hinzufügen

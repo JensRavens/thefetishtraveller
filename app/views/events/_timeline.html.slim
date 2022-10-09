@@ -1,0 +1,32 @@
+- groups = events.group_by { |e| e.start_at.to_date }
+.calendar
+  .spacer
+  .calendar__line
+  .stack.stack--tablet-xl
+    - groups.each do |date, events|
+      section.calendar__section
+        .calendar__month
+          .calendar__timeline
+            .calendar__date = l date.to_datetime, format: :weekday
+            .calendar__year = l date.to_date, format: :short
+        .container.container--small: .stack
+          - events.each do |event|
+            a href=event_path(event)
+              - if event.official?
+                .calendar__event
+                  = image_tag event.hero, size: 800, class: "calendar__event__image"
+                  .calendar__event__details
+                    h2 = event.name
+                    .calendar__event__date #{event.location.name}, #{l event.start_at, format: :time}
+                    - if event.abstract
+                      p = event.abstract
+                    = render "events/travel_button", event: event
+              - else
+                .calendar__small-event
+                  h2 = event.name
+                  .calendar__event__date #{event.location.name}, #{l event.start_at, format: :time}
+  .spacer.spacer--small
+  - if policy(event).add_subevent?
+    .container
+      span: a.button href=modal_path(new_event_path(event_id: event.id), size: :small) = t ".add_event"
+    .spacer.spacer--small

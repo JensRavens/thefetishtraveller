@@ -27,7 +27,6 @@
 
   &__event {
     position: relative;
-    margin-bottom: 2em;
     border: 1px solid var(--color-tint);
 
     h2 {
@@ -48,12 +47,21 @@
       aspect-ratio: 2/1;
       object-fit: cover;
     }
+
+    &__date {
+      font-weight: 700;
+    }
+  }
+
+  &__small-event {
+    h2 {
+      font-size: 18px;
+    }
   }
 
   @media (min-width: $desktop) {
     &__event {
       height: 370px;
-      margin-bottom: 6em;
 
       h2 {
         font-size: 52px;
@@ -85,7 +93,7 @@
 
   @media (min-width: $widescreen) {
     &__event {
-      margin-bottom: 8em;
+      margin-top: 30px;
     }
 
     .container {
@@ -118,7 +126,7 @@
       position: absolute;
       left: 50px;
       text-align: left;
-      top: 170px;
+      top: 10px;
       padding-left: 2em;
 
       &::before {

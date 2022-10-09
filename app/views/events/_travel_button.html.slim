@@ -1,0 +1,6 @@
+- if current_user && policy(event).travel?
+  turbo-frame#like-button
+    - if attends? event: event
+      = button_to t(".on_my_calendar"), travel_plan_path(event_id: event.id), method: :delete, class: "like-button active"
+    - else
+      = button_to t(".add_to_calendar"), travel_plans_path(event_id: event.id), class: "like-button"

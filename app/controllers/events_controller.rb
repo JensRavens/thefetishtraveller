@@ -20,7 +20,8 @@ class EventsController < ApplicationController
   end
 
   def new
-    @event = Event.new
+    @parent = Event.find(params[:event_id]) if params[:event_id].present?
+    @event = Event.new(event_id: @parent&.id, start_at: @parent&.start_at&.beginning_of_day)
   end
 
   def create
@@ -48,6 +49,6 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:name, :location_id, :start_at, :end_at, :abstract, :description, :organizer_name, :ticket_link, :website, :hero, :flyer, :festival, categories: [], gallery_images: [], location_details: [:id, :name, :country_code, :address, :zip, :city, :lat, :lon, :timezone])
+    params.require(:event).permit(:name, :location_id, :start_at, :end_at, :abstract, :description, :organizer_name, :ticket_link, :website, :hero, :flyer, :festival, :event_id, :official, categories: [], gallery_images: [], location_details: [:id, :name, :country_code, :address, :zip, :city, :lat, :lon, :timezone])
   end
 end
