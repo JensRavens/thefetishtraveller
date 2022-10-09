@@ -70,4 +70,32 @@
       color: var(--color-tint);
     }
   }
+
+  @media (min-width: $tablet) {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: 40px 1fr;
+    gap: 8px;
+    column-gap: 16px;
+
+    &__meta {
+      grid-row: 1;
+      grid-column: 2;
+    }
+
+    &__image {
+      grid-row: 1 / span 2;
+      grid-column: 1;
+      object-fit: contain;
+      width: 100%;
+      height: 100%;
+      max-height: 60vh;
+      margin: 0;
+    }
+
+    &__content {
+      grid-row: 2;
+      grid-column: 2;
+    }
+  }
 }

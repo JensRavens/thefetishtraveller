@@ -22,7 +22,7 @@ application.register("hide", HideController)
 import ImagePreviewController from "./image_preview_controller.ts"
 application.register("image-preview", ImagePreviewController)
 
-import LocationSelectController from "./location_select_controller.js"
+import LocationSelectController from "./location_select_controller.ts"
 application.register("location-select", LocationSelectController)
 
 import MapController from "./map_controller.ts"
@@ -39,3 +39,6 @@ application.register("share", ShareController)
 
 import ToggleController from "./toggle_controller.ts"
 application.register("toggle", ToggleController)
+
+import ViewportClickController from "./viewport_click_controller.ts"
+application.register("viewport-click", ViewportClickController)

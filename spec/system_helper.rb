@@ -15,5 +15,4 @@ RSpec.configure do |config|
   config.before(:each, type: :system) do
     driven_by Capybara.javascript_driver
   end
-  config.include Capybara::Screenshot::Diff::TestMethods, type: :system
 end
