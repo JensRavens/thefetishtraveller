@@ -1,7 +1,11 @@
 = turbo_frame_tag :new_event
   = form_with model: @event, class: :stack do |f|
+    = f.hidden_field :event_id
     = f.input :name
     = f.input :location_id, as: :location
     = f.input :start_at, as: :datetime
-    = f.input :festival, as: :checkbox, description: t(".festival_description")
+    - if @event.event_id
+      = f.input :official, as: :checkbox, description: t(".official_description")
+    - else
+      = f.input :festival, as: :checkbox, description: t(".festival_description")
     = f.submit class: "button"

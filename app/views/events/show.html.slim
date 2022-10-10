@@ -43,12 +43,12 @@
         strong = t ".tickets"
         br
         = link_to simple_url(@event.ticket_link), @event.ticket_link, class: "link"
-    - if current_user && policy(@event).travel?
-      turbo-frame#like-button
-        - if attends? event: @event
-          = button_to t(".on_my_calendar"), travel_plan_path(event_id: @event.id), method: :delete, class: "like-button active"
-        - else
-          = button_to t(".add_to_calendar"), travel_plans_path(event_id: @event.id), class: "like-button"
+    - if @event.event
+      p
+        strong = t ".festival"
+        br
+        = link_to @event.event.name, @event.event, class: "link"
+    = render "events/travel_button", event: @event
 .container.container--article
   - if @event.description.present?
     = simple_format @event.description
@@ -60,17 +60,15 @@
     - @event.gallery_images.each do |image|
       = image_tag image, width: 350
 .spacer
+- if @event.festival
+  .spacer.spacer--small
+  = render "events/timeline", event: @event, events: @subevents
+  .spacer
 .container
   h2.subheading = @event.location.description
 - if @event.location.coordinates?
   .spacer.spacer--tiny
   .map data-controller="map" data-map-coordinates-value={lat: @event.location.lat.to_f, lng: @event.location.lon.to_f}.to_json data-map-title-value=@event.location.name
-- if @subevents.any?
-  .spacer.spacer--small
-  .container.container--small
-    h2.subheading = t ".happening_here", location: @event.location.name
-    .spacer.spacer--small
-  .listing = render @subevents
 .spacer
 - if @attending_friends.any?
   h2.subheading = t ".also_going"

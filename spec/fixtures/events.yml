@@ -1,0 +1,24 @@
+# == Schema Information
+#
+# Table name: follows
+#
+#  id         :uuid             not null, primary key
+#  user_id    :uuid             not null
+#  profile_id :uuid             not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+folsom:
+  publish_at: 2020-01-01 22:10
+  slug: folsom-2040
+  name: Folsom 2040
+  location: berlin
+  start_at: 2040-09-09 10:00
+  end_at: 2040-09-12 10:00
+  website: https://folsomeurope.info
+  abstract: Another day of people in Berlin.
+  organizer_name: Folsom Europe e.V.
+  categories: [festival]
+  series: folsom-europe
+  full_day: true
+  featured: true
