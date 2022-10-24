@@ -60,7 +60,7 @@
     - @event.gallery_images.each do |image|
       = image_tag image, width: 350
 .spacer
-- if @event.festival
+- if @event.festival && (@subevents.any? || policy(@event).add_subevent?)
   .spacer.spacer--small
   = render "events/timeline", event: @event, events: @subevents
   .spacer
