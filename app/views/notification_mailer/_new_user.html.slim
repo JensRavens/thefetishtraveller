@@ -1,5 +1,5 @@
 - notifications.each do |notification|
   - user = notification.sender
   .notification
-    .notification__avatar = image_tag notification.sender.avatar_image, relative: false, width: 40, class: "avatar"
+    .notification__avatar = image_tag image_file_url(notification.sender.avatar_image, width: 40), class: "avatar"
     .notification__text = t ".joined_html", user: link_to(user.public_name, profile_url(user, locale: I18n.locale))
