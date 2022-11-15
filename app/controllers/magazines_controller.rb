@@ -7,7 +7,7 @@ class MagazinesController < ApplicationController
     scopes = [paginated(articles)]
     if params[:filter].blank?
       scopes << paginated(Titleholder.listed)
-      scopes << paginated(Event.listed.includes(:location))
+      scopes << paginated(Event.listed.root.includes(:location))
     end
     @items = scopes.flat_map(&:to_a).sort_by(&:magazine_relevancy)
   end

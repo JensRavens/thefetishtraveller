@@ -52,6 +52,7 @@ class Event < ApplicationRecord
   scope :happening_in_month, ->(month) { where("events.start_at > ? AND events.start_at < ?", month.beginning_of_month, month.end_of_month) }
   scope :searched, ->(term) { left_joins(:location).where("events.name ILIKE :term OR locations.name ILIKE :term", {term: "%#{term}%"}) if term.present? }
   scope :listed, -> { published.in_future.chronologic }
+  scope :root, -> { where(event_id: nil) }
 
   has_one_attached :hero
   has_one_attached :header
