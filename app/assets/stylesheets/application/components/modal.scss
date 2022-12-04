@@ -72,6 +72,7 @@
     flex: 1;
     overflow: auto;
     scroll-behavior: smooth;
+    padding-bottom: var(--size-navbar); // Fallback; allows post creation on older iPhone Safari
     padding-bottom: calc(var(--size-safe-bottom) + 2rem);
 
     @media (min-width: $tablet) {
