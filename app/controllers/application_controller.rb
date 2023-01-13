@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   include Shimmer::RemoteNavigation
 
   before_action :check_locale
+  before_action :display_announcement
 
   default_form_builder Shimmer::Form::Builder
 
@@ -59,5 +60,9 @@ class ApplicationController < ActionController::Base
       ui.append "pagination-frame", with: "components/pagination", items: scope, partial: params[:partial]
     end
     scope
+  end
+
+  def display_announcement
+    @announcement = Announcement.first
   end
 end

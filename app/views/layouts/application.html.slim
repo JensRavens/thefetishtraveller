@@ -10,6 +10,8 @@ html lang=I18n.locale
         = yield :toolbar_extension
       - if @review_object
         = render "components/review_status", object: @review_object
+      - if @announcement
+        = render "components/announcement", announcement: @announcement
       main.page-wrapper__main#main
         = debug session.to_h if params.key?(:debug_session)
         = yield

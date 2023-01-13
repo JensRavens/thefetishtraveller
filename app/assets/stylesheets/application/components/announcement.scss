@@ -1,0 +1,16 @@
+.announcement {
+  background-color: var(--color-footer);
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  padding: 1rem 0;
+
+  > * {
+    max-width: 480px !important;
+    margin: 0 auto;
+  }
+
+  p {
+    line-height: 1.3;
+  }
+}

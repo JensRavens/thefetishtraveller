@@ -9,6 +9,8 @@ css:
   .notification__text {
     flex: 1;
   }
+- if @announcement
+  strong = simple_format @announcement.message
 h2 = t ".this_is_what_happened", name: @user.public_name
 p = t ".daily_roundup"
 - @notifications.group_by(&:notification_type).each do |type, notifications|
